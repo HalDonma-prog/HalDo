@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🌌 HalDo AI OS v3.0 – Cosmic Edition</title>
+    <title>🌌 HalDo AI OS v4.0 – Ultimate Cosmic Edition</title>
     <style>
         /* ============================================================
-           HALDO AI OS – KOMPLETTES STYLING
+           HALDO AI OS – ULTIMATE STYLING
            ============================================================ */
 
         /* ---------- RESET & GRUNDLAGEN ---------- */
@@ -17,8 +17,8 @@
         }
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #0a0e1a;
-            color: #e8edf5;
+            background: #05080f;
+            color: #eef2f8;
             overflow: hidden;
             height: 100vh;
             width: 100vw;
@@ -27,36 +27,40 @@
         button {
             cursor: pointer;
             border: none;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             color: inherit;
-            padding: 6px 14px;
-            border-radius: 8px;
+            padding: 8px 16px;
+            border-radius: 10px;
             font-size: 14px;
             transition: 0.2s;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
         button:hover {
-            background: rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.14);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(74, 158, 255, 0.2);
         }
         button:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 4px;
         }
         input,
         textarea {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #e8edf5;
-            padding: 8px 12px;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #eef2f8;
+            padding: 10px 14px;
+            border-radius: 10px;
             font-size: 14px;
             width: 100%;
             outline: none;
@@ -65,7 +69,7 @@
         input:focus,
         textarea:focus {
             border-color: #4a9eff;
-            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.2);
+            box-shadow: 0 0 0 4px rgba(74, 158, 255, 0.15);
         }
 
         /* ---------- BOOT-SCREEN ---------- */
@@ -75,7 +79,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #080b16;
+            background: #05080f;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -88,14 +92,15 @@
             pointer-events: none;
         }
         #boot-logo {
-            font-size: 72px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #4a9eff, #a855f7, #4a9eff);
+            font-size: 80px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4a9eff, #a855f7, #f97316);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradShift 3s ease infinite;
-            margin-bottom: 20px;
+            animation: gradShift 4s ease infinite;
+            margin-bottom: 16px;
+            text-shadow: 0 0 60px rgba(74, 158, 255, 0.2);
         }
         @keyframes gradShift {
             0%,
@@ -107,26 +112,27 @@
             }
         }
         #boot-bar-wrap {
-            width: 320px;
+            width: 360px;
             max-width: 80%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.08);
+            height: 4px;
+            background: rgba(255, 255, 255, 0.04);
             border-radius: 4px;
             overflow: hidden;
-            margin-top: 12px;
+            margin-top: 14px;
         }
         #boot-bar {
             width: 0%;
             height: 100%;
             background: linear-gradient(90deg, #4a9eff, #a855f7);
             border-radius: 4px;
-            transition: width 0.3s ease;
+            transition: width 0.25s ease;
         }
         #boot-status {
-            margin-top: 12px;
+            margin-top: 14px;
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.3);
             letter-spacing: 0.5px;
+            font-weight: 300;
         }
 
         /* ---------- DESKTOP ---------- */
@@ -136,22 +142,22 @@
             height: 100vh;
             position: relative;
             overflow: hidden;
+            flex-direction: column;
         }
         #desktop.active {
             display: flex;
-            flex-direction: column;
         }
 
         /* ---------- TASKBAR ---------- */
         #taskbar {
-            height: 50px;
-            background: rgba(10, 14, 26, 0.85);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            height: 56px;
+            background: rgba(5, 8, 15, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: center;
-            padding: 0 16px;
+            padding: 0 20px;
             flex-shrink: 0;
             z-index: 100;
             gap: 12px;
@@ -163,49 +169,52 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             cursor: pointer;
-            margin-right: 8px;
+            margin-right: 4px;
         }
         #taskbar .menu-btn {
             font-size: 22px;
-            line-height: 1;
             padding: 0 10px;
             background: transparent;
+            border: none;
         }
         #taskbar .taskbar-apps {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             flex: 1;
             overflow-x: auto;
             padding: 0 8px;
         }
         #taskbar .taskbar-apps button {
-            padding: 4px 12px;
+            padding: 4px 14px;
             font-size: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
             white-space: nowrap;
+            border: 1px solid transparent;
+            transition: 0.2s;
         }
         #taskbar .taskbar-apps button.active {
-            background: rgba(74, 158, 255, 0.25);
-            box-shadow: inset 0 0 0 1px rgba(74, 158, 255, 0.3);
+            background: rgba(74, 158, 255, 0.18);
+            border-color: rgba(74, 158, 255, 0.2);
+            box-shadow: 0 0 20px rgba(74, 158, 255, 0.05);
         }
         #taskbar .clock {
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-left: auto;
-            padding-left: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            padding-left: 16px;
             white-space: nowrap;
+            font-variant-numeric: tabular-nums;
         }
 
-        /* ---------- WORKSPACE (Cosmic + Fenster) ---------- */
+        /* ---------- WORKSPACE ---------- */
         #workspace {
             flex: 1;
             position: relative;
             overflow: hidden;
-            background: #080b16;
+            background: #05080f;
         }
 
-        /* ---------- COSMIC WORLD (Canvas) ---------- */
+        /* ---------- COSMIC CANVAS ---------- */
         #cosmic-canvas {
             position: absolute;
             top: 0;
@@ -231,14 +240,14 @@
         }
         .os-window {
             position: absolute;
-            min-width: 320px;
-            min-height: 200px;
-            background: rgba(16, 20, 38, 0.92);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+            min-width: 360px;
+            min-height: 220px;
+            background: rgba(10, 14, 30, 0.88);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
             pointer-events: auto;
             display: flex;
             flex-direction: column;
@@ -253,30 +262,30 @@
             top: 0 !important;
             left: 0 !important;
             width: 100% !important;
-            height: calc(100% - 50px) !important;
+            height: calc(100% - 56px) !important;
             border-radius: 0;
             resize: none;
         }
         .os-window .win-header {
             display: flex;
             align-items: center;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             flex-shrink: 0;
             cursor: move;
         }
         .os-window .win-header .win-title {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             flex: 1;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .os-window .win-header .win-title .icon {
-            font-size: 16px;
+            font-size: 18px;
         }
         .os-window .win-header .win-controls {
             display: flex;
@@ -284,19 +293,21 @@
             margin-left: auto;
         }
         .os-window .win-header .win-controls button {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             padding: 0;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 14px;
             background: transparent;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.4);
+            border: none;
         }
         .os-window .win-header .win-controls button:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
         }
         .os-window .win-header .win-controls .close-btn:hover {
             background: #e74c3c;
@@ -304,9 +315,9 @@
         }
         .os-window .win-body {
             flex: 1;
-            padding: 12px 16px;
+            padding: 16px 20px;
             overflow: auto;
-            min-height: 100px;
+            min-height: 120px;
         }
         .os-window .win-body .app-content {
             height: 100%;
@@ -316,20 +327,20 @@
         /* ---------- MENÜS ---------- */
         .haldo-menu {
             position: fixed;
-            top: 50px;
+            top: 56px;
             left: 0;
-            width: 300px;
-            max-height: calc(100vh - 50px);
-            background: rgba(12, 16, 30, 0.96);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            width: 320px;
+            max-height: calc(100vh - 56px);
+            background: rgba(5, 8, 15, 0.94);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border-right: 1px solid rgba(255, 255, 255, 0.04);
             padding: 12px 0;
             overflow-y: auto;
             z-index: 200;
             transform: translateX(-100%);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 4px 0 40px rgba(0, 0, 0, 0.6);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 6px 0 60px rgba(0, 0, 0, 0.6);
         }
         .haldo-menu.open {
             transform: translateX(0);
@@ -338,15 +349,15 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 10px 20px;
+            padding: 10px 24px;
             font-size: 15px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.6);
             transition: 0.15s;
             cursor: pointer;
             border-left: 3px solid transparent;
         }
         .haldo-menu .menu-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             color: #fff;
             border-left-color: #4a9eff;
         }
@@ -357,35 +368,34 @@
         }
         .haldo-menu .menu-divider {
             height: 1px;
-            background: rgba(255, 255, 255, 0.06);
-            margin: 6px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            margin: 6px 24px;
         }
         .haldo-menu .menu-heading {
-            padding: 6px 20px;
-            font-size: 11px;
+            padding: 6px 24px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.2);
             font-weight: 600;
         }
 
-        /* ---------- APP-STORE MENÜ (A–Z) ---------- */
         .app-store-menu {
             position: fixed;
-            top: 50px;
+            top: 56px;
             right: 0;
-            width: 340px;
-            max-height: calc(100vh - 50px);
-            background: rgba(12, 16, 30, 0.96);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            width: 360px;
+            max-height: calc(100vh - 56px);
+            background: rgba(5, 8, 15, 0.94);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
             padding: 12px 0;
             overflow-y: auto;
             z-index: 200;
             transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: -4px 0 40px rgba(0, 0, 0, 0.6);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -6px 0 60px rgba(0, 0, 0, 0.6);
         }
         .app-store-menu.open {
             transform: translateX(0);
@@ -394,15 +404,14 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 8px 20px;
+            padding: 8px 24px;
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.6);
             cursor: pointer;
             transition: 0.15s;
-            border-radius: 0;
         }
         .app-store-menu .app-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             color: #fff;
         }
         .app-store-menu .app-item .icon {
@@ -413,13 +422,13 @@
         .app-store-menu .app-item .badge {
             margin-left: auto;
             font-size: 10px;
-            background: rgba(74, 158, 255, 0.2);
-            padding: 2px 8px;
-            border-radius: 10px;
+            background: rgba(74, 158, 255, 0.15);
+            padding: 2px 10px;
+            border-radius: 12px;
             color: #4a9eff;
         }
 
-        /* ---------- AI CHAT FENSTER (speziell) ---------- */
+        /* ---------- AI CHAT ---------- */
         .ai-chat-messages {
             display: flex;
             flex-direction: column;
@@ -430,44 +439,47 @@
             padding-right: 4px;
         }
         .ai-chat-messages .msg {
-            padding: 10px 14px;
-            border-radius: 12px;
-            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            max-width: 82%;
             font-size: 14px;
             line-height: 1.5;
-            animation: fadeIn 0.25s ease;
+            animation: fadeIn 0.3s ease;
         }
         .ai-chat-messages .msg.user {
-            background: rgba(74, 158, 255, 0.2);
+            background: rgba(74, 158, 255, 0.15);
             align-self: flex-end;
             border-bottom-right-radius: 4px;
+            color: #c8d8ff;
         }
         .ai-chat-messages .msg.ai {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.05);
             align-self: flex-start;
             border-bottom-left-radius: 4px;
-            color: #d0d8e8;
+            color: #d8e0f0;
         }
         .ai-chat-messages .msg.ai .think {
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.25);
             font-style: italic;
             font-size: 12px;
         }
         .ai-chat-input-wrap {
             display: flex;
-            gap: 8px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
             margin-top: 8px;
         }
         .ai-chat-input-wrap input {
             flex: 1;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
         }
         .ai-chat-input-wrap .mic-btn {
             font-size: 20px;
-            padding: 0 14px;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
+            padding: 0 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
         }
         .ai-chat-input-wrap .mic-btn.recording {
             color: #ff6b6b;
@@ -479,7 +491,7 @@
                 opacity: 1;
             }
             50% {
-                opacity: 0.4;
+                opacity: 0.3;
             }
         }
         @keyframes fadeIn {
@@ -490,6 +502,129 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        /* ---------- PLANET INFO OVERLAY ---------- */
+        #planet-info {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(5, 8, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 20px 30px;
+            max-width: 400px;
+            width: 90%;
+            z-index: 300;
+            display: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            pointer-events: auto;
+            color: #eef2f8;
+        }
+        #planet-info.active {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        #planet-info .close-info {
+            position: absolute;
+            top: 10px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #planet-info .close-info:hover {
+            color: #fff;
+        }
+        #planet-info .pname {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        #planet-info .pdesc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 8px;
+        }
+        #planet-info .pdetails {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 16px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        #planet-info .pdetails span {
+            color: #fff;
+        }
+        #planet-info .ai-question {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(74, 158, 255, 0.08);
+            border-radius: 12px;
+            font-size: 13px;
+            color: #4a9eff;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.2s;
+        }
+        #planet-info .ai-question:hover {
+            background: rgba(74, 158, 255, 0.18);
+        }
+
+        /* ---------- NOTIFICATIONS ---------- */
+        #notification-area {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+            max-width: 360px;
+        }
+        .notification {
+            background: rgba(5, 8, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 14px 18px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+            pointer-events: auto;
+            animation: slideIn 0.3s ease;
+            font-size: 14px;
+        }
+        .notification .ntitle {
+            font-weight: 600;
+            color: #fff;
+        }
+        .notification .nbody {
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 2px;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
 
@@ -506,11 +641,9 @@
                 resize: none !important;
             }
             .os-window .win-header {
-                padding: 10px 14px;
+                padding: 12px 16px;
             }
-            .haldo-menu {
-                width: 280px;
-            }
+            .haldo-menu,
             .app-store-menu {
                 width: 280px;
             }
@@ -521,16 +654,24 @@
                 content: attr(data-icon);
                 font-size: 18px;
             }
+            #planet-info {
+                bottom: 60px;
+                max-width: 90%;
+                padding: 16px 20px;
+            }
+            #planet-info .pdetails {
+                grid-template-columns: 1fr;
+            }
         }
         @media (max-width: 480px) {
             #boot-logo {
-                font-size: 48px;
+                font-size: 52px;
             }
             .haldo-menu,
             .app-store-menu {
                 width: 100%;
                 max-height: 60vh;
-                top: 50px;
+                top: 56px;
             }
             .app-store-menu {
                 right: 0;
@@ -546,84 +687,52 @@
             .haldo-menu.open {
                 transform: translateX(0);
             }
+            #taskbar .logo {
+                font-size: 16px;
+            }
+            #taskbar .clock {
+                font-size: 11px;
+                padding-left: 8px;
+            }
+            #planet-info {
+                bottom: 40px;
+                padding: 14px 16px;
+            }
         }
 
-        /* ---------- COSMIC HINWEIS ---------- */
+        /* ---------- HINWEIS ---------- */
         #cosmic-hint {
             position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.08);
             font-size: 13px;
             pointer-events: none;
             z-index: 5;
             text-align: center;
-            letter-spacing: 0.5px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 6px 16px;
-            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 6px 18px;
+            border-radius: 30px;
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            white-space: nowrap;
         }
         @media (max-width: 600px) {
             #cosmic-hint {
                 display: none;
             }
         }
-
-        /* ---------- NOTIFICATIONS ---------- */
-        #notification-area {
-            position: fixed;
-            top: 60px;
-            right: 20px;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            pointer-events: none;
-            max-width: 320px;
-        }
-        .notification {
-            background: rgba(12, 16, 30, 0.92);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 16px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            pointer-events: auto;
-            animation: slideIn 0.3s ease;
-            font-size: 14px;
-        }
-        .notification .ntitle {
-            font-weight: 600;
-            color: #fff;
-        }
-        .notification .nbody {
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 2px;
-        }
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* ---------- SYSTEM-INFO ---------- */
         #sys-info {
             position: fixed;
             bottom: 10px;
-            left: 10px;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.15);
+            left: 14px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.06);
             z-index: 1;
             font-family: monospace;
             pointer-events: none;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -634,9 +743,9 @@
     ============================================================ -->
     <div id="boot-screen">
         <div id="boot-logo">🌌 HalDo AI OS</div>
-        <div style="font-size:18px; color:rgba(255,255,255,0.3); margin-bottom:8px;">v3.0 — Cosmic Edition</div>
+        <div style="font-size:18px; color:rgba(255,255,255,0.15); margin-bottom:6px; font-weight:300;">v4.0 — Ultimate Cosmic</div>
         <div id="boot-bar-wrap"><div id="boot-bar" style="width:0%;"></div></div>
-        <div id="boot-status">Initialisiere Kernel ...</div>
+        <div id="boot-status">Initialisiere Kernsystem ...</div>
     </div>
 
     <!-- ============================================================
@@ -657,7 +766,7 @@
         <div id="workspace">
             <canvas id="cosmic-canvas"></canvas>
             <div id="window-manager"></div>
-            <div id="cosmic-hint">🌞 Klick auf die Sonne → HalDo AI • Scroll zum Zoomen • Ziehen zum Verschieben</div>
+            <div id="cosmic-hint">🌞 Sonne klicken → AI • Planeten klicken → Info • Scroll: Zoom • Ziehen: Verschieben</div>
         </div>
 
         <!-- MENÜ: SYSTEM -->
@@ -665,8 +774,8 @@
             <div class="menu-heading">SYSTEM</div>
             <div class="menu-item" data-action="home"><span class="icon">🏠</span> Startseite</div>
             <div class="menu-item" data-action="files"><span class="icon">📁</span> Dateien</div>
-            <div class="menu-item" data-action="settings"><span class="icon">⚙️</span> Einstellungen</div>
-            <div class="menu-item" data-action="system"><span class="icon">🖥️</span> System</div>
+            <div class="menu-item" data-action="personalization"><span class="icon">⚙️</span> Einstellungen</div>
+            <div class="menu-item" data-action="systemcenter"><span class="icon">🖥️</span> System</div>
             <div class="menu-item" data-action="updates"><span class="icon">🔄</span> Updates</div>
             <div class="menu-item" data-action="security"><span class="icon">🔒</span> Sicherheit</div>
             <div class="menu-item" data-action="backup"><span class="icon">💾</span> Backup & Recovery</div>
@@ -679,14 +788,22 @@
         <!-- MENÜ: APP STORE A–Z -->
         <div class="app-store-menu" id="appstore-menu">
             <div class="menu-heading">APPS A–Z</div>
-            <!-- Wird dynamisch aus Registry befüllt -->
         </div>
 
         <!-- NOTIFICATIONEN -->
         <div id="notification-area"></div>
 
+        <!-- PLANET INFO -->
+        <div id="planet-info">
+            <button class="close-info" id="planet-info-close">✕</button>
+            <div class="pname" id="pi-name">Planet</div>
+            <div class="pdesc" id="pi-desc">Beschreibung</div>
+            <div class="pdetails" id="pi-details"></div>
+            <div class="ai-question" id="pi-ai">🤖 Frage HalDo AI zu diesem Planeten</div>
+        </div>
+
         <!-- SYSTEM-INFO -->
-        <div id="sys-info">HalDo OS v3.0 • Kernel READY</div>
+        <div id="sys-info">HalDo OS v4.0 • Kernel READY</div>
     </div>
 
     <!-- ============================================================
@@ -699,8 +816,8 @@
         const HalDo = {
             state: 'BOOTING',
             config: {
-                version: '3.0.0',
-                name: 'HalDo AI OS – Cosmic Edition',
+                version: '4.0.0',
+                name: 'HalDo AI OS – Ultimate Cosmic',
                 bootSteps: [
                     'Boot Detection', 'Environment Detection', 'Storage Check',
                     'Security Check', 'Configuration Load', 'Kernel Start',
@@ -715,7 +832,7 @@
             },
             storage: {},
             registry: {},
-            windows: [],
+            windows: {},
             windowIdCounter: 0,
             activeWindow: null,
             events: {},
@@ -724,7 +841,6 @@
             voice: null,
         };
 
-        // Event-System
         HalDo.on = function(evt, fn) {
             if (!this.events[evt]) this.events[evt] = [];
             this.events[evt].push(fn);
@@ -736,13 +852,13 @@
         };
 
         // ============================================================
-        // 2. STORAGE LAYER (IndexedDB + localStorage Fallback)
+        // 2. STORAGE LAYER
         // ============================================================
         HalDo.storage = {
             async init() {
                 return new Promise((resolve) => {
                     try {
-                        const req = indexedDB.open('HalDoOS', 1);
+                        const req = indexedDB.open('HalDoOS', 2);
                         req.onupgradeneeded = (e) => {
                             const db = e.target.result;
                             if (!db.objectStoreNames.contains('apps')) {
@@ -760,7 +876,6 @@
                             resolve();
                         };
                         req.onerror = () => {
-                            // Fallback: localStorage
                             this.db = null;
                             resolve();
                         };
@@ -807,45 +922,44 @@
         };
 
         // ============================================================
-        // 3. APP REGISTRY – Alle 26 Apps definiert
+        // 3. APP REGISTRY – Alle 26 Apps (erweitert)
         // ============================================================
         const APP_DEFINITIONS = [
-            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Zentrale KI-Assistentin', color: '#4a9eff' },
-            { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Internet-Browser', color: '#4a9eff' },
-            { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'Organisation', desc: 'Terminkalender', color: '#f97316' },
-            { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumente verwalten', color: '#3b82f6' },
-            { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client', color: '#8b5cf6' },
-            { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager', color: '#f59e0b' },
-            { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'Medien', desc: 'Bildergalerie', color: '#ec4899' },
-            { id: 'health', name: 'Health', icon: '🏥', cat: 'Gesundheit', desc: 'Gesundheitsakte', color: '#10b981' },
-            { id: 'internet', name: 'Internet', icon: '📶', cat: 'Internet', desc: 'Internet-Status', color: '#06b6d4' },
-            { id: 'journal', name: 'Journal', icon: '📓', cat: 'Persönlich', desc: 'Tagebuch', color: '#8b5cf6' },
-            { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'System', desc: 'Tastatur & Sprache', color: '#6b7280' },
-            { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Lernplattform', color: '#22d3ee' },
-            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Musikstudio', color: '#ec4899' },
-            { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'Reisen', desc: 'Navigation & Verkehr', color: '#10b981' },
-            { id: 'office', name: 'Office', icon: '📊', cat: 'Büro', desc: 'Office-Suite', color: '#3b82f6' },
-            { id: 'photos', name: 'Photos & Camera', icon: '📸', cat: 'Medien', desc: 'Fotos & Kamera', color: '#f59e0b' },
-            { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'Werkzeuge', desc: 'Schnellwerkzeuge', color: '#6b7280' },
-            { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'Medien', desc: 'Audio-Recorder', color: '#ef4444' },
-            { id: 'security', name: 'Security', icon: '🔒', cat: 'Sicherheit', desc: 'Sicherheitscenter', color: '#f97316' },
-            { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'Organisation', desc: 'Aufgabenliste', color: '#22c55e' },
-            { id: 'updates', name: 'Updates', icon: '🔄', cat: 'System', desc: 'Update-Manager', color: '#3b82f6' },
-            { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'Medien', desc: 'Video-Editor', color: '#a855f7' },
-            { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'Information', desc: 'Wetter & Umwelt', color: '#06b6d4' },
-            { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'System', desc: 'Anpassung', color: '#ec4899' },
-            { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'Persönlich', desc: 'Lebenszentrale', color: '#f59e0b' },
-            { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'System', desc: 'Systemsteuerung', color: '#6b7280' },
+            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Zentrale KI-Assistentin mit Sprachausgabe', color: '#4a9eff' },
+            { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Internet-Browser mit Lesezeichen', color: '#4a9eff' },
+            { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'Organisation', desc: 'Terminkalender mit Erinnerungen', color: '#f97316' },
+            { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumentenverwaltung & Editor', color: '#3b82f6' },
+            { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client mit Beispieldaten', color: '#8b5cf6' },
+            { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager mit Ordnerstruktur', color: '#f59e0b' },
+            { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'Medien', desc: 'Bildergalerie mit Vorschau', color: '#ec4899' },
+            { id: 'health', name: 'Health', icon: '🏥', cat: 'Gesundheit', desc: 'Gesundheitsakte & Medikamentenplan', color: '#10b981' },
+            { id: 'internet', name: 'Internet', icon: '📶', cat: 'Internet', desc: 'Netzwerkstatus & Speedtest', color: '#06b6d4' },
+            { id: 'journal', name: 'Journal', icon: '📓', cat: 'Persönlich', desc: 'Tagebuch mit Einträgen', color: '#8b5cf6' },
+            { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'System', desc: 'Tastatur & Spracheinstellungen', color: '#6b7280' },
+            { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Lernplattform mit Kursen', color: '#22d3ee' },
+            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Musikplayer mit Playlist & AI-Lyrics', color: '#ec4899' },
+            { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'Reisen', desc: 'Karte & Routenplaner', color: '#10b981' },
+            { id: 'office', name: 'Office', icon: '📊', cat: 'Büro', desc: 'Tabellen & Textverarbeitung', color: '#3b82f6' },
+            { id: 'photos', name: 'Photos & Camera', icon: '📸', cat: 'Medien', desc: 'Kamera & Fotoalbum', color: '#f59e0b' },
+            { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'Werkzeuge', desc: 'Taschenrechner, Timer, Umrechner', color: '#6b7280' },
+            { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'Medien', desc: 'Audio-Recorder mit Visualisierung', color: '#ef4444' },
+            { id: 'security', name: 'Security', icon: '🔒', cat: 'Sicherheit', desc: 'Sicherheits-Center & Passwort-Manager', color: '#f97316' },
+            { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'Organisation', desc: 'Aufgabenliste mit Prioritäten', color: '#22c55e' },
+            { id: 'updates', name: 'Updates', icon: '🔄', cat: 'System', desc: 'System- & App-Updates', color: '#3b82f6' },
+            { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'Medien', desc: 'Video-Editor mit Timeline', color: '#a855f7' },
+            { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'Information', desc: 'Wetter & 7-Tage-Vorhersage', color: '#06b6d4' },
+            { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'System', desc: 'Themes, Wallpaper, Schrift', color: '#ec4899' },
+            { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'Persönlich', desc: 'Dashboard für Kalender, Tasks, Health', color: '#f59e0b' },
+            { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'System', desc: 'Systemsteuerung & Logs', color: '#6b7280' },
         ];
 
-        // Registry initialisieren
         HalDo.registry = {};
         APP_DEFINITIONS.forEach(app => {
             HalDo.registry[app.id] = {
                 ...app,
-                version: '1.0.0',
+                version: '1.1.0',
                 entry: 'app_' + app.id,
-                permissions: ['storage'],
+                permissions: ['storage', 'network'],
                 routes: ['/' + app.id],
                 settings: {},
                 storageNamespace: 'app_' + app.id,
@@ -862,7 +976,7 @@
         });
 
         // ============================================================
-        // 4. APP MANAGER – Lebenszyklus
+        // 4. APP MANAGER
         // ============================================================
         HalDo.appManager = {
             start(appId) {
@@ -914,7 +1028,6 @@
                 this.current = appId;
                 const app = HalDo.registry[appId];
                 HalDo.appManager.start(appId);
-                // Fenster erstellen oder fokussieren
                 if (app.windowId) {
                     HalDo.windowManager.focus(app.windowId);
                 } else {
@@ -952,7 +1065,7 @@
         };
 
         // ============================================================
-        // 6. WINDOW MANAGER
+        // 6. WINDOW MANAGER (verbessert)
         // ============================================================
         HalDo.windowManager = {
             windows: {},
@@ -967,10 +1080,10 @@
                     element: null,
                     minimized: false,
                     maximized: false,
-                    x: 80 + (id * 20) % 300,
-                    y: 60 + (id * 15) % 200,
-                    width: Math.min(600, window.innerWidth - 80),
-                    height: Math.min(450, window.innerHeight - 120),
+                    x: 60 + (id * 25) % 300,
+                    y: 40 + (id * 18) % 200,
+                    width: Math.min(680, window.innerWidth - 100),
+                    height: Math.min(500, window.innerHeight - 140),
                 };
                 this.windows[id] = win;
                 this.render(win);
@@ -983,7 +1096,6 @@
                 const app = HalDo.registry[win.appId];
                 const container = document.getElementById('window-manager');
 
-                // Altes Fenster entfernen
                 if (win.element) {
                     win.element.remove();
                 }
@@ -1011,7 +1123,7 @@
               </div>
               <div class="win-body">
                 <div class="app-content" id="app-content-${win.id}">
-                  ${this.getAppContent(win.appId)}
+                  ${this.getAppContent(win.appId, win.id)}
                 </div>
               </div>
             `;
@@ -1019,7 +1131,7 @@
                 container.appendChild(el);
                 win.element = el;
 
-                // Event-Listener für Fenster-Steuerung
+                // Steuerung
                 const header = el.querySelector('.win-header');
                 const closeBtn = el.querySelector('.close-btn');
                 const minBtn = el.querySelector('.min-btn');
@@ -1029,7 +1141,7 @@
                 minBtn.onclick = () => this.minimize(win.id);
                 maxBtn.onclick = () => this.maximize(win.id);
 
-                // Drag (nur über Header)
+                // Drag
                 let isDragging = false,
                     dragOffX, dragOffY;
                 header.addEventListener('mousedown', (e) => {
@@ -1060,153 +1172,355 @@
                     }
                 });
 
-                // Fokus klick
                 el.addEventListener('mousedown', () => this.focus(win.id));
 
-                // App-spezifische Logik initialisieren
+                // App-spezifische Logik
                 this.initAppContent(win.appId, win.id);
 
                 return el;
             },
-            getAppContent(appId) {
-                // Hier werden die App-Inhalte generiert
-                switch (appId) {
-                    case 'ai':
-                        return `
-                  <div class="ai-chat-messages" id="ai-chat-${Date.now()}">
-                    <div class="msg ai">👋 Hallo! Ich bin <strong>HalDo AI</strong>. Wie kann ich dir helfen?<br><span class="think">Klicke auf die Sonne oder schreibe mir!</span></div>
+            getAppContent(appId, winId) {
+                // Jede App mit erweiterten Inhalten
+                const data = {
+                    ai: () => `
+                <div class="ai-chat-messages" id="ai-chat-${winId}">
+                  <div class="msg ai">👋 Hallo! Ich bin <strong>HalDo AI</strong>.<br>Ich kann dir bei allem helfen – frage mich einfach!<br><span class="think">💡 Klicke auf die Sonne oder schreibe mir.</span></div>
+                </div>
+                <div class="ai-chat-input-wrap">
+                  <input type="text" placeholder="Nachricht an HalDo ..." id="ai-input-${winId}">
+                  <button class="mic-btn" id="ai-mic-${winId}" title="Spracheingabe">🎤</button>
+                  <button id="ai-send-${winId}">Senden</button>
+                </div>
+              `,
+                    browser: () => `
+                <div style="display:flex;flex-direction:column;gap:10px;height:100%;">
+                  <div style="display:flex;gap:8px;">
+                    <input type="text" placeholder="URL oder Suche ..." style="flex:1;" value="https://haldo-os.com">
+                    <button>Go</button>
+                    <button>⭐</button>
                   </div>
-                  <div class="ai-chat-input-wrap">
-                    <input type="text" placeholder="Nachricht an HalDo ..." id="ai-input-${Date.now()}">
-                    <button class="mic-btn" id="ai-mic-${Date.now()}" title="Spracheingabe">🎤</button>
-                    <button id="ai-send-${Date.now()}">Senden</button>
+                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);">
+                    <div style="font-size:36px;">🌐</div>
+                    <div>Browser-Ansicht (simuliert)</div>
+                    <div style="font-size:12px;margin-top:4px;">Lesezeichen: HalDo OS, GitHub, YouTube</div>
                   </div>
-                `;
-                    case 'music':
-                        return `
-                  <div style="display:flex;flex-direction:column;gap:12px;height:100%;">
-                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                      <button>▶ Play</button>
-                      <button>⏸ Pause</button>
-                      <button>⏭ Next</button>
-                      <button>⏮ Prev</button>
-                      <button>🔊 EQ</button>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-                      <div style="font-size:48px;margin-bottom:8px;">🎵</div>
-                      <div style="font-weight:600;">Kein Song ausgewählt</div>
-                      <div style="color:rgba(255,255,255,0.4);font-size:13px;">AI-generierte Lyrics & Struktur verfügbar</div>
-                    </div>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,0.5);">
+                </div>
+              `,
+                    calendar: () => `
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <button>◀</button>
+                    <strong>September 2026</strong>
+                    <button>▶</button>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:12px;text-align:center;color:rgba(255,255,255,0.3);">
+                    <div>Mo</div><div>Di</div><div>Mi</div><div>Do</div><div>Fr</div><div>Sa</div><div>So</div>
+                    ${Array.from({length:30},(_,i)=>`<div style="padding:4px;border-radius:6px;${i===14?'background:rgba(74,158,255,0.2);color:#4a9eff;':''}">${i+1}</div>`).join('')}
+                  </div>
+                  <div style="font-size:13px;color:rgba(255,255,255,0.5);">Termine: 15.09. Arzttermin • 20.09. Projektabgabe</div>
+                </div>
+              `,
+                    documents: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button>📄 Neu</button>
+                    <button>📂 Öffnen</button>
+                    <button>💾 Speichern</button>
+                    <button>🖨️ Drucken</button>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;min-height:100px;font-size:13px;color:rgba(255,255,255,0.5);">
+                    <div><strong>Projektplan.docx</strong>  ·  24.08.2026</div>
+                    <div><strong>Präsentation.pptx</strong>  ·  18.08.2026</div>
+                    <div><strong>Notizen.txt</strong>  ·   heute</div>
+                  </div>
+                </div>
+              `,
+                    email: () => `
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;gap:8px;">
+                    <button>✉️ Schreiben</button>
+                    <button>🔄 Aktualisieren</button>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;font-size:13px;border-left:3px solid #4a9eff;">
+                    <strong>Projektupdate</strong> – Von: Max Mustermann<br>
+                    <span style="color:rgba(255,255,255,0.4);">Hallo, hier sind die neuen Unterlagen ...</span>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;font-size:13px;border-left:3px solid #f97316;">
+                    <strong>Einladung</strong> – Von: Team<br>
+                    <span style="color:rgba(255,255,255,0.4);">Meeting am Freitag um 10 Uhr.</span>
+                  </div>
+                </div>
+              `,
+                    files: () => `
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button>📁 Ordner erstellen</button>
+                    <button>📤 Hochladen</button>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;">
+                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Bilder</div>
+                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Dokumente</div>
+                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Musik</div>
+                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Videos</div>
+                  </div>
+                </div>
+              `,
+                    gallery: () => `
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+                  ${['🌅','🌄','🌠','🎆','🌈','🌌'].map(e=>`<div style="aspect-ratio:1;background:rgba(255,255,255,0.04);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:48px;transition:0.2s;cursor:pointer;">${e}</div>`).join('')}
+                </div>
+              `,
+                    health: () => `
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">🏥 Krankheiten: 3</div>
+                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">💊 Medikamente: 2</div>
+                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">💉 Impfungen: 4</div>
+                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">📋 Befunde: 5</div>
+                  <div style="grid-column:span 2;background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">👨‍⚕️ Nächster Termin: 15.09.2026, 10:00 Uhr</div>
+                </div>
+              `,
+                    internet: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span style="font-size:24px;">📶</span>
+                    <div><strong>Verbunden</strong><br><span style="color:rgba(255,255,255,0.4);font-size:13px;">IP: 192.168.1.100</span></div>
+                    <button style="margin-left:auto;">Speedtest</button>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.4);">Ping: 12 ms • Download: 45 Mbps • Upload: 12 Mbps</div>
+                </div>
+              `,
+                    journal: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <button>📝 Neuer Eintrag</button>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
+                    <strong>Heute war ein guter Tag</strong><br>
+                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Heute habe ich viel erreicht ...</span>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
+                    <strong>Projekt gestartet</strong><br>
+                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Erste Ideen für das neue HalDo OS ...</span>
+                  </div>
+                </div>
+              `,
+                    keyboard: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div><strong>Tastaturlayout:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option>Deutsch</option><option>English</option></select></div>
+                  <div><strong>Sprache:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option>Deutsch</option><option>English</option><option>Kurdish</option><option>Êzîdî</option></select></div>
+                  <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.4);">Tastenkombinationen: Strg+C, Strg+V, Alt+Tab</div>
+                </div>
+              `,
+                    learning: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
+                    <strong>📘 Kurs: Einführung in KI</strong>
+                    <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:4px;margin:6px 0;"><div style="width:60%;height:100%;background:#4a9eff;border-radius:4px;"></div></div>
+                    <span style="color:rgba(255,255,255,0.4);font-size:12px;">Fortschritt: 60%</span>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
+                    <strong>📗 Kurs: Webentwicklung</strong>
+                    <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:4px;margin:6px 0;"><div style="width:30%;height:100%;background:#a855f7;border-radius:4px;"></div></div>
+                    <span style="color:rgba(255,255,255,0.4);font-size:12px;">Fortschritt: 30%</span>
+                  </div>
+                </div>
+              `,
+                    music: () => `
+                <div style="display:flex;flex-direction:column;gap:10px;height:100%;">
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button>▶ Play</button>
+                    <button>⏸ Pause</button>
+                    <button>⏭ Next</button>
+                    <button>⏮ Prev</button>
+                    <button>🔊 EQ</button>
+                    <button>🤖 AI Lyrics</button>
+                  </div>
+                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;">
+                    <div style="font-size:48px;">🎵</div>
+                    <div style="font-weight:600;">Blinding Lights</div>
+                    <div style="color:rgba(255,255,255,0.4);font-size:13px;">The Weeknd • 2020</div>
+                    <div style="display:flex;gap:12px;font-size:12px;color:rgba(255,255,255,0.3);">
                       <span>🎸 BPM: 120</span>
-                      <span>🎤 Genre: Pop</span>
-                      <span>🎹 Mood: Happy</span>
+                      <span>🎤 Pop</span>
                     </div>
                   </div>
-                `;
-                    case 'video':
-                        return `
-                  <div style="display:flex;flex-direction:column;gap:10px;height:100%;">
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                      <button>🎬 Neu</button>
-                      <button>📽️ Timeline</button>
-                      <button>✂️ Schnitt</button>
-                      <button>🎨 Effekte</button>
-                      <button>🤖 AI Script</button>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.03);border-radius:12px;flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
-                      <div style="font-size:36px;">🎞️</div>
-                      <div style="color:rgba(255,255,255,0.3);">Text → Video • Bild → Video • Musik → Video</div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,0.3);">
+                    <span>Playlist: Favorites</span>
+                    <span>5 Songs</span>
+                  </div>
+                </div>
+              `,
+                    navigation: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button>🚗 Auto</button>
+                    <button>🚲 Fahrrad</button>
+                    <button>🚶 Fuß</button>
+                    <button>🚌 ÖPNV</button>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:12px;min-height:80px;display:flex;flex-direction:column;gap:4px;">
+                    <div style="color:rgba(255,255,255,0.3);">🗺️ Route: Berlin → Potsdam</div>
+                    <div style="font-size:13px;color:rgba(255,255,255,0.4);">🟢 Stau: 5 min • 🚧 Baustellen: 1</div>
+                    <div style="font-size:13px;color:rgba(255,255,255,0.4);">⛽ Tankstelle: 2 km • 🔌 Ladestation: 3 km</div>
+                  </div>
+                </div>
+              `,
+                    office: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button>📊 Tabelle</button>
+                    <button>📝 Text</button>
+                    <button>📈 Diagramm</button>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.5);">
+                    <table style="width:100%;border-collapse:collapse;text-align:left;">
+                      <tr><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:4px;">A</th><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:4px;">B</th></tr>
+                      <tr><td style="padding:4px;">1</td><td style="padding:4px;">2</td></tr>
+                      <tr><td style="padding:4px;">3</td><td style="padding:4px;">4</td></tr>
+                    </table>
+                  </div>
+                </div>
+              `,
+                    photos: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;gap:8px;">
+                    <button>📸 Foto aufnehmen</button>
+                    <button>📁 Album</button>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;min-height:80px;">
+                    <div style="font-size:48px;">📷</div>
+                    <div style="color:rgba(255,255,255,0.3);">Kamera bereit</div>
+                  </div>
+                </div>
+              `,
+                    quicktools: () => `
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center;">
+                    <div style="font-size:28px;">🧮</div>
+                    <div>Taschenrechner</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center;">
+                    <div style="font-size:28px;">⏱️</div>
+                    <div>Timer</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center;">
+                    <div style="font-size:28px;">📏</div>
+                    <div>Einheiten</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center;">
+                    <div style="font-size:28px;">🌡️</div>
+                    <div>Temperatur</div>
+                  </div>
+                </div>
+              `,
+                    recorder: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                  <div style="font-size:48px;">🎙️</div>
+                  <button style="padding:12px 30px;font-size:18px;border-radius:30px;">● Aufnehmen</button>
+                  <div style="width:100%;height:40px;background:rgba(255,255,255,0.03);border-radius:20px;display:flex;align-items:center;padding:0 10px;">
+                    <div style="width:30%;height:4px;background:#4a9eff;border-radius:4px;"></div>
+                  </div>
+                  <div style="font-size:12px;color:rgba(255,255,255,0.3);">Aufnahme: 0:00</div>
+                </div>
+              `,
+                    security: () => `
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🔒 Passwortmanager</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🛡️ Firewall aktiv</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🧪 Virenscan: ok</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📱 2FA aktiviert</div>
+                </div>
+              `,
+                    tasks: () => `
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;gap:8px;">
+                    <input type="text" placeholder="Neue Aufgabe ..." style="flex:1;">
+                    <button>+</button>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px;font-size:13px;">
+                    <div style="display:flex;align-items:center;gap:8px;padding:4px 8px;background:rgba(255,255,255,0.02);border-radius:6px;"><input type="checkbox"> Projekt planen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">hoch</span></div>
+                    <div style="display:flex;align-items:center;gap:8px;padding:4px 8px;background:rgba(255,255,255,0.02);border-radius:6px;"><input type="checkbox"> Einkaufen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">mittel</span></div>
+                    <div style="display:flex;align-items:center;gap:8px;padding:4px 8px;background:rgba(255,255,255,0.02);border-radius:6px;"><input type="checkbox" checked> AI testen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">niedrig</span></div>
+                  </div>
+                </div>
+              `,
+                    updates: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span style="font-size:24px;">🔄</span>
+                    <div><strong>HalDo OS v4.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:13px;">Alle Apps aktuell</span></div>
+                    <button style="margin-left:auto;">Suchen</button>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.4);">Letzter Check: heute, 12:34 Uhr</div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:12px;">
+                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">📦 Backup bereit</span>
+                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">↩️ Rollback möglich</span>
+                  </div>
+                </div>
+              `,
+                    video: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;height:100%;">
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button>🎬 Neu</button>
+                    <button>📽️ Timeline</button>
+                    <button>✂️ Schnitt</button>
+                    <button>🎨 Effekte</button>
+                    <button>🤖 AI Script</button>
+                  </div>
+                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+                    <div style="font-size:36px;">🎞️</div>
+                    <div style="color:rgba(255,255,255,0.3);">Timeline: 3 Clips</div>
+                    <div style="display:flex;gap:4px;margin-top:4px;">
+                      <div style="width:40px;height:6px;background:#4a9eff;border-radius:4px;"></div>
+                      <div style="width:60px;height:6px;background:#a855f7;border-radius:4px;"></div>
+                      <div style="width:30px;height:6px;background:#f97316;border-radius:4px;"></div>
                     </div>
                   </div>
-                `;
-                    case 'health':
-                        return `
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">🏥 Krankheiten A–Z</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">💊 Medikamente</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">💉 Impfungen</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">📋 Befunde</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">👨‍⚕️ Arzttermine</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">🧪 Labor</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;grid-column:span 2;">⚠️ Keine Diagnose – nur Information & Organisation</div>
+                </div>
+              `,
+                    weather: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;align-items:center;gap:14px;">
+                    <span style="font-size:52px;">🌤️</span>
+                    <div><strong>22°C</strong><br><span style="color:rgba(255,255,255,0.4);font-size:13px;">Berlin, Deutschland</span></div>
                   </div>
-                `;
-                    case 'navigation':
-                        return `
-                  <div style="display:flex;flex-direction:column;gap:8px;">
-                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                      <button>🚗 Auto</button>
-                      <button>🚲 Fahrrad</button>
-                      <button>🚶 Fuß</button>
-                      <button>🚌 ÖPNV</button>
-                      <button>🚄 Bahn</button>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;min-height:80px;display:flex;flex-direction:column;gap:4px;">
-                      <div style="color:rgba(255,255,255,0.4);">🗺️ Route: Zuhause → Arbeit</div>
-                      <div style="font-size:13px;color:rgba(255,255,255,0.5);">🟢 Stau: 5 min • 🚧 Baustellen: 1</div>
-                      <div style="font-size:13px;color:rgba(255,255,255,0.5);">⛽ Tankstelle: 2km • 🔌 Ladestation: 3km</div>
-                    </div>
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;font-size:12px;color:rgba(255,255,255,0.5);">
+                    <div>🌧️ 20%</div>
+                    <div>💨 14 km/h</div>
+                    <div>☀️ UV 3</div>
+                    <div>🌿 Pollen mittel</div>
                   </div>
-                `;
-                    case 'weather':
-                        return `
-                  <div style="display:flex;flex-direction:column;gap:8px;">
-                    <div style="display:flex;align-items:center;gap:12px;">
-                      <span style="font-size:48px;">🌤️</span>
-                      <div><strong>22°C</strong><br><span style="color:rgba(255,255,255,0.5);">Berlin, Deutschland</span></div>
-                    </div>
-                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:12px;color:rgba(255,255,255,0.6);">
-                      <div>🌧️ 40%</div>
-                      <div>💨 12 km/h</div>
-                      <div>☀️ UV 3</div>
-                      <div>🌿 Pollen: mittel</div>
-                    </div>
-                    <div style="font-size:13px;color:rgba(255,255,255,0.4);">⚠️ Unwetterwarnung: Starkregen ab 20 Uhr</div>
-                  </div>
-                `;
-                    case 'updates':
-                        return `
-                  <div style="display:flex;flex-direction:column;gap:10px;">
-                    <div style="display:flex;gap:10px;align-items:center;">
-                      <span style="font-size:24px;">🔄</span>
-                      <div><strong>HalDo OS v3.0.0</strong><br><span style="color:rgba(255,255,255,0.4);font-size:13px;">Alle Apps aktuell</span></div>
-                      <button style="margin-left:auto;">Nach Updates suchen</button>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.5);">
-                      Letzter Check: vor 2 Stunden • Sicherheitsupdates: aktiv
-                    </div>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;">
-                      <span style="background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:12px;">📦 Backup bereit</span>
-                      <span style="background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:12px;">↩️ Rollback möglich</span>
-                    </div>
-                  </div>
-                `;
-                    case 'systemcenter':
-                        return `
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">📊 Apps: ${Object.keys(HalDo.registry).length} installiert</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">💾 Speicher: 127 MB frei</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">🔒 Sicherheit: aktiv</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">🌐 Netzwerk: verbunden</div>
-                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;grid-column:span 2;">
-                      ⚙️ Systemzustand: <span style="color:#4a9eff;">READY</span>
-                    </div>
-                  </div>
-                `;
-                    default:
-                        return `
-                  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:rgba(255,255,255,0.3);">
-                    <div style="font-size:48px;">${HalDo.registry[appId]?.icon || '📦'}</div>
-                    <div>${HalDo.registry[appId]?.name || appId}</div>
-                    <div style="font-size:13px;">${HalDo.registry[appId]?.desc || 'App wird geladen ...'}</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,0.2);">Version ${HalDo.registry[appId]?.version || '1.0.0'}</div>
-                  </div>
-                `;
-                }
+                  <div style="font-size:13px;color:rgba(255,255,255,0.3);">7-Tage-Vorhersage: sonnig, mild</div>
+                </div>
+              `,
+                    personalization: () => `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div><strong>Theme:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option>Dark</option><option>Light</option><option>Cosmic</option></select></div>
+                  <div><strong>Wallpaper:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option>Standard</option><option>Weltraum</option><option>Natur</option></select></div>
+                  <div><strong>Schriftgröße:</strong> <input type="range" min="12" max="20" value="14" style="width:100%;"></div>
+                  <div><strong>Animationen:</strong> <input type="checkbox" checked> aktiviert</div>
+                </div>
+              `,
+                    yourlife: () => `
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📅 Heute: 2 Termine</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">✅ 3 Aufgaben offen</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🏥 Gesundheitscheck: ok</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🌦️ Wetter: 22°C</div>
+                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">💡 AI-Tipp: Trinke heute ausreichend Wasser.</div>
+                </div>
+              `,
+                    systemcenter: () => `
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📊 Apps: ${Object.keys(HalDo.registry).length} installiert</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">💾 Speicher: 245 MB frei</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🔒 Sicherheit: aktiv</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🌐 Netzwerk: verbunden</div>
+                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">⚙️ Systemzustand: <span style="color:#4a9eff;">READY</span></div>
+                </div>
+              `
+                };
+                return (data[appId] || data.ai)();
             },
             initAppContent(appId, winId) {
-                // Spezielle App-Initialisierungen
                 if (appId === 'ai') {
                     setTimeout(() => {
                         const input = document.querySelector(`#app-content-${winId} input`);
@@ -1218,36 +1532,24 @@
                             if (!input || !input.value.trim()) return;
                             const text = input.value.trim();
                             input.value = '';
-                            // User-Nachricht
                             const userMsg = document.createElement('div');
                             userMsg.className = 'msg user';
                             userMsg.textContent = text;
                             chat.appendChild(userMsg);
                             chat.scrollTop = chat.scrollHeight;
 
-                            // AI-Antwort simulieren
-                            setTimeout(() => {
+                            // KI-Antwort
+                            setTimeout(async () => {
+                                const response = await HalDo.ai.ask(text);
                                 const aiMsg = document.createElement('div');
                                 aiMsg.className = 'msg ai';
-                                const responses = [
-                                    '🤖 Interessant! Erzähl mir mehr.',
-                                    '🌌 Das klingt nach einem großen Plan!',
-                                    '💡 Ich habe eine Idee dazu.',
-                                    '✨ HalDo AI ist immer für dich da.',
-                                    '🚀 Wie kann ich dich sonst unterstützen?',
-                                    '🎯 Das notiere ich mir für dein Projekt.',
-                                    '🌟 Du machst das großartig!',
-                                    '💬 Soll ich tiefer darauf eingehen?'
-                                ];
-                                aiMsg.innerHTML = responses[Math.floor(Math.random() * responses.length)] +
-                                    '<br><span class="think">💭 HalDo AI denkt mit ...</span>';
+                                aiMsg.innerHTML = response + '<br><span class="think">💭 HalDo AI denkt mit ...</span>';
                                 chat.appendChild(aiMsg);
                                 chat.scrollTop = chat.scrollHeight;
-                                // Sprachausgabe
                                 if (HalDo.voice) {
-                                    HalDo.voice.speak(aiMsg.textContent.replace(/<[^>]*>/g, ''));
+                                    HalDo.voice.speak(response.replace(/<[^>]*>/g, ''));
                                 }
-                            }, 400 + Math.random() * 600);
+                            }, 400);
                         };
 
                         if (sendBtn) sendBtn.onclick = sendMessage;
@@ -1290,10 +1592,9 @@
                 this.activeWindow = id;
                 HalDo.router.current = win.appId;
                 HalDo.router.updateTaskbar();
-                // Alle Fenster in den Hintergrund
                 Object.values(this.windows).forEach(w => {
                     if (w.element && w.id !== id) {
-                        w.element.style.opacity = '0.7';
+                        w.element.style.opacity = '0.6';
                     }
                 });
                 if (win.element) {
@@ -1330,7 +1631,6 @@
                     win.element.classList.toggle('minimized');
                 }
                 if (win.minimized) {
-                    // Fokus auf nächstes Fenster
                     const keys = Object.keys(this.windows).filter(k => k != id && !this.windows[k].minimized);
                     if (keys.length > 0) this.focus(parseInt(keys[0]));
                 } else {
@@ -1345,7 +1645,6 @@
                     win.element.classList.toggle('maximized');
                 }
                 if (!win.maximized) {
-                    // Zurück zur vorherigen Größe
                     win.element.style.width = win.width + 'px';
                     win.element.style.height = win.height + 'px';
                     win.element.style.left = win.x + 'px';
@@ -1356,7 +1655,7 @@
         };
 
         // ============================================================
-        // 7. COSMIC WORLD – Sonnensystem mit 12 Planeten + 365 Sternen
+        // 7. COSMIC WORLD – ULTIMATE EDITION
         // ============================================================
         HalDo.cosmic = {
             canvas: null,
@@ -1383,7 +1682,7 @@
                 this.resize();
                 window.addEventListener('resize', () => this.resize());
 
-                // Maus-Interaktion
+                // Maus
                 this.canvas.addEventListener('mousedown', (e) => {
                     this.isDragging = true;
                     this.dragStartX = e.clientX;
@@ -1408,11 +1707,11 @@
                 });
                 this.canvas.addEventListener('wheel', (e) => {
                     e.preventDefault();
-                    const delta = e.deltaY > 0 ? -0.1 : 0.1;
-                    this.zoom = Math.max(0.3, Math.min(3, this.zoom + delta));
+                    const delta = e.deltaY > 0 ? -0.08 : 0.08;
+                    this.zoom = Math.max(0.3, Math.min(3.5, this.zoom + delta));
                 });
 
-                // Touch-Unterstützung
+                // Touch
                 let lastTouchDist = 0;
                 this.canvas.addEventListener('touchstart', (e) => {
                     if (e.touches.length === 1) {
@@ -1440,7 +1739,7 @@
                         const dist = Math.sqrt(dx * dx + dy * dy);
                         if (lastTouchDist > 0) {
                             const delta = (dist - lastTouchDist) * 0.01;
-                            this.zoom = Math.max(0.3, Math.min(3, this.zoom + delta));
+                            this.zoom = Math.max(0.3, Math.min(3.5, this.zoom + delta));
                         }
                         lastTouchDist = dist;
                     }
@@ -1450,48 +1749,50 @@
                     lastTouchDist = 0;
                 });
 
-                // Planeten definieren (12 Planeten)
+                // Planeten (12 + zusätzliche Monde)
                 const planetData = [
-                    { name: 'Merkur', radius: 6, orbit: 60, speed: 0.8, color: '#b5b5b5' },
-                    { name: 'Venus', radius: 10, orbit: 90, speed: 0.6, color: '#e8b85a' },
-                    { name: 'Erde', radius: 12, orbit: 120, speed: 0.5, color: '#4a9eff', hasMoon: true },
-                    { name: 'Mars', radius: 9, orbit: 150, speed: 0.4, color: '#e07040' },
-                    { name: 'Jupiter', radius: 22, orbit: 190, speed: 0.25, color: '#d4a06a' },
-                    { name: 'Saturn', radius: 19, orbit: 230, speed: 0.2, color: '#e8d5a0', hasRings: true },
-                    { name: 'Uranus', radius: 16, orbit: 270, speed: 0.15, color: '#7ec8e3' },
-                    { name: 'Neptun', radius: 15, orbit: 310, speed: 0.1, color: '#3f54ba' },
-                    { name: 'Pluto', radius: 4, orbit: 350, speed: 0.07, color: '#b8a08a' },
-                    { name: 'Ceres', radius: 5, orbit: 390, speed: 0.05, color: '#a0a0a0' },
-                    { name: 'Eris', radius: 7, orbit: 420, speed: 0.03, color: '#c0b8b0' },
-                    { name: 'Haumea', radius: 6, orbit: 450, speed: 0.02, color: '#b0a898' },
+                    { name: 'Merkur', radius: 7, orbit: 65, speed: 0.9, color: '#b5b5b5', desc: 'Kleinster Planet, sonnennah' },
+                    { name: 'Venus', radius: 11, orbit: 95, speed: 0.7, color: '#e8b85a', desc: 'Heißester Planet, dichte Atmosphäre' },
+                    { name: 'Erde', radius: 13, orbit: 125, speed: 0.5, color: '#4a9eff', hasMoon: true, desc: 'Unser Zuhause' },
+                    { name: 'Mars', radius: 10, orbit: 155, speed: 0.4, color: '#e07040', desc: 'Roter Planet, eisige Pole' },
+                    { name: 'Jupiter', radius: 24, orbit: 195, speed: 0.25, color: '#d4a06a', desc: 'Größter Planet, Gasriese' },
+                    { name: 'Saturn', radius: 20, orbit: 235, speed: 0.2, color: '#e8d5a0', hasRings: true,
+                    desc: 'Mit atemberaubenden Ringen' },
+                    { name: 'Uranus', radius: 17, orbit: 275, speed: 0.15, color: '#7ec8e3', desc: 'Eisriese, liegt auf der Seite' },
+                    { name: 'Neptun', radius: 16, orbit: 315, speed: 0.1, color: '#3f54ba', desc: 'Äußerster Planet, stürmisch' },
+                    { name: 'Pluto', radius: 5, orbit: 355, speed: 0.07, color: '#b8a08a', desc: 'Zwergplanet, eisig' },
+                    { name: 'Ceres', radius: 6, orbit: 395, speed: 0.05, color: '#a0a0a0', desc: 'Zwergplanet im Asteroidengürtel' },
+                    { name: 'Eris', radius: 8, orbit: 430, speed: 0.03, color: '#c0b8b0', desc: 'Großer Zwergplanet' },
+                    { name: 'Haumea', radius: 7, orbit: 460, speed: 0.02, color: '#b0a898', desc: 'Schnell rotierender Zwergplanet' },
                 ];
 
                 this.planets = planetData.map((p, i) => ({
                     ...p,
                     angle: Math.random() * Math.PI * 2,
-                    angleSpeed: p.speed * 0.02,
+                    angleSpeed: p.speed * 0.018,
                     rotAngle: 0,
-                    rotSpeed: (0.01 + Math.random() * 0.03) * (Math.random() > 0.5 ? 1 : -1),
+                    rotSpeed: (0.01 + Math.random() * 0.04) * (Math.random() > 0.5 ? 1 : -1),
                 }));
 
-                // Sonne
                 this.sun = {
                     x: 0,
                     y: 0,
-                    radius: 35,
+                    radius: 38,
                     pulse: 0,
                 };
 
-                // 365 Sterne
+                // Sterne (365 mit Farbe und Twinkling)
                 this.stars = [];
+                const starColors = ['#ffffff', '#aaccff', '#ffdd99', '#ffddcc'];
                 for (let i = 0; i < 365; i++) {
                     this.stars.push({
-                        x: (Math.random() - 0.5) * 2000,
-                        y: (Math.random() - 0.5) * 2000,
-                        radius: 0.4 + Math.random() * 1.5,
+                        x: (Math.random() - 0.5) * 2200,
+                        y: (Math.random() - 0.5) * 2200,
+                        radius: 0.5 + Math.random() * 1.8,
                         brightness: 0.3 + Math.random() * 0.7,
-                        twinkleSpeed: 0.005 + Math.random() * 0.02,
+                        twinkleSpeed: 0.004 + Math.random() * 0.025,
                         twinkleOffset: Math.random() * Math.PI * 2,
+                        color: starColors[Math.floor(Math.random() * starColors.length)],
                     });
                 }
 
@@ -1504,7 +1805,6 @@
                 this.canvas.height = rect.height;
                 this.width = this.canvas.width;
                 this.height = this.canvas.height;
-                // Zentrum für Sonne (mit Zoom/Offset)
                 this.centerX = this.width / 2;
                 this.centerY = this.height / 2;
             },
@@ -1515,20 +1815,18 @@
             },
 
             loop() {
-                this.time += 0.01;
+                this.time += 0.008;
                 this.update();
                 this.draw();
                 this.animationId = requestAnimationFrame(() => this.loop());
             },
 
             update() {
-                // Planeten position aktualisieren
                 this.planets.forEach(p => {
                     p.angle += p.angleSpeed;
                     p.rotAngle += p.rotSpeed;
                 });
-                // Sonnenpuls
-                this.sun.pulse += 0.02;
+                this.sun.pulse += 0.025;
             },
 
             draw() {
@@ -1536,25 +1834,37 @@
                 const w = this.width;
                 const h = this.height;
 
-                // Hintergrund
-                const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.8);
+                // Hintergrund – Tiefe mit Farbverlauf
+                const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.9);
                 grad.addColorStop(0, '#0f1a2e');
-                grad.addColorStop(0.5, '#080b16');
-                grad.addColorStop(1, '#020408');
+                grad.addColorStop(0.4, '#080b16');
+                grad.addColorStop(0.8, '#03050a');
+                grad.addColorStop(1, '#000000');
                 ctx.fillStyle = grad;
                 ctx.fillRect(0, 0, w, h);
 
-                // Sterne (365)
+                // Sterne mit unterschiedlichen Farben
                 this.stars.forEach(s => {
                     const twinkle = 0.5 + 0.5 * Math.sin(this.time * s.twinkleSpeed + s.twinkleOffset);
                     const alpha = s.brightness * twinkle * 0.8 + 0.2;
                     const sx = (s.x * this.zoom) + this.centerX + this.offsetX;
                     const sy = (s.y * this.zoom) + this.centerY + this.offsetY;
                     ctx.beginPath();
-                    ctx.arc(sx, sy, s.radius * this.zoom * 0.8, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255,255,240,${alpha})`;
+                    ctx.arc(sx, sy, s.radius * this.zoom * 0.7, 0, Math.PI * 2);
+                    ctx.fillStyle = s.color + Math.round(alpha * 200).toString(16).padStart(2, '0');
                     ctx.fill();
                 });
+
+                // Nebel-Effekt (verschwommene Kreise)
+                for (let i = 0; i < 3; i++) {
+                    const cx = (Math.sin(this.time * 0.01 + i * 2) * 300 + this.centerX + this.offsetX);
+                    const cy = (Math.cos(this.time * 0.008 + i * 2.5) * 200 + this.centerY + this.offsetY);
+                    const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 300);
+                    grd.addColorStop(0, 'rgba(100,150,255,0.02)');
+                    grd.addColorStop(1, 'rgba(100,150,255,0)');
+                    ctx.fillStyle = grd;
+                    ctx.fillRect(cx - 300, cy - 300, 600, 600);
+                }
 
                 // Transformation für Planetensystem
                 ctx.save();
@@ -1564,9 +1874,9 @@
                 // Umlaufbahnen (elliptisch)
                 this.planets.forEach(p => {
                     ctx.beginPath();
-                    ctx.ellipse(0, 0, p.orbit, p.orbit * 0.92, 0, 0, Math.PI * 2);
-                    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
-                    ctx.lineWidth = 0.5;
+                    ctx.ellipse(0, 0, p.orbit, p.orbit * 0.92, 0.05, 0, Math.PI * 2);
+                    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+                    ctx.lineWidth = 0.8;
                     ctx.stroke();
                 });
 
@@ -1575,124 +1885,175 @@
                     const px = Math.cos(p.angle) * p.orbit;
                     const py = Math.sin(p.angle) * p.orbit * 0.92;
 
-                    // Schatten
-                    ctx.shadowColor = p.color + '40';
-                    ctx.shadowBlur = 20;
+                    // Schatten (Tiefe)
+                    ctx.shadowColor = p.color + '30';
+                    ctx.shadowBlur = 25;
+
+                    // Atmosphären-Glow
+                    const glow = ctx.createRadialGradient(px, py, p.radius * 0.5, px, py, p.radius * 2.2);
+                    glow.addColorStop(0, p.color + '40');
+                    glow.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.beginPath();
+                    ctx.arc(px, py, p.radius * 2.2, 0, Math.PI * 2);
+                    ctx.fillStyle = glow;
+                    ctx.fill();
 
                     // Planet
+                    ctx.shadowBlur = 20;
                     ctx.beginPath();
                     ctx.arc(px, py, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
+                    const pGrad = ctx.createRadialGradient(px - p.radius * 0.3, py - p.radius * 0.3, 0, px, py, p.radius);
+                    pGrad.addColorStop(0, '#ffffff');
+                    pGrad.addColorStop(0.3, p.color);
+                    pGrad.addColorStop(1, '#000000');
+                    ctx.fillStyle = pGrad;
                     ctx.fill();
 
                     // Saturnringe
                     if (p.hasRings) {
                         ctx.shadowBlur = 0;
                         ctx.beginPath();
-                        ctx.ellipse(px, py, p.radius * 2.2, p.radius * 0.6, 0.3, 0, Math.PI * 2);
-                        ctx.strokeStyle = 'rgba(210,190,160,0.4)';
-                        ctx.lineWidth = 3;
-                        ctx.stroke();
+                        ctx.ellipse(px, py, p.radius * 2.4, p.radius * 0.65, 0.2, 0, Math.PI * 2);
+                        const ringGrad = ctx.createLinearGradient(px - p.radius * 2.4, py, px + p.radius * 2.4, py);
+                        ringGrad.addColorStop(0, 'rgba(180,160,130,0)');
+                        ringGrad.addColorStop(0.3, 'rgba(200,180,150,0.5)');
+                        ringGrad.addColorStop(0.5, 'rgba(220,200,170,0.7)');
+                        ringGrad.addColorStop(0.7, 'rgba(200,180,150,0.5)');
+                        ringGrad.addColorStop(1, 'rgba(180,160,130,0)');
+                        ctx.fillStyle = ringGrad;
+                        ctx.fill();
                     }
 
                     // Erde + Mond
                     if (p.hasMoon) {
                         const moonAngle = this.time * 0.3 + p.angle;
-                        const mx = px + Math.cos(moonAngle) * 22;
-                        const my = py + Math.sin(moonAngle) * 22 * 0.7;
+                        const mx = px + Math.cos(moonAngle) * 24;
+                        const my = py + Math.sin(moonAngle) * 24 * 0.7;
+                        ctx.shadowBlur = 5;
+                        ctx.beginPath();
+                        ctx.arc(mx, my, 4.5, 0, Math.PI * 2);
+                        ctx.fillStyle = '#c8d0d8';
+                        ctx.fill();
+                        // Mond-Umlaufbahn
                         ctx.shadowBlur = 0;
                         ctx.beginPath();
-                        ctx.arc(mx, my, 4, 0, Math.PI * 2);
-                        ctx.fillStyle = '#c0c8d0';
-                        ctx.fill();
-                        // Mond-Umlaufbahn (klein)
-                        ctx.beginPath();
-                        ctx.ellipse(px, py, 22, 22 * 0.7, 0, 0, Math.PI * 2);
-                        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+                        ctx.ellipse(px, py, 24, 24 * 0.7, 0, 0, Math.PI * 2);
+                        ctx.strokeStyle = 'rgba(255,255,255,0.04)';
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
 
-                    // Leichter Glow
                     ctx.shadowBlur = 0;
                 });
 
-                // SONNE (zentral)
-                const sunRadius = this.sun.radius + Math.sin(this.sun.pulse) * 2;
-                const gradSun = ctx.createRadialGradient(0, 0, 0, 0, 0, sunRadius * 2.5);
-                gradSun.addColorStop(0, '#fffbe6');
-                gradSun.addColorStop(0.2, '#ffdd44');
-                gradSun.addColorStop(0.5, '#ffaa00');
-                gradSun.addColorStop(0.8, '#ff6600');
-                gradSun.addColorStop(1, 'rgba(255,100,0,0)');
-
-                ctx.shadowColor = '#ffaa00';
-                ctx.shadowBlur = 80;
+                // SONNE – ultimativer Glow
+                const sunRadius = this.sun.radius + Math.sin(this.sun.pulse) * 2.5;
+                // Äußerer Glow
+                const glowSun = ctx.createRadialGradient(0, 0, 0, 0, 0, sunRadius * 4);
+                glowSun.addColorStop(0, 'rgba(255,200,80,0.3)');
+                glowSun.addColorStop(0.3, 'rgba(255,150,50,0.15)');
+                glowSun.addColorStop(1, 'rgba(255,100,0,0)');
+                ctx.shadowBlur = 0;
                 ctx.beginPath();
-                ctx.arc(0, 0, sunRadius * 2.5, 0, Math.PI * 2);
-                ctx.fillStyle = gradSun;
+                ctx.arc(0, 0, sunRadius * 4, 0, Math.PI * 2);
+                ctx.fillStyle = glowSun;
                 ctx.fill();
 
                 // Sonnenkörper
-                ctx.shadowBlur = 120;
                 ctx.shadowColor = '#ff8800';
+                ctx.shadowBlur = 80;
                 ctx.beginPath();
                 ctx.arc(0, 0, sunRadius, 0, Math.PI * 2);
-                const sunGrad = ctx.createRadialGradient(-10, -10, 0, 0, 0, sunRadius);
-                sunGrad.addColorStop(0, '#fff8e0');
-                sunGrad.addColorStop(0.3, '#ffdd44');
-                sunGrad.addColorStop(0.7, '#ffaa00');
-                sunGrad.addColorStop(1, '#ff6600');
+                const sunGrad = ctx.createRadialGradient(-15, -15, 0, 0, 0, sunRadius);
+                sunGrad.addColorStop(0, '#fff8e8');
+                sunGrad.addColorStop(0.2, '#ffdd44');
+                sunGrad.addColorStop(0.5, '#ffaa00');
+                sunGrad.addColorStop(0.8, '#ff6600');
+                sunGrad.addColorStop(1, '#cc4400');
                 ctx.fillStyle = sunGrad;
                 ctx.fill();
 
-                // HalDo-Logo auf der Sonne
+                // Sonnenflecken (kleine dunkle Punkte)
                 ctx.shadowBlur = 0;
-                ctx.fillStyle = 'rgba(255,255,255,0.9)';
-                ctx.font = 'bold 18px "Segoe UI", sans-serif';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText('🌌 HalDo', 0, -6);
-                ctx.fillStyle = 'rgba(255,255,200,0.6)';
-                ctx.font = '10px "Segoe UI", sans-serif';
-                ctx.fillText('AI OS', 0, 16);
+                for (let i = 0; i < 6; i++) {
+                    const a = this.time * 0.01 + i * 1.2;
+                    const r = sunRadius * (0.2 + Math.sin(i * 2) * 0.1);
+                    ctx.beginPath();
+                    ctx.arc(Math.cos(a) * r, Math.sin(a) * r, 3 + Math.sin(i) * 1.5, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0,0,0,0.15)';
+                    ctx.fill();
+                }
 
-                // Strahlenkranz (pulsierend)
+                // Strahlenkranz
                 ctx.shadowBlur = 0;
-                const rays = 24;
+                const rays = 30;
                 for (let i = 0; i < rays; i++) {
-                    const angle = (i / rays) * Math.PI * 2 + this.time * 0.005;
+                    const angle = (i / rays) * Math.PI * 2 + this.time * 0.004;
                     const r1 = sunRadius * 1.1;
-                    const r2 = sunRadius * (1.5 + Math.sin(this.sun.pulse + i) * 0.2);
+                    const r2 = sunRadius * (1.7 + Math.sin(this.sun.pulse + i * 0.5) * 0.3);
                     ctx.beginPath();
                     ctx.moveTo(Math.cos(angle) * r1, Math.sin(angle) * r1);
-                    ctx.lineTo(Math.cos(angle + 0.05) * r2, Math.sin(angle + 0.05) * r2);
-                    ctx.strokeStyle = `rgba(255,200,80,${0.2 + Math.sin(this.sun.pulse + i*0.3)*0.1})`;
-                    ctx.lineWidth = 2;
+                    ctx.lineTo(Math.cos(angle + 0.06) * r2, Math.sin(angle + 0.06) * r2);
+                    ctx.strokeStyle = `rgba(255,200,100,${0.15 + Math.sin(this.sun.pulse + i*0.2)*0.08})`;
+                    ctx.lineWidth = 2.5;
                     ctx.stroke();
                 }
 
-                // Sonnen-Hitbox für Klick (in Koordinaten des Systems)
+                // HalDo-Logo auf der Sonne
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = 'rgba(255,255,255,0.95)';
+                ctx.font = 'bold 20px "Segoe UI", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('🌌 HalDo', 0, -8);
+                ctx.fillStyle = 'rgba(255,255,200,0.5)';
+                ctx.font = '12px "Segoe UI", sans-serif';
+                ctx.fillText('AI OS', 0, 18);
+
+                ctx.restore();
+
+                // Hitbox für Sonne und Planeten speichern
                 this.sun.screenX = this.centerX + this.offsetX;
                 this.sun.screenY = this.centerY + this.offsetY;
                 this.sun.screenRadius = sunRadius * this.zoom;
 
-                ctx.restore();
-
-                // UI-Hinweis auf Sonne (nur wenn Maus nah)
+                // Hover-Effekt Sonne
                 const dx = this.mouseX - this.sun.screenX;
                 const dy = this.mouseY - this.sun.screenY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < this.sun.screenRadius + 20) {
                     ctx.save();
-                    ctx.fillStyle = 'rgba(255,200,80,0.15)';
+                    ctx.fillStyle = 'rgba(255,200,80,0.1)';
                     ctx.beginPath();
-                    ctx.arc(this.sun.screenX, this.sun.screenY, this.sun.screenRadius + 20, 0, Math.PI * 2);
+                    ctx.arc(this.sun.screenX, this.sun.screenY, this.sun.screenRadius + 25, 0, Math.PI * 2);
                     ctx.fill();
                     ctx.restore();
                     this.canvas.style.cursor = 'pointer';
-                } else if (!this.isDragging) {
+                } else {
                     this.canvas.style.cursor = 'grab';
+                }
+
+                // Planeten-Hover (für Info)
+                for (let p of this.planets) {
+                    const px = (Math.cos(p.angle) * p.orbit * this.zoom) + this.centerX + this.offsetX;
+                    const py = (Math.sin(p.angle) * p.orbit * 0.92 * this.zoom) + this.centerY + this.offsetY;
+                    const pr = p.radius * this.zoom;
+                    const d = Math.sqrt((this.mouseX - px) ** 2 + (this.mouseY - py) ** 2);
+                    if (d < pr + 10) {
+                        this.canvas.style.cursor = 'pointer';
+                        // Leichter Glow
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.arc(px, py, pr + 12, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(255,255,255,0.05)';
+                        ctx.fill();
+                        ctx.restore();
+                        // Speichern des Planeten für Klick
+                        this._hoveredPlanet = p;
+                        break;
+                    } else {
+                        this._hoveredPlanet = null;
+                    }
                 }
             },
 
@@ -1700,41 +2061,65 @@
                 return {
                     x: this.sun.screenX || this.centerX + this.offsetX,
                     y: this.sun.screenY || this.centerY + this.offsetY,
-                    r: this.sun.screenRadius || 35 * this.zoom,
+                    r: this.sun.screenRadius || 38 * this.zoom,
                 };
+            },
+
+            getPlanetAt(mx, my) {
+                for (let p of this.planets) {
+                    const px = (Math.cos(p.angle) * p.orbit * this.zoom) + this.centerX + this.offsetX;
+                    const py = (Math.sin(p.angle) * p.orbit * 0.92 * this.zoom) + this.centerY + this.offsetY;
+                    const pr = p.radius * this.zoom;
+                    if (Math.sqrt((mx - px) ** 2 + (my - py) ** 2) < pr + 12) {
+                        return p;
+                    }
+                }
+                return null;
             }
         };
 
         // ============================================================
-        // 8. HALDO AI – Zentraler AI-Service
+        // 8. HALDO AI – erweitert
         // ============================================================
         HalDo.ai = {
             async ask(question, context = '') {
-                // Simulierte AI-Antwort (später mit API oder lokal)
-                const responses = [
-                    `🤖 ${question} – das ist eine interessante Frage! HalDo AI denkt darüber nach.`,
-                    `🌌 Verstanden! Hier ist meine Antwort: ${question} kann man so lösen ...`,
-                    `💡 Ich habe eine Idee: ${question} erfordert einen kreativen Ansatz.`,
-                    `✨ HalDo AI sagt: Bei ${question} solltest du an die Details denken.`,
-                    `🚀 Großartige Frage! ${question} – das ist genau mein Thema.`,
-                    `🎯 ${question} – lass mich dir das erklären: Schritt für Schritt.`,
-                    `🌟 ${question} – das ist ein wichtiges Anliegen. Hier sind meine Gedanken dazu.`,
-                ];
-                const baseResponse = responses[Math.floor(Math.random() * responses.length)];
+                const lower = question.toLowerCase();
+                let response = '';
 
-                // Wenn API-Key gesetzt, echte API nutzen
-                if (HalDo.config.apiKey && false) { // deaktiviert für Demo
-                    // Hier würde OpenAI/Anthropic-API aufgerufen
+                // Einfache Mustererkennung für smarte Antworten
+                if (lower.includes('hallo') || lower.includes('hi')) {
+                    response = '🤖 Hallo! Schön, dich zu sehen. Wie kann ich dir helfen?';
+                } else if (lower.includes('wetter')) {
+                    response = '🌦️ Das Wetter heute: 22°C, sonnig mit leichten Wolken. Perfekt für einen Spaziergang!';
+                } else if (lower.includes('musik') || lower.includes('song')) {
+                    response = '🎵 Ich liebe Musik! Welches Genre hörst du gerne? Ich kann dir neue Songs vorschlagen.';
+                } else if (lower.includes('planet') || lower.includes('sonne')) {
+                    response = '🌞 Das Sonnensystem ist faszinierend! Die Sonne ist ein gelber Zwergstern. Welcher Planet interessiert dich?';
+                } else if (lower.includes('hilfe')) {
+                    response = '❓ Ich helfe dir gerne! Du kannst mich alles fragen – von Technik bis Philosophie.';
+                } else if (lower.includes('danke')) {
+                    response = '💙 Gern geschehen! Ich bin immer für dich da.';
+                } else {
+                    // Standardantworten mit Variation
+                    const generic = [
+                        `🤖 Interessant! Erzähl mir mehr über "${question}".`,
+                        `🌌 ${question} – darüber habe ich noch nicht nachgedacht. Was meinst du?`,
+                        `💡 ${question} – das ist ein spannendes Thema. Lass uns tiefer einsteigen.`,
+                        `✨ HalDo AI sagt: ${question} ist eine gute Frage.`,
+                        `🚀 ${question} – ich werde das analysieren und dir später eine detaillierte Antwort geben.`,
+                        `🎯 ${question} – notiert! Ich werde es in mein Wissen integrieren.`,
+                    ];
+                    response = generic[Math.floor(Math.random() * generic.length)];
                 }
 
-                // Sprachausgabe (wenn aktiv)
+                // Sprachausgabe
                 if (HalDo.voice) {
                     setTimeout(() => {
-                        HalDo.voice.speak(baseResponse.replace(/<[^>]*>/g, ''));
-                    }, 200);
+                        HalDo.voice.speak(response.replace(/<[^>]*>/g, ''));
+                    }, 300);
                 }
 
-                return baseResponse;
+                return response;
             },
 
             async askWithContext(question, context) {
@@ -1750,8 +2135,8 @@
                 if (!window.speechSynthesis) return;
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = HalDo.config.language || 'de-DE';
-                utterance.rate = 0.95;
-                utterance.pitch = 1.1;
+                utterance.rate = 0.9;
+                utterance.pitch = 1.0;
                 window.speechSynthesis.speak(utterance);
             },
             async listen() {
@@ -1788,67 +2173,66 @@
                 const progress = ((i + 1) / steps.length) * 100;
                 bootBar.style.width = progress + '%';
                 bootStatus.textContent = steps[i] + ' ...';
-                // Simuliere Verarbeitung
-                await new Promise(r => setTimeout(r, 60 + Math.random() * 80));
+                await new Promise(r => setTimeout(r, 50 + Math.random() * 70));
                 HalDo.state = i < 5 ? 'BOOTING' : (i < 10 ? 'STARTING' : 'READY');
             }
 
-            // Storage initialisieren
             await HalDo.storage.init();
 
-            // Config laden
             const savedConfig = await HalDo.storage.get('settings', 'config');
             if (savedConfig) {
                 HalDo.config = { ...HalDo.config, ...savedConfig };
             }
 
-            // System starten
             HalDo.state = 'READY';
             bootStatus.textContent = '✅ System bereit!';
-            await new Promise(r => setTimeout(r, 400));
+            await new Promise(r => setTimeout(r, 300));
 
-            // Boot ausblenden
             bootScreen.classList.add('hidden');
             desktop.classList.add('active');
 
-            // Cosmic World starten
             HalDo.cosmic.init();
-
-            // Taskbar-Uhr starten
             updateClock();
+            initMenus();
+            renderAppStore();
 
-            // AI-Chat-Fenster bei Sonnenklick
+            document.getElementById('sys-info').textContent = `HalDo OS v${HalDo.config.version} • Kernel ${HalDo.state}`;
+
+            // Sonnen-Klick
             document.getElementById('cosmic-canvas').addEventListener('click', (e) => {
                 const sun = HalDo.cosmic.getSunScreenCoords();
                 const dx = e.clientX - sun.x;
                 const dy = e.clientY - sun.y;
                 if (Math.sqrt(dx * dx + dy * dy) < sun.r + 15) {
-                    // Sonne geklickt → AI-Fenster öffnen
                     HalDo.router.navigate('/ai');
-                    // Notification
-                    showNotification('🌞 HalDo AI', 'Die Sonne hat dich gerufen!');
-                    // Sprachausgabe
-                    HalDo.voice.speak('Hallo! Ich bin HalDo AI. Wie kann ich dir helfen?');
+                    showNotification('🌞 Sonne', 'HalDo AI wurde aktiviert!');
+                    HalDo.voice.speak('Hallo, ich bin HalDo AI. Wie kann ich dir helfen?');
+                    return;
+                }
+                // Planeten-Klick
+                const planet = HalDo.cosmic.getPlanetAt(e.clientX, e.clientY);
+                if (planet) {
+                    showPlanetInfo(planet);
                 }
             });
 
-            // Menüs initialisieren
-            initMenus();
+            // Planet-Info schließen
+            document.getElementById('planet-info-close').addEventListener('click', () => {
+                document.getElementById('planet-info').classList.remove('active');
+            });
+            document.getElementById('pi-ai').addEventListener('click', () => {
+                const name = document.getElementById('pi-name').textContent;
+                HalDo.router.navigate('/ai');
+                setTimeout(() => {
+                    const input = document.querySelector('#app-content-\\? .ai-chat-input-wrap input');
+                    if (input) {
+                        input.value = `Erzähle mir mehr über den Planeten ${name}.`;
+                        input.dispatchEvent(new Event('input'));
+                    }
+                }, 300);
+            });
 
-            // AppStore-Menü befüllen
-            renderAppStore();
-
-            // System-Info aktualisieren
-            document.getElementById('sys-info').textContent = `HalDo OS v${HalDo.config.version} • Kernel ${HalDo.state}`;
-
-            // Notification: Willkommen
-            setTimeout(() => {
-                showNotification('🌌 HalDo AI OS', 'Willkommen! Klicke auf die Sonne für HalDo AI.');
-            }, 800);
-
-            // Auto-Start AI-Fenster (optional)
-            // setTimeout(() => HalDo.router.navigate('/ai'), 1200);
-
+            showNotification('🌌 HalDo AI OS', 'Willkommen! Klicke die Sonne oder einen Planeten.');
             console.log('🚀 HalDo AI OS v' + HalDo.config.version + ' ready.');
         }
 
@@ -1873,7 +2257,6 @@
                 systemMenu.classList.remove('open');
             });
 
-            // Schließen bei Klick außerhalb
             document.addEventListener('click', (e) => {
                 if (!systemMenu.contains(e.target) && e.target !== menuToggle) {
                     systemMenu.classList.remove('open');
@@ -1883,7 +2266,6 @@
                 }
             });
 
-            // System-Menü-Aktionen
             systemMenu.querySelectorAll('.menu-item[data-action]').forEach(item => {
                 item.addEventListener('click', () => {
                     const action = item.dataset.action;
@@ -1902,22 +2284,22 @@
                             HalDo.router.navigate('/systemcenter');
                             break;
                         case 'security':
-                            showNotification('🔒 Sicherheit', 'Sicherheitscenter: Alle Systeme aktiv.');
+                            showNotification('🔒 Sicherheit', 'Alle Sicherheitssysteme aktiv.');
                             break;
                         case 'backup':
-                            showNotification('💾 Backup', 'Backup wird erstellt ... (simuliert)');
+                            showNotification('💾 Backup', 'Backup wird erstellt ...');
                             break;
                         case 'files':
                             HalDo.router.navigate('/files');
                             break;
                         case 'network':
-                            showNotification('🌐 Netzwerk', 'Verbunden mit HalDo Cloud.');
+                            showNotification('🌐 Netzwerk', 'Verbunden.');
                             break;
                         case 'help':
-                            showNotification('❓ Hilfe', 'HalDo AI hilft dir gerne! Klick die Sonne.');
+                            showNotification('❓ Hilfe', 'HalDo AI hilft dir! Klick die Sonne.');
                             break;
                         case 'about':
-                            showNotification('ℹ️ Über HalDo', `HalDo AI OS v${HalDo.config.version} – Cosmic Edition`);
+                            showNotification('ℹ️ Über HalDo', `HalDo AI OS v${HalDo.config.version} – Ultimate Cosmic`);
                             break;
                         default:
                             HalDo.router.navigate('/' + action);
@@ -1925,7 +2307,6 @@
                 });
             });
 
-            // HalDo-Logo klick → Home
             document.getElementById('haldo-logo-btn').addEventListener('click', () => {
                 HalDo.router.showHome();
                 systemMenu.classList.remove('open');
@@ -1954,7 +2335,25 @@
         }
 
         // ============================================================
-        // 12. UHR
+        // 12. PLANET INFO
+        // ============================================================
+        function showPlanetInfo(planet) {
+            const info = document.getElementById('planet-info');
+            document.getElementById('pi-name').textContent = planet.name;
+            document.getElementById('pi-desc').textContent = planet.desc || 'Ein faszinierender Himmelskörper.';
+            document.getElementById('pi-details').innerHTML = `
+            <span>Größe: ${planet.radius * 2} km</span>
+            <span>Umlaufbahn: ${planet.orbit} Mio. km</span>
+            <span>Geschwindigkeit: ${planet.speed}</span>
+            <span>Farbe: ${planet.color}</span>
+            ${planet.hasMoon ? '<span>🌙 Mond: vorhanden</span>' : ''}
+            ${planet.hasRings ? '<span>💍 Ringe: ja</span>' : ''}
+          `;
+            info.classList.add('active');
+        }
+
+        // ============================================================
+        // 13. UHR
         // ============================================================
         function updateClock() {
             const clock = document.getElementById('clock');
@@ -1965,7 +2364,7 @@
         }
 
         // ============================================================
-        // 13. NOTIFICATIONS
+        // 14. NOTIFICATIONS
         // ============================================================
         function showNotification(title, body, icon = '📢') {
             const area = document.getElementById('notification-area');
@@ -1981,23 +2380,16 @@
                 notif.style.transform = 'translateX(30px)';
                 notif.style.transition = '0.3s ease';
                 setTimeout(() => notif.remove(), 400);
-            }, 4000);
+            }, 4500);
         }
 
         // ============================================================
-        // 14. START
+        // 15. START
         // ============================================================
-        document.addEventListener('DOMContentLoaded', () => {
-            boot();
-        });
+        document.addEventListener('DOMContentLoaded', boot);
 
-        // ============================================================
-        // 15. SERVICE WORKER / PWA-READY (optional)
-        // ============================================================
-        // Hier könnte ein Service Worker für Offline-Fähigkeit registriert werden
-
-        console.log('%c🌌 HalDo AI OS v3.0 – Cosmic Edition', 'font-size:24px; font-weight:bold; color:#4a9eff;');
-        console.log('%c💙❤️🚀 Masterplan A–Z – vollständig integriert', 'font-size:14px; color:#a855f7;');
+        console.log('%c🌌 HalDo AI OS v4.0 – Ultimate Cosmic', 'font-size:28px; font-weight:bold; color:#4a9eff;');
+        console.log('%c💙❤️🚀 Masterplan A–Z – voll integriert, beste Qualität', 'font-size:16px; color:#a855f7;');
     </script>
 </body>
 </html>
