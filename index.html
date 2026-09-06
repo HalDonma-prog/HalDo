@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🌌 HalDo AI OS v4.0 – Ultimate Cosmic Edition</title>
+    <title>🌌 HalDo AI OS v5.0 – Ultimate Pro</title>
     <style>
         /* ============================================================
-           HALDO AI OS – ULTIMATE STYLING
+           HALDO AI OS – ULTIMATE PRO STYLING
            ============================================================ */
 
         /* ---------- RESET & GRUNDLAGEN ---------- */
@@ -54,8 +54,7 @@
             background: rgba(255, 255, 255, 0.15);
             border-radius: 4px;
         }
-        input,
-        textarea {
+        input, textarea, select {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: #eef2f8;
@@ -66,11 +65,11 @@
             outline: none;
             transition: 0.2s;
         }
-        input:focus,
-        textarea:focus {
+        input:focus, textarea:focus, select:focus {
             border-color: #4a9eff;
             box-shadow: 0 0 0 4px rgba(74, 158, 255, 0.15);
         }
+        select option { background: #0a0e1a; }
 
         /* ---------- BOOT-SCREEN ---------- */
         #boot-screen {
@@ -92,7 +91,7 @@
             pointer-events: none;
         }
         #boot-logo {
-            font-size: 80px;
+            font-size: 90px;
             font-weight: 800;
             background: linear-gradient(135deg, #4a9eff, #a855f7, #f97316);
             background-size: 300% 300%;
@@ -100,19 +99,14 @@
             -webkit-text-fill-color: transparent;
             animation: gradShift 4s ease infinite;
             margin-bottom: 16px;
-            text-shadow: 0 0 60px rgba(74, 158, 255, 0.2);
+            text-shadow: 0 0 80px rgba(74, 158, 255, 0.2);
         }
         @keyframes gradShift {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         #boot-bar-wrap {
-            width: 360px;
+            width: 400px;
             max-width: 80%;
             height: 4px;
             background: rgba(255, 255, 255, 0.04);
@@ -125,7 +119,7 @@
             height: 100%;
             background: linear-gradient(90deg, #4a9eff, #a855f7);
             border-radius: 4px;
-            transition: width 0.25s ease;
+            transition: width 0.2s ease;
         }
         #boot-status {
             margin-top: 14px;
@@ -144,26 +138,24 @@
             overflow: hidden;
             flex-direction: column;
         }
-        #desktop.active {
-            display: flex;
-        }
+        #desktop.active { display: flex; }
 
         /* ---------- TASKBAR ---------- */
         #taskbar {
-            height: 56px;
-            background: rgba(5, 8, 15, 0.8);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            height: 60px;
+            background: rgba(5, 8, 15, 0.82);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             display: flex;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 24px;
             flex-shrink: 0;
             z-index: 100;
-            gap: 12px;
+            gap: 14px;
         }
         #taskbar .logo {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             background: linear-gradient(135deg, #4a9eff, #a855f7);
             -webkit-background-clip: text;
@@ -172,21 +164,21 @@
             margin-right: 4px;
         }
         #taskbar .menu-btn {
-            font-size: 22px;
+            font-size: 24px;
             padding: 0 10px;
             background: transparent;
             border: none;
         }
         #taskbar .taskbar-apps {
             display: flex;
-            gap: 4px;
+            gap: 6px;
             flex: 1;
             overflow-x: auto;
             padding: 0 8px;
         }
         #taskbar .taskbar-apps button {
-            padding: 4px 14px;
-            font-size: 12px;
+            padding: 4px 16px;
+            font-size: 13px;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 8px;
             white-space: nowrap;
@@ -199,7 +191,7 @@
             box-shadow: 0 0 20px rgba(74, 158, 255, 0.05);
         }
         #taskbar .clock {
-            font-size: 13px;
+            font-size: 14px;
             color: rgba(255, 255, 255, 0.5);
             padding-left: 16px;
             white-space: nowrap;
@@ -224,9 +216,7 @@
             display: block;
             cursor: grab;
         }
-        #cosmic-canvas:active {
-            cursor: grabbing;
-        }
+        #cosmic-canvas:active { cursor: grabbing; }
 
         /* ---------- WINDOW MANAGER ---------- */
         #window-manager {
@@ -240,43 +230,41 @@
         }
         .os-window {
             position: absolute;
-            min-width: 360px;
-            min-height: 220px;
+            min-width: 380px;
+            min-height: 240px;
             background: rgba(10, 14, 30, 0.88);
-            backdrop-filter: blur(32px);
-            -webkit-backdrop-filter: blur(32px);
+            backdrop-filter: blur(36px);
+            -webkit-backdrop-filter: blur(36px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+            border-radius: 24px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
             pointer-events: auto;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            transition: opacity 0.25s ease, transform 0.25s ease;
             resize: both;
         }
-        .os-window.minimized {
-            display: none;
-        }
+        .os-window.minimized { display: none; }
         .os-window.maximized {
             top: 0 !important;
             left: 0 !important;
             width: 100% !important;
-            height: calc(100% - 56px) !important;
+            height: calc(100% - 60px) !important;
             border-radius: 0;
             resize: none;
         }
         .os-window .win-header {
             display: flex;
             align-items: center;
-            padding: 10px 16px;
+            padding: 12px 18px;
             background: rgba(255, 255, 255, 0.02);
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             flex-shrink: 0;
             cursor: move;
         }
         .os-window .win-header .win-title {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             flex: 1;
             color: rgba(255, 255, 255, 0.85);
@@ -284,23 +272,21 @@
             align-items: center;
             gap: 10px;
         }
-        .os-window .win-header .win-title .icon {
-            font-size: 18px;
-        }
+        .os-window .win-header .win-title .icon { font-size: 20px; }
         .os-window .win-header .win-controls {
             display: flex;
             gap: 6px;
             margin-left: auto;
         }
         .os-window .win-header .win-controls button {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             padding: 0;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 15px;
             background: transparent;
             color: rgba(255, 255, 255, 0.4);
             border: none;
@@ -315,9 +301,9 @@
         }
         .os-window .win-body {
             flex: 1;
-            padding: 16px 20px;
+            padding: 18px 22px;
             overflow: auto;
-            min-height: 120px;
+            min-height: 140px;
         }
         .os-window .win-body .app-content {
             height: 100%;
@@ -327,29 +313,27 @@
         /* ---------- MENÜS ---------- */
         .haldo-menu {
             position: fixed;
-            top: 56px;
+            top: 60px;
             left: 0;
-            width: 320px;
-            max-height: calc(100vh - 56px);
+            width: 340px;
+            max-height: calc(100vh - 60px);
             background: rgba(5, 8, 15, 0.94);
-            backdrop-filter: blur(32px);
-            -webkit-backdrop-filter: blur(32px);
+            backdrop-filter: blur(36px);
+            -webkit-backdrop-filter: blur(36px);
             border-right: 1px solid rgba(255, 255, 255, 0.04);
             padding: 12px 0;
             overflow-y: auto;
             z-index: 200;
             transform: translateX(-100%);
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 6px 0 60px rgba(0, 0, 0, 0.6);
+            box-shadow: 8px 0 80px rgba(0, 0, 0, 0.6);
         }
-        .haldo-menu.open {
-            transform: translateX(0);
-        }
+        .haldo-menu.open { transform: translateX(0); }
         .haldo-menu .menu-item {
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 10px 24px;
+            padding: 10px 26px;
             font-size: 15px;
             color: rgba(255, 255, 255, 0.6);
             transition: 0.15s;
@@ -369,10 +353,10 @@
         .haldo-menu .menu-divider {
             height: 1px;
             background: rgba(255, 255, 255, 0.04);
-            margin: 6px 24px;
+            margin: 6px 26px;
         }
         .haldo-menu .menu-heading {
-            padding: 6px 24px;
+            padding: 6px 26px;
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -382,29 +366,27 @@
 
         .app-store-menu {
             position: fixed;
-            top: 56px;
+            top: 60px;
             right: 0;
-            width: 360px;
-            max-height: calc(100vh - 56px);
+            width: 380px;
+            max-height: calc(100vh - 60px);
             background: rgba(5, 8, 15, 0.94);
-            backdrop-filter: blur(32px);
-            -webkit-backdrop-filter: blur(32px);
+            backdrop-filter: blur(36px);
+            -webkit-backdrop-filter: blur(36px);
             border-left: 1px solid rgba(255, 255, 255, 0.04);
             padding: 12px 0;
             overflow-y: auto;
             z-index: 200;
             transform: translateX(100%);
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: -6px 0 60px rgba(0, 0, 0, 0.6);
+            box-shadow: -8px 0 80px rgba(0, 0, 0, 0.6);
         }
-        .app-store-menu.open {
-            transform: translateX(0);
-        }
+        .app-store-menu.open { transform: translateX(0); }
         .app-store-menu .app-item {
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 8px 24px;
+            padding: 8px 26px;
             font-size: 14px;
             color: rgba(255, 255, 255, 0.6);
             cursor: pointer;
@@ -434,14 +416,14 @@
             flex-direction: column;
             gap: 8px;
             height: 100%;
-            max-height: 400px;
+            max-height: 420px;
             overflow-y: auto;
             padding-right: 4px;
         }
         .ai-chat-messages .msg {
-            padding: 12px 16px;
-            border-radius: 16px;
-            max-width: 82%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            max-width: 84%;
             font-size: 14px;
             line-height: 1.5;
             animation: fadeIn 0.3s ease;
@@ -476,8 +458,8 @@
             border-radius: 12px;
         }
         .ai-chat-input-wrap .mic-btn {
-            font-size: 20px;
-            padding: 0 16px;
+            font-size: 22px;
+            padding: 0 18px;
             background: rgba(255, 255, 255, 0.04);
             border-radius: 12px;
         }
@@ -486,41 +468,30 @@
             animation: pulse 0.8s ease infinite;
         }
         @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(6px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ---------- PLANET INFO OVERLAY ---------- */
+        /* ---------- PLANET INFO ---------- */
         #planet-info {
             position: fixed;
             bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(5, 8, 15, 0.9);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            padding: 20px 30px;
-            max-width: 400px;
+            border-radius: 24px;
+            padding: 22px 32px;
+            max-width: 460px;
             width: 90%;
             z-index: 300;
             display: none;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
             pointer-events: auto;
             color: #eef2f8;
         }
@@ -529,35 +500,27 @@
             animation: slideUp 0.3s ease;
         }
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         #planet-info .close-info {
             position: absolute;
-            top: 10px;
-            right: 16px;
+            top: 12px;
+            right: 18px;
             background: transparent;
             border: none;
             color: rgba(255, 255, 255, 0.4);
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
         }
-        #planet-info .close-info:hover {
-            color: #fff;
-        }
+        #planet-info .close-info:hover { color: #fff; }
         #planet-info .pname {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             margin-bottom: 4px;
         }
         #planet-info .pdesc {
-            font-size: 14px;
+            font-size: 15px;
             color: rgba(255, 255, 255, 0.5);
             margin-bottom: 8px;
         }
@@ -565,18 +528,16 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4px 16px;
-            font-size: 13px;
+            font-size: 14px;
             color: rgba(255, 255, 255, 0.6);
         }
-        #planet-info .pdetails span {
-            color: #fff;
-        }
+        #planet-info .pdetails span { color: #fff; }
         #planet-info .ai-question {
-            margin-top: 12px;
-            padding: 10px 14px;
+            margin-top: 14px;
+            padding: 10px 16px;
             background: rgba(74, 158, 255, 0.08);
-            border-radius: 12px;
-            font-size: 13px;
+            border-radius: 14px;
+            font-size: 14px;
             color: #4a9eff;
             cursor: pointer;
             text-align: center;
@@ -589,21 +550,21 @@
         /* ---------- NOTIFICATIONS ---------- */
         #notification-area {
             position: fixed;
-            top: 70px;
-            right: 20px;
+            top: 74px;
+            right: 24px;
             z-index: 999;
             display: flex;
             flex-direction: column;
             gap: 8px;
             pointer-events: none;
-            max-width: 360px;
+            max-width: 380px;
         }
         .notification {
             background: rgba(5, 8, 15, 0.9);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 16px;
-            padding: 14px 18px;
+            border-radius: 18px;
+            padding: 14px 20px;
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
             pointer-events: auto;
             animation: slideIn 0.3s ease;
@@ -618,14 +579,8 @@
             margin-top: 2px;
         }
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         /* ---------- RESPONSIVE ---------- */
@@ -640,64 +595,31 @@
                 border-radius: 0 !important;
                 resize: none !important;
             }
-            .os-window .win-header {
-                padding: 12px 16px;
-            }
-            .haldo-menu,
-            .app-store-menu {
-                width: 280px;
-            }
-            #taskbar .taskbar-apps button span {
-                display: none;
-            }
-            #taskbar .taskbar-apps button::before {
-                content: attr(data-icon);
-                font-size: 18px;
-            }
+            .os-window .win-header { padding: 14px 18px; }
+            .haldo-menu, .app-store-menu { width: 280px; }
+            #taskbar .taskbar-apps button span { display: none; }
+            #taskbar .taskbar-apps button::before { content: attr(data-icon); font-size: 18px; }
             #planet-info {
                 bottom: 60px;
                 max-width: 90%;
                 padding: 16px 20px;
             }
-            #planet-info .pdetails {
-                grid-template-columns: 1fr;
-            }
+            #planet-info .pdetails { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
-            #boot-logo {
-                font-size: 52px;
-            }
-            .haldo-menu,
-            .app-store-menu {
+            #boot-logo { font-size: 56px; }
+            .haldo-menu, .app-store-menu {
                 width: 100%;
                 max-height: 60vh;
-                top: 56px;
+                top: 60px;
             }
-            .app-store-menu {
-                right: 0;
-                transform: translateX(100%);
-            }
-            .app-store-menu.open {
-                transform: translateX(0);
-            }
-            .haldo-menu {
-                left: 0;
-                transform: translateX(-100%);
-            }
-            .haldo-menu.open {
-                transform: translateX(0);
-            }
-            #taskbar .logo {
-                font-size: 16px;
-            }
-            #taskbar .clock {
-                font-size: 11px;
-                padding-left: 8px;
-            }
-            #planet-info {
-                bottom: 40px;
-                padding: 14px 16px;
-            }
+            .app-store-menu { right: 0; transform: translateX(100%); }
+            .app-store-menu.open { transform: translateX(0); }
+            .haldo-menu { left: 0; transform: translateX(-100%); }
+            .haldo-menu.open { transform: translateX(0); }
+            #taskbar .logo { font-size: 18px; }
+            #taskbar .clock { font-size: 12px; padding-left: 8px; }
+            #planet-info { bottom: 40px; padding: 14px 16px; }
         }
 
         /* ---------- HINWEIS ---------- */
@@ -706,29 +628,25 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.08);
-            font-size: 13px;
+            color: rgba(255, 255, 255, 0.06);
+            font-size: 14px;
             pointer-events: none;
             z-index: 5;
             text-align: center;
             background: rgba(0, 0, 0, 0.2);
-            padding: 6px 18px;
-            border-radius: 30px;
+            padding: 6px 20px;
+            border-radius: 40px;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.02);
             white-space: nowrap;
         }
-        @media (max-width: 600px) {
-            #cosmic-hint {
-                display: none;
-            }
-        }
+        @media (max-width: 600px) { #cosmic-hint { display: none; } }
         #sys-info {
             position: fixed;
             bottom: 10px;
-            left: 14px;
+            left: 16px;
             font-size: 10px;
-            color: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.04);
             z-index: 1;
             font-family: monospace;
             pointer-events: none;
@@ -743,7 +661,7 @@
     ============================================================ -->
     <div id="boot-screen">
         <div id="boot-logo">🌌 HalDo AI OS</div>
-        <div style="font-size:18px; color:rgba(255,255,255,0.15); margin-bottom:6px; font-weight:300;">v4.0 — Ultimate Cosmic</div>
+        <div style="font-size:20px; color:rgba(255,255,255,0.12); margin-bottom:6px; font-weight:300;">v5.0 — Ultimate Pro</div>
         <div id="boot-bar-wrap"><div id="boot-bar" style="width:0%;"></div></div>
         <div id="boot-status">Initialisiere Kernsystem ...</div>
     </div>
@@ -803,11 +721,11 @@
         </div>
 
         <!-- SYSTEM-INFO -->
-        <div id="sys-info">HalDo OS v4.0 • Kernel READY</div>
+        <div id="sys-info">HalDo OS v5.0 • Kernel READY</div>
     </div>
 
     <!-- ============================================================
-    JAVASCRIPT – DAS KOMPLETTE SYSTEM
+    JAVASCRIPT – DAS KOMPLETTE SYSTEM (ULTIMATE PRO)
     ============================================================ -->
     <script>
         // ============================================================
@@ -816,8 +734,8 @@
         const HalDo = {
             state: 'BOOTING',
             config: {
-                version: '4.0.0',
-                name: 'HalDo AI OS – Ultimate Cosmic',
+                version: '5.0.0',
+                name: 'HalDo AI OS – Ultimate Pro',
                 bootSteps: [
                     'Boot Detection', 'Environment Detection', 'Storage Check',
                     'Security Check', 'Configuration Load', 'Kernel Start',
@@ -829,6 +747,8 @@
                 language: 'de',
                 apiKey: localStorage.getItem('haldo_api_key') || '',
                 theme: 'dark',
+                animations: true,
+                fontSize: 14,
             },
             storage: {},
             registry: {},
@@ -839,6 +759,7 @@
             cosmic: null,
             ai: null,
             voice: null,
+            memory: [], // Kontext für AI
         };
 
         HalDo.on = function(evt, fn) {
@@ -852,13 +773,13 @@
         };
 
         // ============================================================
-        // 2. STORAGE LAYER
+        // 2. STORAGE LAYER (IndexedDB + localStorage)
         // ============================================================
         HalDo.storage = {
             async init() {
                 return new Promise((resolve) => {
                     try {
-                        const req = indexedDB.open('HalDoOS', 2);
+                        const req = indexedDB.open('HalDoOS', 3);
                         req.onupgradeneeded = (e) => {
                             const db = e.target.result;
                             if (!db.objectStoreNames.contains('apps')) {
@@ -869,6 +790,9 @@
                             }
                             if (!db.objectStoreNames.contains('userData')) {
                                 db.createObjectStore('userData', { keyPath: 'key' });
+                            }
+                            if (!db.objectStoreNames.contains('memory')) {
+                                db.createObjectStore('memory', { keyPath: 'key' });
                             }
                         };
                         req.onsuccess = (e) => {
@@ -925,31 +849,31 @@
         // 3. APP REGISTRY – Alle 26 Apps (erweitert)
         // ============================================================
         const APP_DEFINITIONS = [
-            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Zentrale KI-Assistentin mit Sprachausgabe', color: '#4a9eff' },
-            { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Internet-Browser mit Lesezeichen', color: '#4a9eff' },
+            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Zentrale KI mit Kontext & Persönlichkeit', color: '#4a9eff' },
+            { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Browser mit Lesezeichen', color: '#4a9eff' },
             { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'Organisation', desc: 'Terminkalender mit Erinnerungen', color: '#f97316' },
-            { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumentenverwaltung & Editor', color: '#3b82f6' },
-            { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client mit Beispieldaten', color: '#8b5cf6' },
-            { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager mit Ordnerstruktur', color: '#f59e0b' },
-            { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'Medien', desc: 'Bildergalerie mit Vorschau', color: '#ec4899' },
-            { id: 'health', name: 'Health', icon: '🏥', cat: 'Gesundheit', desc: 'Gesundheitsakte & Medikamentenplan', color: '#10b981' },
-            { id: 'internet', name: 'Internet', icon: '📶', cat: 'Internet', desc: 'Netzwerkstatus & Speedtest', color: '#06b6d4' },
-            { id: 'journal', name: 'Journal', icon: '📓', cat: 'Persönlich', desc: 'Tagebuch mit Einträgen', color: '#8b5cf6' },
-            { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'System', desc: 'Tastatur & Spracheinstellungen', color: '#6b7280' },
-            { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Lernplattform mit Kursen', color: '#22d3ee' },
-            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Musikplayer mit Playlist & AI-Lyrics', color: '#ec4899' },
+            { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumente & Editor', color: '#3b82f6' },
+            { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client', color: '#8b5cf6' },
+            { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager', color: '#f59e0b' },
+            { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'Medien', desc: 'Bildergalerie', color: '#ec4899' },
+            { id: 'health', name: 'Health', icon: '🏥', cat: 'Gesundheit', desc: 'Gesundheitsakte & Medikamente', color: '#10b981' },
+            { id: 'internet', name: 'Internet', icon: '📶', cat: 'Internet', desc: 'Netzwerk & Speedtest', color: '#06b6d4' },
+            { id: 'journal', name: 'Journal', icon: '📓', cat: 'Persönlich', desc: 'Tagebuch', color: '#8b5cf6' },
+            { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'System', desc: 'Tastatur & Sprachen', color: '#6b7280' },
+            { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Kurse & Quiz', color: '#22d3ee' },
+            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Player, Playlist, EQ, AI-Lyrics', color: '#ec4899' },
             { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'Reisen', desc: 'Karte & Routenplaner', color: '#10b981' },
             { id: 'office', name: 'Office', icon: '📊', cat: 'Büro', desc: 'Tabellen & Textverarbeitung', color: '#3b82f6' },
-            { id: 'photos', name: 'Photos & Camera', icon: '📸', cat: 'Medien', desc: 'Kamera & Fotoalbum', color: '#f59e0b' },
-            { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'Werkzeuge', desc: 'Taschenrechner, Timer, Umrechner', color: '#6b7280' },
-            { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'Medien', desc: 'Audio-Recorder mit Visualisierung', color: '#ef4444' },
-            { id: 'security', name: 'Security', icon: '🔒', cat: 'Sicherheit', desc: 'Sicherheits-Center & Passwort-Manager', color: '#f97316' },
-            { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'Organisation', desc: 'Aufgabenliste mit Prioritäten', color: '#22c55e' },
-            { id: 'updates', name: 'Updates', icon: '🔄', cat: 'System', desc: 'System- & App-Updates', color: '#3b82f6' },
-            { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'Medien', desc: 'Video-Editor mit Timeline', color: '#a855f7' },
-            { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'Information', desc: 'Wetter & 7-Tage-Vorhersage', color: '#06b6d4' },
-            { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'System', desc: 'Themes, Wallpaper, Schrift', color: '#ec4899' },
-            { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'Persönlich', desc: 'Dashboard für Kalender, Tasks, Health', color: '#f59e0b' },
+            { id: 'photos', name: 'Photos & Camera', icon: '📸', cat: 'Medien', desc: 'Kamera & Album', color: '#f59e0b' },
+            { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'Werkzeuge', desc: 'Rechner, Timer, Umrechner', color: '#6b7280' },
+            { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'Medien', desc: 'Audio-Recorder', color: '#ef4444' },
+            { id: 'security', name: 'Security', icon: '🔒', cat: 'Sicherheit', desc: 'Passwortmanager & Firewall', color: '#f97316' },
+            { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'Organisation', desc: 'Aufgaben mit Prioritäten', color: '#22c55e' },
+            { id: 'updates', name: 'Updates', icon: '🔄', cat: 'System', desc: 'Update-Manager', color: '#3b82f6' },
+            { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'Medien', desc: 'Editor mit Timeline', color: '#a855f7' },
+            { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'Information', desc: 'Wetter & 7-Tage', color: '#06b6d4' },
+            { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'System', desc: 'Themes & Schrift', color: '#ec4899' },
+            { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'Persönlich', desc: 'Dashboard für alles', color: '#f59e0b' },
             { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'System', desc: 'Systemsteuerung & Logs', color: '#6b7280' },
         ];
 
@@ -957,7 +881,7 @@
         APP_DEFINITIONS.forEach(app => {
             HalDo.registry[app.id] = {
                 ...app,
-                version: '1.1.0',
+                version: '1.2.0',
                 entry: 'app_' + app.id,
                 permissions: ['storage', 'network'],
                 routes: ['/' + app.id],
@@ -1065,7 +989,7 @@
         };
 
         // ============================================================
-        // 6. WINDOW MANAGER (verbessert)
+        // 6. WINDOW MANAGER (erweitert)
         // ============================================================
         HalDo.windowManager = {
             windows: {},
@@ -1082,8 +1006,8 @@
                     maximized: false,
                     x: 60 + (id * 25) % 300,
                     y: 40 + (id * 18) % 200,
-                    width: Math.min(680, window.innerWidth - 100),
-                    height: Math.min(500, window.innerHeight - 140),
+                    width: Math.min(720, window.innerWidth - 100),
+                    height: Math.min(540, window.innerHeight - 140),
                 };
                 this.windows[id] = win;
                 this.render(win);
@@ -1114,6 +1038,7 @@
                 <div class="win-title">
                   <span class="icon">${app.icon}</span>
                   ${app.name}
+                  <span style="font-size:11px; color:rgba(255,255,255,0.2); margin-left:8px;">v${app.version}</span>
                 </div>
                 <div class="win-controls">
                   <button class="min-btn" title="Minimieren">─</button>
@@ -1180,11 +1105,13 @@
                 return el;
             },
             getAppContent(appId, winId) {
-                // Jede App mit erweiterten Inhalten
+                // ============================================================
+                // APP-INHALTE – ULTIMATE PRO (mit echten Daten)
+                // ============================================================
                 const data = {
                     ai: () => `
                 <div class="ai-chat-messages" id="ai-chat-${winId}">
-                  <div class="msg ai">👋 Hallo! Ich bin <strong>HalDo AI</strong>.<br>Ich kann dir bei allem helfen – frage mich einfach!<br><span class="think">💡 Klicke auf die Sonne oder schreibe mir.</span></div>
+                  <div class="msg ai">👋 Hallo! Ich bin <strong>HalDo AI</strong> (v5.0).<br>Ich habe ein Kontextgedächtnis und kann dir bei allem helfen.<br><span class="think">💡 Klicke die Sonne oder schreibe mir.</span></div>
                 </div>
                 <div class="ai-chat-input-wrap">
                   <input type="text" placeholder="Nachricht an HalDo ..." id="ai-input-${winId}">
@@ -1199,27 +1126,36 @@
                     <button>Go</button>
                     <button>⭐</button>
                   </div>
-                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);">
-                    <div style="font-size:36px;">🌐</div>
-                    <div>Browser-Ansicht (simuliert)</div>
-                    <div style="font-size:12px;margin-top:4px;">Lesezeichen: HalDo OS, GitHub, YouTube</div>
+                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px;color:rgba(255,255,255,0.3);">
+                    <div style="display:flex;gap:12px;font-size:13px;">
+                      <span>📌 Lesezeichen:</span>
+                      <span style="color:#4a9eff;">HalDo OS</span>
+                      <span style="color:#a855f7;">GitHub</span>
+                      <span style="color:#f97316;">YouTube</span>
+                    </div>
+                    <div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:36px;">🌐</div>
                   </div>
                 </div>
               `,
-                    calendar: () => `
+                    calendar: () => {
+                        const month = 'September 2026';
+                        const days = Array.from({ length: 30 }, (_, i) => i + 1);
+                        const marked = [5, 12, 19, 26];
+                        return `
                 <div style="display:flex;flex-direction:column;gap:10px;">
                   <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <button>◀</button>
-                    <strong>September 2026</strong>
-                    <button>▶</button>
+                    <button id="cal-prev-${winId}">◀</button>
+                    <strong>${month}</strong>
+                    <button id="cal-next-${winId}">▶</button>
                   </div>
-                  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:12px;text-align:center;color:rgba(255,255,255,0.3);">
+                  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:13px;text-align:center;color:rgba(255,255,255,0.3);">
                     <div>Mo</div><div>Di</div><div>Mi</div><div>Do</div><div>Fr</div><div>Sa</div><div>So</div>
-                    ${Array.from({length:30},(_,i)=>`<div style="padding:4px;border-radius:6px;${i===14?'background:rgba(74,158,255,0.2);color:#4a9eff;':''}">${i+1}</div>`).join('')}
+                    ${days.map(d => `<div style="padding:6px;border-radius:8px;${marked.includes(d)?'background:rgba(74,158,255,0.2);color:#4a9eff;':''}">${d}</div>`).join('')}
                   </div>
-                  <div style="font-size:13px;color:rgba(255,255,255,0.5);">Termine: 15.09. Arzttermin • 20.09. Projektabgabe</div>
+                  <div style="font-size:13px;color:rgba(255,255,255,0.5);">📌 Termine: 15.09. Arzt • 20.09. Meeting • 26.09. Geburtstag</div>
                 </div>
-              `,
+              `;
+                    },
                     documents: () => `
                 <div style="display:flex;flex-direction:column;gap:8px;">
                   <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -1228,236 +1164,264 @@
                     <button>💾 Speichern</button>
                     <button>🖨️ Drucken</button>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;min-height:100px;font-size:13px;color:rgba(255,255,255,0.5);">
-                    <div><strong>Projektplan.docx</strong>  ·  24.08.2026</div>
-                    <div><strong>Präsentation.pptx</strong>  ·  18.08.2026</div>
-                    <div><strong>Notizen.txt</strong>  ·   heute</div>
+                  <div style="background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;min-height:120px;font-size:13px;display:flex;flex-direction:column;gap:6px;">
+                    <div><strong>Projektplan.docx</strong>  <span style="color:rgba(255,255,255,0.3);">24.08.2026 • 240 KB</span></div>
+                    <div><strong>Präsentation.pptx</strong>  <span style="color:rgba(255,255,255,0.3);">18.08.2026 • 1.2 MB</span></div>
+                    <div><strong>Notizen.txt</strong>  <span style="color:rgba(255,255,255,0.3);">heute • 4 KB</span></div>
+                    <div><strong>Finanzen.xlsx</strong>  <span style="color:rgba(255,255,255,0.3);">12.08.2026 • 86 KB</span></div>
                   </div>
                 </div>
               `,
                     email: () => `
-                <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;flex-direction:column;gap:8px;">
                   <div style="display:flex;gap:8px;">
                     <button>✉️ Schreiben</button>
                     <button>🔄 Aktualisieren</button>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;font-size:13px;border-left:3px solid #4a9eff;">
-                    <strong>Projektupdate</strong> – Von: Max Mustermann<br>
-                    <span style="color:rgba(255,255,255,0.4);">Hallo, hier sind die neuen Unterlagen ...</span>
+                  <div style="background:rgba(255,255,255,0.02);border-radius:10px;padding:10px 14px;border-left:3px solid #4a9eff;">
+                    <strong>Projektupdate</strong> – <span style="color:rgba(255,255,255,0.4);">Max Mustermann • heute</span><br>
+                    <span style="color:rgba(255,255,255,0.5);">Hallo, hier sind die neuen Unterlagen für das Projekt.</span>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;font-size:13px;border-left:3px solid #f97316;">
-                    <strong>Einladung</strong> – Von: Team<br>
-                    <span style="color:rgba(255,255,255,0.4);">Meeting am Freitag um 10 Uhr.</span>
+                  <div style="background:rgba(255,255,255,0.02);border-radius:10px;padding:10px 14px;border-left:3px solid #f97316;">
+                    <strong>Einladung</strong> – <span style="color:rgba(255,255,255,0.4);">Team • gestern</span><br>
+                    <span style="color:rgba(255,255,255,0.5);">Meeting am Freitag um 10 Uhr in Raum 3.</span>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.02);border-radius:10px;padding:10px 14px;border-left:3px solid #a855f7;">
+                    <strong>Rechnung</strong> – <span style="color:rgba(255,255,255,0.4);">Service GmbH • 02.09.</span><br>
+                    <span style="color:rgba(255,255,255,0.5);">Rechnung Nr. 2026-0098 bitte bis 30.09. begleichen.</span>
                   </div>
                 </div>
               `,
                     files: () => `
-                <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;flex-direction:column;gap:8px;">
                   <div style="display:flex;gap:8px;flex-wrap:wrap;">
                     <button>📁 Ordner erstellen</button>
                     <button>📤 Hochladen</button>
                   </div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;">
-                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Bilder</div>
-                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Dokumente</div>
-                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Musik</div>
-                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Videos</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:14px;">
+                    <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📁 Bilder <span style="color:rgba(255,255,255,0.3);">(12)</span></div>
+                    <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📁 Dokumente <span style="color:rgba(255,255,255,0.3);">(8)</span></div>
+                    <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📁 Musik <span style="color:rgba(255,255,255,0.3);">(45)</span></div>
+                    <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📁 Videos <span style="color:rgba(255,255,255,0.3);">(6)</span></div>
                   </div>
                 </div>
               `,
                     gallery: () => `
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-                  ${['🌅','🌄','🌠','🎆','🌈','🌌'].map(e=>`<div style="aspect-ratio:1;background:rgba(255,255,255,0.04);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:48px;transition:0.2s;cursor:pointer;">${e}</div>`).join('')}
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+                  ${['🌅','🌄','🌠','🎆','🌈','🌌','🏔️','🌺','🌸','🌻','🌴','🏝️'].map(e=>`<div style="aspect-ratio:1;background:rgba(255,255,255,0.04);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:48px;transition:0.2s;cursor:pointer;border:1px solid rgba(255,255,255,0.02);">${e}</div>`).join('')}
                 </div>
               `,
                     health: () => `
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
-                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">🏥 Krankheiten: 3</div>
-                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">💊 Medikamente: 2</div>
-                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">💉 Impfungen: 4</div>
-                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">📋 Befunde: 5</div>
-                  <div style="grid-column:span 2;background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;">👨‍⚕️ Nächster Termin: 15.09.2026, 10:00 Uhr</div>
+                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;">🏥 Krankheiten: 3 <span style="color:rgba(255,255,255,0.3);">(Grippe, Allergie, Migräne)</span></div>
+                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;">💊 Medikamente: 2 <span style="color:rgba(255,255,255,0.3);">(Ibuprofen, Cetirizin)</span></div>
+                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;">💉 Impfungen: 4 <span style="color:rgba(255,255,255,0.3);">(COVID, Grippe, Tetanus, HPV)</span></div>
+                  <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;">📋 Befunde: 5 <span style="color:rgba(255,255,255,0.3);">(Blutbild, EKG, etc.)</span></div>
+                  <div style="grid-column:span 2;background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;">👨‍⚕️ Nächster Termin: 15.09.2026, 10:00 Uhr (Dr. Müller)</div>
                 </div>
               `,
                     internet: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div style="display:flex;gap:8px;align-items:center;">
-                    <span style="font-size:24px;">📶</span>
-                    <div><strong>Verbunden</strong><br><span style="color:rgba(255,255,255,0.4);font-size:13px;">IP: 192.168.1.100</span></div>
-                    <button style="margin-left:auto;">Speedtest</button>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="font-size:28px;">📶</span>
+                    <div><strong>Verbunden</strong><br><span style="color:rgba(255,255,255,0.3);font-size:13px;">IP: 192.168.1.100</span></div>
+                    <button style="margin-left:auto;" id="speedtest-${winId}">Speedtest</button>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.4);">Ping: 12 ms • Download: 45 Mbps • Upload: 12 Mbps</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:12px;font-size:14px;color:rgba(255,255,255,0.4);">
+                    Ping: 12 ms • Download: 45 Mbps • Upload: 12 Mbps
+                  </div>
                 </div>
               `,
                     journal: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <button>📝 Neuer Eintrag</button>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <button id="journal-new-${winId}">📝 Neuer Eintrag</button>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">
                     <strong>Heute war ein guter Tag</strong><br>
                     <span style="color:rgba(255,255,255,0.4);font-size:13px;">Heute habe ich viel erreicht ...</span>
+                    <div style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:4px;">01.09.2026</div>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">
                     <strong>Projekt gestartet</strong><br>
                     <span style="color:rgba(255,255,255,0.4);font-size:13px;">Erste Ideen für das neue HalDo OS ...</span>
+                    <div style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:4px;">28.08.2026</div>
                   </div>
                 </div>
               `,
                     keyboard: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div><strong>Tastaturlayout:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option>Deutsch</option><option>English</option></select></div>
-                  <div><strong>Sprache:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option>Deutsch</option><option>English</option><option>Kurdish</option><option>Êzîdî</option></select></div>
-                  <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.4);">Tastenkombinationen: Strg+C, Strg+V, Alt+Tab</div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div><strong>⌨️ Tastaturlayout:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:6px 10px;"><option>Deutsch</option><option>English</option></select></div>
+                  <div><strong>🌐 Sprache:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:6px 10px;"><option>Deutsch</option><option>English</option><option>Kurdish</option><option>Êzîdî</option><option>Français</option><option>Español</option></select></div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:12px;font-size:13px;color:rgba(255,255,255,0.4);">
+                    ⌨️ Tastenkombinationen: Strg+C, Strg+V, Alt+Tab, Win+E
+                  </div>
                 </div>
               `,
                     learning: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
-                    <strong>📘 Kurs: Einführung in KI</strong>
-                    <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:4px;margin:6px 0;"><div style="width:60%;height:100%;background:#4a9eff;border-radius:4px;"></div></div>
-                    <span style="color:rgba(255,255,255,0.4);font-size:12px;">Fortschritt: 60%</span>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">
+                    <strong>📘 Einführung in KI</strong>
+                    <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:4px;margin:6px 0;"><div style="width:60%;height:100%;background:#4a9eff;border-radius:4px;"></div></div>
+                    <span style="color:rgba(255,255,255,0.4);font-size:12px;">Fortschritt: 60% • 3/5 Lektionen</span>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
-                    <strong>📗 Kurs: Webentwicklung</strong>
-                    <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:4px;margin:6px 0;"><div style="width:30%;height:100%;background:#a855f7;border-radius:4px;"></div></div>
-                    <span style="color:rgba(255,255,255,0.4);font-size:12px;">Fortschritt: 30%</span>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">
+                    <strong>📗 Webentwicklung</strong>
+                    <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:4px;margin:6px 0;"><div style="width:30%;height:100%;background:#a855f7;border-radius:4px;"></div></div>
+                    <span style="color:rgba(255,255,255,0.4);font-size:12px;">Fortschritt: 30% • 2/6 Lektionen</span>
                   </div>
+                  <button style="align-self:flex-start;">🧪 Quiz starten</button>
                 </div>
               `,
-                    music: () => `
-                <div style="display:flex;flex-direction:column;gap:10px;height:100%;">
-                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                    <button>▶ Play</button>
-                    <button>⏸ Pause</button>
-                    <button>⏭ Next</button>
-                    <button>⏮ Prev</button>
-                    <button>🔊 EQ</button>
-                    <button>🤖 AI Lyrics</button>
-                  </div>
-                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;">
-                    <div style="font-size:48px;">🎵</div>
-                    <div style="font-weight:600;">Blinding Lights</div>
-                    <div style="color:rgba(255,255,255,0.4);font-size:13px;">The Weeknd • 2020</div>
-                    <div style="display:flex;gap:12px;font-size:12px;color:rgba(255,255,255,0.3);">
-                      <span>🎸 BPM: 120</span>
-                      <span>🎤 Pop</span>
+                    music: () => {
+                        const playlist = [
+                            { title: 'Blinding Lights', artist: 'The Weeknd', duration: '3:20' },
+                            { title: 'Levitating', artist: 'Dua Lipa', duration: '3:23' },
+                            { title: 'Stay', artist: 'The Kid LAROI', duration: '2:21' },
+                            { title: 'Montero', artist: 'Lil Nas X', duration: '2:17' },
+                            { title: 'Shape of You', artist: 'Ed Sheeran', duration: '3:53' },
+                            { title: 'Dance Monkey', artist: 'Tones and I', duration: '3:29' },
+                            { title: 'Someone You Loved', artist: 'Lewis Capaldi', duration: '3:02' },
+                            { title: 'Bad Guy', artist: 'Billie Eilish', duration: '3:14' },
+                        ];
+                        const list = playlist.map((s, i) =>
+                            `<div style="display:flex;justify-content:space-between;padding:4px 8px;border-radius:6px;${i===0?'background:rgba(74,158,255,0.1);':''}">
+                            <span>${s.title}</span><span style="color:rgba(255,255,255,0.3);">${s.artist} • ${s.duration}</span>
+                          </div>`
+                        ).join('');
+                        return `
+                  <div style="display:flex;flex-direction:column;gap:10px;height:100%;">
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                      <button id="play-${winId}">▶ Play</button>
+                      <button id="pause-${winId}">⏸ Pause</button>
+                      <button>⏭ Next</button>
+                      <button>⏮ Prev</button>
+                      <button id="eq-toggle-${winId}">🔊 EQ</button>
+                      <button id="ai-lyrics-${winId}">🤖 AI Lyrics</button>
+                    </div>
+                    <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;">
+                      ${list}
+                    </div>
+                    <div id="eq-${winId}" style="display:none;height:40px;background:rgba(255,255,255,0.03);border-radius:10px;padding:4px 8px;display:flex;align-items:center;gap:6px;">
+                      ${[60,230,910,2000,8000].map(f => `<div style="flex:1;height:${10+Math.random()*20}px;background:#4a9eff;border-radius:4px;min-height:8px;"></div>`).join('')}
                     </div>
                   </div>
-                  <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,0.3);">
-                    <span>Playlist: Favorites</span>
-                    <span>5 Songs</span>
-                  </div>
-                </div>
-              `,
+                `;
+                    },
                     navigation: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;flex-direction:column;gap:10px;">
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
                     <button>🚗 Auto</button>
                     <button>🚲 Fahrrad</button>
                     <button>🚶 Fuß</button>
                     <button>🚌 ÖPNV</button>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:12px;min-height:80px;display:flex;flex-direction:column;gap:4px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:14px;min-height:100px;display:flex;flex-direction:column;gap:4px;">
                     <div style="color:rgba(255,255,255,0.3);">🗺️ Route: Berlin → Potsdam</div>
-                    <div style="font-size:13px;color:rgba(255,255,255,0.4);">🟢 Stau: 5 min • 🚧 Baustellen: 1</div>
-                    <div style="font-size:13px;color:rgba(255,255,255,0.4);">⛽ Tankstelle: 2 km • 🔌 Ladestation: 3 km</div>
+                    <div style="font-size:14px;color:rgba(255,255,255,0.4);">🟢 Stau: 5 min • 🚧 Baustellen: 1</div>
+                    <div style="font-size:14px;color:rgba(255,255,255,0.4);">⛽ Tankstelle: 2 km • 🔌 Ladestation: 3 km</div>
+                    <div style="font-size:13px;color:rgba(255,255,255,0.3);">🚦 Geschwindigkeitslimit: 50 km/h</div>
                   </div>
                 </div>
               `,
                     office: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;flex-direction:column;gap:10px;">
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
                     <button>📊 Tabelle</button>
                     <button>📝 Text</button>
                     <button>📈 Diagramm</button>
+                    <button>🔍 Suchen</button>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.5);">
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:12px;font-size:13px;color:rgba(255,255,255,0.5);overflow-x:auto;">
                     <table style="width:100%;border-collapse:collapse;text-align:left;">
-                      <tr><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:4px;">A</th><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:4px;">B</th></tr>
-                      <tr><td style="padding:4px;">1</td><td style="padding:4px;">2</td></tr>
-                      <tr><td style="padding:4px;">3</td><td style="padding:4px;">4</td></tr>
+                      <tr><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:6px;">A</th><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:6px;">B</th><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:6px;">Summe</th></tr>
+                      <tr><td style="padding:6px;">10</td><td style="padding:6px;">20</td><td style="padding:6px;">30</td></tr>
+                      <tr><td style="padding:6px;">5</td><td style="padding:6px;">15</td><td style="padding:6px;">20</td></tr>
+                      <tr><td style="padding:6px;" colspan="2"><strong>Gesamt</strong></td><td style="padding:6px;"><strong>50</strong></td></tr>
                     </table>
                   </div>
                 </div>
               `,
                     photos: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;flex-direction:column;gap:10px;">
                   <div style="display:flex;gap:8px;">
                     <button>📸 Foto aufnehmen</button>
                     <button>📁 Album</button>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;min-height:80px;">
-                    <div style="font-size:48px;">📷</div>
-                    <div style="color:rgba(255,255,255,0.3);">Kamera bereit</div>
+                  <div style="background:rgba(255,255,255,0.02);border-radius:14px;padding:16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;min-height:100px;">
+                    <div style="font-size:56px;">📷</div>
+                    <div style="color:rgba(255,255,255,0.3);">Kamera bereit – 6 Fotos im Album</div>
                   </div>
                 </div>
               `,
                     quicktools: () => `
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center;">
-                    <div style="font-size:28px;">🧮</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:14px;border-radius:14px;text-align:center;cursor:pointer;" onclick="alert('Taschenrechner: 2+2=4')">
+                    <div style="font-size:32px;">🧮</div>
                     <div>Taschenrechner</div>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center;">
-                    <div style="font-size:28px;">⏱️</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:14px;border-radius:14px;text-align:center;cursor:pointer;" onclick="alert('Timer: 10 Minuten gestartet')">
+                    <div style="font-size:32px;">⏱️</div>
                     <div>Timer</div>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center;">
-                    <div style="font-size:28px;">📏</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:14px;border-radius:14px;text-align:center;cursor:pointer;" onclick="alert('Einheiten: 1 km = 0.621 Meilen')">
+                    <div style="font-size:32px;">📏</div>
                     <div>Einheiten</div>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center;">
-                    <div style="font-size:28px;">🌡️</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:14px;border-radius:14px;text-align:center;cursor:pointer;" onclick="alert('Temperatur: 22°C = 71.6°F')">
+                    <div style="font-size:32px;">🌡️</div>
                     <div>Temperatur</div>
                   </div>
                 </div>
               `,
                     recorder: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
-                  <div style="font-size:48px;">🎙️</div>
-                  <button style="padding:12px 30px;font-size:18px;border-radius:30px;">● Aufnehmen</button>
-                  <div style="width:100%;height:40px;background:rgba(255,255,255,0.03);border-radius:20px;display:flex;align-items:center;padding:0 10px;">
-                    <div style="width:30%;height:4px;background:#4a9eff;border-radius:4px;"></div>
+                <div style="display:flex;flex-direction:column;gap:10px;align-items:center;">
+                  <div style="font-size:56px;">🎙️</div>
+                  <button id="rec-btn-${winId}" style="padding:14px 36px;font-size:18px;border-radius:40px;">● Aufnehmen</button>
+                  <div style="width:100%;height:50px;background:rgba(255,255,255,0.03);border-radius:24px;display:flex;align-items:center;padding:0 12px;">
+                    <div id="rec-wave-${winId}" style="width:0%;height:6px;background:#4a9eff;border-radius:4px;transition:width 0.1s;"></div>
                   </div>
-                  <div style="font-size:12px;color:rgba(255,255,255,0.3);">Aufnahme: 0:00</div>
+                  <div style="font-size:14px;color:rgba(255,255,255,0.3);">Dauer: 0:00</div>
                 </div>
               `,
                     security: () => `
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🔒 Passwortmanager</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🛡️ Firewall aktiv</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🧪 Virenscan: ok</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📱 2FA aktiviert</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:14px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">🔒 Passwortmanager <span style="color:rgba(255,255,255,0.3);">(3 Einträge)</span></div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">🛡️ Firewall <span style="color:#4a9eff;">aktiv</span></div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">🧪 Virenscan <span style="color:#22c55e;">ok</span></div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">📱 2FA <span style="color:#4a9eff;">aktiviert</span></div>
                 </div>
               `,
                     tasks: () => `
-                <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;flex-direction:column;gap:8px;">
                   <div style="display:flex;gap:8px;">
-                    <input type="text" placeholder="Neue Aufgabe ..." style="flex:1;">
-                    <button>+</button>
+                    <input type="text" placeholder="Neue Aufgabe ..." style="flex:1;" id="task-input-${winId}">
+                    <button id="task-add-${winId}">+</button>
                   </div>
-                  <div style="display:flex;flex-direction:column;gap:4px;font-size:13px;">
-                    <div style="display:flex;align-items:center;gap:8px;padding:4px 8px;background:rgba(255,255,255,0.02);border-radius:6px;"><input type="checkbox"> Projekt planen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">hoch</span></div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:4px 8px;background:rgba(255,255,255,0.02);border-radius:6px;"><input type="checkbox"> Einkaufen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">mittel</span></div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:4px 8px;background:rgba(255,255,255,0.02);border-radius:6px;"><input type="checkbox" checked> AI testen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">niedrig</span></div>
+                  <div style="display:flex;flex-direction:column;gap:4px;font-size:14px;">
+                    <div style="display:flex;align-items:center;gap:10px;padding:6px 10px;background:rgba(255,255,255,0.02);border-radius:8px;"><input type="checkbox"> Projekt planen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">hoch</span></div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:6px 10px;background:rgba(255,255,255,0.02);border-radius:8px;"><input type="checkbox"> Einkaufen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">mittel</span></div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:6px 10px;background:rgba(255,255,255,0.02);border-radius:8px;"><input type="checkbox" checked> AI testen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">niedrig</span></div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:6px 10px;background:rgba(255,255,255,0.02);border-radius:8px;"><input type="checkbox"> Dokumente sortieren <span style="margin-left:auto;color:rgba(255,255,255,0.3);">mittel</span></div>
                   </div>
                 </div>
               `,
                     updates: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div style="display:flex;gap:8px;align-items:center;">
-                    <span style="font-size:24px;">🔄</span>
-                    <div><strong>HalDo OS v4.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:13px;">Alle Apps aktuell</span></div>
-                    <button style="margin-left:auto;">Suchen</button>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;gap:12px;align-items:center;">
+                    <span style="font-size:28px;">🔄</span>
+                    <div><strong>HalDo OS v5.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:13px;">Alle Apps aktuell</span></div>
+                    <button style="margin-left:auto;" id="update-check-${winId}">Suchen</button>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.4);">Letzter Check: heute, 12:34 Uhr</div>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:12px;">
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">📦 Backup bereit</span>
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">↩️ Rollback möglich</span>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px 14px;border-radius:12px;font-size:14px;color:rgba(255,255,255,0.4);">
+                    Letzter Check: heute, 12:34 Uhr • Sicherheitsupdates: aktiv
+                  </div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:13px;">
+                    <span style="background:rgba(255,255,255,0.03);padding:4px 14px;border-radius:14px;">📦 Backup bereit</span>
+                    <span style="background:rgba(255,255,255,0.03);padding:4px 14px;border-radius:14px;">↩️ Rollback möglich</span>
                   </div>
                 </div>
               `,
                     video: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;height:100%;">
+                <div style="display:flex;flex-direction:column;gap:10px;height:100%;">
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
                     <button>🎬 Neu</button>
                     <button>📽️ Timeline</button>
@@ -1465,62 +1429,76 @@
                     <button>🎨 Effekte</button>
                     <button>🤖 AI Script</button>
                   </div>
-                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
-                    <div style="font-size:36px;">🎞️</div>
-                    <div style="color:rgba(255,255,255,0.3);">Timeline: 3 Clips</div>
-                    <div style="display:flex;gap:4px;margin-top:4px;">
-                      <div style="width:40px;height:6px;background:#4a9eff;border-radius:4px;"></div>
-                      <div style="width:60px;height:6px;background:#a855f7;border-radius:4px;"></div>
-                      <div style="width:30px;height:6px;background:#f97316;border-radius:4px;"></div>
+                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px;">
+                    <div style="font-size:40px;">🎞️</div>
+                    <div style="color:rgba(255,255,255,0.3);">Timeline: 4 Clips</div>
+                    <div style="display:flex;gap:6px;width:100%;max-width:300px;">
+                      <div style="flex:1;height:8px;background:#4a9eff;border-radius:4px;"></div>
+                      <div style="flex:1;height:8px;background:#a855f7;border-radius:4px;"></div>
+                      <div style="flex:1;height:8px;background:#f97316;border-radius:4px;"></div>
+                      <div style="flex:1;height:8px;background:#22c55e;border-radius:4px;"></div>
+                    </div>
+                    <div style="display:flex;gap:8px;font-size:12px;color:rgba(255,255,255,0.3);">
+                      <span>Übergang: Fade</span>
+                      <span>Effekte: 2</span>
                     </div>
                   </div>
                 </div>
               `,
                     weather: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div style="display:flex;align-items:center;gap:14px;">
-                    <span style="font-size:52px;">🌤️</span>
-                    <div><strong>22°C</strong><br><span style="color:rgba(255,255,255,0.4);font-size:13px;">Berlin, Deutschland</span></div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;align-items:center;gap:16px;">
+                    <span style="font-size:56px;">🌤️</span>
+                    <div><strong>22°C</strong><br><span style="color:rgba(255,255,255,0.4);font-size:14px;">Berlin, Deutschland</span></div>
                   </div>
-                  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;font-size:12px;color:rgba(255,255,255,0.5);">
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:13px;color:rgba(255,255,255,0.5);">
                     <div>🌧️ 20%</div>
                     <div>💨 14 km/h</div>
                     <div>☀️ UV 3</div>
                     <div>🌿 Pollen mittel</div>
                   </div>
-                  <div style="font-size:13px;color:rgba(255,255,255,0.3);">7-Tage-Vorhersage: sonnig, mild</div>
+                  <div style="font-size:14px;color:rgba(255,255,255,0.3);">📅 7-Tage: sonnig, mild, am Wochenende Regen</div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;">
+                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">London: 18°C</span>
+                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">New York: 25°C</span>
+                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">Paris: 20°C</span>
+                  </div>
                 </div>
               `,
                     personalization: () => `
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div><strong>Theme:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option>Dark</option><option>Light</option><option>Cosmic</option></select></div>
-                  <div><strong>Wallpaper:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option>Standard</option><option>Weltraum</option><option>Natur</option></select></div>
-                  <div><strong>Schriftgröße:</strong> <input type="range" min="12" max="20" value="14" style="width:100%;"></div>
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                  <div><strong>Theme:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:6px 10px;"><option>Dark</option><option>Light</option><option>Cosmic</option></select></div>
+                  <div><strong>Wallpaper:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:6px 10px;"><option>Standard</option><option>Weltraum</option><option>Natur</option><option>Abstract</option></select></div>
+                  <div><strong>Schriftgröße:</strong> <input type="range" min="12" max="22" value="14" step="1" style="width:100%;"></div>
                   <div><strong>Animationen:</strong> <input type="checkbox" checked> aktiviert</div>
+                  <div><strong>API-Key:</strong> <input type="password" placeholder="Optional für externe AI" style="width:100%;"></div>
                 </div>
               `,
                     yourlife: () => `
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📅 Heute: 2 Termine</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">✅ 3 Aufgaben offen</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🏥 Gesundheitscheck: ok</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🌦️ Wetter: 22°C</div>
-                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">💡 AI-Tipp: Trinke heute ausreichend Wasser.</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:14px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">📅 Heute: 2 Termine</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">✅ 3 Aufgaben offen</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">🏥 Gesundheitscheck: ok</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">🌦️ Wetter: 22°C, sonnig</div>
+                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">💡 AI-Tipp: Trinke heute ausreichend Wasser.</div>
                 </div>
               `,
                     systemcenter: () => `
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📊 Apps: ${Object.keys(HalDo.registry).length} installiert</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">💾 Speicher: 245 MB frei</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🔒 Sicherheit: aktiv</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🌐 Netzwerk: verbunden</div>
-                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">⚙️ Systemzustand: <span style="color:#4a9eff;">READY</span></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:14px;">
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">📊 Apps: ${Object.keys(HalDo.registry).length} installiert</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">💾 Speicher: 245 MB frei</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">🖥️ CPU: 12% • RAM: 1.2 GB</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">🔒 Sicherheit: aktiv</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">🌐 Netzwerk: verbunden</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">📋 Logs: 3 Einträge</div>
+                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;">⚙️ Systemzustand: <span style="color:#4a9eff;">READY</span></div>
                 </div>
               `
                 };
                 return (data[appId] || data.ai)();
             },
             initAppContent(appId, winId) {
+                // Spezifische Logik für Apps
                 if (appId === 'ai') {
                     setTimeout(() => {
                         const input = document.querySelector(`#app-content-${winId} input`);
@@ -1538,14 +1516,18 @@
                             chat.appendChild(userMsg);
                             chat.scrollTop = chat.scrollHeight;
 
-                            // KI-Antwort
+                            // Kontext speichern
+                            HalDo.memory.push({ role: 'user', content: text });
+                            if (HalDo.memory.length > 6) HalDo.memory.shift();
+
                             setTimeout(async () => {
-                                const response = await HalDo.ai.ask(text);
+                                const response = await HalDo.ai.ask(text, HalDo.memory);
                                 const aiMsg = document.createElement('div');
                                 aiMsg.className = 'msg ai';
                                 aiMsg.innerHTML = response + '<br><span class="think">💭 HalDo AI denkt mit ...</span>';
                                 chat.appendChild(aiMsg);
                                 chat.scrollTop = chat.scrollHeight;
+                                HalDo.memory.push({ role: 'ai', content: response });
                                 if (HalDo.voice) {
                                     HalDo.voice.speak(response.replace(/<[^>]*>/g, ''));
                                 }
@@ -1580,6 +1562,111 @@
                         }
                     }, 100);
                 }
+
+                // Music: Play/Pause simulieren
+                if (appId === 'music') {
+                    setTimeout(() => {
+                        const playBtn = document.querySelector(`#play-${winId}`);
+                        const pauseBtn = document.querySelector(`#pause-${winId}`);
+                        const eqToggle = document.querySelector(`#eq-${winId}`);
+                        const eqBtn = document.querySelector(`#eq-toggle-${winId}`);
+                        const aiLyrics = document.querySelector(`#ai-lyrics-${winId}`);
+                        if (playBtn) playBtn.onclick = () => showNotification('🎵', 'Music: Play gestartet');
+                        if (pauseBtn) pauseBtn.onclick = () => showNotification('⏸️', 'Music: Pause');
+                        if (eqBtn) eqBtn.onclick = () => {
+                            const eq = document.querySelector(`#eq-${winId}`);
+                            if (eq) eq.style.display = eq.style.display === 'none' ? 'flex' : 'none';
+                        };
+                        if (aiLyrics) aiLyrics.onclick = async () => {
+                            const lyrics = await HalDo.ai.ask('Generiere Songtexte für einen Popsong über Liebe.');
+                            showNotification('🤖 AI Lyrics', lyrics.substring(0, 80) + '...');
+                        };
+                    }, 50);
+                }
+
+                // Recorder: Aufnahme simulieren
+                if (appId === 'recorder') {
+                    setTimeout(() => {
+                        const recBtn = document.querySelector(`#rec-btn-${winId}`);
+                        const wave = document.querySelector(`#rec-wave-${winId}`);
+                        let recording = false;
+                        let interval;
+                        if (recBtn) recBtn.onclick = () => {
+                            recording = !recording;
+                            recBtn.textContent = recording ? '⏹ Stop' : '● Aufnehmen';
+                            if (recording) {
+                                let width = 0;
+                                interval = setInterval(() => {
+                                    width = Math.min(100, width + Math.random() * 5);
+                                    if (wave) wave.style.width = width + '%';
+                                }, 200);
+                            } else {
+                                clearInterval(interval);
+                                if (wave) wave.style.width = '0%';
+                                showNotification('🎙️', 'Aufnahme beendet');
+                            }
+                        };
+                    }, 50);
+                }
+
+                // Updates: Check simulieren
+                if (appId === 'updates') {
+                    setTimeout(() => {
+                        const checkBtn = document.querySelector(`#update-check-${winId}`);
+                        if (checkBtn) checkBtn.onclick = () => {
+                            showNotification('🔄', 'Nach Updates gesucht – System ist aktuell.');
+                        };
+                    }, 50);
+                }
+
+                // Tasks: Add Task
+                if (appId === 'tasks') {
+                    setTimeout(() => {
+                        const addBtn = document.querySelector(`#task-add-${winId}`);
+                        const input = document.querySelector(`#task-input-${winId}`);
+                        if (addBtn && input) {
+                            addBtn.onclick = () => {
+                                const text = input.value.trim();
+                                if (text) {
+                                    showNotification('✅', `Aufgabe "${text}" hinzugefügt`);
+                                    input.value = '';
+                                }
+                            };
+                        }
+                    }, 50);
+                }
+
+                // Journal: New Entry
+                if (appId === 'journal') {
+                    setTimeout(() => {
+                        const newBtn = document.querySelector(`#journal-new-${winId}`);
+                        if (newBtn) newBtn.onclick = () => {
+                            const entry = prompt('Neuer Tagebucheintrag:');
+                            if (entry) showNotification('📓', 'Eintrag gespeichert');
+                        };
+                    }, 50);
+                }
+
+                // Internet: Speedtest
+                if (appId === 'internet') {
+                    setTimeout(() => {
+                        const testBtn = document.querySelector(`#speedtest-${winId}`);
+                        if (testBtn) testBtn.onclick = () => {
+                            showNotification('📶', 'Speedtest läuft ...');
+                            setTimeout(() => showNotification('✅', 'Ping: 14 ms, Download: 48 Mbps'), 1500);
+                        };
+                    }, 50);
+                }
+
+                // Calendar: Navigation
+                if (appId === 'calendar') {
+                    setTimeout(() => {
+                        const prev = document.querySelector(`#cal-prev-${winId}`);
+                        const next = document.querySelector(`#cal-next-${winId}`);
+                        if (prev) prev.onclick = () => showNotification('📅', 'Vorheriger Monat');
+                        if (next) next.onclick = () => showNotification('📅', 'Nächster Monat');
+                    }, 50);
+                }
             },
             focus(id) {
                 const win = this.windows[id];
@@ -1594,7 +1681,7 @@
                 HalDo.router.updateTaskbar();
                 Object.values(this.windows).forEach(w => {
                     if (w.element && w.id !== id) {
-                        w.element.style.opacity = '0.6';
+                        w.element.style.opacity = '0.5';
                     }
                 });
                 if (win.element) {
@@ -1655,7 +1742,7 @@
         };
 
         // ============================================================
-        // 7. COSMIC WORLD – ULTIMATE EDITION
+        // 7. COSMIC WORLD – ULTIMATE PRO (500 Sterne, mehr Details)
         // ============================================================
         HalDo.cosmic = {
             canvas: null,
@@ -1682,7 +1769,7 @@
                 this.resize();
                 window.addEventListener('resize', () => this.resize());
 
-                // Maus
+                // Maus-Interaktion
                 this.canvas.addEventListener('mousedown', (e) => {
                     this.isDragging = true;
                     this.dragStartX = e.clientX;
@@ -1707,8 +1794,8 @@
                 });
                 this.canvas.addEventListener('wheel', (e) => {
                     e.preventDefault();
-                    const delta = e.deltaY > 0 ? -0.08 : 0.08;
-                    this.zoom = Math.max(0.3, Math.min(3.5, this.zoom + delta));
+                    const delta = e.deltaY > 0 ? -0.07 : 0.07;
+                    this.zoom = Math.max(0.3, Math.min(4, this.zoom + delta));
                 });
 
                 // Touch
@@ -1739,7 +1826,7 @@
                         const dist = Math.sqrt(dx * dx + dy * dy);
                         if (lastTouchDist > 0) {
                             const delta = (dist - lastTouchDist) * 0.01;
-                            this.zoom = Math.max(0.3, Math.min(3.5, this.zoom + delta));
+                            this.zoom = Math.max(0.3, Math.min(4, this.zoom + delta));
                         }
                         lastTouchDist = dist;
                     }
@@ -1749,48 +1836,53 @@
                     lastTouchDist = 0;
                 });
 
-                // Planeten (12 + zusätzliche Monde)
+                // 12 Planeten mit erweiterten Daten
                 const planetData = [
-                    { name: 'Merkur', radius: 7, orbit: 65, speed: 0.9, color: '#b5b5b5', desc: 'Kleinster Planet, sonnennah' },
-                    { name: 'Venus', radius: 11, orbit: 95, speed: 0.7, color: '#e8b85a', desc: 'Heißester Planet, dichte Atmosphäre' },
-                    { name: 'Erde', radius: 13, orbit: 125, speed: 0.5, color: '#4a9eff', hasMoon: true, desc: 'Unser Zuhause' },
-                    { name: 'Mars', radius: 10, orbit: 155, speed: 0.4, color: '#e07040', desc: 'Roter Planet, eisige Pole' },
-                    { name: 'Jupiter', radius: 24, orbit: 195, speed: 0.25, color: '#d4a06a', desc: 'Größter Planet, Gasriese' },
-                    { name: 'Saturn', radius: 20, orbit: 235, speed: 0.2, color: '#e8d5a0', hasRings: true,
-                    desc: 'Mit atemberaubenden Ringen' },
-                    { name: 'Uranus', radius: 17, orbit: 275, speed: 0.15, color: '#7ec8e3', desc: 'Eisriese, liegt auf der Seite' },
-                    { name: 'Neptun', radius: 16, orbit: 315, speed: 0.1, color: '#3f54ba', desc: 'Äußerster Planet, stürmisch' },
-                    { name: 'Pluto', radius: 5, orbit: 355, speed: 0.07, color: '#b8a08a', desc: 'Zwergplanet, eisig' },
-                    { name: 'Ceres', radius: 6, orbit: 395, speed: 0.05, color: '#a0a0a0', desc: 'Zwergplanet im Asteroidengürtel' },
-                    { name: 'Eris', radius: 8, orbit: 430, speed: 0.03, color: '#c0b8b0', desc: 'Großer Zwergplanet' },
-                    { name: 'Haumea', radius: 7, orbit: 460, speed: 0.02, color: '#b0a898', desc: 'Schnell rotierender Zwergplanet' },
+                    { name: 'Merkur', radius: 8, orbit: 70, speed: 0.9, color: '#b5b5b5', desc: 'Kleinster Planet, sonnennah' },
+                    { name: 'Venus', radius: 12, orbit: 100, speed: 0.7, color: '#e8b85a', desc: 'Heißester Planet' },
+                    { name: 'Erde', radius: 14, orbit: 130, speed: 0.5, color: '#4a9eff', hasMoon: true,
+                    desc: 'Unser Zuhause' },
+                    { name: 'Mars', radius: 11, orbit: 160, speed: 0.4, color: '#e07040', desc: 'Roter Planet' },
+                    { name: 'Jupiter', radius: 26, orbit: 200, speed: 0.25, color: '#d4a06a', desc: 'Größter Planet' },
+                    { name: 'Saturn', radius: 22, orbit: 240, speed: 0.2, color: '#e8d5a0', hasRings: true,
+                    desc: 'Mit Ringen' },
+                    { name: 'Uranus', radius: 18, orbit: 280, speed: 0.15, color: '#7ec8e3', desc: 'Eisriese' },
+                    { name: 'Neptun', radius: 17, orbit: 320, speed: 0.1, color: '#3f54ba', desc: 'Äußerster Planet' },
+                    { name: 'Pluto', radius: 6, orbit: 360, speed: 0.07, color: '#b8a08a', desc: 'Zwergplanet' },
+                    { name: 'Ceres', radius: 7, orbit: 400, speed: 0.05, color: '#a0a0a0', desc: 'Zwergplanet' },
+                    { name: 'Eris', radius: 9, orbit: 440, speed: 0.03, color: '#c0b8b0', desc: 'Großer Zwergplanet' },
+                    { name: 'Haumea', radius: 8, orbit: 470, speed: 0.02, color: '#b0a898', desc: 'Schnell rotierend' },
                 ];
 
-                this.planets = planetData.map((p, i) => ({
+                this.planets = planetData.map((p) => ({
                     ...p,
                     angle: Math.random() * Math.PI * 2,
                     angleSpeed: p.speed * 0.018,
                     rotAngle: 0,
                     rotSpeed: (0.01 + Math.random() * 0.04) * (Math.random() > 0.5 ? 1 : -1),
+                    surfacePoints: Array.from({ length: 20 }, () => ({
+                        a: Math.random() * Math.PI * 2,
+                        r: p.radius * (0.4 + Math.random() * 0.5),
+                    })),
                 }));
 
                 this.sun = {
                     x: 0,
                     y: 0,
-                    radius: 38,
+                    radius: 42,
                     pulse: 0,
                 };
 
-                // Sterne (365 mit Farbe und Twinkling)
+                // 500 Sterne
                 this.stars = [];
-                const starColors = ['#ffffff', '#aaccff', '#ffdd99', '#ffddcc'];
-                for (let i = 0; i < 365; i++) {
+                const starColors = ['#ffffff', '#aaccff', '#ffdd99', '#ffddcc', '#ffaaff'];
+                for (let i = 0; i < 500; i++) {
                     this.stars.push({
-                        x: (Math.random() - 0.5) * 2200,
-                        y: (Math.random() - 0.5) * 2200,
-                        radius: 0.5 + Math.random() * 1.8,
+                        x: (Math.random() - 0.5) * 2400,
+                        y: (Math.random() - 0.5) * 2400,
+                        radius: 0.4 + Math.random() * 2.0,
                         brightness: 0.3 + Math.random() * 0.7,
-                        twinkleSpeed: 0.004 + Math.random() * 0.025,
+                        twinkleSpeed: 0.003 + Math.random() * 0.025,
                         twinkleOffset: Math.random() * Math.PI * 2,
                         color: starColors[Math.floor(Math.random() * starColors.length)],
                     });
@@ -1815,7 +1907,7 @@
             },
 
             loop() {
-                this.time += 0.008;
+                this.time += 0.007;
                 this.update();
                 this.draw();
                 this.animationId = requestAnimationFrame(() => this.loop());
@@ -1834,36 +1926,36 @@
                 const w = this.width;
                 const h = this.height;
 
-                // Hintergrund – Tiefe mit Farbverlauf
+                // Hintergrund – tiefer Weltraum
                 const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.9);
                 grad.addColorStop(0, '#0f1a2e');
-                grad.addColorStop(0.4, '#080b16');
-                grad.addColorStop(0.8, '#03050a');
+                grad.addColorStop(0.3, '#080b16');
+                grad.addColorStop(0.7, '#03050a');
                 grad.addColorStop(1, '#000000');
                 ctx.fillStyle = grad;
                 ctx.fillRect(0, 0, w, h);
 
-                // Sterne mit unterschiedlichen Farben
+                // 500 Sterne
                 this.stars.forEach(s => {
                     const twinkle = 0.5 + 0.5 * Math.sin(this.time * s.twinkleSpeed + s.twinkleOffset);
                     const alpha = s.brightness * twinkle * 0.8 + 0.2;
                     const sx = (s.x * this.zoom) + this.centerX + this.offsetX;
                     const sy = (s.y * this.zoom) + this.centerY + this.offsetY;
                     ctx.beginPath();
-                    ctx.arc(sx, sy, s.radius * this.zoom * 0.7, 0, Math.PI * 2);
+                    ctx.arc(sx, sy, s.radius * this.zoom * 0.6, 0, Math.PI * 2);
                     ctx.fillStyle = s.color + Math.round(alpha * 200).toString(16).padStart(2, '0');
                     ctx.fill();
                 });
 
-                // Nebel-Effekt (verschwommene Kreise)
-                for (let i = 0; i < 3; i++) {
-                    const cx = (Math.sin(this.time * 0.01 + i * 2) * 300 + this.centerX + this.offsetX);
-                    const cy = (Math.cos(this.time * 0.008 + i * 2.5) * 200 + this.centerY + this.offsetY);
-                    const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 300);
-                    grd.addColorStop(0, 'rgba(100,150,255,0.02)');
-                    grd.addColorStop(1, 'rgba(100,150,255,0)');
+                // Nebel (Galaxien)
+                for (let i = 0; i < 4; i++) {
+                    const cx = (Math.sin(this.time * 0.005 + i * 2.1) * 400 + this.centerX + this.offsetX);
+                    const cy = (Math.cos(this.time * 0.004 + i * 2.7) * 300 + this.centerY + this.offsetY);
+                    const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 350);
+                    grd.addColorStop(0, `rgba(${80+i*30},${120+i*20},255,0.015)`);
+                    grd.addColorStop(1, 'rgba(0,0,0,0)');
                     ctx.fillStyle = grd;
-                    ctx.fillRect(cx - 300, cy - 300, 600, 600);
+                    ctx.fillRect(cx - 350, cy - 350, 700, 700);
                 }
 
                 // Transformation für Planetensystem
@@ -1871,11 +1963,11 @@
                 ctx.translate(this.centerX + this.offsetX, this.centerY + this.offsetY);
                 ctx.scale(this.zoom, this.zoom);
 
-                // Umlaufbahnen (elliptisch)
+                // Umlaufbahnen
                 this.planets.forEach(p => {
                     ctx.beginPath();
                     ctx.ellipse(0, 0, p.orbit, p.orbit * 0.92, 0.05, 0, Math.PI * 2);
-                    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+                    ctx.strokeStyle = 'rgba(255,255,255,0.02)';
                     ctx.lineWidth = 0.8;
                     ctx.stroke();
                 });
@@ -1885,20 +1977,18 @@
                     const px = Math.cos(p.angle) * p.orbit;
                     const py = Math.sin(p.angle) * p.orbit * 0.92;
 
-                    // Schatten (Tiefe)
-                    ctx.shadowColor = p.color + '30';
-                    ctx.shadowBlur = 25;
-
-                    // Atmosphären-Glow
-                    const glow = ctx.createRadialGradient(px, py, p.radius * 0.5, px, py, p.radius * 2.2);
-                    glow.addColorStop(0, p.color + '40');
+                    // Glow
+                    const glow = ctx.createRadialGradient(px, py, p.radius * 0.4, px, py, p.radius * 2.5);
+                    glow.addColorStop(0, p.color + '30');
                     glow.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.shadowBlur = 0;
                     ctx.beginPath();
-                    ctx.arc(px, py, p.radius * 2.2, 0, Math.PI * 2);
+                    ctx.arc(px, py, p.radius * 2.5, 0, Math.PI * 2);
                     ctx.fillStyle = glow;
                     ctx.fill();
 
-                    // Planet
+                    // Planet mit Oberflächendetails
+                    ctx.shadowColor = p.color + '40';
                     ctx.shadowBlur = 20;
                     ctx.beginPath();
                     ctx.arc(px, py, p.radius, 0, Math.PI * 2);
@@ -1909,16 +1999,29 @@
                     ctx.fillStyle = pGrad;
                     ctx.fill();
 
+                    // Oberflächentextur (Punkte)
+                    ctx.shadowBlur = 0;
+                    p.surfacePoints.forEach(pt => {
+                        const angle = pt.a + p.rotAngle;
+                        const r = pt.r;
+                        const x = px + Math.cos(angle) * r;
+                        const y = py + Math.sin(angle) * r * 0.6;
+                        ctx.beginPath();
+                        ctx.arc(x, y, 1.2, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(0,0,0,0.15)';
+                        ctx.fill();
+                    });
+
                     // Saturnringe
                     if (p.hasRings) {
                         ctx.shadowBlur = 0;
                         ctx.beginPath();
-                        ctx.ellipse(px, py, p.radius * 2.4, p.radius * 0.65, 0.2, 0, Math.PI * 2);
-                        const ringGrad = ctx.createLinearGradient(px - p.radius * 2.4, py, px + p.radius * 2.4, py);
+                        ctx.ellipse(px, py, p.radius * 2.6, p.radius * 0.7, 0.2, 0, Math.PI * 2);
+                        const ringGrad = ctx.createLinearGradient(px - p.radius * 2.6, py, px + p.radius * 2.6, py);
                         ringGrad.addColorStop(0, 'rgba(180,160,130,0)');
-                        ringGrad.addColorStop(0.3, 'rgba(200,180,150,0.5)');
-                        ringGrad.addColorStop(0.5, 'rgba(220,200,170,0.7)');
-                        ringGrad.addColorStop(0.7, 'rgba(200,180,150,0.5)');
+                        ringGrad.addColorStop(0.25, 'rgba(200,180,150,0.5)');
+                        ringGrad.addColorStop(0.5, 'rgba(220,200,170,0.8)');
+                        ringGrad.addColorStop(0.75, 'rgba(200,180,150,0.5)');
                         ringGrad.addColorStop(1, 'rgba(180,160,130,0)');
                         ctx.fillStyle = ringGrad;
                         ctx.fill();
@@ -1927,18 +2030,27 @@
                     // Erde + Mond
                     if (p.hasMoon) {
                         const moonAngle = this.time * 0.3 + p.angle;
-                        const mx = px + Math.cos(moonAngle) * 24;
-                        const my = py + Math.sin(moonAngle) * 24 * 0.7;
+                        const mx = px + Math.cos(moonAngle) * 26;
+                        const my = py + Math.sin(moonAngle) * 26 * 0.7;
                         ctx.shadowBlur = 5;
                         ctx.beginPath();
-                        ctx.arc(mx, my, 4.5, 0, Math.PI * 2);
+                        ctx.arc(mx, my, 5, 0, Math.PI * 2);
                         ctx.fillStyle = '#c8d0d8';
                         ctx.fill();
-                        // Mond-Umlaufbahn
+                        // Mondoberfläche (Krater)
+                        ctx.shadowBlur = 0;
+                        for (let i = 0; i < 3; i++) {
+                            const ca = i * 2.1 + this.time * 0.02;
+                            const cr = 1.5 + Math.sin(i) * 0.5;
+                            ctx.beginPath();
+                            ctx.arc(mx + Math.cos(ca) * 2, my + Math.sin(ca) * 2, cr, 0, Math.PI * 2);
+                            ctx.fillStyle = 'rgba(0,0,0,0.1)';
+                            ctx.fill();
+                        }
                         ctx.shadowBlur = 0;
                         ctx.beginPath();
-                        ctx.ellipse(px, py, 24, 24 * 0.7, 0, 0, Math.PI * 2);
-                        ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+                        ctx.ellipse(px, py, 26, 26 * 0.7, 0, 0, Math.PI * 2);
+                        ctx.strokeStyle = 'rgba(255,255,255,0.03)';
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
@@ -1946,25 +2058,26 @@
                     ctx.shadowBlur = 0;
                 });
 
-                // SONNE – ultimativer Glow
-                const sunRadius = this.sun.radius + Math.sin(this.sun.pulse) * 2.5;
-                // Äußerer Glow
-                const glowSun = ctx.createRadialGradient(0, 0, 0, 0, 0, sunRadius * 4);
-                glowSun.addColorStop(0, 'rgba(255,200,80,0.3)');
-                glowSun.addColorStop(0.3, 'rgba(255,150,50,0.15)');
-                glowSun.addColorStop(1, 'rgba(255,100,0,0)');
+                // SONNE – mit Korona
+                const sunRadius = this.sun.radius + Math.sin(this.sun.pulse) * 3;
+                // Korona (äußerer Glow)
+                const corona = ctx.createRadialGradient(0, 0, sunRadius * 0.5, 0, 0, sunRadius * 5);
+                corona.addColorStop(0, 'rgba(255,200,80,0.3)');
+                corona.addColorStop(0.3, 'rgba(255,150,50,0.15)');
+                corona.addColorStop(0.7, 'rgba(255,100,0,0.05)');
+                corona.addColorStop(1, 'rgba(255,100,0,0)');
                 ctx.shadowBlur = 0;
                 ctx.beginPath();
-                ctx.arc(0, 0, sunRadius * 4, 0, Math.PI * 2);
-                ctx.fillStyle = glowSun;
+                ctx.arc(0, 0, sunRadius * 5, 0, Math.PI * 2);
+                ctx.fillStyle = corona;
                 ctx.fill();
 
                 // Sonnenkörper
                 ctx.shadowColor = '#ff8800';
-                ctx.shadowBlur = 80;
+                ctx.shadowBlur = 100;
                 ctx.beginPath();
                 ctx.arc(0, 0, sunRadius, 0, Math.PI * 2);
-                const sunGrad = ctx.createRadialGradient(-15, -15, 0, 0, 0, sunRadius);
+                const sunGrad = ctx.createRadialGradient(-18, -18, 0, 0, 0, sunRadius);
                 sunGrad.addColorStop(0, '#fff8e8');
                 sunGrad.addColorStop(0.2, '#ffdd44');
                 sunGrad.addColorStop(0.5, '#ffaa00');
@@ -1973,59 +2086,64 @@
                 ctx.fillStyle = sunGrad;
                 ctx.fill();
 
-                // Sonnenflecken (kleine dunkle Punkte)
+                // Sonnenflecken
                 ctx.shadowBlur = 0;
-                for (let i = 0; i < 6; i++) {
-                    const a = this.time * 0.01 + i * 1.2;
-                    const r = sunRadius * (0.2 + Math.sin(i * 2) * 0.1);
+                for (let i = 0; i < 8; i++) {
+                    const a = this.time * 0.01 + i * 1.3;
+                    const r = sunRadius * (0.2 + Math.sin(i * 2 + 0.5) * 0.15);
                     ctx.beginPath();
-                    ctx.arc(Math.cos(a) * r, Math.sin(a) * r, 3 + Math.sin(i) * 1.5, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(0,0,0,0.15)';
+                    ctx.arc(Math.cos(a) * r, Math.sin(a) * r, 2 + Math.sin(i) * 1.5, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0,0,0,0.12)';
                     ctx.fill();
                 }
 
-                // Strahlenkranz
+                // Koronale Bögen (pulsierende Strahlen)
                 ctx.shadowBlur = 0;
-                const rays = 30;
+                const rays = 36;
                 for (let i = 0; i < rays; i++) {
-                    const angle = (i / rays) * Math.PI * 2 + this.time * 0.004;
+                    const angle = (i / rays) * Math.PI * 2 + this.time * 0.003;
                     const r1 = sunRadius * 1.1;
-                    const r2 = sunRadius * (1.7 + Math.sin(this.sun.pulse + i * 0.5) * 0.3);
+                    const r2 = sunRadius * (1.9 + Math.sin(this.sun.pulse + i * 0.4) * 0.4);
                     ctx.beginPath();
                     ctx.moveTo(Math.cos(angle) * r1, Math.sin(angle) * r1);
-                    ctx.lineTo(Math.cos(angle + 0.06) * r2, Math.sin(angle + 0.06) * r2);
-                    ctx.strokeStyle = `rgba(255,200,100,${0.15 + Math.sin(this.sun.pulse + i*0.2)*0.08})`;
-                    ctx.lineWidth = 2.5;
+                    ctx.quadraticCurveTo(
+                        Math.cos(angle + 0.08) * (r1 + r2) / 2,
+                        Math.sin(angle + 0.08) * (r1 + r2) / 2,
+                        Math.cos(angle + 0.12) * r2,
+                        Math.sin(angle + 0.12) * r2
+                    );
+                    ctx.strokeStyle = `rgba(255,200,100,${0.1 + Math.sin(this.sun.pulse + i*0.2)*0.06})`;
+                    ctx.lineWidth = 2;
                     ctx.stroke();
                 }
 
-                // HalDo-Logo auf der Sonne
+                // HalDo-Logo
                 ctx.shadowBlur = 0;
                 ctx.fillStyle = 'rgba(255,255,255,0.95)';
-                ctx.font = 'bold 20px "Segoe UI", sans-serif';
+                ctx.font = 'bold 22px "Segoe UI", sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText('🌌 HalDo', 0, -8);
+                ctx.fillText('🌌 HalDo', 0, -10);
                 ctx.fillStyle = 'rgba(255,255,200,0.5)';
-                ctx.font = '12px "Segoe UI", sans-serif';
-                ctx.fillText('AI OS', 0, 18);
+                ctx.font = '13px "Segoe UI", sans-serif';
+                ctx.fillText('AI OS', 0, 20);
 
                 ctx.restore();
 
-                // Hitbox für Sonne und Planeten speichern
+                // Hitbox für Sonne und Planeten
                 this.sun.screenX = this.centerX + this.offsetX;
                 this.sun.screenY = this.centerY + this.offsetY;
                 this.sun.screenRadius = sunRadius * this.zoom;
 
-                // Hover-Effekt Sonne
+                // Hover Sonne
                 const dx = this.mouseX - this.sun.screenX;
                 const dy = this.mouseY - this.sun.screenY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < this.sun.screenRadius + 20) {
+                if (dist < this.sun.screenRadius + 25) {
                     ctx.save();
-                    ctx.fillStyle = 'rgba(255,200,80,0.1)';
+                    ctx.fillStyle = 'rgba(255,200,80,0.08)';
                     ctx.beginPath();
-                    ctx.arc(this.sun.screenX, this.sun.screenY, this.sun.screenRadius + 25, 0, Math.PI * 2);
+                    ctx.arc(this.sun.screenX, this.sun.screenY, this.sun.screenRadius + 30, 0, Math.PI * 2);
                     ctx.fill();
                     ctx.restore();
                     this.canvas.style.cursor = 'pointer';
@@ -2033,22 +2151,20 @@
                     this.canvas.style.cursor = 'grab';
                 }
 
-                // Planeten-Hover (für Info)
+                // Planeten-Hover
                 for (let p of this.planets) {
                     const px = (Math.cos(p.angle) * p.orbit * this.zoom) + this.centerX + this.offsetX;
                     const py = (Math.sin(p.angle) * p.orbit * 0.92 * this.zoom) + this.centerY + this.offsetY;
                     const pr = p.radius * this.zoom;
                     const d = Math.sqrt((this.mouseX - px) ** 2 + (this.mouseY - py) ** 2);
-                    if (d < pr + 10) {
+                    if (d < pr + 12) {
                         this.canvas.style.cursor = 'pointer';
-                        // Leichter Glow
                         ctx.save();
                         ctx.beginPath();
-                        ctx.arc(px, py, pr + 12, 0, Math.PI * 2);
-                        ctx.fillStyle = 'rgba(255,255,255,0.05)';
+                        ctx.arc(px, py, pr + 14, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(255,255,255,0.04)';
                         ctx.fill();
                         ctx.restore();
-                        // Speichern des Planeten für Klick
                         this._hoveredPlanet = p;
                         break;
                     } else {
@@ -2061,7 +2177,7 @@
                 return {
                     x: this.sun.screenX || this.centerX + this.offsetX,
                     y: this.sun.screenY || this.centerY + this.offsetY,
-                    r: this.sun.screenRadius || 38 * this.zoom,
+                    r: this.sun.screenRadius || 42 * this.zoom,
                 };
             },
 
@@ -2070,7 +2186,7 @@
                     const px = (Math.cos(p.angle) * p.orbit * this.zoom) + this.centerX + this.offsetX;
                     const py = (Math.sin(p.angle) * p.orbit * 0.92 * this.zoom) + this.centerY + this.offsetY;
                     const pr = p.radius * this.zoom;
-                    if (Math.sqrt((mx - px) ** 2 + (my - py) ** 2) < pr + 12) {
+                    if (Math.sqrt((mx - px) ** 2 + (my - py) ** 2) < pr + 14) {
                         return p;
                     }
                 }
@@ -2079,35 +2195,54 @@
         };
 
         // ============================================================
-        // 8. HALDO AI – erweitert
+        // 8. HALDO AI – erweiterte Intelligenz mit Kontext
         // ============================================================
         HalDo.ai = {
-            async ask(question, context = '') {
+            async ask(question, memory = []) {
                 const lower = question.toLowerCase();
                 let response = '';
 
-                // Einfache Mustererkennung für smarte Antworten
-                if (lower.includes('hallo') || lower.includes('hi')) {
+                // Kontext-basierte Antworten
+                const context = memory.map(m => m.content).join(' ');
+
+                if (lower.includes('hallo') || lower.includes('hi') || lower.includes('hey')) {
                     response = '🤖 Hallo! Schön, dich zu sehen. Wie kann ich dir helfen?';
-                } else if (lower.includes('wetter')) {
-                    response = '🌦️ Das Wetter heute: 22°C, sonnig mit leichten Wolken. Perfekt für einen Spaziergang!';
-                } else if (lower.includes('musik') || lower.includes('song')) {
-                    response = '🎵 Ich liebe Musik! Welches Genre hörst du gerne? Ich kann dir neue Songs vorschlagen.';
-                } else if (lower.includes('planet') || lower.includes('sonne')) {
-                    response = '🌞 Das Sonnensystem ist faszinierend! Die Sonne ist ein gelber Zwergstern. Welcher Planet interessiert dich?';
-                } else if (lower.includes('hilfe')) {
-                    response = '❓ Ich helfe dir gerne! Du kannst mich alles fragen – von Technik bis Philosophie.';
-                } else if (lower.includes('danke')) {
+                } else if (lower.includes('wetter') || lower.includes('temperatur')) {
+                    response = '🌦️ Das Wetter heute: 22°C, sonnig mit leichten Wolken. Perfekt für einen Spaziergang! Morgen wird es etwas kühler.';
+                } else if (lower.includes('musik') || lower.includes('song') || lower.includes('lied')) {
+                    response =
+                        '🎵 Ich liebe Musik! Welches Genre hörst du gerne? Ich kann dir neue Songs vorschlagen oder sogar Songtexte schreiben.';
+                } else if (lower.includes('planet') || lower.includes('sonne') || lower.includes('stern')) {
+                    response =
+                        '🌞 Das Sonnensystem ist faszinierend! Die Sonne ist ein gelber Zwergstern. Welcher Planet interessiert dich besonders?';
+                } else if (lower.includes('hilfe') || lower.includes('help')) {
+                    response =
+                        '❓ Ich helfe dir gerne! Du kannst mich alles fragen – von Technik über Gesundheit bis hin zu Philosophie.';
+                } else if (lower.includes('danke') || lower.includes('thank')) {
                     response = '💙 Gern geschehen! Ich bin immer für dich da.';
+                } else if (lower.includes('gesundheit') || lower.includes('krankheit')) {
+                    response =
+                        '🏥 Gesundheit ist wichtig! Ich kann dir allgemeine Informationen geben, aber bitte konsultiere bei ernsthaften Beschwerden einen Arzt.';
+                } else if (lower.includes('video') || lower.includes('film')) {
+                    response =
+                        '🎬 Video-Studio ist bereit! Möchtest du einen Clip schneiden oder ein AI-Script generieren?';
+                } else if (lower.includes('aufgabe') || lower.includes('task')) {
+                    response =
+                        '✅ Ich sehe deine Aufgabenliste. Hast du heute schon deine wichtigste Aufgabe erledigt?';
+                } else if (lower.includes('kalender') || lower.includes('termin')) {
+                    response = '📅 Dein Kalender zeigt: Am 15.09. hast du einen Arzttermin und am 20.09. ein Meeting.';
+                } else if (lower.includes('intelligent') || lower.includes('klug')) {
+                    response =
+                        '🧠 Ich versuche, so intelligent wie möglich zu sein. Mein Kontextgedächtnis hilft mir, bessere Antworten zu geben.';
                 } else {
-                    // Standardantworten mit Variation
+                    // Generische, aber kontextbezogene Antwort
                     const generic = [
                         `🤖 Interessant! Erzähl mir mehr über "${question}".`,
-                        `🌌 ${question} – darüber habe ich noch nicht nachgedacht. Was meinst du?`,
-                        `💡 ${question} – das ist ein spannendes Thema. Lass uns tiefer einsteigen.`,
-                        `✨ HalDo AI sagt: ${question} ist eine gute Frage.`,
-                        `🚀 ${question} – ich werde das analysieren und dir später eine detaillierte Antwort geben.`,
-                        `🎯 ${question} – notiert! Ich werde es in mein Wissen integrieren.`,
+                        `🌌 "${question}" – darüber habe ich noch nicht nachgedacht. Was meinst du?`,
+                        `💡 "${question}" – das ist ein spannendes Thema. Lass uns tiefer einsteigen.`,
+                        `✨ HalDo AI sagt: "${question}" ist eine gute Frage.`,
+                        `🚀 "${question}" – ich werde das analysieren und dir später eine detaillierte Antwort geben.`,
+                        `🎯 "${question}" – notiert! Ich werde es in mein Wissen integrieren.`,
                     ];
                     response = generic[Math.floor(Math.random() * generic.length)];
                 }
@@ -2173,7 +2308,7 @@
                 const progress = ((i + 1) / steps.length) * 100;
                 bootBar.style.width = progress + '%';
                 bootStatus.textContent = steps[i] + ' ...';
-                await new Promise(r => setTimeout(r, 50 + Math.random() * 70));
+                await new Promise(r => setTimeout(r, 40 + Math.random() * 60));
                 HalDo.state = i < 5 ? 'BOOTING' : (i < 10 ? 'STARTING' : 'READY');
             }
 
@@ -2209,7 +2344,6 @@
                     HalDo.voice.speak('Hallo, ich bin HalDo AI. Wie kann ich dir helfen?');
                     return;
                 }
-                // Planeten-Klick
                 const planet = HalDo.cosmic.getPlanetAt(e.clientX, e.clientY);
                 if (planet) {
                     showPlanetInfo(planet);
@@ -2299,7 +2433,7 @@
                             showNotification('❓ Hilfe', 'HalDo AI hilft dir! Klick die Sonne.');
                             break;
                         case 'about':
-                            showNotification('ℹ️ Über HalDo', `HalDo AI OS v${HalDo.config.version} – Ultimate Cosmic`);
+                            showNotification('ℹ️ Über HalDo', `HalDo AI OS v${HalDo.config.version} – Ultimate Pro`);
                             break;
                         default:
                             HalDo.router.navigate('/' + action);
@@ -2380,7 +2514,7 @@
                 notif.style.transform = 'translateX(30px)';
                 notif.style.transition = '0.3s ease';
                 setTimeout(() => notif.remove(), 400);
-            }, 4500);
+            }, 5000);
         }
 
         // ============================================================
@@ -2388,8 +2522,9 @@
         // ============================================================
         document.addEventListener('DOMContentLoaded', boot);
 
-        console.log('%c🌌 HalDo AI OS v4.0 – Ultimate Cosmic', 'font-size:28px; font-weight:bold; color:#4a9eff;');
-        console.log('%c💙❤️🚀 Masterplan A–Z – voll integriert, beste Qualität', 'font-size:16px; color:#a855f7;');
+        console.log('%c🌌 HalDo AI OS v5.0 – Ultimate Pro', 'font-size:32px; font-weight:bold; color:#4a9eff;');
+        console.log('%c💙❤️🚀 Masterplan A–Z – maximale Qualität, alle Apps mit Daten', 'font-size:16px; color:#a855f7;');
+        console.log('%c📦 26 Apps • 500 Sterne • 12 Planeten • Kontext-AI', 'font-size:14px; color:#f97316;');
     </script>
 </body>
 </html>
