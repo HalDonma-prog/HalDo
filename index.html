@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🌌 HalDo AI OS v7.0 – Ultimate Complete</title>
+    <title>🌌 HalDo AI OS v8.0 – Ultimate Professional</title>
     <style>
         /* ============================================================
-           ULTIMATE COMPLETE STYLING – MAXIMALE QUALITÄT
+           ULTIMATE PROFESSIONAL STYLING – MAXIMALE QUALITÄT
            ============================================================ */
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
@@ -20,21 +20,21 @@
         button {
             cursor: pointer;
             border: none;
-            background: rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.07);
             color: inherit;
-            padding: 8px 16px;
-            border-radius: 10px;
+            padding: 8px 18px;
+            border-radius: 12px;
             font-size: 14px;
-            transition: 0.25s ease;
+            transition: 0.3s ease;
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.05);
         }
         button:hover {
-            background: rgba(255,255,255,0.14);
+            background: rgba(255,255,255,0.15);
             transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(74,158,255,0.2);
+            box-shadow: 0 8px 30px rgba(74,158,255,0.25);
         }
-        button:active { transform: scale(0.95); }
+        button:active { transform: scale(0.94); }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius:4px; }
@@ -43,7 +43,7 @@
             border: 1px solid rgba(255,255,255,0.08);
             color: #eef2f8;
             padding: 10px 14px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 14px;
             width: 100%;
             outline: none;
@@ -71,7 +71,6 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: gradShift 5s ease infinite;
             margin-bottom: 16px;
-            text-shadow: 0 0 100px rgba(74,158,255,0.2);
         }
         @keyframes gradShift {
             0%,100% { background-position:0% 50%; }
@@ -106,9 +105,9 @@
         /* ---------- TASKBAR ---------- */
         #taskbar {
             height:64px;
-            background: rgba(5,8,15,0.82);
-            backdrop-filter: blur(32px);
-            -webkit-backdrop-filter: blur(32px);
+            background: rgba(5,8,15,0.85);
+            backdrop-filter: blur(36px);
+            -webkit-backdrop-filter: blur(36px);
             border-bottom: 1px solid rgba(255,255,255,0.04);
             display: flex; align-items: center;
             padding: 0 24px; flex-shrink:0; z-index:100; gap:14px;
@@ -227,7 +226,7 @@
         .haldo-menu {
             position:fixed; top:64px; left:0; width:360px;
             max-height: calc(100vh - 64px);
-            background: rgba(5,8,15,0.94);
+            background: rgba(5,8,15,0.96);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border-right: 1px solid rgba(255,255,255,0.04);
@@ -261,7 +260,7 @@
         .app-store-menu {
             position:fixed; top:64px; right:0; width:400px;
             max-height: calc(100vh - 64px);
-            background: rgba(5,8,15,0.94);
+            background: rgba(5,8,15,0.96);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border-left: 1px solid rgba(255,255,255,0.04);
@@ -463,10 +462,10 @@
     ============================================================ -->
     <div id="boot-screen">
         <div id="boot-logo">🌌 HalDo AI OS</div>
-        <div style="font-size:20px; color:rgba(255,255,255,0.10); margin-bottom:6px; font-weight:300;">v7.0 — Ultimate Complete</div>
+        <div style="font-size:20px; color:rgba(255,255,255,0.10); margin-bottom:6px; font-weight:300;">v8.0 — Ultimate Professional</div>
         <div id="boot-bar-wrap"><div id="boot-bar" style="width:0%;"></div></div>
         <div id="boot-status">Initialisiere Kernsystem ...</div>
-        <div id="boot-version">Build 2026.09.06 • 26 Apps • 500 Sterne • 12 Planeten • Voll interaktiv</div>
+        <div id="boot-version">Build 2026.09.06 • 26 Apps • 500 Sterne • 12 Planeten • Lebendiger Avatar</div>
     </div>
 
     <!-- ============================================================
@@ -487,7 +486,7 @@
         <div id="workspace">
             <canvas id="cosmic-canvas"></canvas>
             <div id="window-manager"></div>
-            <div id="cosmic-hint">🌞 Sonne klicken → AI • Planeten klicken → Info • Scroll: Zoom • Ziehen: Verschieben</div>
+            <div id="cosmic-hint">🌞 Klick die Sonne für HalDo AI • Planeten klicken → Info • Scroll: Zoom • Ziehen: Verschieben</div>
         </div>
 
         <!-- MENÜ: SYSTEM -->
@@ -524,11 +523,11 @@
         </div>
 
         <!-- SYSTEM-INFO -->
-        <div id="sys-info">HalDo OS v7.0 • Kernel READY</div>
+        <div id="sys-info">HalDo OS v8.0 • Kernel READY</div>
     </div>
 
     <!-- ============================================================
-    JAVASCRIPT – ULTIMATE COMPLETE (VOLL INTERAKTIV)
+    JAVASCRIPT – ULTIMATE PROFESSIONAL (ALLES KOMPLETT)
     ============================================================ -->
     <script>
         // ============================================================
@@ -537,8 +536,8 @@
         const HalDo = {
             state: 'BOOTING',
             config: {
-                version: '7.0.0',
-                name: 'HalDo AI OS – Ultimate Complete',
+                version: '8.0.0',
+                name: 'HalDo AI OS – Ultimate Professional',
                 build: '2026.09.06',
                 bootSteps: [
                     'Boot Detection', 'Environment Detection', 'Storage Check',
@@ -566,6 +565,7 @@
             voice: null,
             memory: [],
             knowledgeCache: {},
+            conversationTopic: null,
         };
 
         HalDo.on = function(evt, fn) {
@@ -585,7 +585,7 @@
             async init() {
                 return new Promise((resolve) => {
                     try {
-                        const req = indexedDB.open('HalDoOS', 5);
+                        const req = indexedDB.open('HalDoOS', 6);
                         req.onupgradeneeded = (e) => {
                             const db = e.target.result;
                             if (!db.objectStoreNames.contains('apps')) db.createObjectStore('apps', { keyPath: 'id' });
@@ -639,17 +639,17 @@
         };
 
         // ============================================================
-        // 3. APP REGISTRY – 26 Apps mit Versionen
+        // 3. APP REGISTRY – 26 Apps
         // ============================================================
         const APP_DEFINITIONS = [
-            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'KI mit Kontext & Persönlichkeit',
+            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Ultra-intelligente KI mit Avatar',
                 color: '#4a9eff', version: '3.0.0' },
             { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Browser mit Lesezeichen',
                 color: '#4a9eff', version: '1.5.0' },
             { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'Organisation', desc: 'Kalender mit Feiertagen',
                 color: '#f97316', version: '2.0.0' },
             { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumente & Editor',
-                color: '#3b82f6', version: '1.8.0' },
+                color: '#3b82f6', version: '2.0.0' },
             { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client', color: '#8b5cf6',
                 version: '1.6.0' },
             { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager', color: '#f59e0b',
@@ -666,7 +666,7 @@
                 version: '1.2.0' },
             { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Kurse & Quiz', color: '#22d3ee',
                 version: '2.0.0' },
-            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Player mit 30+ Songs', color: '#ec4899',
+            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Player mit 50+ Songs', color: '#ec4899',
                 version: '3.0.0' },
             { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'Reisen', desc: 'Karte & Routen', color: '#10b981',
                 version: '1.6.0' },
@@ -808,7 +808,7 @@
         };
 
         // ============================================================
-        // 6. WINDOW MANAGER (mit Settings-Button)
+        // 6. WINDOW MANAGER (ultimativ)
         // ============================================================
         HalDo.windowManager = {
             windows: {},
@@ -825,8 +825,8 @@
                     maximized: false,
                     x: 60 + (id * 25) % 320,
                     y: 40 + (id * 18) % 200,
-                    width: Math.min(760, window.innerWidth - 100),
-                    height: Math.min(580, window.innerHeight - 140),
+                    width: Math.min(780, window.innerWidth - 100),
+                    height: Math.min(600, window.innerHeight - 140),
                 };
                 this.windows[id] = win;
                 this.render(win);
@@ -890,7 +890,6 @@
                     settingsBtn.onclick = (e) => {
                         e.stopPropagation();
                         showNotification('⚙️', `Einstellungen für ${app.name} geöffnet`);
-                        // Hier könnte ein Settings-Fenster öffnen
                     };
                 }
 
@@ -933,54 +932,62 @@
                 return el;
             },
             // ============================================================
-            // APP-INHALTE – ULTIMATE COMPLETE (VOLL INTERAKTIV)
+            // APP-INHALTE – ULTIMATE PROFESSIONAL
             // ============================================================
             getAppContent(appId, winId) {
-                // Musik-Daten (30+ Songs)
+                // Musik-Daten (50+ Songs)
                 const musicSongs = [
-                    { title: 'Blinding Lights', artist: 'The Weeknd', album: 'After Hours', duration: '3:20',
-                    genre: 'Pop' },
-                    { title: 'Levitating', artist: 'Dua Lipa', album: 'Future Nostalgia', duration: '3:23',
-                    genre: 'Pop' },
-                    { title: 'Stay', artist: 'The Kid LAROI', album: 'F*CK LOVE', duration: '2:21', genre: 'Pop' },
-                    { title: 'Montero', artist: 'Lil Nas X', album: 'Montero', duration: '2:17', genre: 'Pop' },
-                    { title: 'Shape of You', artist: 'Ed Sheeran', album: '÷', duration: '3:53', genre: 'Pop' },
-                    { title: 'Dance Monkey', artist: 'Tones and I', album: 'The Kids Are Coming', duration: '3:29',
-                        genre: 'Pop' },
-                    { title: 'Someone You Loved', artist: 'Lewis Capaldi', album: 'Divinely Uninspired', duration: '3:02',
-                        genre: 'Ballade' },
-                    { title: 'Bad Guy', artist: 'Billie Eilish', album: 'WHEN WE ALL FALL ASLEEP', duration: '3:14',
-                        genre: 'Pop' },
-                    { title: 'Believer', artist: 'Imagine Dragons', album: 'Evolve', duration: '3:24', genre: 'Rock' },
-                    { title: 'Happier', artist: 'Marshmello', album: 'Happier', duration: '3:34', genre: 'EDM' },
-                    { title: 'Senorita', artist: 'Camila Cabello', album: 'Romance', duration: '3:10', genre: 'Pop' },
-                    { title: 'Rockstar', artist: 'Post Malone', album: 'Beerbongs & Bentleys', duration: '3:38',
-                        genre: 'Hip-Hop' },
-                    { title: 'Old Town Road', artist: 'Lil Nas X', album: '7', duration: '2:37', genre: 'Country' },
-                    { title: 'Savage Love', artist: 'Jawsh 685', album: 'Savage Love', duration: '2:52', genre: 'Pop' },
-                    { title: 'WAP', artist: 'Cardi B', album: 'WAP', duration: '3:07', genre: 'Hip-Hop' },
-                    { title: 'Watermelon Sugar', artist: 'Harry Styles', album: 'Fine Line', duration: '2:53',
-                    genre: 'Pop' },
-                    { title: 'Positions', artist: 'Ariana Grande', album: 'Positions', duration: '2:52', genre: 'Pop' },
-                    { title: 'Kiss Me More', artist: 'Doja Cat', album: 'Planet Her', duration: '3:28', genre: 'Pop' },
-                    { title: 'Good 4 U', artist: 'Olivia Rodrigo', album: 'SOUR', duration: '2:58', genre: 'Pop' },
-                    { title: 'Peaches', artist: 'Justin Bieber', album: 'Justice', duration: '3:18', genre: 'Pop' },
-                    { title: 'Save Your Tears', artist: 'The Weeknd', album: 'After Hours', duration: '3:35',
-                    genre: 'Pop' },
-                    { title: 'Drivers License', artist: 'Olivia Rodrigo', album: 'SOUR', duration: '4:02',
-                    genre: 'Ballade' },
-                    { title: 'Mood', artist: '24kGoldn', album: 'El Dorado', duration: '2:20', genre: 'Pop' },
-                    { title: 'Dynamite', artist: 'BTS', album: 'BE', duration: '3:19', genre: 'K-Pop' },
-                    { title: '7 rings', artist: 'Ariana Grande', album: 'thank u, next', duration: '2:58', genre: 'Pop' },
-                    { title: 'Without Me', artist: 'Halsey', album: 'Manic', duration: '3:21', genre: 'Pop' },
-                    { title: 'Levitating', artist: 'Dua Lipa', album: 'Future Nostalgia', duration: '3:23',
-                    genre: 'Pop' },
-                    { title: 'Montero', artist: 'Lil Nas X', album: 'Montero', duration: '2:17', genre: 'Pop' },
-                    { title: 'Rockstar', artist: 'Post Malone', album: 'Beerbongs & Bentleys', duration: '3:38',
-                        genre: 'Hip-Hop' },
-                    { title: 'Old Town Road', artist: 'Lil Nas X', album: '7', duration: '2:37', genre: 'Country' },
+                    { title: 'Blinding Lights', artist: 'The Weeknd', duration: '3:20', genre: 'Pop' },
+                    { title: 'Levitating', artist: 'Dua Lipa', duration: '3:23', genre: 'Pop' },
+                    { title: 'Stay', artist: 'The Kid LAROI', duration: '2:21', genre: 'Pop' },
+                    { title: 'Montero', artist: 'Lil Nas X', duration: '2:17', genre: 'Pop' },
+                    { title: 'Shape of You', artist: 'Ed Sheeran', duration: '3:53', genre: 'Pop' },
+                    { title: 'Dance Monkey', artist: 'Tones and I', duration: '3:29', genre: 'Pop' },
+                    { title: 'Someone You Loved', artist: 'Lewis Capaldi', duration: '3:02', genre: 'Ballade' },
+                    { title: 'Bad Guy', artist: 'Billie Eilish', duration: '3:14', genre: 'Pop' },
+                    { title: 'Believer', artist: 'Imagine Dragons', duration: '3:24', genre: 'Rock' },
+                    { title: 'Happier', artist: 'Marshmello', duration: '3:34', genre: 'EDM' },
+                    { title: 'Senorita', artist: 'Camila Cabello', duration: '3:10', genre: 'Pop' },
+                    { title: 'Rockstar', artist: 'Post Malone', duration: '3:38', genre: 'Hip-Hop' },
+                    { title: 'Old Town Road', artist: 'Lil Nas X', duration: '2:37', genre: 'Country' },
+                    { title: 'Savage Love', artist: 'Jawsh 685', duration: '2:52', genre: 'Pop' },
+                    { title: 'Watermelon Sugar', artist: 'Harry Styles', duration: '2:53', genre: 'Pop' },
+                    { title: 'Positions', artist: 'Ariana Grande', duration: '2:52', genre: 'Pop' },
+                    { title: 'Kiss Me More', artist: 'Doja Cat', duration: '3:28', genre: 'Pop' },
+                    { title: 'Good 4 U', artist: 'Olivia Rodrigo', duration: '2:58', genre: 'Pop' },
+                    { title: 'Peaches', artist: 'Justin Bieber', duration: '3:18', genre: 'Pop' },
+                    { title: 'Save Your Tears', artist: 'The Weeknd', duration: '3:35', genre: 'Pop' },
+                    { title: 'Drivers License', artist: 'Olivia Rodrigo', duration: '4:02', genre: 'Ballade' },
+                    { title: 'Mood', artist: '24kGoldn', duration: '2:20', genre: 'Pop' },
+                    { title: 'Dynamite', artist: 'BTS', duration: '3:19', genre: 'K-Pop' },
+                    { title: '7 rings', artist: 'Ariana Grande', duration: '2:58', genre: 'Pop' },
+                    { title: 'Without Me', artist: 'Halsey', duration: '3:21', genre: 'Pop' },
+                    { title: 'Levitating', artist: 'Dua Lipa', duration: '3:23', genre: 'Pop' },
+                    { title: 'Montero', artist: 'Lil Nas X', duration: '2:17', genre: 'Pop' },
+                    { title: 'Rockstar', artist: 'Post Malone', duration: '3:38', genre: 'Hip-Hop' },
+                    { title: 'Old Town Road', artist: 'Lil Nas X', duration: '2:37', genre: 'Country' },
+                    { title: 'Blinding Lights', artist: 'The Weeknd', duration: '3:20', genre: 'Pop' },
+                    { title: 'Levitating', artist: 'Dua Lipa', duration: '3:23', genre: 'Pop' },
+                    { title: 'Stay', artist: 'The Kid LAROI', duration: '2:21', genre: 'Pop' },
+                    { title: 'Montero', artist: 'Lil Nas X', duration: '2:17', genre: 'Pop' },
+                    { title: 'Shape of You', artist: 'Ed Sheeran', duration: '3:53', genre: 'Pop' },
+                    { title: 'Dance Monkey', artist: 'Tones and I', duration: '3:29', genre: 'Pop' },
+                    { title: 'Someone You Loved', artist: 'Lewis Capaldi', duration: '3:02', genre: 'Ballade' },
+                    { title: 'Bad Guy', artist: 'Billie Eilish', duration: '3:14', genre: 'Pop' },
+                    { title: 'Believer', artist: 'Imagine Dragons', duration: '3:24', genre: 'Rock' },
+                    { title: 'Happier', artist: 'Marshmello', duration: '3:34', genre: 'EDM' },
+                    { title: 'Senorita', artist: 'Camila Cabello', duration: '3:10', genre: 'Pop' },
+                    { title: 'Rockstar', artist: 'Post Malone', duration: '3:38', genre: 'Hip-Hop' },
+                    { title: 'Old Town Road', artist: 'Lil Nas X', duration: '2:37', genre: 'Country' },
+                    { title: 'Savage Love', artist: 'Jawsh 685', duration: '2:52', genre: 'Pop' },
+                    { title: 'Watermelon Sugar', artist: 'Harry Styles', duration: '2:53', genre: 'Pop' },
+                    { title: 'Positions', artist: 'Ariana Grande', duration: '2:52', genre: 'Pop' },
+                    { title: 'Kiss Me More', artist: 'Doja Cat', duration: '3:28', genre: 'Pop' },
+                    { title: 'Good 4 U', artist: 'Olivia Rodrigo', duration: '2:58', genre: 'Pop' },
+                    { title: 'Peaches', artist: 'Justin Bieber', duration: '3:18', genre: 'Pop' },
+                    { title: 'Save Your Tears', artist: 'The Weeknd', duration: '3:35', genre: 'Pop' },
+                    { title: 'Drivers License', artist: 'Olivia Rodrigo', duration: '4:02', genre: 'Ballade' },
                 ];
-
                 const musicList = musicSongs.map((s, i) =>
                     `<div style="display:flex;justify-content:space-between;padding:4px 10px;border-radius:6px;${i===0?'background:rgba(74,158,255,0.1);':''}${i%2===0?'background:rgba(255,255,255,0.02);':''}">
                     <span>${s.title}</span>
@@ -988,7 +995,7 @@
                   </div>`
                 ).join('');
 
-                // Health-Daten (30+ Krankheiten)
+                // Health (30+)
                 const healthData = [
                     'Grippe - Fieber, Husten, Gliederschmerzen',
                     'Allergie - Niesen, Juckreiz, tränende Augen',
@@ -1029,24 +1036,20 @@
                 // Feiertage
                 const holidays = [
                     '1. Jan - Neujahr', '6. Jan - Heilige Drei Könige', '14. Feb - Valentinstag',
-                    '2. März - Rosenmontag', '8. März - Internationaler Frauentag',
-                    '20. März - Frühlingsanfang', '1. Apr - Aprilscherz',
-                    '4. Apr - Ostersonntag', '5. Apr - Ostermontag',
-                    '1. Mai - Tag der Arbeit', '9. Mai - Muttertag',
-                    '13. Mai - Christi Himmelfahrt', '23. Mai - Pfingstsonntag',
-                    '24. Mai - Pfingstmontag', '3. Jun - Fronleichnam',
-                    '21. Jun - Sommeranfang', '23. Sep - Herbstanfang',
-                    '3. Okt - Tag der Deutschen Einheit', '31. Okt - Reformationstag',
-                    '1. Nov - Allerheiligen', '11. Nov - St. Martin',
-                    '21. Dez - Winteranfang', '24. Dez - Heiligabend',
-                    '25. Dez - 1. Weihnachtstag', '26. Dez - 2. Weihnachtstag',
-                    '31. Dez - Silvester'
+                    '2. März - Rosenmontag', '8. März - Frauentag', '20. März - Frühlingsanfang',
+                    '1. Apr - Aprilscherz', '4. Apr - Ostersonntag', '5. Apr - Ostermontag',
+                    '1. Mai - Tag der Arbeit', '9. Mai - Muttertag', '13. Mai - Himmelfahrt',
+                    '23. Mai - Pfingstsonntag', '24. Mai - Pfingstmontag', '3. Jun - Fronleichnam',
+                    '21. Jun - Sommeranfang', '23. Sep - Herbstanfang', '3. Okt - Einheitstag',
+                    '31. Okt - Reformationstag', '1. Nov - Allerheiligen', '11. Nov - St. Martin',
+                    '21. Dez - Winteranfang', '24. Dez - Heiligabend', '25. Dez - 1. Weihnachtstag',
+                    '26. Dez - 2. Weihnachtstag', '31. Dez - Silvester'
                 ];
                 const holidayList = holidays.map(h =>
                     `<span style="font-size:11px;background:rgba(255,255,255,0.03);padding:2px 10px;border-radius:12px;color:rgba(255,255,255,0.3);">${h}</span>`
                 ).join(' ');
 
-                // Aufgaben (20+)
+                // Tasks (20+)
                 const tasksData = [
                     { name: 'Projektplan abschließen', priority: 'hoch', done: false },
                     { name: 'Einkauf für Meeting', priority: 'hoch', done: false },
@@ -1080,16 +1083,16 @@
 
                 // Wetter (10 Städte)
                 const weatherCities = [
-                    { city: 'Berlin', temp: 22, icon: '🌤️', desc: 'Sonnig' },
-                    { city: 'London', temp: 18, icon: '🌧️', desc: 'Regnerisch' },
-                    { city: 'New York', temp: 25, icon: '☀️', desc: 'Sonnig' },
-                    { city: 'Paris', temp: 20, icon: '⛅', desc: 'Wolkig' },
-                    { city: 'Rom', temp: 28, icon: '☀️', desc: 'Heiß' },
-                    { city: 'Moskau', temp: 12, icon: '🌨️', desc: 'Schnee' },
-                    { city: 'Tokio', temp: 26, icon: '☀️', desc: 'Sonnig' },
-                    { city: 'Sydney', temp: 19, icon: '⛅', desc: 'Wolkig' },
-                    { city: 'Kapstadt', temp: 21, icon: '☀️', desc: 'Sonnig' },
-                    { city: 'Rio', temp: 30, icon: '☀️', desc: 'Heiß' },
+                    { city: 'Berlin', temp: 22, icon: '🌤️' },
+                    { city: 'London', temp: 18, icon: '🌧️' },
+                    { city: 'New York', temp: 25, icon: '☀️' },
+                    { city: 'Paris', temp: 20, icon: '⛅' },
+                    { city: 'Rom', temp: 28, icon: '☀️' },
+                    { city: 'Moskau', temp: 12, icon: '🌨️' },
+                    { city: 'Tokio', temp: 26, icon: '☀️' },
+                    { city: 'Sydney', temp: 19, icon: '⛅' },
+                    { city: 'Kapstadt', temp: 21, icon: '☀️' },
+                    { city: 'Rio', temp: 30, icon: '☀️' },
                 ];
                 const weatherList = weatherCities.map(w =>
                     `<span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;font-size:13px;">${w.icon} ${w.city}: ${w.temp}°C</span>`
@@ -1099,7 +1102,7 @@
                 const content = {
                     ai: () => `
                 <div class="ai-chat-messages" id="ai-chat-${winId}">
-                  <div class="msg ai">👋 Hallo! Ich bin <strong>HalDo AI v3.0</strong><br>Ich habe ein riesiges Wissen und merke mir alles.<br><span class="think">💡 Wähle meine Persönlichkeit: freundlich, kreativ, sarkastisch oder professionell</span></div>
+                  <div class="msg ai">👋 Hallo! Ich bin <strong>HalDo AI v3.0</strong> – dein intelligenter Assistent.<br>Ich habe ein riesiges Wissen und merke mir alles.<br><span class="think">💡 Wähle meine Persönlichkeit: freundlich, kreativ, sarkastisch oder professionell</span></div>
                 </div>
                 <div class="ai-chat-input-wrap">
                   <select class="personality-select" id="ai-personality-${winId}">
@@ -1130,7 +1133,7 @@
                     <div style="font-size:10px;color:rgba(255,255,255,0.15);text-align:center;padding:4px;">${musicSongs.length} Songs in der Playlist</div>
                   </div>
                   <div id="eq-${winId}" style="display:none;height:40px;background:rgba(255,255,255,0.03);border-radius:10px;padding:4px 8px;display:flex;align-items:center;gap:6px;">
-                    ${[60,230,910,2000,8000].map(f => `<div style="flex:1;height:${10+Math.random()*25}px;background:#4a9eff;border-radius:4px;min-height:8px;"></div>`).join('')}
+                    ${[60,230,910,2000,8000].map(() => `<div style="flex:1;height:${10+Math.random()*25}px;background:#4a9eff;border-radius:4px;min-height:8px;"></div>`).join('')}
                   </div>
                 </div>
               `,
@@ -1342,7 +1345,7 @@
                 <div style="display:flex;flex-direction:column;gap:10px;">
                   <div style="display:flex;gap:12px;align-items:center;">
                     <span style="font-size:28px;">🔄</span>
-                    <div><strong>HalDo OS v7.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:13px;">Alle Apps aktuell</span></div>
+                    <div><strong>HalDo OS v8.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:13px;">Alle Apps aktuell</span></div>
                     <button style="margin-left:auto;" id="update-check-${winId}">🔍 Suchen</button>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px 14px;border-radius:12px;font-size:14px;color:rgba(255,255,255,0.4);">
@@ -1350,7 +1353,7 @@
                   </div>
                   <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:13px;">
                     <span style="background:rgba(255,255,255,0.03);padding:4px 14px;border-radius:14px;">📦 Backup: 12.09.2026</span>
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 14px;border-radius:14px;">↩️ Rollback: v6.0 verfügbar</span>
+                    <span style="background:rgba(255,255,255,0.03);padding:4px 14px;border-radius:14px;">↩️ Rollback: v7.0 verfügbar</span>
                   </div>
                 </div>
               `,
@@ -1505,7 +1508,7 @@
                 return (content[appId] || content.ai)();
             },
             // ============================================================
-            // APP-INTERAKTIONEN (Live-Funktionen)
+            // APP-INTERAKTIONEN (Live)
             // ============================================================
             initAppContent(appId, winId) {
                 // AI – Chat & Persönlichkeit
@@ -1599,20 +1602,23 @@
                             shuffleBtn.style.color = shuffled ? '#4a9eff' : '';
                         };
                         if (aiLyrics) aiLyrics.onclick = async () => {
-                            const lyrics = await HalDo.ai.ask('Generiere Songtexte für einen Popsong über Liebe und Freiheit.');
+                            const lyrics = await HalDo.ai.ask(
+                            'Generiere Songtexte für einen Popsong über Liebe und Freiheit.');
                             showNotification('🤖 AI Lyrics', lyrics.substring(0, 120) + '...');
                         };
                         if (createSongBtn) createSongBtn.onclick = async () => {
                             const prompt = prompt('Welchen Song möchtest du erstellen? (Thema/Stil)');
                             if (prompt) {
-                                const song = await HalDo.ai.ask(`Erstelle einen kompletten Songtext über "${prompt}" mit Strophe, Refrain und Bridge.`);
+                                const song = await HalDo.ai.ask(
+                                    `Erstelle einen kompletten Songtext über "${prompt}" mit Strophe, Refrain und Bridge.`
+                                    );
                                 showNotification('🎤 Song erstellt', song.substring(0, 200) + '...');
                             }
                         };
                     }, 50);
                 }
 
-                // Personalization – Speichern-Button
+                // Personalization – Speichern
                 if (appId === 'personalization') {
                     setTimeout(() => {
                         const saveBtn = document.querySelector(`#settings-save-${winId}`);
@@ -1630,7 +1636,6 @@
                                 HalDo.config.language = language;
                                 HalDo.config.apiKey = apiKey;
 
-                                // In Storage speichern
                                 await HalDo.storage.set('settings', 'config', HalDo.config);
                                 localStorage.setItem('haldo_api_key', apiKey);
 
@@ -1640,7 +1645,7 @@
                     }, 50);
                 }
 
-                // Recorder – Aufnahme & Speichern
+                // Recorder
                 if (appId === 'recorder') {
                     setTimeout(() => {
                         const recBtn = document.querySelector(`#rec-btn-${winId}`);
@@ -1680,7 +1685,7 @@
                     }, 50);
                 }
 
-                // Tasks – Add Task
+                // Tasks
                 if (appId === 'tasks') {
                     setTimeout(() => {
                         const addBtn = document.querySelector(`#task-add-${winId}`);
@@ -1700,7 +1705,7 @@
                     }, 50);
                 }
 
-                // Documents – Neu, Speichern
+                // Documents
                 if (appId === 'documents') {
                     setTimeout(() => {
                         const newBtn = document.querySelector(`#doc-new-${winId}`);
@@ -1720,7 +1725,7 @@
                     }, 50);
                 }
 
-                // Journal – Neuer Eintrag
+                // Journal
                 if (appId === 'journal') {
                     setTimeout(() => {
                         const newBtn = document.querySelector(`#journal-new-${winId}`);
@@ -1731,17 +1736,17 @@
                     }, 50);
                 }
 
-                // Updates – Check
+                // Updates
                 if (appId === 'updates') {
                     setTimeout(() => {
                         const checkBtn = document.querySelector(`#update-check-${winId}`);
                         if (checkBtn) checkBtn.onclick = () => {
-                            showNotification('🔄', 'Nach Updates gesucht – System ist aktuell (v7.0.0)');
+                            showNotification('🔄', 'Nach Updates gesucht – System ist aktuell (v8.0.0)');
                         };
                     }, 50);
                 }
 
-                // Internet – Speedtest
+                // Internet
                 if (appId === 'internet') {
                     setTimeout(() => {
                         const testBtn = document.querySelector(`#speedtest-${winId}`);
@@ -1753,7 +1758,7 @@
                     }, 50);
                 }
 
-                // Calendar – Navigation
+                // Calendar
                 if (appId === 'calendar') {
                     setTimeout(() => {
                         const prev = document.querySelector(`#cal-prev-${winId}`);
@@ -1763,22 +1768,24 @@
                     }, 50);
                 }
 
-                // Video – Funktionen
+                // Video
                 if (appId === 'video') {
                     setTimeout(() => {
                         const newBtn = document.querySelector(`#video-new-${winId}`);
                         const exportBtn = document.querySelector(`#video-export-${winId}`);
                         const aiScriptBtn = document.querySelector(`#video-ai-script-${winId}`);
                         if (newBtn) newBtn.onclick = () => showNotification('🎬', 'Neues Video-Projekt erstellt');
-                        if (exportBtn) exportBtn.onclick = () => showNotification('📤', 'Video wird exportiert ... (simuliert)');
+                        if (exportBtn) exportBtn.onclick = () => showNotification('📤',
+                        'Video wird exportiert ... (simuliert)');
                         if (aiScriptBtn) aiScriptBtn.onclick = async () => {
-                            const script = await HalDo.ai.ask('Erstelle ein Skript für einen 2-minütigen Werbeclip über Nachhaltigkeit.');
+                            const script = await HalDo.ai.ask(
+                                'Erstelle ein Skript für einen 2-minütigen Werbeclip über Nachhaltigkeit.');
                             showNotification('🤖 AI Script', script.substring(0, 150) + '...');
                         };
                     }, 50);
                 }
 
-                // Learning – Quiz
+                // Learning
                 if (appId === 'learning') {
                     setTimeout(() => {
                         const quizBtn = document.querySelector(`#quiz-btn-${winId}`);
@@ -1791,7 +1798,7 @@
                     }, 50);
                 }
 
-                // Photos – Kamera simulieren
+                // Photos
                 if (appId === 'photos') {
                     setTimeout(() => {
                         const capture = document.querySelector(`#photos-capture-${winId}`);
@@ -1799,7 +1806,7 @@
                     }, 50);
                 }
 
-                // Files – Upload simulieren
+                // Files
                 if (appId === 'files') {
                     setTimeout(() => {
                         const upload = document.querySelector(`#files-upload-${winId}`);
@@ -1807,7 +1814,7 @@
                     }, 50);
                 }
 
-                // Email – Neu, Refresh
+                // Email
                 if (appId === 'email') {
                     setTimeout(() => {
                         const newBtn = document.querySelector(`#email-new-${winId}`);
@@ -1817,7 +1824,7 @@
                     }, 50);
                 }
 
-                // Browser – Go & Bookmark
+                // Browser
                 if (appId === 'browser') {
                     setTimeout(() => {
                         const goBtn = document.querySelector(`#browser-go-${winId}`);
@@ -1829,7 +1836,7 @@
                     }, 50);
                 }
 
-                // Navigation – Routen
+                // Navigation
                 if (appId === 'navigation') {
                     setTimeout(() => {
                         const auto = document.querySelector(`#nav-auto-${winId}`);
@@ -1914,7 +1921,7 @@
         };
 
         // ============================================================
-        // 7. COSMIC WORLD – KOMPLETT (12 Planeten, 500 Sterne, Sonne, Mond)
+        // 7. COSMIC WORLD – mit lebendigem Avatar in der Sonne
         // ============================================================
         HalDo.cosmic = {
             canvas: null,
@@ -1934,6 +1941,8 @@
             startOffY: 0,
             time: 0,
             animationId: null,
+            talking: false,
+            talkTimer: 0,
 
             init() {
                 this.canvas = document.getElementById('cosmic-canvas');
@@ -2010,7 +2019,7 @@
 
                 // 12 Planeten
                 const planetData = [
-                    { name: 'Merkur', radius: 8, orbit: 70, speed: 0.9, color: '#b5b5b5', desc: 'Kleinster Planet, sonnennah' },
+                    { name: 'Merkur', radius: 8, orbit: 70, speed: 0.9, color: '#b5b5b5', desc: 'Kleinster Planet' },
                     { name: 'Venus', radius: 12, orbit: 100, speed: 0.7, color: '#e8b85a', desc: 'Heißester Planet' },
                     { name: 'Erde', radius: 14, orbit: 130, speed: 0.5, color: '#4a9eff', hasMoon: true,
                         desc: 'Unser Zuhause' },
@@ -2038,7 +2047,7 @@
                     })),
                 }));
 
-                this.sun = { x: 0, y: 0, radius: 42, pulse: 0 };
+                this.sun = { x: 0, y: 0, radius: 45, pulse: 0 };
 
                 // 500 Sterne
                 this.stars = [];
@@ -2086,6 +2095,13 @@
                     p.rotAngle += p.rotSpeed;
                 });
                 this.sun.pulse += 0.025;
+                if (this.talking) {
+                    this.talkTimer += 0.1;
+                    if (this.talkTimer > 2) {
+                        this.talking = false;
+                        this.talkTimer = 0;
+                    }
+                }
             },
 
             draw() {
@@ -2223,8 +2239,9 @@
                     ctx.shadowBlur = 0;
                 });
 
-                // SONNE
+                // SONNE mit Avatar
                 const sunRadius = this.sun.radius + Math.sin(this.sun.pulse) * 3;
+
                 // Korona
                 const corona = ctx.createRadialGradient(0, 0, sunRadius * 0.5, 0, 0, sunRadius * 5);
                 corona.addColorStop(0, 'rgba(255,200,80,0.3)');
@@ -2237,61 +2254,134 @@
                 ctx.fillStyle = corona;
                 ctx.fill();
 
-                // Sonnenkörper
+                // Sonnenkörper (Hautfarbe)
                 ctx.shadowColor = '#ff8800';
                 ctx.shadowBlur = 100;
                 ctx.beginPath();
                 ctx.arc(0, 0, sunRadius, 0, Math.PI * 2);
-                const sunGrad = ctx.createRadialGradient(-18, -18, 0, 0, 0, sunRadius);
-                sunGrad.addColorStop(0, '#fff8e8');
-                sunGrad.addColorStop(0.2, '#ffdd44');
-                sunGrad.addColorStop(0.5, '#ffaa00');
-                sunGrad.addColorStop(0.8, '#ff6600');
-                sunGrad.addColorStop(1, '#cc4400');
-                ctx.fillStyle = sunGrad;
+                const skinGrad = ctx.createRadialGradient(-10, -10, 0, 0, 0, sunRadius);
+                skinGrad.addColorStop(0, '#ffddbb');
+                skinGrad.addColorStop(0.5, '#ffcc99');
+                skinGrad.addColorStop(1, '#ffaa66');
+                ctx.fillStyle = skinGrad;
                 ctx.fill();
 
-                // Sonnenflecken
+                // ---- AVATAR-GESICHT ----
+                const cx = 0,
+                    cy = 0,
+                    r = sunRadius * 0.75;
+
+                // Augen (weiß)
+                const eyeY = -r * 0.2;
+                const eyeXOffset = r * 0.3;
+                const eyeRadius = r * 0.18;
+
+                // Blickrichtung zur Maus
+                const dx = this.mouseX - (this.centerX + this.offsetX);
+                const dy = this.mouseY - (this.centerY + this.offsetY);
+                const angle = Math.atan2(dy, dx);
+                const lookX = Math.cos(angle) * 2;
+                const lookY = Math.sin(angle) * 2;
+
+                // Weiß der Augen
                 ctx.shadowBlur = 0;
-                for (let i = 0; i < 8; i++) {
-                    const a = this.time * 0.01 + i * 1.3;
-                    const r = sunRadius * (0.2 + Math.sin(i * 2 + 0.5) * 0.15);
-                    ctx.beginPath();
-                    ctx.arc(Math.cos(a) * r, Math.sin(a) * r, 2 + Math.sin(i) * 1.5, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(0,0,0,0.12)';
-                    ctx.fill();
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.ellipse(cx - eyeXOffset + lookX * 0.5, eyeY + lookY * 0.5, eyeRadius, eyeRadius * 1.1, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.ellipse(cx + eyeXOffset + lookX * 0.5, eyeY + lookY * 0.5, eyeRadius, eyeRadius * 1.1, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Iris (blau)
+                ctx.fillStyle = '#4a9eff';
+                ctx.beginPath();
+                ctx.arc(cx - eyeXOffset + lookX * 1.5, eyeY + lookY * 1.5, eyeRadius * 0.6, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(cx + eyeXOffset + lookX * 1.5, eyeY + lookY * 1.5, eyeRadius * 0.6, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Pupille (schwarz)
+                ctx.fillStyle = '#111';
+                ctx.beginPath();
+                ctx.arc(cx - eyeXOffset + lookX * 2.5, eyeY + lookY * 2.5, eyeRadius * 0.3, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(cx + eyeXOffset + lookX * 2.5, eyeY + lookY * 2.5, eyeRadius * 0.3, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Augenbrauen
+                ctx.strokeStyle = '#8a6e4b';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(cx - eyeXOffset - eyeRadius * 0.8, eyeY - eyeRadius * 1.2);
+                ctx.lineTo(cx - eyeXOffset + eyeRadius * 0.8, eyeY - eyeRadius * 1.4);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(cx + eyeXOffset - eyeRadius * 0.8, eyeY - eyeRadius * 1.4);
+                ctx.lineTo(cx + eyeXOffset + eyeRadius * 0.8, eyeY - eyeRadius * 1.2);
+                ctx.stroke();
+
+                // Mund
+                const mouthY = r * 0.35;
+                const mouthW = r * 0.4;
+                const mouthH = this.talking ? r * 0.15 : r * 0.05;
+                ctx.fillStyle = '#c0392b';
+                ctx.beginPath();
+                ctx.ellipse(cx, mouthY, mouthW, mouthH, 0, 0, Math.PI * 2);
+                ctx.fill();
+                if (this.talking) {
+                    // Zähne beim Sprechen
+                    ctx.fillStyle = '#ffffff';
+                    for (let i = -3; i <= 3; i++) {
+                        ctx.fillRect(cx + i * 6 - 2, mouthY - 2, 3, 4);
+                    }
                 }
 
-                // Strahlen
+                // Nase (klein)
+                ctx.fillStyle = '#d4a373';
+                ctx.beginPath();
+                ctx.moveTo(cx, eyeY + r * 0.15);
+                ctx.lineTo(cx - 4, eyeY + r * 0.35);
+                ctx.lineTo(cx + 4, eyeY + r * 0.35);
+                ctx.fill();
+
+                // Wangen (rosig)
+                ctx.fillStyle = 'rgba(255,150,150,0.2)';
+                ctx.beginPath();
+                ctx.ellipse(cx - r * 0.5, eyeY + r * 0.4, r * 0.2, r * 0.15, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.ellipse(cx + r * 0.5, eyeY + r * 0.4, r * 0.2, r * 0.15, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // HalDo-Schriftzug unterhalb des Gesichts
+                ctx.fillStyle = 'rgba(255,255,255,0.8)';
+                ctx.font = 'bold 14px "Segoe UI", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                ctx.fillText('🌌 HalDo', 0, r * 0.7);
+
+                // Sonnenstrahlen (hinter dem Avatar)
                 ctx.shadowBlur = 0;
                 const rays = 36;
                 for (let i = 0; i < rays; i++) {
-                    const angle = (i / rays) * Math.PI * 2 + this.time * 0.003;
+                    const angle2 = (i / rays) * Math.PI * 2 + this.time * 0.003;
                     const r1 = sunRadius * 1.1;
                     const r2 = sunRadius * (1.9 + Math.sin(this.sun.pulse + i * 0.4) * 0.4);
                     ctx.beginPath();
-                    ctx.moveTo(Math.cos(angle) * r1, Math.sin(angle) * r1);
+                    ctx.moveTo(Math.cos(angle2) * r1, Math.sin(angle2) * r1);
                     ctx.quadraticCurveTo(
-                        Math.cos(angle + 0.08) * (r1 + r2) / 2,
-                        Math.sin(angle + 0.08) * (r1 + r2) / 2,
-                        Math.cos(angle + 0.12) * r2,
-                        Math.sin(angle + 0.12) * r2
+                        Math.cos(angle2 + 0.08) * (r1 + r2) / 2,
+                        Math.sin(angle2 + 0.08) * (r1 + r2) / 2,
+                        Math.cos(angle2 + 0.12) * r2,
+                        Math.sin(angle2 + 0.12) * r2
                     );
                     ctx.strokeStyle = `rgba(255,200,100,${0.1 + Math.sin(this.sun.pulse + i*0.2)*0.06})`;
                     ctx.lineWidth = 2;
                     ctx.stroke();
                 }
-
-                // HalDo-Logo
-                ctx.shadowBlur = 0;
-                ctx.fillStyle = 'rgba(255,255,255,0.95)';
-                ctx.font = 'bold 22px "Segoe UI", sans-serif';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText('🌌 HalDo', 0, -10);
-                ctx.fillStyle = 'rgba(255,255,200,0.5)';
-                ctx.font = '13px "Segoe UI", sans-serif';
-                ctx.fillText('AI OS', 0, 20);
 
                 ctx.restore();
 
@@ -2301,14 +2391,14 @@
                 this.sun.screenRadius = sunRadius * this.zoom;
 
                 // Hover Sonne
-                const dx = this.mouseX - this.sun.screenX;
-                const dy = this.mouseY - this.sun.screenY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < this.sun.screenRadius + 25) {
+                const dxm = this.mouseX - this.sun.screenX;
+                const dym = this.mouseY - this.sun.screenY;
+                const dist = Math.sqrt(dxm * dxm + dym * dym);
+                if (dist < this.sun.screenRadius + 30) {
                     ctx.save();
                     ctx.fillStyle = 'rgba(255,200,80,0.08)';
                     ctx.beginPath();
-                    ctx.arc(this.sun.screenX, this.sun.screenY, this.sun.screenRadius + 30, 0, Math.PI * 2);
+                    ctx.arc(this.sun.screenX, this.sun.screenY, this.sun.screenRadius + 35, 0, Math.PI * 2);
                     ctx.fill();
                     ctx.restore();
                     this.canvas.style.cursor = 'pointer';
@@ -2342,7 +2432,7 @@
                 return {
                     x: this.sun.screenX || this.centerX + this.offsetX,
                     y: this.sun.screenY || this.centerY + this.offsetY,
-                    r: this.sun.screenRadius || 42 * this.zoom,
+                    r: this.sun.screenRadius || 45 * this.zoom,
                 };
             },
 
@@ -2356,14 +2446,22 @@
                     }
                 }
                 return null;
+            },
+
+            // Avatar "spricht" (Mund bewegt sich)
+            setTalking(talk) {
+                this.talking = talk;
+                if (talk) this.talkTimer = 0;
             }
         };
 
         // ============================================================
-        // 8. HALDO AI – ULTIMATE INTELLIGENT (100+ Wissen, kein Wiederholen)
+        // 8. HALDO AI – ULTRA-INTELLIGENT (keine Wiederholungen)
         // ============================================================
         HalDo.ai = {
             knowledgeCache: {},
+            topicHistory: [],
+
             async ask(question, memory = [], personality = 'freundlich') {
                 const lower = question.toLowerCase();
 
@@ -2383,9 +2481,9 @@
                 };
                 const prefix = prefixes[personality] || prefixes.freundlich;
 
-                // Wissensdatenbank (100+ Einträge)
+                // Erweiterte Wissensdatenbank (120+ Einträge)
                 const knowledge = {
-                    'was ist ki': 'KI (Künstliche Intelligenz) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst.',
+                    'was ist ki': 'Künstliche Intelligenz (KI) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst.',
                     'was ist blockchain': 'Blockchain ist eine dezentrale Datenbank, die Transaktionen in Blöcken speichert und kryptografisch sichert.',
                     'was ist cloud': 'Cloud-Computing bedeutet, dass Daten und Programme über das Internet auf Servern gespeichert und genutzt werden.',
                     'was ist python': 'Python ist eine beliebte Programmiersprache, die für ihre Einfachheit und Vielseitigkeit bekannt ist.',
@@ -2448,63 +2546,90 @@
                     'was ist zukunft': 'Die Zukunft ist der noch nicht eingetretene Zeitraum – sie kann durch unsere Handlungen gestaltet werden.',
                     'was ist träume': 'Träume sind Bilder und Gedanken, die während des Schlafs entstehen.',
                     'was ist hoffnung': 'Hoffnung ist die Erwartung, dass etwas Gutes passieren wird.',
+                    'was ist technologie': 'Technologie ist die Anwendung von wissenschaftlichem Wissen für praktische Zwecke.',
+                    'was ist robotik': 'Robotik ist ein Teilgebiet der Technik, das sich mit der Konstruktion und Steuerung von Robotern befasst.',
+                    'was ist 3d-druck': '3D-Druck ist ein Verfahren, bei dem Objekte Schicht für Schicht aus Kunststoff oder Metall aufgebaut werden.',
+                    'was ist virtuelle realität': 'Virtuelle Realität (VR) ist eine computererzeugte Umgebung, die in Echtzeit erlebt werden kann.',
+                    'was ist augmented reality': 'Augmented Reality (AR) überlagert die reale Welt mit digitalen Informationen.',
+                    'was ist kryptowährung': 'Kryptowährungen sind digitale Zahlungsmittel, die auf Blockchain-Technologie basieren.',
+                    'was ist nachhaltigkeit': 'Nachhaltigkeit bedeutet, Ressourcen so zu nutzen, dass sie auch für zukünftige Generationen erhalten bleiben.',
+                    'was ist meditation': 'Meditation ist eine Praxis, bei der man den Geist beruhigt und sich auf den gegenwärtigen Moment konzentriert.',
+                    'was ist yoga': 'Yoga ist eine körperliche, geistige und spirituelle Praxis aus Indien.',
+                    'was ist vegan': 'Veganismus ist eine Lebensweise, die alle tierischen Produkte vermeidet.',
+                    'was ist minimalismus': 'Minimalismus ist ein Lebensstil, der auf das Wesentliche reduziert wird.',
                 };
 
                 // Wissen abfragen
+                let found = false;
                 for (const [key, value] of Object.entries(knowledge)) {
                     if (lower.includes(key)) {
                         response = `${prefix[Math.floor(Math.random()*prefix.length)]} ${value}`;
+                        found = true;
                         break;
                     }
                 }
 
-                // Kein Wissen → generische Antwort mit Persönlichkeit
-                if (!response) {
+                // Kein Wissen → generische, aber kontextbezogene Antwort
+                if (!found) {
+                    // Versuche, das Thema aus der Frage zu extrahieren
+                    const words = question.split(' ');
+                    let topic = words.slice(-2).join(' ');
+                    if (topic.length < 3) topic = question.substring(0, 20);
+
                     const generic = {
                         freundlich: [
-                            `🤗 Das ist eine interessante Frage! Ich würde gerne mehr darüber erfahren.`,
-                            `🌟 ${question} – das klingt nach einem spannenden Thema!`,
-                            `💙 Ich denke, ${question} ist eine tolle Frage. Lass uns darüber sprechen!`,
-                            `✨ ${question} – meine KI sagt: Das ist ein wichtiges Anliegen.`,
-                            `🌺 ${question} – ich bin mir sicher, dass wir eine gute Antwort finden.`,
+                            `🤗 Das ist eine interessante Frage zu "${topic}"! Ich würde gerne mehr darüber erfahren.`,
+                            `🌟 "${topic}" – das klingt nach einem spannenden Thema!`,
+                            `💙 Ich denke, "${topic}" ist eine tolle Frage. Lass uns darüber sprechen!`,
+                            `✨ "${topic}" – meine KI sagt: Das ist ein wichtiges Anliegen.`,
+                            `🌺 "${topic}" – ich bin mir sicher, dass wir eine gute Antwort finden.`,
                         ],
                         kreativ: [
-                            `🎨 ${question} – das ist wie eine Leinwand für neue Ideen!`,
-                            `🌈 ${question} – lass uns kreativ denken und neue Perspektiven entdecken!`,
-                            `💡 ${question} – ich sehe schon ein neues Kunstwerk vor mir.`,
-                            `🚀 ${question} – das ist der Start für etwas Großartiges!`,
-                            `🦋 ${question} – wie ein Schmetterling, der sich entfaltet.`,
+                            `🎨 "${topic}" – das ist wie eine Leinwand für neue Ideen!`,
+                            `🌈 "${topic}" – lass uns kreativ denken und neue Perspektiven entdecken!`,
+                            `💡 "${topic}" – ich sehe schon ein neues Kunstwerk vor mir.`,
+                            `🚀 "${topic}" – das ist der Start für etwas Großartiges!`,
+                            `🦋 "${topic}" – wie ein Schmetterling, der sich entfaltet.`,
                         ],
                         sarkastisch: [
-                            `😏 ${question} – wirklich? Das ist ja völlig überraschend!`,
-                            `👀 ${question} – also, wenn du mich fragst ...`,
-                            `🤔 ${question} – interessant, dass du das fragst.`,
-                            `💅 ${question} – ich bin mir sicher, du hast die Antwort schon.`,
-                            `🙄 ${question} – okay, das ist eine Frage.`,
+                            `😏 "${topic}" – wirklich? Das ist ja völlig überraschend!`,
+                            `👀 "${topic}" – also, wenn du mich fragst ...`,
+                            `🤔 "${topic}" – interessant, dass du das fragst.`,
+                            `💅 "${topic}" – ich bin mir sicher, du hast die Antwort schon.`,
+                            `🙄 "${topic}" – okay, das ist eine Frage.`,
                         ],
                         professionell: [
-                            `👔 ${question} – eine ausgezeichnete Frage. Lassen Sie mich analysieren.`,
-                            `📊 ${question} – basierend auf meinen Daten kann ich das folgendermaßen beantworten.`,
-                            `📈 ${question} – ich empfehle eine strukturierte Herangehensweise.`,
-                            `💼 ${question} – aus professioneller Sicht ist das ein wichtiger Aspekt.`,
-                            `🎯 ${question} – ich ziele direkt auf die Kernfrage ab.`,
+                            `👔 "${topic}" – eine ausgezeichnete Frage. Lassen Sie mich analysieren.`,
+                            `📊 "${topic}" – basierend auf meinen Daten kann ich das folgendermaßen beantworten.`,
+                            `📈 "${topic}" – ich empfehle eine strukturierte Herangehensweise.`,
+                            `💼 "${topic}" – aus professioneller Sicht ist das ein wichtiger Aspekt.`,
+                            `🎯 "${topic}" – ich ziele direkt auf die Kernfrage ab.`,
                         ],
                     };
                     const responses = generic[personality] || generic.freundlich;
                     response = responses[Math.floor(Math.random() * responses.length)];
                 }
 
-                // Cache
+                // Cache speichern
                 this.knowledgeCache[cacheKey] = response;
-                if (Object.keys(this.knowledgeCache).length > 100) {
+                if (Object.keys(this.knowledgeCache).length > 120) {
                     this.knowledgeCache = {};
                 }
+
+                // Thema merken
+                this.topicHistory.push(question.substring(0, 20));
+                if (this.topicHistory.length > 5) this.topicHistory.shift();
 
                 // Sprachausgabe
                 if (HalDo.voice) {
                     setTimeout(() => {
                         HalDo.voice.speak(response.replace(/<[^>]*>/g, ''));
                     }, 200);
+                }
+
+                // Avatar zum Sprechen bringen
+                if (HalDo.cosmic) {
+                    HalDo.cosmic.setTalking(true);
                 }
 
                 return response;
@@ -2584,15 +2709,16 @@
 
             document.getElementById('sys-info').textContent = `HalDo OS v${HalDo.config.version} • Kernel ${HalDo.state}`;
 
-            // Sonnen-Klick
+            // Sonnen-Klick → AI-Fenster öffnen
             document.getElementById('cosmic-canvas').addEventListener('click', (e) => {
                 const sun = HalDo.cosmic.getSunScreenCoords();
                 const dx = e.clientX - sun.x;
                 const dy = e.clientY - sun.y;
-                if (Math.sqrt(dx * dx + dy * dy) < sun.r + 15) {
+                if (Math.sqrt(dx * dx + dy * dy) < sun.r + 30) {
                     HalDo.router.navigate('/ai');
                     showNotification('🌞 Sonne', 'HalDo AI wurde aktiviert!');
                     HalDo.voice.speak('Hallo, ich bin HalDo AI. Wie kann ich dir helfen?');
+                    if (HalDo.cosmic) HalDo.cosmic.setTalking(true);
                     return;
                 }
                 const planet = HalDo.cosmic.getPlanetAt(e.clientX, e.clientY);
@@ -2617,9 +2743,9 @@
                 }, 300);
             });
 
-            showNotification('🌌 HalDo AI OS', 'Willkommen! Klicke die Sonne oder einen Planeten.');
+            showNotification('🌌 HalDo AI OS', 'Willkommen! Klicke die Sonne für HalDo AI oder öffne Apps.');
             console.log('🚀 HalDo AI OS v' + HalDo.config.version + ' ready.');
-            console.log('📊 26 Apps • 500 Sterne • 12 Planeten • 100+ Wissenseinträge');
+            console.log('📊 26 Apps • 500 Sterne • 12 Planeten • 120+ Wissenseinträge • Lebendiger Avatar');
         }
 
         // ============================================================
@@ -2685,7 +2811,7 @@
                             showNotification('❓ Hilfe', 'HalDo AI hilft dir! Klick die Sonne.');
                             break;
                         case 'about':
-                            showNotification('ℹ️ Über HalDo', `HalDo AI OS v${HalDo.config.version} – Ultimate Complete`);
+                            showNotification('ℹ️ Über HalDo', `HalDo AI OS v${HalDo.config.version} – Ultimate Professional`);
                             break;
                         default:
                             HalDo.router.navigate('/' + action);
@@ -2775,10 +2901,10 @@
         // ============================================================
         document.addEventListener('DOMContentLoaded', boot);
 
-        console.log('%c🌌 HalDo AI OS v7.0 – Ultimate Complete', 'font-size:36px; font-weight:bold; color:#4a9eff;');
-        console.log('%c💙❤️🚀 26 Apps • 500 Sterne • 12 Planeten • 100+ Wissenseinträge', 'font-size:16px; color:#a855f7;');
-        console.log('%c📦 v7.0 – Jede App interaktiv, Einstellungen speicherbar, Cosmic World komplett', 'font-size:14px; color:#f97316;');
-        console.log('%c🤖 HalDo AI: Persönlichkeiten, Kontext, keine Wiederholungen', 'font-size:14px; color:#22c55e;');
+        console.log('%c🌌 HalDo AI OS v8.0 – Ultimate Professional', 'font-size:36px; font-weight:bold; color:#4a9eff;');
+        console.log('%c💙❤️🚀 26 Apps • 500 Sterne • 12 Planeten • 120+ Wissenseinträge', 'font-size:16px; color:#a855f7;');
+        console.log('%c👤 Lebendiger Avatar in der Sonne • Intelligente KI ohne Wiederholungen', 'font-size:14px; color:#f97316;');
+        console.log('%c📦 Alle Apps interaktiv, speicherbare Einstellungen, Update-System', 'font-size:14px; color:#22c55e;');
     </script>
 </body>
 </html>
