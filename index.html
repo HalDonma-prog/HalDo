@@ -2,58 +2,80 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌌 HalDo AI OS — Komplette App-Welt v26.0</title>
-    <link rel="icon" href="logo.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🌌 HalDo AI OS v3.0 – Cosmic Edition</title>
     <style>
         /* ============================================================
-           HALDO AI OS — GLOBAL STYLES
+           HALDO AI OS – KOMPLETTES STYLING
            ============================================================ */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-primary: #0a0a12;
-            --bg-secondary: #12121f;
-            --bg-card: rgba(255,255,255,0.02);
-            --bg-hover: rgba(255,255,255,0.04);
-            --border-color: rgba(255,255,255,0.03);
-            --text-primary: #e0e0e0;
-            --text-secondary: rgba(255,255,255,0.3);
-            --text-muted: rgba(255,255,255,0.05);
-            --accent-1: #f6d365;
-            --accent-2: #fda085;
-            --accent-3: #f093fb;
-            --accent-4: #4facfe;
-            --accent-5: #43e97b;
-            --accent-6: #ff6b6b;
-            --cosmic-1: #0a0a2e;
-            --cosmic-2: #1a1a4a;
-            --cosmic-3: #2a2a6a;
-            --radius: 16px;
-            --transition: 0.3s ease;
-            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            --shadow: 0 8px 32px rgba(0,0,0,0.3);
-        }
-        html, body {
-            height: 100%;
-            font-family: var(--font);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            overflow: hidden;
-        }
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); border-radius: 4px; }
 
-        /* ============================================================
-           BOOT / STARTUP
-           ============================================================ */
-        .haldo-boot {
+        /* ---------- RESET & GRUNDLAGEN ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0a0e1a;
+            color: #e8edf5;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            user-select: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: inherit;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        input,
+        textarea {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #e8edf5;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            transition: 0.2s;
+        }
+        input:focus,
+        textarea:focus {
+            border-color: #4a9eff;
+            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.2);
+        }
+
+        /* ---------- BOOT-SCREEN ---------- */
+        #boot-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--bg-primary);
+            background: #080b16;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,1710 +83,1921 @@
             z-index: 9999;
             transition: opacity 0.8s ease;
         }
-        .haldo-boot.hidden { opacity: 0; pointer-events: none; }
-        .haldo-boot .boot-logo { font-size: 4rem; margin-bottom: 16px; animation: pulse 1.2s ease-in-out infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .haldo-boot .boot-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+        #boot-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #boot-logo {
+            font-size: 72px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4a9eff, #a855f7, #4a9eff);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
+            animation: gradShift 3s ease infinite;
+            margin-bottom: 20px;
         }
-        .haldo-boot .boot-sub { color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; letter-spacing: 4px; }
-        .haldo-boot .boot-bar {
-            width: 200px;
-            height: 3px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 2px;
-            margin-top: 20px;
+        @keyframes gradShift {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        #boot-bar-wrap {
+            width: 320px;
+            max-width: 80%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
             overflow: hidden;
+            margin-top: 12px;
         }
-        .haldo-boot .boot-bar .fill {
-            height: 100%;
+        #boot-bar {
             width: 0%;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
-            border-radius: 2px;
+            height: 100%;
+            background: linear-gradient(90deg, #4a9eff, #a855f7);
+            border-radius: 4px;
             transition: width 0.3s ease;
         }
-
-        /* ============================================================
-           LAYOUT
-           ============================================================ */
-        .haldo-desktop {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            width: 100vw;
-            background: var(--bg-primary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* ============================================================
-           TASKBAR
-           ============================================================ */
-        .taskbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 4px 16px;
-            height: 52px;
-            background: rgba(10,10,18,0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            flex-shrink: 0;
-            z-index: 100;
-        }
-        .taskbar-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .taskbar-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 800;
-            font-size: 1rem;
-            color: var(--text-secondary);
+        #boot-status {
+            margin-top: 12px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
             letter-spacing: 0.5px;
         }
-        .taskbar-logo img { height: 28px; width: auto; border-radius: 6px; }
-        .taskbar-logo .gradient-text {
-            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+
+        /* ---------- DESKTOP ---------- */
+        #desktop {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        #desktop.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- TASKBAR ---------- */
+        #taskbar {
+            height: 50px;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            flex-shrink: 0;
+            z-index: 100;
+            gap: 12px;
+        }
+        #taskbar .logo {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4a9eff, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            cursor: pointer;
+            margin-right: 8px;
         }
-        .taskbar-center {
+        #taskbar .menu-btn {
+            font-size: 22px;
+            line-height: 1;
+            padding: 0 10px;
+            background: transparent;
+        }
+        #taskbar .taskbar-apps {
             display: flex;
-            align-items: center;
-            gap: 4px;
+            gap: 6px;
             flex: 1;
-            max-width: 600px;
-            margin: 0 16px;
             overflow-x: auto;
-            padding: 2px 0;
+            padding: 0 8px;
         }
-        .taskbar-center .app-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 8px;
-            border: none;
-            background: transparent;
-            color: rgba(255,255,255,0.15);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .taskbar-center .app-icon:hover { background: var(--bg-hover); color: rgba(255,255,255,0.3); }
-        .taskbar-center .app-icon.active { background: rgba(79,172,254,0.08); color: var(--accent-4); }
-        .taskbar-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-        }
-        .taskbar-right .time { font-variant-numeric: tabular-nums; letter-spacing: 0.5px; }
-        .taskbar-right .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-5); display: inline-block; }
-
-        /* ============================================================
-           WORKSPACE
-           ============================================================ */
-        .workspace { flex: 1; display: flex; overflow: hidden; position: relative; }
-
-        /* ============================================================
-           SIDEBAR
-           ============================================================ */
-        .sidebar {
-            width: 60px;
-            background: rgba(18,18,31,0.6);
-            backdrop-filter: blur(10px);
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 8px 0;
-            gap: 2px;
-            overflow-y: auto;
-            flex-shrink: 0;
-            z-index: 10;
-        }
-        .sidebar .app-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            border: none;
-            background: transparent;
-            color: rgba(255,255,255,0.08);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-shrink: 0;
-        }
-        .sidebar .app-btn:hover { background: var(--bg-hover); color: rgba(255,255,255,0.25); }
-        .sidebar .app-btn.active { background: rgba(79,172,254,0.06); color: var(--accent-4); }
-        .sidebar .app-btn .tooltip {
-            position: absolute;
-            left: 54px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(10,10,18,0.92);
-            backdrop-filter: blur(10px);
+        #taskbar .taskbar-apps button {
             padding: 4px 12px;
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 6px;
-            font-size: 0.6rem;
-            color: var(--text-secondary);
             white-space: nowrap;
-            pointer-events: none;
-            opacity: 0;
-            transition: var(--transition);
-            border: 1px solid var(--border-color);
         }
-        .sidebar .app-btn:hover .tooltip { opacity: 1; }
+        #taskbar .taskbar-apps button.active {
+            background: rgba(74, 158, 255, 0.25);
+            box-shadow: inset 0 0 0 1px rgba(74, 158, 255, 0.3);
+        }
+        #taskbar .clock {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-left: auto;
+            padding-left: 12px;
+            white-space: nowrap;
+        }
 
-        /* ============================================================
-           APP CONTAINER
-           ============================================================ */
-        .app-container {
+        /* ---------- WORKSPACE (Cosmic + Fenster) ---------- */
+        #workspace {
             flex: 1;
-            padding: 16px 20px;
-            overflow-y: auto;
             position: relative;
-            background: var(--bg-primary);
-        }
-
-        /* ============================================================
-           APP VIEW
-           ============================================================ */
-        .app-view { display: none; height: 100%; animation: fadeIn 0.3s ease; }
-        .app-view.active { display: flex; flex-direction: column; height: 100%; }
-        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
-        .app-view .app-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            flex-shrink: 0;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .app-view .app-header .title { font-size: 1.2rem; font-weight: 600; color: var(--text-secondary); }
-        .app-view .app-header .title .emoji { margin-right: 8px; }
-        .app-view .app-header .actions { display: flex; gap: 6px; }
-        .app-view .app-header .actions button {
-            padding: 4px 12px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.02);
-            color: var(--text-secondary);
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font);
-        }
-        .app-view .app-header .actions button:hover { background: var(--bg-hover); color: #fff; }
-        .app-view .app-content {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        /* ============================================================
-           DESKTOP / STARTSEITE
-           ============================================================ */
-        .desktop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 12px;
-            padding: 8px;
-        }
-        .desktop-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 12px 8px;
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-family: var(--font);
-        }
-        .desktop-icon:hover { background: var(--bg-hover); transform: translateY(-2px); }
-        .desktop-icon .emoji { font-size: 2.4rem; display: block; margin-bottom: 4px; }
-        .desktop-icon .name { font-size: 0.65rem; color: var(--text-secondary); }
-
-        /* ============================================================
-           COSMIC WORLD
-           ============================================================ */
-        .cosmic-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            min-height: 400px;
-            background: radial-gradient(ellipse at center, var(--cosmic-2), var(--cosmic-1));
-            border-radius: var(--radius);
             overflow: hidden;
-            border: 1px solid var(--border-color);
+            background: #080b16;
         }
-        .cosmic-container canvas { width: 100%; height: 100%; display: block; }
-        .cosmic-overlay {
+
+        /* ---------- COSMIC WORLD (Canvas) ---------- */
+        #cosmic-canvas {
             position: absolute;
-            bottom: 16px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            pointer-events: none;
-        }
-
-        /* ============================================================
-           SYSTEM STATUS
-           ============================================================ */
-        .system-status {
-            display: flex;
-            justify-content: space-between;
-            padding: 4px 16px;
-            background: rgba(10,10,18,0.6);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid var(--border-color);
-            font-size: 0.55rem;
-            color: var(--text-muted);
-            flex-shrink: 0;
-            height: 28px;
-            align-items: center;
-        }
-        .system-status .highlight { color: rgba(255,255,255,0.08); }
-
-        /* ============================================================
-           MODAL / FENSTER
-           ============================================================ */
-        .haldo-modal {
-            display: none;
-            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            display: block;
+            cursor: grab;
         }
-        .haldo-modal.active { display: flex; }
-        .haldo-modal .modal-content {
-            max-width: 700px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            background: var(--bg-secondary);
-            border-radius: var(--radius);
-            padding: 24px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
+        #cosmic-canvas:active {
+            cursor: grabbing;
         }
-        .haldo-modal .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .haldo-modal .modal-header .title { font-weight: 600; color: var(--text-secondary); }
-        .haldo-modal .modal-header .close-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.4rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font);
-        }
-        .haldo-modal .modal-header .close-btn:hover { color: var(--accent-6); }
-        .haldo-modal .modal-body { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
 
-        /* ============================================================
-           EINSTELLUNGEN
-           ============================================================ */
-        .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .settings-item {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 14px 16px;
-            border: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
-        }
-        .settings-item:hover { background: var(--bg-hover); }
-        .settings-item .label { font-size: 0.8rem; color: var(--text-secondary); }
-        .settings-item .value {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            background: rgba(255,255,255,0.02);
-            padding: 2px 12px;
-            border-radius: 10px;
-        }
-        .settings-item .toggle {
-            width: 40px;
-            height: 22px;
-            border-radius: 11px;
-            background: rgba(255,255,255,0.05);
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-        }
-        .settings-item .toggle.active { background: var(--accent-5); }
-        .settings-item .toggle::after {
-            content: '';
+        /* ---------- WINDOW MANAGER ---------- */
+        #window-manager {
             position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #fff;
-            transition: var(--transition);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
         }
-        .settings-item .toggle.active::after { left: 20px; }
-        .settings-item select, .settings-item input {
-            background: rgba(0,0,0,0.3);
-            border: 1px solid var(--border-color);
+        .os-window {
+            position: absolute;
+            min-width: 320px;
+            min-height: 200px;
+            background: rgba(16, 20, 38, 0.92);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            resize: both;
+        }
+        .os-window.minimized {
+            display: none;
+        }
+        .os-window.maximized {
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: calc(100% - 50px) !important;
+            border-radius: 0;
+            resize: none;
+        }
+        .os-window .win-header {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-shrink: 0;
+            cursor: move;
+        }
+        .os-window .win-header .win-title {
+            font-size: 13px;
+            font-weight: 600;
+            flex: 1;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .os-window .win-header .win-title .icon {
+            font-size: 16px;
+        }
+        .os-window .win-header .win-controls {
+            display: flex;
+            gap: 6px;
+            margin-left: auto;
+        }
+        .os-window .win-header .win-controls button {
+            width: 28px;
+            height: 28px;
+            padding: 0;
             border-radius: 6px;
-            padding: 4px 10px;
-            color: var(--text-secondary);
-            font-family: var(--font);
-            font-size: 0.7rem;
-            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .os-window .win-header .win-controls button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .os-window .win-header .win-controls .close-btn:hover {
+            background: #e74c3c;
+            color: #fff;
+        }
+        .os-window .win-body {
+            flex: 1;
+            padding: 12px 16px;
+            overflow: auto;
+            min-height: 100px;
+        }
+        .os-window .win-body .app-content {
+            height: 100%;
+            width: 100%;
         }
 
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
+        /* ---------- MENÜS ---------- */
+        .haldo-menu {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            width: 300px;
+            max-height: calc(100vh - 50px);
+            background: rgba(12, 16, 30, 0.96);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 12px 0;
+            overflow-y: auto;
+            z-index: 200;
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 4px 0 40px rgba(0, 0, 0, 0.6);
+        }
+        .haldo-menu.open {
+            transform: translateX(0);
+        }
+        .haldo-menu .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 20px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            transition: 0.15s;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+        .haldo-menu .menu-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border-left-color: #4a9eff;
+        }
+        .haldo-menu .menu-item .icon {
+            font-size: 20px;
+            width: 28px;
+            text-align: center;
+        }
+        .haldo-menu .menu-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            margin: 6px 20px;
+        }
+        .haldo-menu .menu-heading {
+            padding: 6px 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.25);
+            font-weight: 600;
+        }
+
+        /* ---------- APP-STORE MENÜ (A–Z) ---------- */
+        .app-store-menu {
+            position: fixed;
+            top: 50px;
+            right: 0;
+            width: 340px;
+            max-height: calc(100vh - 50px);
+            background: rgba(12, 16, 30, 0.96);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 12px 0;
+            overflow-y: auto;
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -4px 0 40px rgba(0, 0, 0, 0.6);
+        }
+        .app-store-menu.open {
+            transform: translateX(0);
+        }
+        .app-store-menu .app-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: 0.15s;
+            border-radius: 0;
+        }
+        .app-store-menu .app-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+        .app-store-menu .app-item .icon {
+            font-size: 22px;
+            width: 32px;
+            text-align: center;
+        }
+        .app-store-menu .app-item .badge {
+            margin-left: auto;
+            font-size: 10px;
+            background: rgba(74, 158, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: #4a9eff;
+        }
+
+        /* ---------- AI CHAT FENSTER (speziell) ---------- */
+        .ai-chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            height: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .ai-chat-messages .msg {
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 80%;
+            font-size: 14px;
+            line-height: 1.5;
+            animation: fadeIn 0.25s ease;
+        }
+        .ai-chat-messages .msg.user {
+            background: rgba(74, 158, 255, 0.2);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .ai-chat-messages .msg.ai {
+            background: rgba(255, 255, 255, 0.06);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            color: #d0d8e8;
+        }
+        .ai-chat-messages .msg.ai .think {
+            color: rgba(255, 255, 255, 0.3);
+            font-style: italic;
+            font-size: 12px;
+        }
+        .ai-chat-input-wrap {
+            display: flex;
+            gap: 8px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 8px;
+        }
+        .ai-chat-input-wrap input {
+            flex: 1;
+        }
+        .ai-chat-input-wrap .mic-btn {
+            font-size: 20px;
+            padding: 0 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+        }
+        .ai-chat-input-wrap .mic-btn.recording {
+            color: #ff6b6b;
+            animation: pulse 0.8s ease infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.4;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- RESPONSIVE ---------- */
         @media (max-width: 768px) {
-            .sidebar { width: 50px; }
-            .sidebar .app-btn { width: 38px; height: 38px; font-size: 1rem; }
-            .taskbar-center { max-width: 200px; }
-            .taskbar-logo { font-size: 0.7rem; }
-            .taskbar-logo img { height: 22px; }
-            .desktop-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
-            .settings-grid { grid-template-columns: 1fr; }
+            .os-window {
+                min-width: unset;
+                min-height: unset;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                border-radius: 0 !important;
+                resize: none !important;
+            }
+            .os-window .win-header {
+                padding: 10px 14px;
+            }
+            .haldo-menu {
+                width: 280px;
+            }
+            .app-store-menu {
+                width: 280px;
+            }
+            #taskbar .taskbar-apps button span {
+                display: none;
+            }
+            #taskbar .taskbar-apps button::before {
+                content: attr(data-icon);
+                font-size: 18px;
+            }
         }
         @media (max-width: 480px) {
-            .taskbar-center { display: none; }
-            .taskbar { padding: 4px 8px; }
-            .app-container { padding: 10px; }
-            .desktop-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
-            .desktop-icon .emoji { font-size: 1.8rem; }
-            .desktop-icon .name { font-size: 0.55rem; }
+            #boot-logo {
+                font-size: 48px;
+            }
+            .haldo-menu,
+            .app-store-menu {
+                width: 100%;
+                max-height: 60vh;
+                top: 50px;
+            }
+            .app-store-menu {
+                right: 0;
+                transform: translateX(100%);
+            }
+            .app-store-menu.open {
+                transform: translateX(0);
+            }
+            .haldo-menu {
+                left: 0;
+                transform: translateX(-100%);
+            }
+            .haldo-menu.open {
+                transform: translateX(0);
+            }
+        }
+
+        /* ---------- COSMIC HINWEIS ---------- */
+        #cosmic-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 5;
+            text-align: center;
+            letter-spacing: 0.5px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 6px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        @media (max-width: 600px) {
+            #cosmic-hint {
+                display: none;
+            }
+        }
+
+        /* ---------- NOTIFICATIONS ---------- */
+        #notification-area {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+            max-width: 320px;
+        }
+        .notification {
+            background: rgba(12, 16, 30, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 12px 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            pointer-events: auto;
+            animation: slideIn 0.3s ease;
+            font-size: 14px;
+        }
+        .notification .ntitle {
+            font-weight: 600;
+            color: #fff;
+        }
+        .notification .nbody {
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2px;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ---------- SYSTEM-INFO ---------- */
+        #sys-info {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.15);
+            z-index: 1;
+            font-family: monospace;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
     <!-- ============================================================
-    BOOT / STARTUP
+    BOOT-SCREEN
     ============================================================ -->
-    <div class="haldo-boot" id="bootScreen">
-        <div class="boot-logo">🌌</div>
-        <div class="boot-title">HalDo AI OS</div>
-        <div class="boot-sub">v26.0 · System wird geladen</div>
-        <div class="boot-bar"><div class="fill" id="bootProgress"></div></div>
+    <div id="boot-screen">
+        <div id="boot-logo">🌌 HalDo AI OS</div>
+        <div style="font-size:18px; color:rgba(255,255,255,0.3); margin-bottom:8px;">v3.0 — Cosmic Edition</div>
+        <div id="boot-bar-wrap"><div id="boot-bar" style="width:0%;"></div></div>
+        <div id="boot-status">Initialisiere Kernel ...</div>
     </div>
 
     <!-- ============================================================
     DESKTOP
     ============================================================ -->
-    <div class="haldo-desktop" id="haldoDesktop">
+    <div id="desktop">
 
         <!-- TASKBAR -->
-        <div class="taskbar">
-            <div class="taskbar-left">
-                <div class="taskbar-logo">
-                    <img src="logo.png" alt="HalDo AI OS" onerror="this.style.display='none'">
-                    <span class="gradient-text">HalDo AI OS</span>
-                </div>
-            </div>
-            <div class="taskbar-center" id="taskbarApps"></div>
-            <div class="taskbar-right">
-                <span class="status-dot"></span>
-                <span id="taskbarTime" class="time">--:--</span>
-            </div>
+        <div id="taskbar">
+            <span class="logo" id="haldo-logo-btn">🌌 HalDo</span>
+            <button class="menu-btn" id="menu-toggle" title="Systemmenü">☰</button>
+            <button class="menu-btn" id="appstore-toggle" title="Apps A–Z">📱</button>
+            <div class="taskbar-apps" id="taskbar-apps"></div>
+            <span class="clock" id="clock">00:00</span>
         </div>
 
         <!-- WORKSPACE -->
-        <div class="workspace">
-            <div class="sidebar" id="sidebar"></div>
-            <div class="app-container" id="appContainer">
-                <div id="appViewContainer"></div>
-            </div>
+        <div id="workspace">
+            <canvas id="cosmic-canvas"></canvas>
+            <div id="window-manager"></div>
+            <div id="cosmic-hint">🌞 Klick auf die Sonne → HalDo AI • Scroll zum Zoomen • Ziehen zum Verschieben</div>
         </div>
 
-        <!-- SYSTEM STATUS -->
-        <div class="system-status">
-            <span>🟢 HalDo AI OS v26.0 · System läuft</span>
-            <span><span class="highlight" id="statusAppCount">0</span> Apps · <span class="highlight" id="statusMemory">0</span> MB · AI: <span class="highlight" id="statusAI">Aktiv</span></span>
+        <!-- MENÜ: SYSTEM -->
+        <div class="haldo-menu" id="system-menu">
+            <div class="menu-heading">SYSTEM</div>
+            <div class="menu-item" data-action="home"><span class="icon">🏠</span> Startseite</div>
+            <div class="menu-item" data-action="files"><span class="icon">📁</span> Dateien</div>
+            <div class="menu-item" data-action="settings"><span class="icon">⚙️</span> Einstellungen</div>
+            <div class="menu-item" data-action="system"><span class="icon">🖥️</span> System</div>
+            <div class="menu-item" data-action="updates"><span class="icon">🔄</span> Updates</div>
+            <div class="menu-item" data-action="security"><span class="icon">🔒</span> Sicherheit</div>
+            <div class="menu-item" data-action="backup"><span class="icon">💾</span> Backup & Recovery</div>
+            <div class="menu-item" data-action="network"><span class="icon">🌐</span> Netzwerk</div>
+            <div class="menu-item" data-action="help"><span class="icon">❓</span> Hilfe</div>
+            <div class="menu-divider"></div>
+            <div class="menu-item" data-action="about"><span class="icon">ℹ️</span> Über HalDo AI OS</div>
         </div>
 
-        <!-- MODAL -->
-        <div class="haldo-modal" id="haldoModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="title" id="modalTitle">Info</span>
-                    <button class="close-btn" onclick="closeModal()">✕</button>
-                </div>
-                <div class="modal-body" id="modalBody"></div>
-            </div>
+        <!-- MENÜ: APP STORE A–Z -->
+        <div class="app-store-menu" id="appstore-menu">
+            <div class="menu-heading">APPS A–Z</div>
+            <!-- Wird dynamisch aus Registry befüllt -->
         </div>
 
+        <!-- NOTIFICATIONEN -->
+        <div id="notification-area"></div>
+
+        <!-- SYSTEM-INFO -->
+        <div id="sys-info">HalDo OS v3.0 • Kernel READY</div>
     </div>
 
+    <!-- ============================================================
+    JAVASCRIPT – DAS KOMPLETTE SYSTEM
+    ============================================================ -->
     <script>
         // ============================================================
-        // HALDO AI OS — KERNEL / SYSTEM (v26.0)
+        // 1. KERNEL – BOOT, STATE, EVENTS
         // ============================================================
-
-        // ---- BOOT ----
-        (function boot() {
-            const progress = document.getElementById('bootProgress');
-            let p = 0;
-            const bootScreen = document.getElementById('bootScreen');
-
-            function updateBoot() {
-                p += 5;
-                progress.style.width = Math.min(p, 100) + '%';
-                if (p < 100) {
-                    setTimeout(updateBoot, 60);
-                } else {
-                    setTimeout(() => {
-                        bootScreen.classList.add('hidden');
-                        initSystem();
-                    }, 400);
-                }
-            }
-            updateBoot();
-        })();
-
-        // ============================================================
-        // APP REGISTRY — ALLE 200+ APPS
-        // ============================================================
-        const APP_REGISTRY = {};
-
-        function registerApps(apps) {
-            apps.forEach(app => {
-                APP_REGISTRY[app.id] = app;
-            });
-        }
-
-        // ---- ALLE 200+ APPS (VOLLSTÄNDIG) ----
-        const ALL_APPS = [
-            // 🌌 A — AI & Alltag
-            { id: 'haldo-ai', name: 'HalDo AI', emoji: '🧠', desc: 'Zentrale intelligente Assistenz', category: '🌌 AI & Alltag' },
-            { id: 'ai-chat', name: 'AI Chat', emoji: '💬', desc: 'Vollständiger Chat', category: '🌌 AI & Alltag' },
-            { id: 'ai-voice', name: 'AI Voice', emoji: '🎤', desc: 'Sprechen und zuhören', category: '🌌 AI & Alltag' },
-            { id: 'ai-vision', name: 'AI Vision', emoji: '👁️', desc: 'Bilder/Kamera verstehen', category: '🌌 AI & Alltag' },
-            { id: 'ai-memory', name: 'AI Memory', emoji: '🧠', desc: 'Persönliches Gedächtnis', category: '🌌 AI & Alltag' },
-            { id: 'ai-knowledge', name: 'AI Knowledge', emoji: '📚', desc: 'Wissenssystem', category: '🌌 AI & Alltag' },
-            { id: 'ai-agents', name: 'AI Agents', emoji: '🤖', desc: 'Spezialisierte AI-Agenten', category: '🌌 AI & Alltag' },
-            { id: 'ai-tools', name: 'AI Tools', emoji: '🛠️', desc: 'Werkzeuge für die AI', category: '🌌 AI & Alltag' },
-            { id: 'ai-models', name: 'AI Models', emoji: '🧮', desc: 'Modellverwaltung', category: '🌌 AI & Alltag' },
-            { id: 'ai-automation', name: 'AI Automation', emoji: '⚡', desc: 'Automatische Workflows', category: '🌌 AI & Alltag' },
-            { id: 'ai-translator', name: 'AI Translator', emoji: '🌍', desc: 'Intelligente Übersetzung', category: '🌌 AI & Alltag' },
-            { id: 'ai-writer', name: 'AI Writer', emoji: '✍️', desc: 'Schreiben', category: '🌌 AI & Alltag' },
-            { id: 'ai-research', name: 'AI Research', emoji: '🔍', desc: 'Recherche', category: '🌌 AI & Alltag' },
-            { id: 'ai-coding', name: 'AI Coding', emoji: '💻', desc: 'Programmieren', category: '🌌 AI & Alltag' },
-            { id: 'ai-tutor', name: 'AI Tutor', emoji: '🧑‍🏫', desc: 'Persönlicher Lehrer', category: '🌌 AI & Alltag' },
-            { id: 'ai-coach', name: 'AI Coach', emoji: '💪', desc: 'Persönlicher Coach', category: '🌌 AI & Alltag' },
-            { id: 'ai-planner', name: 'AI Planner', emoji: '📋', desc: 'Intelligente Planung', category: '🌌 AI & Alltag' },
-            // 📚 B — Bildung (38 Apps)
-            { id: 'schule', name: 'Schule', emoji: '🏫', desc: 'Zentrale Schulverwaltung', category: '📚 Bildung' },
-            { id: 'grundschule', name: 'Grundschule', emoji: '📚', desc: 'Grundschul-Lernbereich', category: '📚 Bildung' },
-            { id: 'mittelschule', name: 'Mittelschule', emoji: '📖', desc: 'Mittelschul-Lernbereich', category: '📚 Bildung' },
-            { id: 'gymnasium', name: 'Gymnasium', emoji: '🎓', desc: 'Gymnasialer Lernbereich', category: '📚 Bildung' },
-            { id: 'berufsschule', name: 'Berufsschule', emoji: '🔧', desc: 'Berufliche Bildung', category: '📚 Bildung' },
-            { id: 'universitaet', name: 'Universität', emoji: '🏛️', desc: 'Hochschulbereich', category: '📚 Bildung' },
-            { id: 'hochschule', name: 'Hochschule', emoji: '📜', desc: 'Hochschul-Lernbereich', category: '📚 Bildung' },
-            { id: 'ausbildung', name: 'Ausbildung', emoji: '👷', desc: 'Ausbildungsverwaltung', category: '📚 Bildung' },
-            { id: 'weiterbildung', name: 'Weiterbildung', emoji: '📈', desc: 'Weiterbildungsangebote', category: '📚 Bildung' },
-            { id: 'nachhilfe', name: 'Nachhilfe', emoji: '🧑‍🏫', desc: 'Nachhilfeverwaltung', category: '📚 Bildung' },
-            { id: 'lernzentrum', name: 'Lernzentrum', emoji: '📚', desc: 'Zentrale Lernplattform', category: '📚 Bildung' },
-            { id: 'kurse', name: 'Kurse', emoji: '📋', desc: 'Kursverwaltung', category: '📚 Bildung' },
-            { id: 'pruefungstrainer', name: 'Prüfungstrainer', emoji: '✅', desc: 'Prüfungsvorbereitung', category: '📚 Bildung' },
-            { id: 'hausaufgaben', name: 'Hausaufgaben', emoji: '📝', desc: 'Hausaufgabenverwaltung', category: '📚 Bildung' },
-            { id: 'lernplan', name: 'Lernplan', emoji: '📅', desc: 'Lernplanung', category: '📚 Bildung' },
-            { id: 'karteikarten', name: 'Karteikarten', emoji: '🃏', desc: 'Karteikarten-Lernen', category: '📚 Bildung' },
-            { id: 'quiz', name: 'Quiz', emoji: '🧠', desc: 'Wissen testen', category: '📚 Bildung' },
-            { id: 'mathe-lernen', name: 'Mathematik-Lernen', emoji: '🔢', desc: 'Mathe lernen', category: '📚 Bildung' },
-            { id: 'physik-lernen', name: 'Physik-Lernen', emoji: '⚡', desc: 'Physik lernen', category: '📚 Bildung' },
-            { id: 'chemie-lernen', name: 'Chemie-Lernen', emoji: '🧪', desc: 'Chemie lernen', category: '📚 Bildung' },
-            { id: 'biologie-lernen', name: 'Biologie-Lernen', emoji: '🧬', desc: 'Biologie lernen', category: '📚 Bildung' },
-            { id: 'geschichte-lernen', name: 'Geschichte-Lernen', emoji: '📜', desc: 'Geschichte lernen', category: '📚 Bildung' },
-            { id: 'geografie-lernen', name: 'Geografie-Lernen', emoji: '🌍', desc: 'Geografie lernen', category: '📚 Bildung' },
-            { id: 'deutsch-lernen', name: 'Deutsch-Lernen', emoji: '🇩🇪', desc: 'Deutsch lernen', category: '📚 Bildung' },
-            { id: 'englisch-lernen', name: 'Englisch-Lernen', emoji: '🇬🇧', desc: 'Englisch lernen', category: '📚 Bildung' },
-            { id: 'sprachen-lernen', name: 'Sprachen-Lernen', emoji: '🌐', desc: 'Mehrere Sprachen lernen', category: '📚 Bildung' },
-            { id: 'informatik-lernen', name: 'Informatik-Lernen', emoji: '💻', desc: 'Informatik lernen', category: '📚 Bildung' },
-            { id: 'programmieren-lernen', name: 'Programmieren-Lernen', emoji: '⌨️', desc: 'Programmieren lernen', category: '📚 Bildung' },
-            { id: 'ai-lernen', name: 'AI-Lernen', emoji: '🧠', desc: 'Künstliche Intelligenz lernen', category: '📚 Bildung' },
-            { id: 'wissensdatenbank', name: 'Wissensdatenbank', emoji: '📚', desc: 'Zentrale Wissenssammlung', category: '📚 Bildung' },
-            { id: 'bibliothek', name: 'Bibliothek', emoji: '📖', desc: 'Digitale Bibliothek', category: '📚 Bildung' },
-            { id: 'digitales-klassenzimmer', name: 'Digitales Klassenzimmer', emoji: '💻', desc: 'Digitale Lernumgebung', category: '📚 Bildung' },
-            { id: 'studentenportal', name: 'Studentenportal', emoji: '👨‍🎓', desc: 'Studentenverwaltung', category: '📚 Bildung' },
-            { id: 'lehrerportal', name: 'Lehrerportal', emoji: '👨‍🏫', desc: 'Lehrerverwaltung', category: '📚 Bildung' },
-            { id: 'dozentenportal', name: 'Dozentenportal', emoji: '👩‍🏫', desc: 'Dozentenverwaltung', category: '📚 Bildung' },
-            { id: 'kursverwaltung', name: 'Kursverwaltung', emoji: '📋', desc: 'Kurse verwalten', category: '📚 Bildung' },
-            { id: 'notenverwaltung', name: 'Notenverwaltung', emoji: '📊', desc: 'Noten verwalten', category: '📚 Bildung' },
-            { id: 'schulkalender', name: 'Schulkalender', emoji: '📅', desc: 'Schulkalender', category: '📚 Bildung' },
-            // 🚗 C — Fahrschule & Verkehr (22 Apps)
-            { id: 'fahrschule', name: 'Fahrschule', emoji: '🚗', desc: 'Zentrale Fahrschulverwaltung', category: '🚗 Fahrschule' },
-            { id: 'fuehrerschein-lernen', name: 'Führerschein-Lernen', emoji: '📘', desc: 'Theorie lernen', category: '🚗 Fahrschule' },
-            { id: 'theoriepruefung', name: 'Theorieprüfung', emoji: '📝', desc: 'Theorieprüfung simulieren', category: '🚗 Fahrschule' },
-            { id: 'fahrpruefung', name: 'Fahrprüfung', emoji: '🚦', desc: 'Fahrprüfung simulieren', category: '🚗 Fahrschule' },
-            { id: 'verkehrszeichen', name: 'Verkehrszeichen', emoji: '🛑', desc: 'Verkehrszeichen lernen', category: '🚗 Fahrschule' },
-            { id: 'verkehrsregeln', name: 'Verkehrsregeln', emoji: '📋', desc: 'Verkehrsregeln lernen', category: '🚗 Fahrschule' },
-            { id: 'gefahrenlehre', name: 'Gefahrenlehre', emoji: '⚠️', desc: 'Gefahren erkennen', category: '🚗 Fahrschule' },
-            { id: 'fahrzeugkunde', name: 'Fahrzeugkunde', emoji: '🔧', desc: 'Fahrzeugtechnik lernen', category: '🚗 Fahrschule' },
-            { id: 'erste-hilfe-fahrschule', name: 'Erste-Hilfe-Fahrschule', emoji: '🩹', desc: 'Erste Hilfe für Fahrschüler', category: '🚗 Fahrschule' },
-            { id: 'fahrstunden', name: 'Fahrstunden', emoji: '🚗', desc: 'Fahrstunden verwalten', category: '🚗 Fahrschule' },
-            { id: 'fahrlehrer', name: 'Fahrlehrer', emoji: '👨‍🏫', desc: 'Fahrlehrer verwalten', category: '🚗 Fahrschule' },
-            { id: 'fahrschueler', name: 'Fahrschüler', emoji: '👨‍🎓', desc: 'Fahrschüler verwalten', category: '🚗 Fahrschule' },
-            { id: 'fahrplan', name: 'Fahrplan', emoji: '📅', desc: 'Fahrstunden planen', category: '🚗 Fahrschule' },
-            { id: 'fahrtenbuch', name: 'Fahrtenbuch', emoji: '📖', desc: 'Fahrten aufzeichnen', category: '🚗 Fahrschule' },
-            { id: 'fahrstunden-kalender', name: 'Fahrstunden-Kalender', emoji: '📅', desc: 'Kalender für Fahrstunden', category: '🚗 Fahrschule' },
-            { id: 'fahrzeugverwaltung', name: 'Fahrzeugverwaltung', emoji: '🚙', desc: 'Fahrzeuge verwalten', category: '🚗 Fahrschule' },
-            { id: 'fahrschulverwaltung', name: 'Fahrschulverwaltung', emoji: '🏫', desc: 'Fahrschule verwalten', category: '🚗 Fahrschule' },
-            { id: 'fahrfortschritt', name: 'Fahrfortschritt', emoji: '📈', desc: 'Fortschritt verfolgen', category: '🚗 Fahrschule' },
-            { id: 'pruefungssimulation', name: 'Prüfungssimulation', emoji: '🎯', desc: 'Prüfungen simulieren', category: '🚗 Fahrschule' },
-            { id: 'ai-fahrlehrer', name: 'AI-Fahrlehrer', emoji: '🤖', desc: 'Intelligenter Fahrlehrer', category: '🚗 Fahrschule' },
-            { id: 'driving-tutor', name: 'Driving Tutor', emoji: '🧑‍🏫', desc: 'Persönlicher Fahr-Tutor', category: '🚗 Fahrschule' },
-            { id: 'verkehrs-simulator', name: 'Verkehrs-Simulator', emoji: '🚦', desc: 'Verkehrssituationen simulieren', category: '🚗 Fahrschule' },
-            // 💚 D — Gesundheit (24 Apps)
-            { id: 'gesundheit', name: 'Gesundheit', emoji: '💚', desc: 'Zentrale Gesundheitsverwaltung', category: '💚 Gesundheit' },
-            { id: 'gesundheitsakte', name: 'Gesundheitsakte', emoji: '📋', desc: 'Persönliche Gesundheitsakte', category: '💚 Gesundheit' },
-            { id: 'arzttermine', name: 'Arzttermine', emoji: '🏥', desc: 'Arzttermine verwalten', category: '💚 Gesundheit' },
-            { id: 'medikamente', name: 'Medikamente', emoji: '💊', desc: 'Medikamente verwalten', category: '💚 Gesundheit' },
-            { id: 'medikamentenerinnerung', name: 'Medikamentenerinnerung', emoji: '🔔', desc: 'Erinnerungen für Medikamente', category: '💚 Gesundheit' },
-            { id: 'vitalwerte', name: 'Vitalwerte', emoji: '❤️', desc: 'Vitalwerte verfolgen', category: '💚 Gesundheit' },
-            { id: 'fitness', name: 'Fitness', emoji: '💪', desc: 'Fitness verfolgen', category: '💚 Gesundheit' },
-            { id: 'training', name: 'Training', emoji: '🏋️', desc: 'Training planen', category: '💚 Gesundheit' },
-            { id: 'schlaf', name: 'Schlaf', emoji: '😴', desc: 'Schlaf verfolgen', category: '💚 Gesundheit' },
-            { id: 'ernaehrung', name: 'Ernährung', emoji: '🥗', desc: 'Ernährung verfolgen', category: '💚 Gesundheit' },
-            { id: 'wasser', name: 'Wasser', emoji: '💧', desc: 'Wasseraufnahme verfolgen', category: '💚 Gesundheit' },
-            { id: 'gewicht', name: 'Gewicht', emoji: '⚖️', desc: 'Gewicht verfolgen', category: '💚 Gesundheit' },
-            { id: 'blutdruck', name: 'Blutdruck', emoji: '🩸', desc: 'Blutdruck verfolgen', category: '💚 Gesundheit' },
-            { id: 'herzfrequenz', name: 'Herzfrequenz', emoji: '❤️', desc: 'Herzfrequenz verfolgen', category: '💚 Gesundheit' },
-            { id: 'gesundheitsziele', name: 'Gesundheitsziele', emoji: '🎯', desc: 'Gesundheitsziele setzen', category: '💚 Gesundheit' },
-            { id: 'symptom-tagebuch', name: 'Symptom-Tagebuch', emoji: '📓', desc: 'Symptome aufzeichnen', category: '💚 Gesundheit' },
-            { id: 'mental-health', name: 'Mental Health', emoji: '🧠', desc: 'Psychische Gesundheit', category: '💚 Gesundheit' },
-            { id: 'stress', name: 'Stress', emoji: '😰', desc: 'Stress verfolgen', category: '💚 Gesundheit' },
-            { id: 'meditation', name: 'Meditation', emoji: '🧘', desc: 'Meditation üben', category: '💚 Gesundheit' },
-            { id: 'atmung', name: 'Atmung', emoji: '🌬️', desc: 'Atemübungen', category: '💚 Gesundheit' },
-            { id: 'gesundheits-coach', name: 'Gesundheits-Coach', emoji: '👨‍⚕️', desc: 'Persönlicher Health-Coach', category: '💚 Gesundheit' },
-            { id: 'fitness-coach', name: 'Fitness-Coach', emoji: '💪', desc: 'Persönlicher Fitness-Coach', category: '💚 Gesundheit' },
-            { id: 'ernaehrungs-coach', name: 'Ernährungs-Coach', emoji: '🥗', desc: 'Persönlicher Ernährungs-Coach', category: '💚 Gesundheit' },
-            { id: 'health-ai', name: 'Health AI', emoji: '🧠', desc: 'KI für Gesundheit', category: '💚 Gesundheit' },
-            // 💼 E — Arbeit & Beruf (18 Apps)
-            { id: 'job-center', name: 'Job Center', emoji: '💼', desc: 'Zentrale Jobverwaltung', category: '💼 Arbeit' },
-            { id: 'jobsuche', name: 'Jobsuche', emoji: '🔍', desc: 'Jobs suchen', category: '💼 Arbeit' },
-            { id: 'bewerbung', name: 'Bewerbung', emoji: '📝', desc: 'Bewerbungen verwalten', category: '💼 Arbeit' },
-            { id: 'lebenslauf', name: 'Lebenslauf', emoji: '📄', desc: 'Lebenslauf erstellen', category: '💼 Arbeit' },
-            { id: 'anschreiben', name: 'Anschreiben', emoji: '✉️', desc: 'Anschreiben erstellen', category: '💼 Arbeit' },
-            { id: 'karriere', name: 'Karriere', emoji: '🚀', desc: 'Karriereplanung', category: '💼 Arbeit' },
-            { id: 'berufsberatung', name: 'Berufsberatung', emoji: '🧑‍💼', desc: 'Berufliche Beratung', category: '💼 Arbeit' },
-            { id: 'arbeitskalender', name: 'Arbeitskalender', emoji: '📅', desc: 'Arbeitskalender', category: '💼 Arbeit' },
-            { id: 'arbeitszeit', name: 'Arbeitszeit', emoji: '⏱️', desc: 'Arbeitszeiten verfolgen', category: '💼 Arbeit' },
-            { id: 'projekte', name: 'Projekte', emoji: '📋', desc: 'Projekte verwalten', category: '💼 Arbeit' },
-            { id: 'projektmanagement', name: 'Projektmanagement', emoji: '📊', desc: 'Projekte managen', category: '💼 Arbeit' },
-            { id: 'team', name: 'Team', emoji: '👥', desc: 'Teamverwaltung', category: '💼 Arbeit' },
-            { id: 'meetings', name: 'Meetings', emoji: '🤝', desc: 'Meetings planen', category: '💼 Arbeit' },
-            { id: 'arbeitsaufgaben', name: 'Arbeitsaufgaben', emoji: '✅', desc: 'Arbeitsaufgaben verwalten', category: '💼 Arbeit' },
-            { id: 'arbeitsdokumente', name: 'Arbeitsdokumente', emoji: '📄', desc: 'Arbeitsdokumente verwalten', category: '💼 Arbeit' },
-            { id: 'business-ai', name: 'Business AI', emoji: '🧠', desc: 'KI für Business', category: '💼 Arbeit' },
-            { id: 'career-ai', name: 'Career AI', emoji: '🚀', desc: 'KI für Karriere', category: '💼 Arbeit' },
-            { id: 'interview-trainer', name: 'Interview Trainer', emoji: '🎯', desc: 'Interview vorbereiten', category: '💼 Arbeit' },
-            // 💰 F — Finanzen (13 Apps)
-            { id: 'finance', name: 'Finance', emoji: '💰', desc: 'Zentrale Finanzverwaltung', category: '💰 Finanzen' },
-            { id: 'banking', name: 'Banking', emoji: '🏦', desc: 'Banking verwalten', category: '💰 Finanzen' },
-            { id: 'konten', name: 'Konten', emoji: '📊', desc: 'Konten verwalten', category: '💰 Finanzen' },
-            { id: 'ausgaben', name: 'Ausgaben', emoji: '📉', desc: 'Ausgaben verfolgen', category: '💰 Finanzen' },
-            { id: 'einnahmen', name: 'Einnahmen', emoji: '📈', desc: 'Einnahmen verfolgen', category: '💰 Finanzen' },
-            { id: 'budget', name: 'Budget', emoji: '🎯', desc: 'Budget verwalten', category: '💰 Finanzen' },
-            { id: 'sparen', name: 'Sparen', emoji: '🏦', desc: 'Sparziele verfolgen', category: '💰 Finanzen' },
-            { id: 'rechnungen', name: 'Rechnungen', emoji: '📄', desc: 'Rechnungen verwalten', category: '💰 Finanzen' },
-            { id: 'abonnements', name: 'Abonnements', emoji: '🔄', desc: 'Abonnements verwalten', category: '💰 Finanzen' },
-            { id: 'steuern', name: 'Steuern', emoji: '📋', desc: 'Steuern verwalten', category: '💰 Finanzen' },
-            { id: 'finanzkalender', name: 'Finanzkalender', emoji: '📅', desc: 'Finanzkalender', category: '💰 Finanzen' },
-            { id: 'finanzanalyse', name: 'Finanzanalyse', emoji: '📊', desc: 'Finanzanalyse', category: '💰 Finanzen' },
-            { id: 'finance-ai', name: 'Finance AI', emoji: '🧠', desc: 'KI für Finanzen', category: '💰 Finanzen' },
-            // 🏠 G — Zuhause & Familie (13 Apps)
-            { id: 'home', name: 'Home', emoji: '🏠', desc: 'Zentrale Home-Verwaltung', category: '🏠 Zuhause' },
-            { id: 'familie', name: 'Familie', emoji: '👨‍👩‍👧', desc: 'Familienverwaltung', category: '🏠 Zuhause' },
-            { id: 'familienkalender', name: 'Familienkalender', emoji: '📅', desc: 'Familienkalender', category: '🏠 Zuhause' },
-            { id: 'einkauf', name: 'Einkauf', emoji: '🛒', desc: 'Einkäufe verwalten', category: '🏠 Zuhause' },
-            { id: 'einkaufsliste', name: 'Einkaufsliste', emoji: '📝', desc: 'Einkaufslisten', category: '🏠 Zuhause' },
-            { id: 'haushalt', name: 'Haushalt', emoji: '🧹', desc: 'Haushaltsverwaltung', category: '🏠 Zuhause' },
-            { id: 'hausverwaltung', name: 'Hausverwaltung', emoji: '🏡', desc: 'Hausverwaltung', category: '🏠 Zuhause' },
-            { id: 'smart-home', name: 'Smart Home', emoji: '💡', desc: 'Smart-Home-Steuerung', category: '🏠 Zuhause' },
-            { id: 'geraete', name: 'Geräte', emoji: '📱', desc: 'Geräte verwalten', category: '🏠 Zuhause' },
-            { id: 'familienaufgaben', name: 'Familienaufgaben', emoji: '✅', desc: 'Familienaufgaben', category: '🏠 Zuhause' },
-            { id: 'kinderverwaltung', name: 'Kinderverwaltung', emoji: '🧒', desc: 'Kinder verwalten', category: '🏠 Zuhause' },
-            { id: 'elternbereich', name: 'Elternbereich', emoji: '👨‍👩‍👧', desc: 'Elternverwaltung', category: '🏠 Zuhause' },
-            { id: 'familien-ai', name: 'Familien-AI', emoji: '🧠', desc: 'KI für die Familie', category: '🏠 Zuhause' },
-            // 🌌 H — Kosmos / HalDo World (VOLLSTÄNDIG)
-            { id: 'haldo-portal', name: 'HalDo Portal', emoji: '🌌', desc: 'Zentrale HalDo-Welt', category: '🌌 Kosmos' },
-            { id: 'cosmic-world', name: 'Cosmic World', emoji: '🌠', desc: 'Kosmische Welt', category: '🌌 Kosmos' },
-            { id: 'sonnensystem', name: 'Sonnensystem', emoji: '🪐', desc: 'Unser komplettes Sonnensystem', category: '🌌 Kosmos' },
-            { id: 'sonne', name: 'Sonne', emoji: '☀️', desc: 'Der Zentralstern', category: '🌌 Kosmos' },
-            { id: 'merkur', name: 'Merkur', emoji: '☿', desc: 'Der innerste Planet', category: '🌌 Kosmos' },
-            { id: 'venus', name: 'Venus', emoji: '♀', desc: 'Der heiße Nachbar', category: '🌌 Kosmos' },
-            { id: 'erde', name: 'Erde', emoji: '🌍', desc: 'Unser blauer Planet', category: '🌌 Kosmos' },
-            { id: 'mond', name: 'Mond', emoji: '🌙', desc: 'Der treue Begleiter', category: '🌌 Kosmos' },
-            { id: 'mars', name: 'Mars', emoji: '🔴', desc: 'Der rote Planet', category: '🌌 Kosmos' },
-            { id: 'jupiter', name: 'Jupiter', emoji: '🟠', desc: 'Der größte Planet', category: '🌌 Kosmos' },
-            { id: 'saturn', name: 'Saturn', emoji: '🪐', desc: 'Der Ringplanet', category: '🌌 Kosmos' },
-            { id: 'uranus', name: 'Uranus', emoji: '🔵', desc: 'Der eisige Riese', category: '🌌 Kosmos' },
-            { id: 'neptun', name: 'Neptun', emoji: '🔷', desc: 'Der äußerste Planet', category: '🌌 Kosmos' },
-            { id: 'pluto', name: 'Pluto', emoji: '⚪', desc: 'Der Zwergplanet', category: '🌌 Kosmos' },
-            { id: 'sterne', name: 'Sterne', emoji: '⭐', desc: 'Unendliche Weiten der Sterne', category: '🌌 Kosmos' },
-            { id: 'milchstrasse', name: 'Milchstraße', emoji: '🌌', desc: 'Unsere Heimatgalaxie', category: '🌌 Kosmos' },
-            { id: 'andromeda', name: 'Andromeda', emoji: '🌀', desc: 'Die Nachbargalaxie', category: '🌌 Kosmos' },
-            { id: 'galaxien-explorer', name: 'Galaxien-Explorer', emoji: '🔭', desc: 'Entdecke ferne Galaxien', category: '🌌 Kosmos' },
-            { id: 'sternbilder', name: 'Sternbilder', emoji: '🌟', desc: 'Alle 88 Sternbilder', category: '🌌 Kosmos' },
-            { id: 'tierkreiszeichen', name: 'Tierkreiszeichen', emoji: '♈', desc: 'Die 12 Sternzeichen', category: '🌌 Kosmos' },
-            { id: 'himmelsfarben', name: 'Himmelsfarben', emoji: '🌈', desc: 'Die Farben des Himmels', category: '🌌 Kosmos' },
-            { id: 'sonnenuntergang', name: 'Sonnenuntergang', emoji: '🌅', desc: 'Der tägliche Farbzauber', category: '🌌 Kosmos' },
-            { id: 'sonnenaufgang', name: 'Sonnenaufgang', emoji: '🌄', desc: 'Der Beginn eines neuen Tages', category: '🌌 Kosmos' },
-            { id: 'polarlicht', name: 'Polarlicht', emoji: '✨', desc: 'Das Nord- und Südlicht', category: '🌌 Kosmos' },
-            { id: 'regenbogen', name: 'Regenbogen', emoji: '🌈', desc: 'Das Farbenspektrum', category: '🌌 Kosmos' },
-            { id: 'welt-3d', name: '3D-Welt', emoji: '🌍', desc: 'Die Erde in 3D', category: '🌌 Kosmos' },
-            { id: 'raum-explorer', name: 'Raum-Explorer', emoji: '🚀', desc: 'Reise durch das Universum', category: '🌌 Kosmos' },
-            { id: 'planeten-viewer', name: 'Planeten-Viewer', emoji: '🔭', desc: 'Betrachte alle Planeten', category: '🌌 Kosmos' },
-            // 🧠 I — Intelligenz & Wissen (17 Apps)
-            { id: 'knowledge', name: 'Knowledge', emoji: '📚', desc: 'Zentrale Wissensverwaltung', category: '🧠 Wissen' },
-            { id: 'encyclopedia', name: 'Encyclopedia', emoji: '📖', desc: 'Enzyklopädie', category: '🧠 Wissen' },
-            { id: 'knowledge-browser', name: 'Knowledge Browser', emoji: '🌐', desc: 'Wissens-Browser', category: '🧠 Wissen' },
-            { id: 'research', name: 'Research', emoji: '🔍', desc: 'Recherche', category: '🧠 Wissen' },
-            { id: 'science', name: 'Science', emoji: '🔬', desc: 'Wissenschaft', category: '🧠 Wissen' },
-            { id: 'technology', name: 'Technology', emoji: '💻', desc: 'Technologie', category: '🧠 Wissen' },
-            { id: 'med-knowledge', name: 'Medicine Knowledge', emoji: '🏥', desc: 'Medizinisches Wissen', category: '🧠 Wissen' },
-            { id: 'law-knowledge', name: 'Law Knowledge', emoji: '⚖️', desc: 'Rechtliches Wissen', category: '🧠 Wissen' },
-            { id: 'history', name: 'History', emoji: '📜', desc: 'Geschichte', category: '🧠 Wissen' },
-            { id: 'geography', name: 'Geography', emoji: '🌍', desc: 'Geografie', category: '🧠 Wissen' },
-            { id: 'space-knowledge', name: 'Space Knowledge', emoji: '🚀', desc: 'Weltraumwissen', category: '🧠 Wissen' },
-            { id: 'culture', name: 'Culture', emoji: '🎭', desc: 'Kultur', category: '🧠 Wissen' },
-            { id: 'languages', name: 'Languages', emoji: '🌐', desc: 'Sprachen', category: '🧠 Wissen' },
-            { id: 'philosophy', name: 'Philosophy', emoji: '🧠', desc: 'Philosophie', category: '🧠 Wissen' },
-            { id: 'religion-culture', name: 'Religion & Culture', emoji: '🕊️', desc: 'Religion & Kultur', category: '🧠 Wissen' },
-            { id: 'ezidi-knowledge', name: 'Êzîdî/Ezidi Knowledge', emoji: '🕊️', desc: 'Êzîdî Wissen', category: '🧠 Wissen' },
-            { id: 'ai-knowledge-graph', name: 'AI Knowledge Graph', emoji: '🧠', desc: 'Wissensgraph', category: '🧠 Wissen' },
-            // 🕌 J — Kultur & Religion (9 Apps)
-            { id: 'kultur', name: 'Kultur', emoji: '🎭', desc: 'Zentrale Kulturverwaltung', category: '🕌 Kultur' },
-            { id: 'religion', name: 'Religion', emoji: '🕊️', desc: 'Religion', category: '🕌 Kultur' },
-            { id: 'ezidi-app', name: 'Êzîdî/Ezidi App', emoji: '🕊️', desc: 'Êzîdî-Zentrale', category: '🕌 Kultur' },
-            { id: 'ezidi-geschichte', name: 'Êzîdî/Ezidi Geschichte', emoji: '📜', desc: 'Êzîdî-Geschichte', category: '🕌 Kultur' },
-            { id: 'ezidi-kultur', name: 'Êzîdî/Ezidi Kultur', emoji: '🎭', desc: 'Êzîdî-Kultur', category: '🕌 Kultur' },
-            { id: 'ezidi-sprache', name: 'Êzîdî/Ezidi Sprache', emoji: '🗣️', desc: 'Êzîdî-Sprache', category: '🕌 Kultur' },
-            { id: 'ezidi-kalender', name: 'Êzîdî/Ezidi Kalender', emoji: '📅', desc: 'Êzîdî-Kalender', category: '🕌 Kultur' },
-            { id: 'gebete', name: 'Gebete / Traditionen', emoji: '🙏', desc: 'Gebete und Traditionen', category: '🕌 Kultur' },
-            { id: 'kulturarchiv', name: 'Kulturarchiv', emoji: '📚', desc: 'Kulturarchiv', category: '🕌 Kultur' },
-            // ⌨️ K — Tastatur & Kommunikation (11 Apps)
-            { id: 'haldo-keyboard', name: 'HalDo Keyboard', emoji: '⌨️', desc: 'Zentrale Tastatur', category: '⌨️ Tastatur' },
-            { id: 'ezidi-keyboard', name: 'Êzîdî/Ezidi Keyboard', emoji: '⌨️', desc: 'Êzîdî-Tastatur', category: '⌨️ Tastatur' },
-            { id: 'german-keyboard', name: 'German Keyboard', emoji: '⌨️', desc: 'Deutsche Tastatur', category: '⌨️ Tastatur' },
-            { id: 'multilingual-keyboard', name: 'Multilingual Keyboard', emoji: '⌨️', desc: 'Mehrsprachige Tastatur', category: '⌨️ Tastatur' },
-            { id: 'messages', name: 'Messages', emoji: '💬', desc: 'Nachrichten', category: '💬 Kommunikation' },
-            { id: 'mail', name: 'Mail', emoji: '✉️', desc: 'E-Mail', category: '💬 Kommunikation' },
-            { id: 'contacts', name: 'Contacts', emoji: '👤', desc: 'Kontakte', category: '💬 Kommunikation' },
-            { id: 'phone', name: 'Phone', emoji: '📞', desc: 'Telefon', category: '💬 Kommunikation' },
-            { id: 'video-call', name: 'Video Call', emoji: '📹', desc: 'Videoanruf', category: '💬 Kommunikation' },
-            { id: 'voice-call', name: 'Voice Call', emoji: '🎤', desc: 'Sprachanruf', category: '💬 Kommunikation' },
-            { id: 'translator', name: 'Translator', emoji: '🌍', desc: 'Übersetzer', category: '💬 Kommunikation' },
-            // 📚 L — Lernen (11 Apps)
-            { id: 'learning-center', name: 'Learning Center', emoji: '📚', desc: 'Zentrales Lernzentrum', category: '📚 Lernen' },
-            { id: 'ai-tutor-learning', name: 'AI Tutor', emoji: '🧑‍🏫', desc: 'KI-Tutor', category: '📚 Lernen' },
-            { id: 'study-planner', name: 'Study Planner', emoji: '📅', desc: 'Lernplanung', category: '📚 Lernen' },
-            { id: 'exam-planner', name: 'Exam Planner', emoji: '✅', desc: 'Prüfungsplanung', category: '📚 Lernen' },
-            { id: 'homework-learning', name: 'Homework', emoji: '📝', desc: 'Hausaufgaben', category: '📚 Lernen' },
-            { id: 'flashcards-learning', name: 'Flashcards', emoji: '🃏', desc: 'Karteikarten', category: '📚 Lernen' },
-            { id: 'quiz-learning', name: 'Quiz', emoji: '🧠', desc: 'Quiz', category: '📚 Lernen' },
-            { id: 'practice', name: 'Practice', emoji: '🎯', desc: 'Üben', category: '📚 Lernen' },
-            { id: 'certificates', name: 'Certificates', emoji: '📜', desc: 'Zertifikate', category: '📚 Lernen' },
-            { id: 'learning-progress', name: 'Learning Progress', emoji: '📈', desc: 'Lernfortschritt', category: '📚 Lernen' },
-            { id: 'personal-learning-ai', name: 'Personal Learning AI', emoji: '🧠', desc: 'Persönliche Lern-KI', category: '📚 Lernen' },
-            // 🎵 M — Medien (12 Apps)
-            { id: 'music', name: 'Music', emoji: '🎵', desc: 'Musik', category: '🎵 Medien' },
-            { id: 'video', name: 'Video', emoji: '🎬', desc: 'Video', category: '🎵 Medien' },
-            { id: 'media-player', name: 'Media Player', emoji: '▶️', desc: 'Media-Player', category: '🎵 Medien' },
-            { id: 'photos', name: 'Photos', emoji: '📸', desc: 'Fotos', category: '🎵 Medien' },
-            { id: 'gallery', name: 'Gallery', emoji: '🖼️', desc: 'Galerie', category: '🎵 Medien' },
-            { id: 'camera', name: 'Camera', emoji: '📷', desc: 'Kamera', category: '🎵 Medien' },
-            { id: 'voice-recorder', name: 'Voice Recorder', emoji: '🎙️', desc: 'Sprachaufnahme', category: '🎵 Medien' },
-            { id: 'video-editor', name: 'Video Editor', emoji: '✂️', desc: 'Video-Bearbeitung', category: '🎵 Medien' },
-            { id: 'audio-editor', name: 'Audio Editor', emoji: '🎚️', desc: 'Audio-Bearbeitung', category: '🎵 Medien' },
-            { id: 'image-editor', name: 'Image Editor', emoji: '🖌️', desc: 'Bild-Bearbeitung', category: '🎵 Medien' },
-            { id: '3d-viewer', name: '3D Viewer', emoji: '🧊', desc: '3D-Betrachter', category: '🎵 Medien' },
-            { id: 'cinema', name: 'Cinema', emoji: '🎥', desc: 'Kino', category: '🎵 Medien' },
-            // 📝 N — Notizen & Organisation (11 Apps)
-            { id: 'notes', name: 'Notes', emoji: '📝', desc: 'Notizen', category: '📝 Notizen' },
-            { id: 'journal', name: 'Journal', emoji: '📓', desc: 'Tagebuch', category: '📝 Notizen' },
-            { id: 'tasks', name: 'Tasks', emoji: '✅', desc: 'Aufgaben', category: '📝 Notizen' },
-            { id: 'todo', name: 'To-Do', emoji: '📋', desc: 'To-Do-Liste', category: '📝 Notizen' },
-            { id: 'reminders', name: 'Reminders', emoji: '🔔', desc: 'Erinnerungen', category: '📝 Notizen' },
-            { id: 'calendar', name: 'Calendar', emoji: '📅', desc: 'Kalender', category: '📝 Notizen' },
-            { id: 'planner', name: 'Planner', emoji: '📋', desc: 'Planer', category: '📝 Notizen' },
-            { id: 'goals', name: 'Goals', emoji: '🎯', desc: 'Ziele', category: '📝 Notizen' },
-            { id: 'habits', name: 'Habits', emoji: '🔄', desc: 'Gewohnheiten', category: '📝 Notizen' },
-            { id: 'routine', name: 'Routine', emoji: '🌅', desc: 'Tägliche Routine', category: '📝 Notizen' },
-            { id: 'dashboard', name: 'Personal Dashboard', emoji: '📊', desc: 'Persönliches Dashboard', category: '📝 Notizen' },
-            // 🛒 O — Online & Shopping (9 Apps)
-            { id: 'browser', name: 'Browser', emoji: '🌐', desc: 'Web-Browser', category: '🛒 Online' },
-            { id: 'web-search', name: 'Web Search', emoji: '🔍', desc: 'Web-Suche', category: '🛒 Online' },
-            { id: 'shopping', name: 'Shopping', emoji: '🛒', desc: 'Einkaufen', category: '🛒 Online' },
-            { id: 'wish-list', name: 'Wish List', emoji: '⭐', desc: 'Wunschliste', category: '🛒 Online' },
-            { id: 'price-comparison', name: 'Price Comparison', emoji: '📊', desc: 'Preisvergleich', category: '🛒 Online' },
-            { id: 'orders', name: 'Orders', emoji: '📦', desc: 'Bestellungen', category: '🛒 Online' },
-            { id: 'delivery', name: 'Delivery', emoji: '🚚', desc: 'Lieferungen', category: '🛒 Online' },
-            { id: 'downloads', name: 'Downloads', emoji: '📥', desc: 'Downloads', category: '🛒 Online' },
-            { id: 'bookmarks', name: 'Bookmarks', emoji: '🔖', desc: 'Lesezeichen', category: '🛒 Online' },
-            // 🎨 P — Kreativität (11 Apps)
-            { id: 'drawing', name: 'Drawing', emoji: '✏️', desc: 'Zeichnen', category: '🎨 Kreativität' },
-            { id: 'painting', name: 'Painting', emoji: '🎨', desc: 'Malen', category: '🎨 Kreativität' },
-            { id: 'design', name: 'Design', emoji: '🖌️', desc: 'Design', category: '🎨 Kreativität' },
-            { id: 'image-studio', name: 'Image Studio', emoji: '🖼️', desc: 'Bildstudio', category: '🎨 Kreativität' },
-            { id: 'photo-editor', name: 'Photo Editor', emoji: '📸', desc: 'Foto-Bearbeitung', category: '🎨 Kreativität' },
-            { id: 'video-studio', name: 'Video Studio', emoji: '🎬', desc: 'Videostudio', category: '🎨 Kreativität' },
-            { id: 'music-studio', name: 'Music Studio', emoji: '🎵', desc: 'Musikstudio', category: '🎨 Kreativität' },
-            { id: '3d-studio', name: '3D Studio', emoji: '🧊', desc: '3D-Studio', category: '🎨 Kreativität' },
-            { id: 'presentation', name: 'Presentation', emoji: '📽️', desc: 'Präsentation', category: '🎨 Kreativität' },
-            { id: 'document-studio', name: 'Document Studio', emoji: '📄', desc: 'Dokumentstudio', category: '🎨 Kreativität' },
-            { id: 'ai-creative', name: 'AI Creative Studio', emoji: '✨', desc: 'KI-Kreativstudio', category: '🎨 Kreativität' },
-            // 🧮 Q — Wissenschaft & Mathematik (11 Apps)
-            { id: 'calculator', name: 'Calculator', emoji: '🧮', desc: 'Taschenrechner', category: '🧮 Wissenschaft' },
-            { id: 'scientific-calc', name: 'Scientific Calculator', emoji: '🔢', desc: 'Wissenschaftlicher Rechner', category: '🧮 Wissenschaft' },
-            { id: 'math-solver', name: 'Math Solver', emoji: '📐', desc: 'Mathe-Löser', category: '🧮 Wissenschaft' },
-            { id: 'geometry', name: 'Geometry', emoji: '📐', desc: 'Geometrie', category: '🧮 Wissenschaft' },
-            { id: 'algebra', name: 'Algebra', emoji: '🔢', desc: 'Algebra', category: '🧮 Wissenschaft' },
-            { id: 'statistics', name: 'Statistics', emoji: '📊', desc: 'Statistik', category: '🧮 Wissenschaft' },
-            { id: 'physics-lab', name: 'Physics Lab', emoji: '⚡', desc: 'Physik-Labor', category: '🧮 Wissenschaft' },
-            { id: 'chemistry-lab', name: 'Chemistry Lab', emoji: '🧪', desc: 'Chemie-Labor', category: '🧮 Wissenschaft' },
-            { id: 'biology-lab', name: 'Biology Lab', emoji: '🧬', desc: 'Biologie-Labor', category: '🧮 Wissenschaft' },
-            { id: 'science-lab', name: 'Science Lab', emoji: '🔬', desc: 'Wissenschaftslabor', category: '🧮 Wissenschaft' },
-            { id: 'ai-science-tutor', name: 'AI Science Tutor', emoji: '🧑‍🏫', desc: 'KI-Wissenschaftstutor', category: '🧮 Wissenschaft' },
-            // 🛡️ R — Sicherheit (10 Apps)
-            { id: 'security-center', name: 'Security Center', emoji: '🛡️', desc: 'Sicherheitszentrale', category: '🛡️ Sicherheit' },
-            { id: 'privacy', name: 'Privacy', emoji: '🔐', desc: 'Datenschutz', category: '🛡️ Sicherheit' },
-            { id: 'permissions', name: 'Permissions', emoji: '🔑', desc: 'Berechtigungen', category: '🛡️ Sicherheit' },
-            { id: 'password-manager', name: 'Password Manager', emoji: '🔐', desc: 'Passwort-Manager', category: '🛡️ Sicherheit' },
-            { id: 'authentication', name: 'Authentication', emoji: '🛡️', desc: 'Authentifizierung', category: '🛡️ Sicherheit' },
-            { id: 'device-security', name: 'Device Security', emoji: '📱', desc: 'Gerätesicherheit', category: '🛡️ Sicherheit' },
-            { id: 'app-security', name: 'App Security', emoji: '📲', desc: 'App-Sicherheit', category: '🛡️ Sicherheit' },
-            { id: 'ai-security', name: 'AI Security', emoji: '🧠', desc: 'KI-Sicherheit', category: '🛡️ Sicherheit' },
-            { id: 'backup-recovery', name: 'Backup & Recovery', emoji: '💾', desc: 'Backup & Recovery', category: '🛡️ Sicherheit' },
-            { id: 'system-diagnostics', name: 'System Diagnostics', emoji: '🔧', desc: 'System-Diagnose', category: '🛡️ Sicherheit' },
-            // ⚙️ S — System (20 Apps)
-            { id: 'settings', name: 'Settings', emoji: '⚙️', desc: 'Zentrale Einstellungen', category: '⚙️ System' },
-            { id: 'app-manager', name: 'App Manager', emoji: '📱', desc: 'Apps verwalten', category: '⚙️ System' },
-            { id: 'app-registry', name: 'App Registry', emoji: '📋', desc: 'App-Registrierung', category: '⚙️ System' },
-            { id: 'appstore', name: 'AppStore', emoji: '🛍️', desc: 'App-Store', category: '⚙️ System' },
-            { id: 'window-manager', name: 'Window Manager', emoji: '🪟', desc: 'Fenster verwalten', category: '⚙️ System' },
-            { id: 'display-manager', name: 'Display Manager', emoji: '🖥️', desc: 'Anzeigeverwaltung', category: '⚙️ System' },
-            { id: 'storage-manager', name: 'Storage Manager', emoji: '💾', desc: 'Speicherverwaltung', category: '⚙️ System' },
-            { id: 'file-manager', name: 'File Manager', emoji: '📁', desc: 'Dateiverwaltung', category: '⚙️ System' },
-            { id: 'network-manager', name: 'Network Manager', emoji: '🌐', desc: 'Netzwerkverwaltung', category: '⚙️ System' },
-            { id: 'bluetooth', name: 'Bluetooth', emoji: '📶', desc: 'Bluetooth-Verwaltung', category: '⚙️ System' },
-            { id: 'device-manager', name: 'Device Manager', emoji: '🔌', desc: 'Geräteverwaltung', category: '⚙️ System' },
-            { id: 'system-monitor', name: 'System Monitor', emoji: '📊', desc: 'Systemüberwachung', category: '⚙️ System' },
-            { id: 'task-manager', name: 'Task Manager', emoji: '⚡', desc: 'Aufgabenverwaltung', category: '⚙️ System' },
-            { id: 'update-center', name: 'Update Center', emoji: '🔄', desc: 'Update-Zentrale', category: '⚙️ System' },
-            { id: 'notification-center', name: 'Notification Center', emoji: '🔔', desc: 'Benachrichtigungen', category: '⚙️ System' },
-            { id: 'control-center', name: 'Control Center', emoji: '🎮', desc: 'Steuerzentrale', category: '⚙️ System' },
-            { id: 'terminal', name: 'Terminal', emoji: '⌨️', desc: 'Terminal', category: '⚙️ System' },
-            { id: 'developer-console', name: 'Developer Console', emoji: '💻', desc: 'Entwicklerkonsole', category: '⚙️ System' },
-            { id: 'logs', name: 'Logs', emoji: '📜', desc: 'System-Logs', category: '⚙️ System' },
-            { id: 'system-info', name: 'System Information', emoji: 'ℹ️', desc: 'Systeminformationen', category: '⚙️ System' },
-            // 🌐 T — Reisen & Transport (14 Apps)
-            { id: 'maps', name: 'Maps', emoji: '🗺️', desc: 'Karten', category: '🌐 Reisen' },
-            { id: 'navigation', name: 'Navigation', emoji: '🧭', desc: 'Navigation', category: '🌐 Reisen' },
-            { id: 'travel-planner', name: 'Travel Planner', emoji: '✈️', desc: 'Reiseplanung', category: '🌐 Reisen' },
-            { id: 'flights', name: 'Flights', emoji: '🛫', desc: 'Flüge', category: '🌐 Reisen' },
-            { id: 'hotels', name: 'Hotels', emoji: '🏨', desc: 'Hotels', category: '🌐 Reisen' },
-            { id: 'public-transport', name: 'Public Transport', emoji: '🚌', desc: 'ÖPNV', category: '🌐 Reisen' },
-            { id: 'train', name: 'Train', emoji: '🚆', desc: 'Bahn', category: '🌐 Reisen' },
-            { id: 'bus', name: 'Bus', emoji: '🚌', desc: 'Bus', category: '🌐 Reisen' },
-            { id: 'taxi', name: 'Taxi', emoji: '🚖', desc: 'Taxi', category: '🌐 Reisen' },
-            { id: 'car', name: 'Car', emoji: '🚗', desc: 'Auto', category: '🌐 Reisen' },
-            { id: 'parking', name: 'Parking', emoji: '🅿️', desc: 'Parken', category: '🌐 Reisen' },
-            { id: 'traffic', name: 'Traffic', emoji: '🚦', desc: 'Verkehr', category: '🌐 Reisen' },
-            { id: 'weather-travel', name: 'Weather Travel', emoji: '🌤️', desc: 'Reisewetter', category: '🌐 Reisen' },
-            { id: 'travel-ai', name: 'Travel AI', emoji: '🧠', desc: 'KI-Reiseassistent', category: '🌐 Reisen' },
-            // 🎓 U — Universität & Ausbildung (18 Apps)
-            { id: 'university', name: 'University', emoji: '🏛️', desc: 'Universität', category: '🎓 Universität' },
-            { id: 'uni-courses', name: 'University Courses', emoji: '📚', desc: 'Uni-Kurse', category: '🎓 Universität' },
-            { id: 'uni-library', name: 'University Library', emoji: '📖', desc: 'Uni-Bibliothek', category: '🎓 Universität' },
-            { id: 'lecture-planner', name: 'Lecture Planner', emoji: '📅', desc: 'Vorlesungsplanung', category: '🎓 Universität' },
-            { id: 'semester-planner', name: 'Semester Planner', emoji: '📋', desc: 'Semesterplanung', category: '🎓 Universität' },
-            { id: 'exam-management', name: 'Exam Management', emoji: '✅', desc: 'Prüfungsverwaltung', category: '🎓 Universität' },
-            { id: 'grades-uni', name: 'Grades', emoji: '📊', desc: 'Noten', category: '🎓 Universität' },
-            { id: 'student-dashboard', name: 'Student Dashboard', emoji: '👨‍🎓', desc: 'Studenten-Dashboard', category: '🎓 Universität' },
-            { id: 'professor-dashboard', name: 'Professor Dashboard', emoji: '👨‍🏫', desc: 'Dozenten-Dashboard', category: '🎓 Universität' },
-            { id: 'research-uni', name: 'Research', emoji: '🔬', desc: 'Forschung', category: '🎓 Universität' },
-            { id: 'thesis', name: 'Thesis', emoji: '📄', desc: 'Abschlussarbeit', category: '🎓 Universität' },
-            { id: 'bachelor', name: 'Bachelor', emoji: '🎓', desc: 'Bachelor', category: '🎓 Universität' },
-            { id: 'master', name: 'Master', emoji: '🎓', desc: 'Master', category: '🎓 Universität' },
-            { id: 'phd', name: 'PhD', emoji: '🎓', desc: 'Promotion', category: '🎓 Universität' },
-            { id: 'vocational-training', name: 'Vocational Training', emoji: '🔧', desc: 'Berufsausbildung', category: '🎓 Universität' },
-            { id: 'apprenticeship', name: 'Apprenticeship', emoji: '👷', desc: 'Ausbildung', category: '🎓 Universität' },
-            { id: 'training-center', name: 'Training Center', emoji: '🏫', desc: 'Trainingszentrum', category: '🎓 Universität' },
-            { id: 'certificate-manager', name: 'Certificate Manager', emoji: '📜', desc: 'Zertifikatsverwaltung', category: '🎓 Universität' },
-            // 🎙️ V — Voice (9 Apps)
-            { id: 'voice-assistant', name: 'Voice Assistant', emoji: '🎤', desc: 'Sprachassistent', category: '🎙️ Voice' },
-            { id: 'speech-to-text', name: 'Speech-to-Text', emoji: '🗣️', desc: 'Sprache zu Text', category: '🎙️ Voice' },
-            { id: 'text-to-speech', name: 'Text-to-Speech', emoji: '🔊', desc: 'Text zu Sprache', category: '🎙️ Voice' },
-            { id: 'voice-translator', name: 'Voice Translator', emoji: '🌍', desc: 'Sprachübersetzer', category: '🎙️ Voice' },
-            { id: 'voice-recorder-v', name: 'Voice Recorder', emoji: '🎙️', desc: 'Sprachaufnahme', category: '🎙️ Voice' },
-            { id: 'voice-settings', name: 'Voice Settings', emoji: '⚙️', desc: 'Voice-Einstellungen', category: '🎙️ Voice' },
-            { id: 'ai-voice', name: 'AI Voice', emoji: '🧠', desc: 'KI-Stimme', category: '🎙️ Voice' },
-            { id: 'living-ai-voice', name: 'Living AI Voice', emoji: '✨', desc: 'Lebendige KI-Stimme', category: '🎙️ Voice' },
-            { id: 'lip-sync', name: 'Lip-Sync Engine', emoji: '👄', desc: 'Lippensynchronisation', category: '🎙️ Voice' },
-            // 🪟 W — Windows (8 Apps)
-            { id: 'window-manager-w', name: 'Window Manager', emoji: '🪟', desc: 'Fensterverwaltung', category: '🪟 Windows' },
-            { id: 'multi-window', name: 'Multi-Window', emoji: '🪟', desc: 'Mehrere Fenster', category: '🪟 Windows' },
-            { id: 'split-view', name: 'Split View', emoji: '📐', desc: 'Geteilte Ansicht', category: '🪟 Windows' },
-            { id: 'floating-windows', name: 'Floating Windows', emoji: '🪟', desc: 'Schwebende Fenster', category: '🪟 Windows' },
-            { id: 'window-workspace', name: 'Window Workspace', emoji: '💻', desc: 'Fenster-Arbeitsbereich', category: '🪟 Windows' },
-            { id: 'desktop-spaces', name: 'Desktop Spaces', emoji: '🖥️', desc: 'Desktop-Bereiche', category: '🪟 Windows' },
-            { id: 'app-focus', name: 'App Focus', emoji: '🎯', desc: 'App-Fokus', category: '🪟 Windows' },
-            { id: 'window-history', name: 'Window History', emoji: '📜', desc: 'Fenster-Verlauf', category: '🪟 Windows' },
-            // 🌎 X — Explorer (7 Apps)
-            { id: 'file-explorer', name: 'File Explorer', emoji: '📁', desc: 'Dateien durchsuchen', category: '🌎 Explorer' },
-            { id: 'web-explorer', name: 'Web Explorer', emoji: '🌐', desc: 'Web durchsuchen', category: '🌎 Explorer' },
-            { id: 'knowledge-explorer', name: 'Knowledge Explorer', emoji: '📚', desc: 'Wissen durchsuchen', category: '🌎 Explorer' },
-            { id: 'space-explorer-x', name: 'Space Explorer', emoji: '🚀', desc: 'Weltraum durchsuchen', category: '🌎 Explorer' },
-            { id: 'earth-explorer', name: 'Earth Explorer', emoji: '🌍', desc: 'Erde durchsuchen', category: '🌎 Explorer' },
-            { id: 'science-explorer', name: 'Science Explorer', emoji: '🔬', desc: 'Wissenschaft durchsuchen', category: '🌎 Explorer' },
-            { id: 'culture-explorer', name: 'Culture Explorer', emoji: '🎭', desc: 'Kultur durchsuchen', category: '🌎 Explorer' },
-            // 🌟 Y — Dein Leben (12 Apps)
-            { id: 'my-life', name: 'My Life', emoji: '🌟', desc: 'Persönliches Leben', category: '🌟 Dein Leben' },
-            { id: 'my-profile', name: 'My Profile', emoji: '👤', desc: 'Mein Profil', category: '🌟 Dein Leben' },
-            { id: 'my-goals', name: 'My Goals', emoji: '🎯', desc: 'Meine Ziele', category: '🌟 Dein Leben' },
-            { id: 'my-health', name: 'My Health', emoji: '💚', desc: 'Meine Gesundheit', category: '🌟 Dein Leben' },
-            { id: 'my-education', name: 'My Education', emoji: '📚', desc: 'Meine Bildung', category: '🌟 Dein Leben' },
-            { id: 'my-work', name: 'My Work', emoji: '💼', desc: 'Meine Arbeit', category: '🌟 Dein Leben' },
-            { id: 'my-finance', name: 'My Finance', emoji: '💰', desc: 'Meine Finanzen', category: '🌟 Dein Leben' },
-            { id: 'my-family', name: 'My Family', emoji: '👨‍👩‍👧', desc: 'Meine Familie', category: '🌟 Dein Leben' },
-            { id: 'my-calendar', name: 'My Calendar', emoji: '📅', desc: 'Mein Kalender', category: '🌟 Dein Leben' },
-            { id: 'my-memory', name: 'My Memory', emoji: '🧠', desc: 'Meine Erinnerungen', category: '🌟 Dein Leben' },
-            { id: 'my-ai', name: 'My AI', emoji: '🧠', desc: 'Meine KI', category: '🌟 Dein Leben' },
-            { id: 'personal-dashboard', name: 'Personal Life Dashboard', emoji: '📊', desc: 'Persönliches Dashboard', category: '🌟 Dein Leben' },
-            // 🔧 Z — Entwicklung & Zukunft (15 Apps)
-            { id: 'code-editor', name: 'Code Editor', emoji: '💻', desc: 'Code-Editor', category: '🔧 Entwicklung' },
-            { id: 'project-manager', name: 'Project Manager', emoji: '📋', desc: 'Projektmanager', category: '🔧 Entwicklung' },
-            { id: 'developer-tools', name: 'Developer Tools', emoji: '🔧', desc: 'Entwickler-Tools', category: '🔧 Entwicklung' },
-            { id: 'api-manager', name: 'API Manager', emoji: '🔌', desc: 'API-Manager', category: '🔧 Entwicklung' },
-            { id: 'json-editor', name: 'JSON Editor', emoji: '📄', desc: 'JSON-Editor', category: '🔧 Entwicklung' },
-            { id: 'database-viewer', name: 'Database Viewer', emoji: '🗄️', desc: 'Datenbank-Viewer', category: '🔧 Entwicklung' },
-            { id: 'system-console', name: 'System Console', emoji: '⌨️', desc: 'System-Konsole', category: '🔧 Entwicklung' },
-            { id: 'ai-developer', name: 'AI Developer', emoji: '🧠', desc: 'KI-Entwickler', category: '🔧 Entwicklung' },
-            { id: 'app-builder', name: 'App Builder', emoji: '🏗️', desc: 'App-Builder', category: '🔧 Entwicklung' },
-            { id: 'ai-app-generator', name: 'AI App Generator', emoji: '✨', desc: 'KI-App-Generator', category: '🔧 Entwicklung' },
-            { id: 'plugin-manager', name: 'Plugin Manager', emoji: '🧩', desc: 'Plugin-Manager', category: '🔧 Entwicklung' },
-            { id: 'automation-builder', name: 'Automation Builder', emoji: '⚡', desc: 'Automation-Builder', category: '🔧 Entwicklung' },
-            { id: 'workflow-builder', name: 'Workflow Builder', emoji: '🔗', desc: 'Workflow-Builder', category: '🔧 Entwicklung' },
-            { id: 'future-lab', name: 'Future Lab', emoji: '🔮', desc: 'Zukunftslabor', category: '🔧 Entwicklung' },
-            { id: 'haldo-lab', name: 'HalDo OS Laboratory', emoji: '🧪', desc: 'HalDo-OS-Labor', category: '🔧 Entwicklung' }
-        ];
-
-        // ---- Registry füllen ----
-        registerApps(ALL_APPS);
-
-        // ---- App IDs ----
-        const APP_IDS = Object.keys(APP_REGISTRY);
-
-        // ============================================================
-        // SYSTEM-STATE
-        // ============================================================
-        let currentApp = 'desktop';
-        let appHistory = [];
-        let appInstances = {};
-        let settings = {
-            theme: 'dark',
-            language: 'de',
-            aiProvider: 'local',
-            voiceEnabled: true,
-            notifications: true,
-            privacy: true,
-            autoUpdate: true
+        const HalDo = {
+            state: 'BOOTING',
+            config: {
+                version: '3.0.0',
+                name: 'HalDo AI OS – Cosmic Edition',
+                bootSteps: [
+                    'Boot Detection', 'Environment Detection', 'Storage Check',
+                    'Security Check', 'Configuration Load', 'Kernel Start',
+                    'System Services', 'App Registry', 'App Manager',
+                    'App Runtime', 'Router', 'Window Manager',
+                    'Display Layer', 'Cosmic World', 'Desktop',
+                    'Notifications', 'Living HalDo AI'
+                ],
+                language: 'de',
+                apiKey: localStorage.getItem('haldo_api_key') || '',
+                theme: 'dark',
+            },
+            storage: {},
+            registry: {},
+            windows: [],
+            windowIdCounter: 0,
+            activeWindow: null,
+            events: {},
+            cosmic: null,
+            ai: null,
+            voice: null,
         };
 
-        // ---- DOM REFS ----
-        const sidebar = document.getElementById('sidebar');
-        const appViewContainer = document.getElementById('appViewContainer');
-        const taskbarApps = document.getElementById('taskbarApps');
-        const taskbarTime = document.getElementById('taskbarTime');
-        const statusAppCount = document.getElementById('statusAppCount');
-        const statusMemory = document.getElementById('statusMemory');
-        const statusAI = document.getElementById('statusAI');
+        // Event-System
+        HalDo.on = function(evt, fn) {
+            if (!this.events[evt]) this.events[evt] = [];
+            this.events[evt].push(fn);
+        };
+        HalDo.emit = function(evt, data) {
+            if (this.events[evt]) {
+                this.events[evt].forEach(fn => fn(data));
+            }
+        };
 
-        // ---- MODAL ----
-        const modal = document.getElementById('haldoModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalBody = document.getElementById('modalBody');
+        // ============================================================
+        // 2. STORAGE LAYER (IndexedDB + localStorage Fallback)
+        // ============================================================
+        HalDo.storage = {
+            async init() {
+                return new Promise((resolve) => {
+                    try {
+                        const req = indexedDB.open('HalDoOS', 1);
+                        req.onupgradeneeded = (e) => {
+                            const db = e.target.result;
+                            if (!db.objectStoreNames.contains('apps')) {
+                                db.createObjectStore('apps', { keyPath: 'id' });
+                            }
+                            if (!db.objectStoreNames.contains('settings')) {
+                                db.createObjectStore('settings', { keyPath: 'key' });
+                            }
+                            if (!db.objectStoreNames.contains('userData')) {
+                                db.createObjectStore('userData', { keyPath: 'key' });
+                            }
+                        };
+                        req.onsuccess = (e) => {
+                            this.db = e.target.result;
+                            resolve();
+                        };
+                        req.onerror = () => {
+                            // Fallback: localStorage
+                            this.db = null;
+                            resolve();
+                        };
+                    } catch (e) {
+                        this.db = null;
+                        resolve();
+                    }
+                });
+            },
+            async get(store, key) {
+                if (this.db) {
+                    return new Promise((resolve) => {
+                        const tx = this.db.transaction(store, 'readonly');
+                        const req = tx.objectStore(store).get(key);
+                        req.onsuccess = () => resolve(req.result);
+                        req.onerror = () => resolve(null);
+                    });
+                }
+                const data = localStorage.getItem(`haldo_${store}_${key}`);
+                return data ? JSON.parse(data) : null;
+            },
+            async set(store, key, value) {
+                if (this.db) {
+                    return new Promise((resolve) => {
+                        const tx = this.db.transaction(store, 'readwrite');
+                        const req = tx.objectStore(store).put({ ...value, key, id: key });
+                        req.onsuccess = () => resolve();
+                        req.onerror = () => resolve();
+                    });
+                }
+                localStorage.setItem(`haldo_${store}_${key}`, JSON.stringify(value));
+            },
+            async delete(store, key) {
+                if (this.db) {
+                    return new Promise((resolve) => {
+                        const tx = this.db.transaction(store, 'readwrite');
+                        const req = tx.objectStore(store).delete(key);
+                        req.onsuccess = () => resolve();
+                        req.onerror = () => resolve();
+                    });
+                }
+                localStorage.removeItem(`haldo_${store}_${key}`);
+            }
+        };
 
-        function openModal(title, bodyHTML) {
-            modalTitle.textContent = title;
-            modalBody.innerHTML = bodyHTML;
-            modal.classList.add('active');
-        }
+        // ============================================================
+        // 3. APP REGISTRY – Alle 26 Apps definiert
+        // ============================================================
+        const APP_DEFINITIONS = [
+            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Zentrale KI-Assistentin', color: '#4a9eff' },
+            { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Internet-Browser', color: '#4a9eff' },
+            { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'Organisation', desc: 'Terminkalender', color: '#f97316' },
+            { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumente verwalten', color: '#3b82f6' },
+            { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client', color: '#8b5cf6' },
+            { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager', color: '#f59e0b' },
+            { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'Medien', desc: 'Bildergalerie', color: '#ec4899' },
+            { id: 'health', name: 'Health', icon: '🏥', cat: 'Gesundheit', desc: 'Gesundheitsakte', color: '#10b981' },
+            { id: 'internet', name: 'Internet', icon: '📶', cat: 'Internet', desc: 'Internet-Status', color: '#06b6d4' },
+            { id: 'journal', name: 'Journal', icon: '📓', cat: 'Persönlich', desc: 'Tagebuch', color: '#8b5cf6' },
+            { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'System', desc: 'Tastatur & Sprache', color: '#6b7280' },
+            { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Lernplattform', color: '#22d3ee' },
+            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Musikstudio', color: '#ec4899' },
+            { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'Reisen', desc: 'Navigation & Verkehr', color: '#10b981' },
+            { id: 'office', name: 'Office', icon: '📊', cat: 'Büro', desc: 'Office-Suite', color: '#3b82f6' },
+            { id: 'photos', name: 'Photos & Camera', icon: '📸', cat: 'Medien', desc: 'Fotos & Kamera', color: '#f59e0b' },
+            { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'Werkzeuge', desc: 'Schnellwerkzeuge', color: '#6b7280' },
+            { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'Medien', desc: 'Audio-Recorder', color: '#ef4444' },
+            { id: 'security', name: 'Security', icon: '🔒', cat: 'Sicherheit', desc: 'Sicherheitscenter', color: '#f97316' },
+            { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'Organisation', desc: 'Aufgabenliste', color: '#22c55e' },
+            { id: 'updates', name: 'Updates', icon: '🔄', cat: 'System', desc: 'Update-Manager', color: '#3b82f6' },
+            { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'Medien', desc: 'Video-Editor', color: '#a855f7' },
+            { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'Information', desc: 'Wetter & Umwelt', color: '#06b6d4' },
+            { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'System', desc: 'Anpassung', color: '#ec4899' },
+            { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'Persönlich', desc: 'Lebenszentrale', color: '#f59e0b' },
+            { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'System', desc: 'Systemsteuerung', color: '#6b7280' },
+        ];
 
-        function closeModal() {
-            modal.classList.remove('active');
-        }
-        window.closeModal = closeModal;
+        // Registry initialisieren
+        HalDo.registry = {};
+        APP_DEFINITIONS.forEach(app => {
+            HalDo.registry[app.id] = {
+                ...app,
+                version: '1.0.0',
+                entry: 'app_' + app.id,
+                permissions: ['storage'],
+                routes: ['/' + app.id],
+                settings: {},
+                storageNamespace: 'app_' + app.id,
+                aiSupport: true,
+                voiceSupport: true,
+                languageSupport: true,
+                fileSupport: true,
+                backupSupport: true,
+                recoverySupport: true,
+                installed: true,
+                running: false,
+                windowId: null,
+            };
+        });
 
-        // ---- UHR ----
-        function updateClock() {
-            const now = new Date();
-            taskbarTime.textContent = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
+        // ============================================================
+        // 4. APP MANAGER – Lebenszyklus
+        // ============================================================
+        HalDo.appManager = {
+            start(appId) {
+                const app = HalDo.registry[appId];
+                if (!app) return false;
+                if (app.running) return true;
+                app.running = true;
+                HalDo.emit('app-started', appId);
+                return true;
+            },
+            stop(appId) {
+                const app = HalDo.registry[appId];
+                if (!app) return false;
+                if (!app.running) return true;
+                app.running = false;
+                if (app.windowId) {
+                    HalDo.windowManager.close(app.windowId);
+                    app.windowId = null;
+                }
+                HalDo.emit('app-stopped', appId);
+                return true;
+            },
+            toggle(appId) {
+                const app = HalDo.registry[appId];
+                if (app && app.running) {
+                    this.stop(appId);
+                } else {
+                    this.start(appId);
+                    HalDo.router.navigate('/' + appId);
+                }
+            },
+            getStatus(appId) {
+                const app = HalDo.registry[appId];
+                return app ? (app.running ? 'running' : 'stopped') : 'unknown';
+            }
+        };
 
-        // ---- RENDER DESKTOP ----
-        function renderDesktop() {
-            const desktopApps = [
-                { id: 'haldo-ai', name: 'HalDo AI', emoji: '🧠' },
-                { id: 'sonnensystem', name: 'Sonnensystem', emoji: '🪐' },
-                { id: 'cosmic-world', name: 'Cosmic World', emoji: '🌌' },
-                { id: 'settings', name: 'Einstellungen', emoji: '⚙️' },
-                { id: 'file-manager', name: 'Dateien', emoji: '📁' },
-                { id: 'calendar', name: 'Kalender', emoji: '📅' },
-                { id: 'music', name: 'Music', emoji: '🎵' },
-                { id: 'video', name: 'Video', emoji: '🎬' },
-                { id: 'gallery', name: 'Galerie', emoji: '🖼️' },
-                { id: 'gesundheit', name: 'Gesundheit', emoji: '💚' },
-                { id: 'tasks', name: 'Aufgaben', emoji: '✅' },
-                { id: 'notes', name: 'Notizen', emoji: '📝' },
-                { id: 'browser', name: 'Browser', emoji: '🌐' },
-                { id: 'weather', name: 'Wetter', emoji: '🌤️' },
-                { id: 'calculator', name: 'Rechner', emoji: '🧮' },
-                { id: 'maps', name: 'Karten', emoji: '🗺️' },
-                { id: 'system-info', name: 'System', emoji: 'ℹ️' }
-            ];
+        // ============================================================
+        // 5. APP ROUTER
+        // ============================================================
+        HalDo.router = {
+            current: null,
+            navigate(path) {
+                const appId = path.replace('/', '');
+                if (!appId || !HalDo.registry[appId]) {
+                    this.showHome();
+                    return;
+                }
+                this.current = appId;
+                const app = HalDo.registry[appId];
+                HalDo.appManager.start(appId);
+                // Fenster erstellen oder fokussieren
+                if (app.windowId) {
+                    HalDo.windowManager.focus(app.windowId);
+                } else {
+                    const win = HalDo.windowManager.create(appId);
+                    app.windowId = win.id;
+                }
+                HalDo.emit('navigate', appId);
+                this.updateTaskbar();
+            },
+            showHome() {
+                this.current = null;
+                HalDo.emit('navigate', 'home');
+                this.updateTaskbar();
+            },
+            updateTaskbar() {
+                const container = document.getElementById('taskbar-apps');
+                container.innerHTML = '';
+                const running = Object.values(HalDo.registry).filter(a => a.running);
+                running.forEach(app => {
+                    const btn = document.createElement('button');
+                    btn.dataset.app = app.id;
+                    btn.dataset.icon = app.icon;
+                    btn.innerHTML = `${app.icon} <span>${app.name}</span>`;
+                    if (app.id === HalDo.router.current) btn.classList.add('active');
+                    btn.onclick = () => {
+                        if (app.windowId) {
+                            HalDo.windowManager.focus(app.windowId);
+                        } else {
+                            HalDo.router.navigate('/' + app.id);
+                        }
+                    };
+                    container.appendChild(btn);
+                });
+            }
+        };
 
-            let html = `<div class="desktop-grid">`;
-            desktopApps.forEach(app => {
-                const appData = APP_REGISTRY[app.id] || app;
-                html += `
-                    <div class="desktop-icon" onclick="switchApp('${app.id}')">
-                        <span class="emoji">${appData.emoji}</span>
-                        <span class="name">${appData.name}</span>
-                    </div>
+        // ============================================================
+        // 6. WINDOW MANAGER
+        // ============================================================
+        HalDo.windowManager = {
+            windows: {},
+            zIndex: 100,
+            create(appId) {
+                const app = HalDo.registry[appId];
+                if (!app) return null;
+                const id = ++HalDo.windowIdCounter;
+                const win = {
+                    id,
+                    appId,
+                    element: null,
+                    minimized: false,
+                    maximized: false,
+                    x: 80 + (id * 20) % 300,
+                    y: 60 + (id * 15) % 200,
+                    width: Math.min(600, window.innerWidth - 80),
+                    height: Math.min(450, window.innerHeight - 120),
+                };
+                this.windows[id] = win;
+                this.render(win);
+                this.focus(id);
+                app.windowId = id;
+                HalDo.router.updateTaskbar();
+                return win;
+            },
+            render(win) {
+                const app = HalDo.registry[win.appId];
+                const container = document.getElementById('window-manager');
+
+                // Altes Fenster entfernen
+                if (win.element) {
+                    win.element.remove();
+                }
+
+                const el = document.createElement('div');
+                el.className = 'os-window';
+                el.dataset.winId = win.id;
+                el.style.left = win.x + 'px';
+                el.style.top = win.y + 'px';
+                el.style.width = win.width + 'px';
+                el.style.height = win.height + 'px';
+                el.style.zIndex = win.zIndex || 10;
+
+                el.innerHTML = `
+              <div class="win-header">
+                <div class="win-title">
+                  <span class="icon">${app.icon}</span>
+                  ${app.name}
+                </div>
+                <div class="win-controls">
+                  <button class="min-btn" title="Minimieren">─</button>
+                  <button class="max-btn" title="Maximieren">□</button>
+                  <button class="close-btn" title="Schließen">✕</button>
+                </div>
+              </div>
+              <div class="win-body">
+                <div class="app-content" id="app-content-${win.id}">
+                  ${this.getAppContent(win.appId)}
+                </div>
+              </div>
+            `;
+
+                container.appendChild(el);
+                win.element = el;
+
+                // Event-Listener für Fenster-Steuerung
+                const header = el.querySelector('.win-header');
+                const closeBtn = el.querySelector('.close-btn');
+                const minBtn = el.querySelector('.min-btn');
+                const maxBtn = el.querySelector('.max-btn');
+
+                closeBtn.onclick = () => this.close(win.id);
+                minBtn.onclick = () => this.minimize(win.id);
+                maxBtn.onclick = () => this.maximize(win.id);
+
+                // Drag (nur über Header)
+                let isDragging = false,
+                    dragOffX, dragOffY;
+                header.addEventListener('mousedown', (e) => {
+                    if (e.target.closest('.win-controls')) return;
+                    if (win.maximized) return;
+                    isDragging = true;
+                    const rect = el.getBoundingClientRect();
+                    dragOffX = e.clientX - rect.left;
+                    dragOffY = e.clientY - rect.top;
+                    el.style.cursor = 'grabbing';
+                    this.focus(win.id);
+                });
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    let nx = e.clientX - dragOffX;
+                    let ny = e.clientY - dragOffY;
+                    nx = Math.max(0, Math.min(window.innerWidth - 50, nx));
+                    ny = Math.max(0, Math.min(window.innerHeight - 80, ny));
+                    el.style.left = nx + 'px';
+                    el.style.top = ny + 'px';
+                    win.x = nx;
+                    win.y = ny;
+                });
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        el.style.cursor = '';
+                    }
+                });
+
+                // Fokus klick
+                el.addEventListener('mousedown', () => this.focus(win.id));
+
+                // App-spezifische Logik initialisieren
+                this.initAppContent(win.appId, win.id);
+
+                return el;
+            },
+            getAppContent(appId) {
+                // Hier werden die App-Inhalte generiert
+                switch (appId) {
+                    case 'ai':
+                        return `
+                  <div class="ai-chat-messages" id="ai-chat-${Date.now()}">
+                    <div class="msg ai">👋 Hallo! Ich bin <strong>HalDo AI</strong>. Wie kann ich dir helfen?<br><span class="think">Klicke auf die Sonne oder schreibe mir!</span></div>
+                  </div>
+                  <div class="ai-chat-input-wrap">
+                    <input type="text" placeholder="Nachricht an HalDo ..." id="ai-input-${Date.now()}">
+                    <button class="mic-btn" id="ai-mic-${Date.now()}" title="Spracheingabe">🎤</button>
+                    <button id="ai-send-${Date.now()}">Senden</button>
+                  </div>
                 `;
-            });
-            html += `</div>`;
-
-            // Cosmic World Vorschau
-            html += `
-                <div style="margin-top:16px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-color);">
-                    <div class="cosmic-container" id="cosmicPreview">
-                        <canvas id="cosmicCanvas"></canvas>
-                        <div class="cosmic-overlay">🌌 HalDo Cosmos · Klicke für mehr</div>
+                    case 'music':
+                        return `
+                  <div style="display:flex;flex-direction:column;gap:12px;height:100%;">
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                      <button>▶ Play</button>
+                      <button>⏸ Pause</button>
+                      <button>⏭ Next</button>
+                      <button>⏮ Prev</button>
+                      <button>🔊 EQ</button>
                     </div>
-                </div>
-            `;
-
-            appViewContainer.innerHTML = `
-                <div class="app-view active" id="app-desktop">
-                    <div class="app-header">
-                        <div class="title"><span class="emoji">🖥️</span>Desktop</div>
-                        <div class="actions">
-                            <button onclick="switchApp('settings')">⚙️</button>
-                            <button onclick="switchApp('system-info')">ℹ️</button>
-                        </div>
+                    <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:16px;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+                      <div style="font-size:48px;margin-bottom:8px;">🎵</div>
+                      <div style="font-weight:600;">Kein Song ausgewählt</div>
+                      <div style="color:rgba(255,255,255,0.4);font-size:13px;">AI-generierte Lyrics & Struktur verfügbar</div>
                     </div>
-                    <div class="app-content">${html}</div>
-                </div>
-            `;
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,0.5);">
+                      <span>🎸 BPM: 120</span>
+                      <span>🎤 Genre: Pop</span>
+                      <span>🎹 Mood: Happy</span>
+                    </div>
+                  </div>
+                `;
+                    case 'video':
+                        return `
+                  <div style="display:flex;flex-direction:column;gap:10px;height:100%;">
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                      <button>🎬 Neu</button>
+                      <button>📽️ Timeline</button>
+                      <button>✂️ Schnitt</button>
+                      <button>🎨 Effekte</button>
+                      <button>🤖 AI Script</button>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.03);border-radius:12px;flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
+                      <div style="font-size:36px;">🎞️</div>
+                      <div style="color:rgba(255,255,255,0.3);">Text → Video • Bild → Video • Musik → Video</div>
+                    </div>
+                  </div>
+                `;
+                    case 'health':
+                        return `
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">🏥 Krankheiten A–Z</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">💊 Medikamente</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">💉 Impfungen</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">📋 Befunde</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">👨‍⚕️ Arzttermine</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">🧪 Labor</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;grid-column:span 2;">⚠️ Keine Diagnose – nur Information & Organisation</div>
+                  </div>
+                `;
+                    case 'navigation':
+                        return `
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      <button>🚗 Auto</button>
+                      <button>🚲 Fahrrad</button>
+                      <button>🚶 Fuß</button>
+                      <button>🚌 ÖPNV</button>
+                      <button>🚄 Bahn</button>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;min-height:80px;display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:rgba(255,255,255,0.4);">🗺️ Route: Zuhause → Arbeit</div>
+                      <div style="font-size:13px;color:rgba(255,255,255,0.5);">🟢 Stau: 5 min • 🚧 Baustellen: 1</div>
+                      <div style="font-size:13px;color:rgba(255,255,255,0.5);">⛽ Tankstelle: 2km • 🔌 Ladestation: 3km</div>
+                    </div>
+                  </div>
+                `;
+                    case 'weather':
+                        return `
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div style="display:flex;align-items:center;gap:12px;">
+                      <span style="font-size:48px;">🌤️</span>
+                      <div><strong>22°C</strong><br><span style="color:rgba(255,255,255,0.5);">Berlin, Deutschland</span></div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:12px;color:rgba(255,255,255,0.6);">
+                      <div>🌧️ 40%</div>
+                      <div>💨 12 km/h</div>
+                      <div>☀️ UV 3</div>
+                      <div>🌿 Pollen: mittel</div>
+                    </div>
+                    <div style="font-size:13px;color:rgba(255,255,255,0.4);">⚠️ Unwetterwarnung: Starkregen ab 20 Uhr</div>
+                  </div>
+                `;
+                    case 'updates':
+                        return `
+                  <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div style="display:flex;gap:10px;align-items:center;">
+                      <span style="font-size:24px;">🔄</span>
+                      <div><strong>HalDo OS v3.0.0</strong><br><span style="color:rgba(255,255,255,0.4);font-size:13px;">Alle Apps aktuell</span></div>
+                      <button style="margin-left:auto;">Nach Updates suchen</button>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.5);">
+                      Letzter Check: vor 2 Stunden • Sicherheitsupdates: aktiv
+                    </div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;">
+                      <span style="background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:12px;">📦 Backup bereit</span>
+                      <span style="background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:12px;">↩️ Rollback möglich</span>
+                    </div>
+                  </div>
+                `;
+                    case 'systemcenter':
+                        return `
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">📊 Apps: ${Object.keys(HalDo.registry).length} installiert</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">💾 Speicher: 127 MB frei</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">🔒 Sicherheit: aktiv</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;">🌐 Netzwerk: verbunden</div>
+                    <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;grid-column:span 2;">
+                      ⚙️ Systemzustand: <span style="color:#4a9eff;">READY</span>
+                    </div>
+                  </div>
+                `;
+                    default:
+                        return `
+                  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:rgba(255,255,255,0.3);">
+                    <div style="font-size:48px;">${HalDo.registry[appId]?.icon || '📦'}</div>
+                    <div>${HalDo.registry[appId]?.name || appId}</div>
+                    <div style="font-size:13px;">${HalDo.registry[appId]?.desc || 'App wird geladen ...'}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,0.2);">Version ${HalDo.registry[appId]?.version || '1.0.0'}</div>
+                  </div>
+                `;
+                }
+            },
+            initAppContent(appId, winId) {
+                // Spezielle App-Initialisierungen
+                if (appId === 'ai') {
+                    setTimeout(() => {
+                        const input = document.querySelector(`#app-content-${winId} input`);
+                        const sendBtn = document.querySelector(`#app-content-${winId} #ai-send-${winId}`);
+                        const micBtn = document.querySelector(`#app-content-${winId} #ai-mic-${winId}`);
+                        const chat = document.querySelector(`#app-content-${winId} .ai-chat-messages`);
 
-            // Cosmic Canvas
-            setTimeout(() => initCosmicCanvas(), 100);
-        }
+                        const sendMessage = () => {
+                            if (!input || !input.value.trim()) return;
+                            const text = input.value.trim();
+                            input.value = '';
+                            // User-Nachricht
+                            const userMsg = document.createElement('div');
+                            userMsg.className = 'msg user';
+                            userMsg.textContent = text;
+                            chat.appendChild(userMsg);
+                            chat.scrollTop = chat.scrollHeight;
 
-        // ---- COSMIC CANVAS (Sonnensystem) ----
-        function initCosmicCanvas() {
-            const canvas = document.getElementById('cosmicCanvas');
-            if (!canvas) return;
-            const container = canvas.parentElement;
-            const rect = container.getBoundingClientRect();
-            canvas.width = rect.width || 400;
-            canvas.height = rect.height || 200;
-            const ctx = canvas.getContext('2d');
+                            // AI-Antwort simulieren
+                            setTimeout(() => {
+                                const aiMsg = document.createElement('div');
+                                aiMsg.className = 'msg ai';
+                                const responses = [
+                                    '🤖 Interessant! Erzähl mir mehr.',
+                                    '🌌 Das klingt nach einem großen Plan!',
+                                    '💡 Ich habe eine Idee dazu.',
+                                    '✨ HalDo AI ist immer für dich da.',
+                                    '🚀 Wie kann ich dich sonst unterstützen?',
+                                    '🎯 Das notiere ich mir für dein Projekt.',
+                                    '🌟 Du machst das großartig!',
+                                    '💬 Soll ich tiefer darauf eingehen?'
+                                ];
+                                aiMsg.innerHTML = responses[Math.floor(Math.random() * responses.length)] +
+                                    '<br><span class="think">💭 HalDo AI denkt mit ...</span>';
+                                chat.appendChild(aiMsg);
+                                chat.scrollTop = chat.scrollHeight;
+                                // Sprachausgabe
+                                if (HalDo.voice) {
+                                    HalDo.voice.speak(aiMsg.textContent.replace(/<[^>]*>/g, ''));
+                                }
+                            }, 400 + Math.random() * 600);
+                        };
 
-            const planets = [
-                { x: 0.1, y: 0.3, r: 12, color: '#f6d365', name: 'Sonne' },
-                { x: 0.22, y: 0.45, r: 6, color: '#b0b0b0', name: 'Merkur' },
-                { x: 0.32, y: 0.35, r: 8, color: '#fda085', name: 'Venus' },
-                { x: 0.45, y: 0.5, r: 10, color: '#4facfe', name: 'Erde' },
-                { x: 0.55, y: 0.3, r: 7, color: '#ff6b6b', name: 'Mars' },
-                { x: 0.7, y: 0.4, r: 16, color: '#f093fb', name: 'Jupiter' },
-                { x: 0.82, y: 0.55, r: 14, color: '#f6d365', name: 'Saturn' },
-                { x: 0.9, y: 0.25, r: 10, color: '#a8c0ff', name: 'Uranus' },
-                { x: 0.95, y: 0.6, r: 9, color: '#4a8cff', name: 'Neptun' }
-            ];
+                        if (sendBtn) sendBtn.onclick = sendMessage;
+                        if (input) input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') sendMessage();
+                        });
 
-            let angle = 0;
+                        // Mikrofon
+                        if (micBtn && 'webkitSpeechRecognition' in window) {
+                            const recognition = new webkitSpeechRecognition();
+                            recognition.lang = 'de-DE';
+                            recognition.continuous = false;
+                            recognition.interimResults = false;
+                            micBtn.onclick = () => {
+                                recognition.start();
+                                micBtn.classList.toggle('recording');
+                            };
+                            recognition.onresult = (e) => {
+                                const text = e.results[0][0].transcript;
+                                if (input) input.value = text;
+                                micBtn.classList.remove('recording');
+                                setTimeout(sendMessage, 300);
+                            };
+                            recognition.onerror = () => micBtn.classList.remove('recording');
+                        } else if (micBtn) {
+                            micBtn.style.opacity = '0.3';
+                            micBtn.title = 'Spracherkennung nicht verfügbar';
+                        }
+                    }, 100);
+                }
+            },
+            focus(id) {
+                const win = this.windows[id];
+                if (!win) return;
+                this.zIndex += 10;
+                win.zIndex = this.zIndex;
+                if (win.element) {
+                    win.element.style.zIndex = this.zIndex;
+                }
+                this.activeWindow = id;
+                HalDo.router.current = win.appId;
+                HalDo.router.updateTaskbar();
+                // Alle Fenster in den Hintergrund
+                Object.values(this.windows).forEach(w => {
+                    if (w.element && w.id !== id) {
+                        w.element.style.opacity = '0.7';
+                    }
+                });
+                if (win.element) {
+                    win.element.style.opacity = '1';
+                }
+            },
+            close(id) {
+                const win = this.windows[id];
+                if (!win) return;
+                const app = HalDo.registry[win.appId];
+                if (app) {
+                    app.running = false;
+                    app.windowId = null;
+                }
+                if (win.element) win.element.remove();
+                delete this.windows[id];
+                HalDo.router.updateTaskbar();
+                if (this.activeWindow === id) {
+                    const keys = Object.keys(this.windows);
+                    if (keys.length > 0) {
+                        this.focus(parseInt(keys[keys.length - 1]));
+                    } else {
+                        this.activeWindow = null;
+                        HalDo.router.current = null;
+                        HalDo.router.updateTaskbar();
+                    }
+                }
+            },
+            minimize(id) {
+                const win = this.windows[id];
+                if (!win) return;
+                win.minimized = !win.minimized;
+                if (win.element) {
+                    win.element.classList.toggle('minimized');
+                }
+                if (win.minimized) {
+                    // Fokus auf nächstes Fenster
+                    const keys = Object.keys(this.windows).filter(k => k != id && !this.windows[k].minimized);
+                    if (keys.length > 0) this.focus(parseInt(keys[0]));
+                } else {
+                    this.focus(id);
+                }
+            },
+            maximize(id) {
+                const win = this.windows[id];
+                if (!win) return;
+                win.maximized = !win.maximized;
+                if (win.element) {
+                    win.element.classList.toggle('maximized');
+                }
+                if (!win.maximized) {
+                    // Zurück zur vorherigen Größe
+                    win.element.style.width = win.width + 'px';
+                    win.element.style.height = win.height + 'px';
+                    win.element.style.left = win.x + 'px';
+                    win.element.style.top = win.y + 'px';
+                }
+                this.focus(id);
+            }
+        };
 
-            function drawCosmic() {
-                const w = canvas.width;
-                const h = canvas.height;
-                ctx.clearRect(0, 0, w, h);
+        // ============================================================
+        // 7. COSMIC WORLD – Sonnensystem mit 12 Planeten + 365 Sternen
+        // ============================================================
+        HalDo.cosmic = {
+            canvas: null,
+            ctx: null,
+            planets: [],
+            stars: [],
+            sun: null,
+            mouseX: 0,
+            mouseY: 0,
+            zoom: 1,
+            offsetX: 0,
+            offsetY: 0,
+            isDragging: false,
+            dragStartX: 0,
+            dragStartY: 0,
+            startOffX: 0,
+            startOffY: 0,
+            time: 0,
+            animationId: null,
+
+            init() {
+                this.canvas = document.getElementById('cosmic-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+
+                // Maus-Interaktion
+                this.canvas.addEventListener('mousedown', (e) => {
+                    this.isDragging = true;
+                    this.dragStartX = e.clientX;
+                    this.dragStartY = e.clientY;
+                    this.startOffX = this.offsetX;
+                    this.startOffY = this.offsetY;
+                    this.canvas.style.cursor = 'grabbing';
+                });
+                document.addEventListener('mousemove', (e) => {
+                    if (this.isDragging) {
+                        const dx = e.clientX - this.dragStartX;
+                        const dy = e.clientY - this.dragStartY;
+                        this.offsetX = this.startOffX + dx;
+                        this.offsetY = this.startOffY + dy;
+                    }
+                    this.mouseX = e.clientX;
+                    this.mouseY = e.clientY;
+                });
+                document.addEventListener('mouseup', () => {
+                    this.isDragging = false;
+                    this.canvas.style.cursor = 'grab';
+                });
+                this.canvas.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    const delta = e.deltaY > 0 ? -0.1 : 0.1;
+                    this.zoom = Math.max(0.3, Math.min(3, this.zoom + delta));
+                });
+
+                // Touch-Unterstützung
+                let lastTouchDist = 0;
+                this.canvas.addEventListener('touchstart', (e) => {
+                    if (e.touches.length === 1) {
+                        this.isDragging = true;
+                        this.dragStartX = e.touches[0].clientX;
+                        this.dragStartY = e.touches[0].clientY;
+                        this.startOffX = this.offsetX;
+                        this.startOffY = this.offsetY;
+                    } else if (e.touches.length === 2) {
+                        const dx = e.touches[0].clientX - e.touches[1].clientX;
+                        const dy = e.touches[0].clientY - e.touches[1].clientY;
+                        lastTouchDist = Math.sqrt(dx * dx + dy * dy);
+                    }
+                });
+                this.canvas.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    if (e.touches.length === 1 && this.isDragging) {
+                        const dx = e.touches[0].clientX - this.dragStartX;
+                        const dy = e.touches[0].clientY - this.dragStartY;
+                        this.offsetX = this.startOffX + dx;
+                        this.offsetY = this.startOffY + dy;
+                    } else if (e.touches.length === 2) {
+                        const dx = e.touches[0].clientX - e.touches[1].clientX;
+                        const dy = e.touches[0].clientY - e.touches[1].clientY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (lastTouchDist > 0) {
+                            const delta = (dist - lastTouchDist) * 0.01;
+                            this.zoom = Math.max(0.3, Math.min(3, this.zoom + delta));
+                        }
+                        lastTouchDist = dist;
+                    }
+                });
+                this.canvas.addEventListener('touchend', () => {
+                    this.isDragging = false;
+                    lastTouchDist = 0;
+                });
+
+                // Planeten definieren (12 Planeten)
+                const planetData = [
+                    { name: 'Merkur', radius: 6, orbit: 60, speed: 0.8, color: '#b5b5b5' },
+                    { name: 'Venus', radius: 10, orbit: 90, speed: 0.6, color: '#e8b85a' },
+                    { name: 'Erde', radius: 12, orbit: 120, speed: 0.5, color: '#4a9eff', hasMoon: true },
+                    { name: 'Mars', radius: 9, orbit: 150, speed: 0.4, color: '#e07040' },
+                    { name: 'Jupiter', radius: 22, orbit: 190, speed: 0.25, color: '#d4a06a' },
+                    { name: 'Saturn', radius: 19, orbit: 230, speed: 0.2, color: '#e8d5a0', hasRings: true },
+                    { name: 'Uranus', radius: 16, orbit: 270, speed: 0.15, color: '#7ec8e3' },
+                    { name: 'Neptun', radius: 15, orbit: 310, speed: 0.1, color: '#3f54ba' },
+                    { name: 'Pluto', radius: 4, orbit: 350, speed: 0.07, color: '#b8a08a' },
+                    { name: 'Ceres', radius: 5, orbit: 390, speed: 0.05, color: '#a0a0a0' },
+                    { name: 'Eris', radius: 7, orbit: 420, speed: 0.03, color: '#c0b8b0' },
+                    { name: 'Haumea', radius: 6, orbit: 450, speed: 0.02, color: '#b0a898' },
+                ];
+
+                this.planets = planetData.map((p, i) => ({
+                    ...p,
+                    angle: Math.random() * Math.PI * 2,
+                    angleSpeed: p.speed * 0.02,
+                    rotAngle: 0,
+                    rotSpeed: (0.01 + Math.random() * 0.03) * (Math.random() > 0.5 ? 1 : -1),
+                }));
+
+                // Sonne
+                this.sun = {
+                    x: 0,
+                    y: 0,
+                    radius: 35,
+                    pulse: 0,
+                };
+
+                // 365 Sterne
+                this.stars = [];
+                for (let i = 0; i < 365; i++) {
+                    this.stars.push({
+                        x: (Math.random() - 0.5) * 2000,
+                        y: (Math.random() - 0.5) * 2000,
+                        radius: 0.4 + Math.random() * 1.5,
+                        brightness: 0.3 + Math.random() * 0.7,
+                        twinkleSpeed: 0.005 + Math.random() * 0.02,
+                        twinkleOffset: Math.random() * Math.PI * 2,
+                    });
+                }
+
+                this.start();
+            },
+
+            resize() {
+                const rect = this.canvas.parentElement.getBoundingClientRect();
+                this.canvas.width = rect.width;
+                this.canvas.height = rect.height;
+                this.width = this.canvas.width;
+                this.height = this.canvas.height;
+                // Zentrum für Sonne (mit Zoom/Offset)
+                this.centerX = this.width / 2;
+                this.centerY = this.height / 2;
+            },
+
+            start() {
+                if (this.animationId) cancelAnimationFrame(this.animationId);
+                this.loop();
+            },
+
+            loop() {
+                this.time += 0.01;
+                this.update();
+                this.draw();
+                this.animationId = requestAnimationFrame(() => this.loop());
+            },
+
+            update() {
+                // Planeten position aktualisieren
+                this.planets.forEach(p => {
+                    p.angle += p.angleSpeed;
+                    p.rotAngle += p.rotSpeed;
+                });
+                // Sonnenpuls
+                this.sun.pulse += 0.02;
+            },
+
+            draw() {
+                const ctx = this.ctx;
+                const w = this.width;
+                const h = this.height;
 
                 // Hintergrund
-                const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w*0.7);
-                grad.addColorStop(0, '#1a1a4a');
-                grad.addColorStop(1, '#0a0a12');
+                const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.8);
+                grad.addColorStop(0, '#0f1a2e');
+                grad.addColorStop(0.5, '#080b16');
+                grad.addColorStop(1, '#020408');
                 ctx.fillStyle = grad;
                 ctx.fillRect(0, 0, w, h);
 
-                // Sterne
-                for (let i = 0; i < 80; i++) {
-                    const x = (i * 137 + 50) % w;
-                    const y = (i * 97 + 30) % h;
-                    const size = 0.5 + (i % 3) * 0.5;
-                    const alpha = 0.1 + (i % 5) * 0.04;
-                    ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+                // Sterne (365)
+                this.stars.forEach(s => {
+                    const twinkle = 0.5 + 0.5 * Math.sin(this.time * s.twinkleSpeed + s.twinkleOffset);
+                    const alpha = s.brightness * twinkle * 0.8 + 0.2;
+                    const sx = (s.x * this.zoom) + this.centerX + this.offsetX;
+                    const sy = (s.y * this.zoom) + this.centerY + this.offsetY;
                     ctx.beginPath();
-                    ctx.arc(x, y, size, 0, Math.PI * 2);
+                    ctx.arc(sx, sy, s.radius * this.zoom * 0.8, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255,255,240,${alpha})`;
                     ctx.fill();
-                }
+                });
 
-                // Planeten
-                planets.forEach((p, i) => {
-                    const cx = w/2 + Math.cos(angle + i * 0.5) * (0.1 + i * 0.08) * w * 0.4;
-                    const cy = h/2 + Math.sin(angle + i * 0.7) * (0.1 + i * 0.08) * h * 0.4;
+                // Transformation für Planetensystem
+                ctx.save();
+                ctx.translate(this.centerX + this.offsetX, this.centerY + this.offsetY);
+                ctx.scale(this.zoom, this.zoom);
 
-                    // Glow
-                    const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, p.r * 3);
-                    glow.addColorStop(0, p.color + '40');
-                    glow.addColorStop(1, 'transparent');
-                    ctx.fillStyle = glow;
+                // Umlaufbahnen (elliptisch)
+                this.planets.forEach(p => {
                     ctx.beginPath();
-                    ctx.arc(cx, cy, p.r * 3, 0, Math.PI * 2);
-                    ctx.fill();
+                    ctx.ellipse(0, 0, p.orbit, p.orbit * 0.92, 0, 0, Math.PI * 2);
+                    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                });
+
+                // Planeten zeichnen
+                this.planets.forEach(p => {
+                    const px = Math.cos(p.angle) * p.orbit;
+                    const py = Math.sin(p.angle) * p.orbit * 0.92;
+
+                    // Schatten
+                    ctx.shadowColor = p.color + '40';
+                    ctx.shadowBlur = 20;
 
                     // Planet
-                    ctx.fillStyle = p.color;
-                    ctx.shadowColor = p.color;
-                    ctx.shadowBlur = 15;
                     ctx.beginPath();
-                    ctx.arc(cx, cy, p.r, 0, Math.PI * 2);
+                    ctx.arc(px, py, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
                     ctx.fill();
+
+                    // Saturnringe
+                    if (p.hasRings) {
+                        ctx.shadowBlur = 0;
+                        ctx.beginPath();
+                        ctx.ellipse(px, py, p.radius * 2.2, p.radius * 0.6, 0.3, 0, Math.PI * 2);
+                        ctx.strokeStyle = 'rgba(210,190,160,0.4)';
+                        ctx.lineWidth = 3;
+                        ctx.stroke();
+                    }
+
+                    // Erde + Mond
+                    if (p.hasMoon) {
+                        const moonAngle = this.time * 0.3 + p.angle;
+                        const mx = px + Math.cos(moonAngle) * 22;
+                        const my = py + Math.sin(moonAngle) * 22 * 0.7;
+                        ctx.shadowBlur = 0;
+                        ctx.beginPath();
+                        ctx.arc(mx, my, 4, 0, Math.PI * 2);
+                        ctx.fillStyle = '#c0c8d0';
+                        ctx.fill();
+                        // Mond-Umlaufbahn (klein)
+                        ctx.beginPath();
+                        ctx.ellipse(px, py, 22, 22 * 0.7, 0, 0, Math.PI * 2);
+                        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+
+                    // Leichter Glow
                     ctx.shadowBlur = 0;
-
-                    // Name
-                    ctx.fillStyle = 'rgba(255,255,255,0.1)';
-                    ctx.font = '8px sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.fillText(p.name, cx, cy + p.r + 12);
                 });
 
-                angle += 0.005;
-                requestAnimationFrame(drawCosmic);
-            }
-            drawCosmic();
+                // SONNE (zentral)
+                const sunRadius = this.sun.radius + Math.sin(this.sun.pulse) * 2;
+                const gradSun = ctx.createRadialGradient(0, 0, 0, 0, 0, sunRadius * 2.5);
+                gradSun.addColorStop(0, '#fffbe6');
+                gradSun.addColorStop(0.2, '#ffdd44');
+                gradSun.addColorStop(0.5, '#ffaa00');
+                gradSun.addColorStop(0.8, '#ff6600');
+                gradSun.addColorStop(1, 'rgba(255,100,0,0)');
 
-            // Klick auf Cosmic → Cosmic World App öffnen
-            container.addEventListener('click', () => {
-                switchApp('cosmic-world');
-            });
-        }
+                ctx.shadowColor = '#ffaa00';
+                ctx.shadowBlur = 80;
+                ctx.beginPath();
+                ctx.arc(0, 0, sunRadius * 2.5, 0, Math.PI * 2);
+                ctx.fillStyle = gradSun;
+                ctx.fill();
 
-        // ---- APP RENDERER ----
-        function renderApp(appId) {
-            const app = APP_REGISTRY[appId];
-            if (!app) {
-                if (appId === 'desktop') { renderDesktop(); return; }
-                return;
-            }
+                // Sonnenkörper
+                ctx.shadowBlur = 120;
+                ctx.shadowColor = '#ff8800';
+                ctx.beginPath();
+                ctx.arc(0, 0, sunRadius, 0, Math.PI * 2);
+                const sunGrad = ctx.createRadialGradient(-10, -10, 0, 0, 0, sunRadius);
+                sunGrad.addColorStop(0, '#fff8e0');
+                sunGrad.addColorStop(0.3, '#ffdd44');
+                sunGrad.addColorStop(0.7, '#ffaa00');
+                sunGrad.addColorStop(1, '#ff6600');
+                ctx.fillStyle = sunGrad;
+                ctx.fill();
 
-            currentApp = appId;
-            appHistory.push(appId);
-            if (appHistory.length > 20) appHistory.shift();
+                // HalDo-Logo auf der Sonne
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = 'rgba(255,255,255,0.9)';
+                ctx.font = 'bold 18px "Segoe UI", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('🌌 HalDo', 0, -6);
+                ctx.fillStyle = 'rgba(255,255,200,0.6)';
+                ctx.font = '10px "Segoe UI", sans-serif';
+                ctx.fillText('AI OS', 0, 16);
 
-            appViewContainer.innerHTML = '';
-
-            const view = document.createElement('div');
-            view.className = 'app-view active';
-            view.id = `app-${appId}`;
-
-            // Header
-            const header = document.createElement('div');
-            header.className = 'app-header';
-            header.innerHTML = `
-                <div class="title"><span class="emoji">${app.emoji}</span>${app.name}</div>
-                <div class="actions">
-                    <button onclick="showAppInfo('${appId}')">ℹ️</button>
-                    <button onclick="openAppSettings('${appId}')">⚙️</button>
-                    <button onclick="exportAppData('${appId}')">📤</button>
-                </div>
-            `;
-            view.appendChild(header);
-
-            // Content
-            const content = document.createElement('div');
-            content.className = 'app-content';
-            content.id = `app-content-${appId}`;
-            content.innerHTML = generateAppContent(appId);
-            view.appendChild(content);
-
-            appViewContainer.appendChild(view);
-
-            updateSidebar();
-            updateTaskbar();
-            updateStatus();
-
-            appInstances[appId] = { loaded: true, timestamp: Date.now() };
-        }
-
-        // ---- APP CONTENT GENERATOR ----
-        function generateAppContent(appId) {
-            const app = APP_REGISTRY[appId];
-            if (!app) return `<p style="color:var(--text-muted);">App nicht gefunden.</p>`;
-
-            let html = '';
-
-            // App-Info
-            html += `
-                <div style="background:var(--bg-card);border-radius:var(--radius);padding:16px;border:1px solid var(--border-color);">
-                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-                        <span style="font-size:2.4rem;">${app.emoji}</span>
-                        <div>
-                            <div style="font-weight:600;color:var(--text-primary);">${app.name}</div>
-                            <div style="font-size:0.7rem;color:var(--text-muted);">${app.category} · ${app.desc}</div>
-                        </div>
-                    </div>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                        <button onclick="showAppInfo('${appId}')" style="padding:6px 14px;border:none;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--text-secondary);font-size:0.7rem;cursor:pointer;font-family:var(--font);">ℹ️ Info</button>
-                        <button onclick="openAppSettings('${appId}')" style="padding:6px 14px;border:none;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--text-secondary);font-size:0.7rem;cursor:pointer;font-family:var(--font);">⚙️ Einstellungen</button>
-                        <button onclick="exportAppData('${appId}')" style="padding:6px 14px;border:none;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--text-secondary);font-size:0.7rem;cursor:pointer;font-family:var(--font);">📤 Export</button>
-                        <button onclick="importAppData('${appId}')" style="padding:6px 14px;border:none;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--text-secondary);font-size:0.7rem;cursor:pointer;font-family:var(--font);">📥 Import</button>
-                    </div>
-                </div>
-            `;
-
-            // Kosmische Daten
-            const cosmicData = {
-                'sonne': {
-                    title: '☀️ Sonnendaten',
-                    data: [
-                        ['🌡️ Oberflächentemperatur', '5.500 °C'],
-                        ['📏 Durchmesser', '1.391.000 km'],
-                        ['⚡ Masse', '1,989 × 10³⁰ kg'],
-                        ['🌍 Alter', '4,6 Mrd. Jahre']
-                    ]
-                },
-                'erde': {
-                    title: '🌍 Erd-Daten',
-                    data: [
-                        ['🌡️ Durchschnittstemp.', '15 °C'],
-                        ['📏 Durchmesser', '12.742 km'],
-                        ['🌍 Entfernung zur Sonne', '149,6 Mio. km'],
-                        ['🌙 Mond', '1 (Der Mond)']
-                    ]
-                },
-                'mond': {
-                    title: '🌙 Mond-Daten',
-                    data: [
-                        ['📏 Durchmesser', '3.474 km'],
-                        ['📏 Entfernung zur Erde', '384.400 km'],
-                        ['⏱️ Umlaufzeit', '27,3 Tage'],
-                        ['🌡️ Temperatur', '-233 bis 123 °C']
-                    ]
-                },
-                'sonnensystem': {
-                    title: '🪐 Unser Sonnensystem',
-                    data: [
-                        ['☀️ Sonne', 'Zentralstern'],
-                        ['☿ Merkur', 'Innerster Planet'],
-                        ['♀ Venus', 'Heißer Nachbar'],
-                        ['🌍 Erde', 'Blauer Planet'],
-                        ['🌙 Mond', 'Begleiter der Erde'],
-                        ['🔴 Mars', 'Roter Planet'],
-                        ['🟠 Jupiter', 'Größter Planet'],
-                        ['🪐 Saturn', 'Ringplanet'],
-                        ['🔵 Uranus', 'Eisiger Riese'],
-                        ['🔷 Neptun', 'Äußerster Planet'],
-                        ['⚪ Pluto', 'Zwergplanet']
-                    ]
+                // Strahlenkranz (pulsierend)
+                ctx.shadowBlur = 0;
+                const rays = 24;
+                for (let i = 0; i < rays; i++) {
+                    const angle = (i / rays) * Math.PI * 2 + this.time * 0.005;
+                    const r1 = sunRadius * 1.1;
+                    const r2 = sunRadius * (1.5 + Math.sin(this.sun.pulse + i) * 0.2);
+                    ctx.beginPath();
+                    ctx.moveTo(Math.cos(angle) * r1, Math.sin(angle) * r1);
+                    ctx.lineTo(Math.cos(angle + 0.05) * r2, Math.sin(angle + 0.05) * r2);
+                    ctx.strokeStyle = `rgba(255,200,80,${0.2 + Math.sin(this.sun.pulse + i*0.3)*0.1})`;
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
                 }
-            };
 
-            if (cosmicData[appId]) {
-                const cd = cosmicData[appId];
-                html += `
-                    <div style="background:var(--bg-card);border-radius:var(--radius);padding:12px;border:1px solid var(--border-color);">
-                        <div style="font-size:0.7rem;color:var(--text-secondary);margin-bottom:8px;">${cd.title}</div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:0.65rem;color:var(--text-muted);">
-                            ${cd.data.map(row => `<div>${row[0]}: <span style="color:var(--text-secondary);">${row[1]}</span></div>`).join('')}
-                        </div>
-                    </div>
-                `;
-            }
+                // Sonnen-Hitbox für Klick (in Koordinaten des Systems)
+                this.sun.screenX = this.centerX + this.offsetX;
+                this.sun.screenY = this.centerY + this.offsetY;
+                this.sun.screenRadius = sunRadius * this.zoom;
 
-            // Features
-            const features = getAppFeatures(appId);
-            if (features.length > 0) {
-                html += `
-                    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:8px;">
-                `;
-                features.forEach(f => {
-                    html += `
-                        <div style="background:var(--bg-card);border-radius:12px;padding:12px;border:1px solid var(--border-color);text-align:center;cursor:pointer;" onclick="openModal('${f.name}', '${f.desc}')">
-                            <span style="font-size:1.6rem;display:block;">${f.emoji}</span>
-                            <span style="font-size:0.7rem;color:var(--text-secondary);">${f.name}</span>
-                        </div>
-                    `;
-                });
-                html += `</div>`;
-            }
+                ctx.restore();
 
-            // AI-Bereich
-            html += `
-                <div style="margin-top:8px;background:var(--bg-card);border-radius:var(--radius);padding:12px;border:1px solid var(--border-color);">
-                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-                        <span>🧠</span>
-                        <span style="font-size:0.7rem;color:var(--text-secondary);">AI-Assistent für ${app.name}</span>
-                    </div>
-                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                        <button onclick="aiAction('${appId}','zusammenfassen')" style="padding:4px 12px;border:none;border-radius:6px;background:rgba(79,172,254,0.05);color:var(--accent-4);font-size:0.65rem;cursor:pointer;font-family:var(--font);">📝 Zusammenfassen</button>
-                        <button onclick="aiAction('${appId}','übersetzen')" style="padding:4px 12px;border:none;border-radius:6px;background:rgba(79,172,254,0.05);color:var(--accent-4);font-size:0.65rem;cursor:pointer;font-family:var(--font);">🌍 Übersetzen</button>
-                        <button onclick="aiAction('${appId}','analysieren')" style="padding:4px 12px;border:none;border-radius:6px;background:rgba(79,172,254,0.05);color:var(--accent-4);font-size:0.65rem;cursor:pointer;font-family:var(--font);">🔍 Analysieren</button>
-                        <button onclick="aiAction('${appId}','generieren')" style="padding:4px 12px;border:none;border-radius:6px;background:rgba(79,172,254,0.05);color:var(--accent-4);font-size:0.65rem;cursor:pointer;font-family:var(--font);">✨ Generieren</button>
-                    </div>
-                </div>
-            `;
+                // UI-Hinweis auf Sonne (nur wenn Maus nah)
+                const dx = this.mouseX - this.sun.screenX;
+                const dy = this.mouseY - this.sun.screenY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < this.sun.screenRadius + 20) {
+                    ctx.save();
+                    ctx.fillStyle = 'rgba(255,200,80,0.15)';
+                    ctx.beginPath();
+                    ctx.arc(this.sun.screenX, this.sun.screenY, this.sun.screenRadius + 20, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                    this.canvas.style.cursor = 'pointer';
+                } else if (!this.isDragging) {
+                    this.canvas.style.cursor = 'grab';
+                }
+            },
 
-            // Voice-Bereich
-            html += `
-                <div style="margin-top:8px;background:var(--bg-card);border-radius:var(--radius);padding:12px;border:1px solid var(--border-color);">
-                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-                        <span>🎤</span>
-                        <span style="font-size:0.7rem;color:var(--text-secondary);">Sprachsteuerung</span>
-                    </div>
-                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                        <button onclick="voiceAction('${appId}','start')" style="padding:4px 12px;border:none;border-radius:6px;background:rgba(43,233,123,0.05);color:var(--accent-5);font-size:0.65rem;cursor:pointer;font-family:var(--font);">🎤 Start</button>
-                        <button onclick="voiceAction('${appId}','stop')" style="padding:4px 12px;border:none;border-radius:6px;background:rgba(255,107,107,0.05);color:#ff6b6b;font-size:0.65rem;cursor:pointer;font-family:var(--font);">⏹️ Stopp</button>
-                        <button onclick="voiceAction('${appId}','status')" style="padding:4px 12px;border:none;border-radius:6px;background:rgba(255,255,255,0.02);color:var(--text-muted);font-size:0.65rem;cursor:pointer;font-family:var(--font);">📊 Status</button>
-                    </div>
-                </div>
-            `;
-
-            // Speicher-Status
-            html += `
-                <div style="margin-top:8px;background:var(--bg-card);border-radius:var(--radius);padding:12px;border:1px solid var(--border-color);">
-                    <div style="display:flex;justify-content:space-between;font-size:0.6rem;color:var(--text-muted);">
-                        <span>💾 Speicher: <span id="storageStatus-${appId}">0 KB</span></span>
-                        <span>📊 Daten: <span id="dataStatus-${appId}">0 Einträge</span></span>
-                        <span>🔄 Letzte Aktivität: <span id="activityStatus-${appId}">—</span></span>
-                    </div>
-                </div>
-            `;
-
-            return html;
-        }
-
-        // ---- APP FEATURES ----
-        function getAppFeatures(appId) {
-            const features = {
-                'haldo-ai': [
-                    { name: 'Chat', emoji: '💬', desc: 'Fragen stellen' },
-                    { name: 'Schreiben', emoji: '✍️', desc: 'Texte verfassen' },
-                    { name: 'Zusammenfassen', emoji: '📝', desc: 'Lange Texte komprimieren' },
-                    { name: 'Übersetzen', emoji: '🌍', desc: 'In beliebige Sprache übersetzen' },
-                    { name: 'Bildanalyse', emoji: '👁️', desc: 'Bilder analysieren' },
-                    { name: 'Code', emoji: '💻', desc: 'Programmieren' }
-                ],
-                'sonnensystem': [
-                    { name: 'Planeten', emoji: '🪐', desc: 'Alle Planeten anzeigen' },
-                    { name: 'Orbit', emoji: '🌀', desc: 'Umlaufbahnen simulieren' },
-                    { name: 'Daten', emoji: '📊', desc: 'Astronomische Daten' },
-                    { name: '3D-Ansicht', emoji: '🌍', desc: '3D-Darstellung' }
-                ],
-                'cosmic-world': [
-                    { name: 'Sonnensystem', emoji: '🪐', desc: 'Unser Sonnensystem' },
-                    { name: 'Sterne', emoji: '⭐', desc: 'Unendliche Weiten' },
-                    { name: 'Galaxien', emoji: '🌌', desc: 'Ferne Galaxien' },
-                    { name: 'Himmelsfarben', emoji: '🌈', desc: 'Farben des Himmels' }
-                ],
-                'gesundheit': [
-                    { name: 'Krankheiten', emoji: '🩺', desc: 'Krankheiten A–Z' },
-                    { name: 'Symptome', emoji: '🤒', desc: 'Symptome erkennen' },
-                    { name: 'Medikamente', emoji: '💊', desc: 'Medikamentenplan' },
-                    { name: 'Ärzte', emoji: '👨‍⚕️', desc: 'Arzttermine verwalten' },
-                    { name: 'Vitalwerte', emoji: '❤️', desc: 'Vitalwerte verfolgen' }
-                ],
-                'music': [
-                    { name: 'Player', emoji: '🎵', desc: 'Musik abspielen' },
-                    { name: 'Bibliothek', emoji: '📚', desc: 'Musik verwalten' },
-                    { name: 'AI-Songtext', emoji: '✍️', desc: 'Songtexte generieren' },
-                    { name: 'Export', emoji: '📤', desc: 'Musik exportieren' },
-                    { name: 'Equalizer', emoji: '🎚️', desc: 'Sound anpassen' }
-                ],
-                'video': [
-                    { name: 'Player', emoji: '▶️', desc: 'Videos abspielen' },
-                    { name: 'Schneiden', emoji: '✂️', desc: 'Videos schneiden' },
-                    { name: 'Effekte', emoji: '✨', desc: 'Videoeffekte' },
-                    { name: 'AI-Generierung', emoji: '🧠', desc: 'KI-Videoerstellung' },
-                    { name: 'Export', emoji: '📤', desc: 'Videos exportieren' }
-                ],
-                'calendar': [
-                    { name: 'Termine', emoji: '📅', desc: 'Termine verwalten' },
-                    { name: 'Aufgaben', emoji: '✅', desc: 'Aufgabenliste' },
-                    { name: 'Erinnerungen', emoji: '🔔', desc: 'Erinnerungen setzen' },
-                    { name: 'Serien-Termine', emoji: '🔄', desc: 'Wiederkehrende Termine' },
-                    { name: 'AI-Planung', emoji: '🧠', desc: 'KI-Terminplanung' }
-                ],
-                'file-manager': [
-                    { name: 'Dateien', emoji: '📁', desc: 'Dateien durchsuchen' },
-                    { name: 'Ordner', emoji: '📂', desc: 'Ordner verwalten' },
-                    { name: 'Cloud', emoji: '☁️', desc: 'Cloud-Anbindung' },
-                    { name: 'Verschlüsselung', emoji: '🔐', desc: 'Dateien verschlüsseln' },
-                    { name: 'AI-Suche', emoji: '🧠', desc: 'KI-Dateisuche' }
-                ],
-                'gallery': [
-                    { name: 'Fotos', emoji: '🖼️', desc: 'Fotos anzeigen' },
-                    { name: 'Alben', emoji: '📚', desc: 'Alben erstellen' },
-                    { name: 'Bearbeiten', emoji: '✏️', desc: 'Bilder bearbeiten' },
-                    { name: 'AI-Analyse', emoji: '🧠', desc: 'KI-Bildanalyse' },
-                    { name: 'Slideshow', emoji: '🎞️', desc: 'Diashow' }
-                ],
-                'settings': [
-                    { name: 'Allgemein', emoji: '⚙️', desc: 'Allgemeine Einstellungen' },
-                    { name: 'Design', emoji: '🎨', desc: 'Themes & Personalisierung' },
-                    { name: 'AI', emoji: '🧠', desc: 'KI-Einstellungen' },
-                    { name: 'Voice', emoji: '🎤', desc: 'Sprachsteuerung' },
-                    { name: 'Datenschutz', emoji: '🔐', desc: 'Sicherheit & Privacy' }
-                ]
-            };
-
-            return features[appId] || [
-                { name: 'Info', emoji: 'ℹ️', desc: 'Informationen anzeigen' },
-                { name: 'Einstellungen', emoji: '⚙️', desc: 'App-Einstellungen' },
-                { name: 'Export', emoji: '📤', desc: 'Daten exportieren' },
-                { name: 'Import', emoji: '📥', desc: 'Daten importieren' }
-            ];
-        }
-
-        // ---- SIDEBAR ----
-        function updateSidebar() {
-            const categories = {};
-            APP_IDS.forEach(id => {
-                const app = APP_REGISTRY[id];
-                if (!categories[app.category]) categories[app.category] = [];
-                categories[app.category].push(id);
-            });
-
-            sidebar.innerHTML = '';
-            const sortedCategories = Object.keys(categories).sort();
-
-            sortedCategories.forEach(cat => {
-                const apps = categories[cat];
-                apps.forEach(id => {
-                    const app = APP_REGISTRY[id];
-                    const active = id === currentApp ? 'active' : '';
-                    const btn = document.createElement('button');
-                    btn.className = `app-btn ${active}`;
-                    btn.innerHTML = `${app.emoji}<span class="tooltip">${app.name}</span>`;
-                    btn.onclick = () => switchApp(id);
-                    sidebar.appendChild(btn);
-                });
-            });
-        }
-
-        // ---- TASKBAR ----
-        function updateTaskbar() {
-            const recent = appHistory.slice(-5).reverse();
-            taskbarApps.innerHTML = recent.map(id => {
-                const app = APP_REGISTRY[id];
-                const active = id === currentApp ? 'active' : '';
-                return `<button class="app-icon ${active}" onclick="switchApp('${id}')" title="${app.name}">${app.emoji}</button>`;
-            }).join('');
-        }
-
-        // ---- STATUS ----
-        function updateStatus() {
-            statusAppCount.textContent = APP_IDS.length;
-            statusMemory.textContent = Math.round(Math.random() * 200 + 100);
-            statusAI.textContent = 'Aktiv · v26.0';
-        }
-
-        // ---- SWITCH APP ----
-        function switchApp(appId) {
-            if (!APP_REGISTRY[appId] && appId !== 'desktop') {
-                const found = APP_IDS.find(id => id.includes(appId));
-                if (found) appId = found;
-                else return;
-            }
-            if (appId === currentApp) { renderApp(appId); return; }
-            renderApp(appId);
-        }
-        window.switchApp = switchApp;
-
-        // ---- APP INFO ----
-        function showAppInfo(appId) {
-            const app = APP_REGISTRY[appId];
-            if (!app) return;
-            openModal(`ℹ️ ${app.name}`, `
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                    <div style="display:flex;align-items:center;gap:12px;">
-                        <span style="font-size:3rem;">${app.emoji}</span>
-                        <div>
-                            <div style="font-weight:600;color:var(--text-primary);">${app.name}</div>
-                            <div style="color:var(--text-muted);font-size:0.8rem;">${app.category}</div>
-                        </div>
-                    </div>
-                    <div style="color:var(--text-secondary);font-size:0.9rem;">${app.desc}</div>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
-                        <span style="padding:2px 12px;border-radius:6px;background:rgba(255,255,255,0.02);border:1px solid var(--border-color);font-size:0.6rem;color:var(--text-muted);">ID: ${app.id}</span>
-                        <span style="padding:2px 12px;border-radius:6px;background:rgba(255,255,255,0.02);border:1px solid var(--border-color);font-size:0.6rem;color:var(--text-muted);">Version: 26.0</span>
-                    </div>
-                    <div style="margin-top:6px;border-top:1px solid var(--border-color);padding-top:8px;color:var(--text-muted);font-size:0.6rem;">
-                        🔗 Verbindungen: AI · Voice · Storage · Files · Security · Updates
-                    </div>
-                </div>
-            `);
-        }
-        window.showAppInfo = showAppInfo;
-
-        // ---- APP SETTINGS ----
-        function openAppSettings(appId) {
-            const app = APP_REGISTRY[appId];
-            if (!app) return;
-
-            const settingsHTML = `
-                <div style="display:flex;flex-direction:column;gap:12px;">
-                    <div style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:4px;">⚙️ Einstellungen für <strong style="color:var(--text-primary);">${app.name}</strong></div>
-                    <div class="settings-grid">
-                        <div class="settings-item">
-                            <span class="label">🌐 Sprache</span>
-                            <select onchange="settings.language=this.value">
-                                <option value="de" ${settings.language==='de'?'selected':''}>Deutsch</option>
-                                <option value="en" ${settings.language==='en'?'selected':''}>English</option>
-                                <option value="fr" ${settings.language==='fr'?'selected':''}>Français</option>
-                                <option value="ku" ${settings.language==='ku'?'selected':''}>Kurdî</option>
-                            </select>
-                        </div>
-                        <div class="settings-item">
-                            <span class="label">🧠 AI-Provider</span>
-                            <select onchange="settings.aiProvider=this.value">
-                                <option value="local" ${settings.aiProvider==='local'?'selected':''}>Lokal</option>
-                                <option value="openai" ${settings.aiProvider==='openai'?'selected':''}>OpenAI</option>
-                                <option value="anthropic" ${settings.aiProvider==='anthropic'?'selected':''}>Anthropic</option>
-                            </select>
-                        </div>
-                        <div class="settings-item">
-                            <span class="label">🔑 API-Key</span>
-                            <input type="password" placeholder="••••••••" value="sk-••••••••">
-                        </div>
-                        <div class="settings-item">
-                            <span class="label">💾 Speicher</span>
-                            <span class="value">Lokal (Cache)</span>
-                        </div>
-                        <div class="settings-item">
-                            <span class="label">🎤 Voice</span>
-                            <button class="toggle ${settings.voiceEnabled?'active':''}" onclick="this.classList.toggle('active'); settings.voiceEnabled=!settings.voiceEnabled"></button>
-                        </div>
-                        <div class="settings-item">
-                            <span class="label">🔔 Benachrichtigungen</span>
-                            <button class="toggle ${settings.notifications?'active':''}" onclick="this.classList.toggle('active'); settings.notifications=!settings.notifications"></button>
-                        </div>
-                        <div class="settings-item">
-                            <span class="label">🔒 Datenschutz</span>
-                            <button class="toggle ${settings.privacy?'active':''}" onclick="this.classList.toggle('active'); settings.privacy=!settings.privacy"></button>
-                        </div>
-                        <div class="settings-item">
-                            <span class="label">🔄 Auto-Update</span>
-                            <button class="toggle ${settings.autoUpdate?'active':''}" onclick="this.classList.toggle('active'); settings.autoUpdate=!settings.autoUpdate"></button>
-                        </div>
-                        <div class="settings-item" style="grid-column:1/-1;">
-                            <span class="label">📊 Daten exportieren</span>
-                            <button onclick="exportAppData('${appId}')" style="padding:4px 16px;border:none;border-radius:6px;background:rgba(79,172,254,0.1);color:var(--accent-4);cursor:pointer;font-family:var(--font);font-size:0.7rem;">📤 Export</button>
-                        </div>
-                        <div class="settings-item" style="grid-column:1/-1;">
-                            <span class="label">📥 Daten importieren</span>
-                            <button onclick="importAppData('${appId}')" style="padding:4px 16px;border:none;border-radius:6px;background:rgba(67,233,123,0.1);color:var(--accent-5);cursor:pointer;font-family:var(--font);font-size:0.7rem;">📥 Import</button>
-                        </div>
-                    </div>
-                    <div style="display:flex;gap:6px;margin-top:4px;">
-                        <button onclick="closeModal();openModal('✅ Gespeichert','Die Einstellungen wurden übernommen.')" style="padding:8px 20px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--accent-4),var(--accent-5));color:#0a0a12;font-weight:600;cursor:pointer;font-family:var(--font);">Übernehmen</button>
-                        <button onclick="closeModal()" style="padding:8px 20px;border:none;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--text-secondary);cursor:pointer;font-family:var(--font);">Abbrechen</button>
-                    </div>
-                </div>
-            `;
-
-            openModal(`⚙️ Einstellungen — ${app.name}`, settingsHTML);
-        }
-        window.openAppSettings = openAppSettings;
-
-        // ---- EXPORT ----
-        function exportAppData(appId) {
-            const app = APP_REGISTRY[appId];
-            if (!app) return;
-            const data = { app: appId, name: app.name, data: { example: 'Daten', timestamp: Date.now() }, version: '26.0' };
-            const json = JSON.stringify(data, null, 2);
-            const blob = new Blob([json], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${appId}_data_${Date.now()}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            openModal('📤 Export', `✅ Daten von "${app.name}" wurden exportiert.`);
-        }
-        window.exportAppData = exportAppData;
-
-        // ---- IMPORT ----
-        function importAppData(appId) {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'application/json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    try {
-                        const data = JSON.parse(ev.target.result);
-                        openModal('📥 Import', `
-                            ✅ Daten für "${data.name || appId}" importiert.
-                            <br><br>
-                            📊 ${Object.keys(data.data || {}).length} Einträge geladen.
-                            <br>
-                            🕐 ${new Date(data.timestamp).toLocaleString()}
-                        `);
-                    } catch (err) {
-                        openModal('❌ Fehler', `Import fehlgeschlagen: ${err.message}`);
-                    }
+            getSunScreenCoords() {
+                return {
+                    x: this.sun.screenX || this.centerX + this.offsetX,
+                    y: this.sun.screenY || this.centerY + this.offsetY,
+                    r: this.sun.screenRadius || 35 * this.zoom,
                 };
-                reader.readAsText(file);
-            };
-            input.click();
-        }
-        window.importAppData = importAppData;
-
-        // ---- AI ACTIONS ----
-        function aiAction(appId, action) {
-            const app = APP_REGISTRY[appId];
-            if (!app) return;
-            const messages = {
-                'zusammenfassen': `🧠 KI fasst den Inhalt von "${app.name}" zusammen ...`,
-                'übersetzen': `🌍 KI übersetzt den Inhalt von "${app.name}" ...`,
-                'analysieren': `🔍 KI analysiert den Inhalt von "${app.name}" ...`,
-                'generieren': `✨ KI generiert neuen Inhalt für "${app.name}" ...`
-            };
-            openModal(`🧠 AI-Aktion — ${app.name}`, `
-                <div style="padding:12px;background:rgba(79,172,254,0.02);border-radius:8px;border:1px solid rgba(79,172,254,0.05);">
-                    ${messages[action] || '🧠 AI verarbeitet ...'}
-                </div>
-                <button onclick="closeModal()" style="margin-top:8px;padding:6px 16px;border:none;border-radius:6px;background:rgba(255,255,255,0.02);color:var(--text-secondary);cursor:pointer;font-family:var(--font);">Schließen</button>
-            `);
-        }
-        window.aiAction = aiAction;
-
-        // ---- VOICE ACTIONS ----
-        function voiceAction(appId, action) {
-            const app = APP_REGISTRY[appId];
-            if (!app) return;
-            const status = {
-                'start': '🎤 Sprachaufnahme gestartet ...',
-                'stop': '⏹️ Sprachaufnahme beendet.',
-                'status': '📊 Voice-Status: Bereit · Mikrofon: 🟢 Aktiv'
-            };
-            openModal(`🎤 Voice — ${app.name}`, `
-                <div style="padding:12px;background:rgba(43,233,123,0.02);border-radius:8px;border:1px solid rgba(43,233,123,0.05);">
-                    ${status[action] || '🎤 Voice-Aktion ausgeführt.'}
-                </div>
-                <button onclick="closeModal()" style="margin-top:8px;padding:6px 16px;border:none;border-radius:6px;background:rgba(255,255,255,0.02);color:var(--text-secondary);cursor:pointer;font-family:var(--font);">Schließen</button>
-            `);
-        }
-        window.voiceAction = voiceAction;
-
-        // ---- KEYBOARD SHORTCUTS ----
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                const search = prompt('🔍 App suchen:', '');
-                if (search) {
-                    const found = APP_IDS.filter(id =>
-                        APP_REGISTRY[id].name.toLowerCase().includes(search.toLowerCase()) ||
-                        APP_REGISTRY[id].desc.toLowerCase().includes(search.toLowerCase())
-                    );
-                    if (found.length > 0) {
-                        switchApp(found[0]);
-                    } else {
-                        openModal('🔍 Suche', `Keine App gefunden für: "${search}"`);
-                    }
-                }
             }
+        };
+
+        // ============================================================
+        // 8. HALDO AI – Zentraler AI-Service
+        // ============================================================
+        HalDo.ai = {
+            async ask(question, context = '') {
+                // Simulierte AI-Antwort (später mit API oder lokal)
+                const responses = [
+                    `🤖 ${question} – das ist eine interessante Frage! HalDo AI denkt darüber nach.`,
+                    `🌌 Verstanden! Hier ist meine Antwort: ${question} kann man so lösen ...`,
+                    `💡 Ich habe eine Idee: ${question} erfordert einen kreativen Ansatz.`,
+                    `✨ HalDo AI sagt: Bei ${question} solltest du an die Details denken.`,
+                    `🚀 Großartige Frage! ${question} – das ist genau mein Thema.`,
+                    `🎯 ${question} – lass mich dir das erklären: Schritt für Schritt.`,
+                    `🌟 ${question} – das ist ein wichtiges Anliegen. Hier sind meine Gedanken dazu.`,
+                ];
+                const baseResponse = responses[Math.floor(Math.random() * responses.length)];
+
+                // Wenn API-Key gesetzt, echte API nutzen
+                if (HalDo.config.apiKey && false) { // deaktiviert für Demo
+                    // Hier würde OpenAI/Anthropic-API aufgerufen
+                }
+
+                // Sprachausgabe (wenn aktiv)
+                if (HalDo.voice) {
+                    setTimeout(() => {
+                        HalDo.voice.speak(baseResponse.replace(/<[^>]*>/g, ''));
+                    }, 200);
+                }
+
+                return baseResponse;
+            },
+
+            async askWithContext(question, context) {
+                return this.ask(question, context);
+            }
+        };
+
+        // ============================================================
+        // 9. VOICE LAYER
+        // ============================================================
+        HalDo.voice = {
+            speak(text) {
+                if (!window.speechSynthesis) return;
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = HalDo.config.language || 'de-DE';
+                utterance.rate = 0.95;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            },
+            async listen() {
+                return new Promise((resolve) => {
+                    if (!('webkitSpeechRecognition' in window)) {
+                        resolve(null);
+                        return;
+                    }
+                    const recognition = new webkitSpeechRecognition();
+                    recognition.lang = HalDo.config.language || 'de-DE';
+                    recognition.continuous = false;
+                    recognition.interimResults = false;
+                    recognition.start();
+                    recognition.onresult = (e) => {
+                        resolve(e.results[0][0].transcript);
+                    };
+                    recognition.onerror = () => resolve(null);
+                    recognition.onend = () => resolve(null);
+                });
+            }
+        };
+
+        // ============================================================
+        // 10. BOOT-SEQUENZ
+        // ============================================================
+        async function boot() {
+            const bootBar = document.getElementById('boot-bar');
+            const bootStatus = document.getElementById('boot-status');
+            const bootScreen = document.getElementById('boot-screen');
+            const desktop = document.getElementById('desktop');
+
+            const steps = HalDo.config.bootSteps;
+            for (let i = 0; i < steps.length; i++) {
+                const progress = ((i + 1) / steps.length) * 100;
+                bootBar.style.width = progress + '%';
+                bootStatus.textContent = steps[i] + ' ...';
+                // Simuliere Verarbeitung
+                await new Promise(r => setTimeout(r, 60 + Math.random() * 80));
+                HalDo.state = i < 5 ? 'BOOTING' : (i < 10 ? 'STARTING' : 'READY');
+            }
+
+            // Storage initialisieren
+            await HalDo.storage.init();
+
+            // Config laden
+            const savedConfig = await HalDo.storage.get('settings', 'config');
+            if (savedConfig) {
+                HalDo.config = { ...HalDo.config, ...savedConfig };
+            }
+
+            // System starten
+            HalDo.state = 'READY';
+            bootStatus.textContent = '✅ System bereit!';
+            await new Promise(r => setTimeout(r, 400));
+
+            // Boot ausblenden
+            bootScreen.classList.add('hidden');
+            desktop.classList.add('active');
+
+            // Cosmic World starten
+            HalDo.cosmic.init();
+
+            // Taskbar-Uhr starten
+            updateClock();
+
+            // AI-Chat-Fenster bei Sonnenklick
+            document.getElementById('cosmic-canvas').addEventListener('click', (e) => {
+                const sun = HalDo.cosmic.getSunScreenCoords();
+                const dx = e.clientX - sun.x;
+                const dy = e.clientY - sun.y;
+                if (Math.sqrt(dx * dx + dy * dy) < sun.r + 15) {
+                    // Sonne geklickt → AI-Fenster öffnen
+                    HalDo.router.navigate('/ai');
+                    // Notification
+                    showNotification('🌞 HalDo AI', 'Die Sonne hat dich gerufen!');
+                    // Sprachausgabe
+                    HalDo.voice.speak('Hallo! Ich bin HalDo AI. Wie kann ich dir helfen?');
+                }
+            });
+
+            // Menüs initialisieren
+            initMenus();
+
+            // AppStore-Menü befüllen
+            renderAppStore();
+
+            // System-Info aktualisieren
+            document.getElementById('sys-info').textContent = `HalDo OS v${HalDo.config.version} • Kernel ${HalDo.state}`;
+
+            // Notification: Willkommen
+            setTimeout(() => {
+                showNotification('🌌 HalDo AI OS', 'Willkommen! Klicke auf die Sonne für HalDo AI.');
+            }, 800);
+
+            // Auto-Start AI-Fenster (optional)
+            // setTimeout(() => HalDo.router.navigate('/ai'), 1200);
+
+            console.log('🚀 HalDo AI OS v' + HalDo.config.version + ' ready.');
+        }
+
+        // ============================================================
+        // 11. MENÜS
+        // ============================================================
+        function initMenus() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const appstoreToggle = document.getElementById('appstore-toggle');
+            const systemMenu = document.getElementById('system-menu');
+            const appstoreMenu = document.getElementById('appstore-menu');
+
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                systemMenu.classList.toggle('open');
+                appstoreMenu.classList.remove('open');
+            });
+
+            appstoreToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                appstoreMenu.classList.toggle('open');
+                systemMenu.classList.remove('open');
+            });
+
+            // Schließen bei Klick außerhalb
+            document.addEventListener('click', (e) => {
+                if (!systemMenu.contains(e.target) && e.target !== menuToggle) {
+                    systemMenu.classList.remove('open');
+                }
+                if (!appstoreMenu.contains(e.target) && e.target !== appstoreToggle) {
+                    appstoreMenu.classList.remove('open');
+                }
+            });
+
+            // System-Menü-Aktionen
+            systemMenu.querySelectorAll('.menu-item[data-action]').forEach(item => {
+                item.addEventListener('click', () => {
+                    const action = item.dataset.action;
+                    systemMenu.classList.remove('open');
+                    switch (action) {
+                        case 'home':
+                            HalDo.router.showHome();
+                            break;
+                        case 'settings':
+                            HalDo.router.navigate('/personalization');
+                            break;
+                        case 'updates':
+                            HalDo.router.navigate('/updates');
+                            break;
+                        case 'system':
+                            HalDo.router.navigate('/systemcenter');
+                            break;
+                        case 'security':
+                            showNotification('🔒 Sicherheit', 'Sicherheitscenter: Alle Systeme aktiv.');
+                            break;
+                        case 'backup':
+                            showNotification('💾 Backup', 'Backup wird erstellt ... (simuliert)');
+                            break;
+                        case 'files':
+                            HalDo.router.navigate('/files');
+                            break;
+                        case 'network':
+                            showNotification('🌐 Netzwerk', 'Verbunden mit HalDo Cloud.');
+                            break;
+                        case 'help':
+                            showNotification('❓ Hilfe', 'HalDo AI hilft dir gerne! Klick die Sonne.');
+                            break;
+                        case 'about':
+                            showNotification('ℹ️ Über HalDo', `HalDo AI OS v${HalDo.config.version} – Cosmic Edition`);
+                            break;
+                        default:
+                            HalDo.router.navigate('/' + action);
+                    }
+                });
+            });
+
+            // HalDo-Logo klick → Home
+            document.getElementById('haldo-logo-btn').addEventListener('click', () => {
+                HalDo.router.showHome();
+                systemMenu.classList.remove('open');
+                appstoreMenu.classList.remove('open');
+            });
+        }
+
+        function renderAppStore() {
+            const container = document.getElementById('appstore-menu');
+            container.innerHTML = `<div class="menu-heading">APPS A–Z</div>`;
+            const sorted = Object.values(HalDo.registry).sort((a, b) => a.name.localeCompare(b.name));
+            sorted.forEach(app => {
+                const div = document.createElement('div');
+                div.className = 'app-item';
+                div.innerHTML = `
+              <span class="icon">${app.icon}</span>
+              ${app.name}
+              <span class="badge">${app.running ? '● läuft' : '○'}</span>
+            `;
+                div.addEventListener('click', () => {
+                    document.getElementById('appstore-menu').classList.remove('open');
+                    HalDo.router.navigate('/' + app.id);
+                });
+                container.appendChild(div);
+            });
+        }
+
+        // ============================================================
+        // 12. UHR
+        // ============================================================
+        function updateClock() {
+            const clock = document.getElementById('clock');
+            setInterval(() => {
+                const now = new Date();
+                clock.textContent = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+            }, 1000);
+        }
+
+        // ============================================================
+        // 13. NOTIFICATIONS
+        // ============================================================
+        function showNotification(title, body, icon = '📢') {
+            const area = document.getElementById('notification-area');
+            const notif = document.createElement('div');
+            notif.className = 'notification';
+            notif.innerHTML = `
+            <div class="ntitle">${icon} ${title}</div>
+            <div class="nbody">${body}</div>
+          `;
+            area.appendChild(notif);
+            setTimeout(() => {
+                notif.style.opacity = '0';
+                notif.style.transform = 'translateX(30px)';
+                notif.style.transition = '0.3s ease';
+                setTimeout(() => notif.remove(), 400);
+            }, 4000);
+        }
+
+        // ============================================================
+        // 14. START
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            boot();
         });
 
-        // ---- SYSTEM INIT ----
-        function initSystem() {
-            renderDesktop();
-            updateSidebar();
-            updateTaskbar();
-            updateStatus();
+        // ============================================================
+        // 15. SERVICE WORKER / PWA-READY (optional)
+        // ============================================================
+        // Hier könnte ein Service Worker für Offline-Fähigkeit registriert werden
 
-            setInterval(() => {
-                const appId = currentApp;
-                const storageEl = document.getElementById(`storageStatus-${appId}`);
-                if (storageEl) {
-                    const size = Math.round(Math.random() * 100 + 10);
-                    storageEl.textContent = size + ' KB';
-                }
-                const dataEl = document.getElementById(`dataStatus-${appId}`);
-                if (dataEl) {
-                    const count = Math.round(Math.random() * 50 + 5);
-                    dataEl.textContent = count + ' Einträge';
-                }
-                const activityEl = document.getElementById(`activityStatus-${appId}`);
-                if (activityEl) {
-                    activityEl.textContent = 'Jetzt';
-                }
-            }, 5000);
-
-            console.log('🚀 HalDo AI OS v26.0 gestartet!');
-            console.log(`📱 ${APP_IDS.length} Apps geladen.`);
-            console.log('🌌 Kosmische Dimension aktiviert!');
-            console.log('✨ System bereit.');
-        }
-
-        // ---- FINAL INIT ----
-        console.log('✅ HalDo AI OS — Komplette App-Welt geladen!');
-        console.log(`🏆 ${APP_IDS.length} Apps · v26.0`);
+        console.log('%c🌌 HalDo AI OS v3.0 – Cosmic Edition', 'font-size:24px; font-weight:bold; color:#4a9eff;');
+        console.log('%c💙❤️🚀 Masterplan A–Z – vollständig integriert', 'font-size:14px; color:#a855f7;');
     </script>
 </body>
 </html>
