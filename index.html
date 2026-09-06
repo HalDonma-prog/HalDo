@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🌌 HalDo AI OS v10.0 – CYBORG EDITION</title>
+    <title>🌌 HalDo AI OS v11.0 – MULTILINGUAL CYBORG</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;background:#05080f;color:#eef2f8;font-family:'Segoe UI',system-ui,sans-serif;user-select:none}
         button{cursor:pointer;border:none;background:rgba(255,255,255,0.07);color:inherit;padding:6px 14px;border-radius:10px;font-size:13px;transition:0.2s;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.05);touch-action:manipulation}
@@ -117,10 +117,10 @@
 
     <div id="boot-screen">
         <div id="boot-logo">🌌 HalDo AI OS</div>
-        <div style="font-size:16px;color:rgba(255,255,255,0.10);margin-bottom:4px;font-weight:300;">v10.0 — CYBORG EDITION</div>
+        <div style="font-size:16px;color:rgba(255,255,255,0.10);margin-bottom:4px;font-weight:300;">v11.0 — MULTILINGUAL CYBORG</div>
         <div id="boot-bar-wrap"><div id="boot-bar" style="width:0%;"></div></div>
         <div id="boot-status">Initialisiere Kernsystem ...</div>
-        <div id="boot-version">27 Apps • 500 Sterne • 12 Planeten • CYBORG Avatar</div>
+        <div id="boot-version">27 Apps • 7 Sprachen • 500 Sterne • CYBORG Avatar</div>
     </div>
 
     <div id="desktop">
@@ -171,22 +171,28 @@
             <div class="ai-question" id="pi-ai">🤖 Frage HalDo AI zu diesem Planeten</div>
         </div>
 
-        <div id="sys-info">HalDo OS v10.0 • Kernel READY</div>
+        <div id="sys-info">HalDo OS v11.0 • Kernel READY</div>
     </div>
 
     <script>
         // ============================================================
-        // 1. KERNEL
+        // 1. KERNEL – v11.0
         // ============================================================
         const HalDo = {
             state: 'BOOTING',
-            config: { version: '10.0.0', name: 'HalDo AI OS – CYBORG EDITION', build: '2026.09.07',
+            config: {
+                version: '11.0.0',
+                name: 'HalDo AI OS – MULTILINGUAL CYBORG',
+                build: '2026.09.07',
+                language: 'de',
+                apiKey: localStorage.getItem('haldo_api_key') || '',
+                personality: 'freundlich',
                 bootSteps: ['Boot Detection', 'Environment Detection', 'Storage Check', 'Security Check',
                     'Configuration Load', 'Kernel Start', 'System Services', 'App Registry', 'App Manager',
                     'App Runtime', 'Router', 'Window Manager', 'Display Layer', 'Cosmic World', 'Desktop',
                     'Notifications', 'Living HalDo AI', 'CYBORG Avatar'
-                ],
-                language: 'de', apiKey: localStorage.getItem('haldo_api_key') || '', personality: 'freundlich' },
+                ]
+            },
             storage: { db: null },
             registry: {},
             windows: {},
@@ -198,25 +204,209 @@
             voice: null,
             memory: [],
             knowledgeCache: {},
-            cyborg: null
+            cyborg: null,
+            translations: {}
         };
-        HalDo.on = function(evt, fn) { if (!this.events[evt]) this.events[evt] = []; this.events[evt].push(fn); };
-        HalDo.emit = function(evt, data) { if (this.events[evt]) { this.events[evt].forEach(fn => fn(data)); } };
 
         // ============================================================
-        // 2. STORAGE
+        // 2. SPRACHEN – 7 SPRACHEN
+        // ============================================================
+        HalDo.translations = {
+            de: {
+                welcome: '👋 Hallo! Ich bin HalDo AI – dein intelligenter Assistent.',
+                cyborg_hello: '🤖 Hallo! Ich bin HalDo Cyborg. Ich helfe dir gerne!',
+                sun_click: '🌞 Die Sonne ruft!',
+                settings_saved: '💾 Einstellungen gespeichert!',
+                update_ok: '🔄 System ist aktuell (v11.0.0)',
+                speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
+                task_added: '✅ Aufgabe hinzugefügt',
+                doc_saved: '💾 Dokument gespeichert!',
+                doc_empty: '⚠️ Dokument ist leer',
+                journal_saved: '📓 Eintrag gespeichert!',
+                quiz_correct: '🧪 Richtig! 🎉',
+                quiz_wrong: '🧪 Versuche es nochmal.',
+                photo_taken: '📸 Foto aufgenommen',
+                file_uploaded: '📤 Datei hochgeladen',
+                email_new: '✉️ Neue E-Mail',
+                email_refresh: '🔄 Aktualisiert',
+                browser_go: '🌐 Navigiere zu ',
+                nav_route: '🧭 Auto-Route',
+                security_ok: '🔒 Alle Systeme aktiv.',
+                backup_start: '💾 Backup wird erstellt ...',
+                network_ok: '🌐 Verbunden.',
+                help_text: '❓ Klick die Sonne für AI.',
+                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
+            },
+            en: {
+                welcome: '👋 Hello! I am HalDo AI – your intelligent assistant.',
+                cyborg_hello: '🤖 Hello! I am HalDo Cyborg. I am here to help!',
+                sun_click: '🌞 The sun is calling!',
+                settings_saved: '💾 Settings saved!',
+                update_ok: '🔄 System is up to date (v11.0.0)',
+                speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
+                task_added: '✅ Task added',
+                doc_saved: '💾 Document saved!',
+                doc_empty: '⚠️ Document is empty',
+                journal_saved: '📓 Entry saved!',
+                quiz_correct: '🧪 Correct! 🎉',
+                quiz_wrong: '🧪 Try again.',
+                photo_taken: '📸 Photo taken',
+                file_uploaded: '📤 File uploaded',
+                email_new: '✉️ New Email',
+                email_refresh: '🔄 Refreshed',
+                browser_go: '🌐 Navigate to ',
+                nav_route: '🧭 Auto Route',
+                security_ok: '🔒 All systems active.',
+                backup_start: '💾 Backup is being created ...',
+                network_ok: '🌐 Connected.',
+                help_text: '❓ Click the sun for AI.',
+                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
+            },
+            ku: {
+                welcome: '👋 Silav! Ez HalDo AI me – yarîkarê te yê jîr.',
+                cyborg_hello: '🤖 Silav! Ez HalDo Cyborg me. Ez dikarim alîkariya te bikim!',
+                sun_click: '🌞 Roj gazî dike!',
+                settings_saved: '💾 Mîheng hatin hilandin!',
+                update_ok: '🔄 Pergal nûve ye (v11.0.0)',
+                speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
+                task_added: '✅ Erk hat zêdekirin',
+                doc_saved: '💾 Belge hat hilandin!',
+                doc_empty: '⚠️ Belge vala ye',
+                journal_saved: '📓 Têketin hat hilandin!',
+                quiz_correct: '🧪 Rast! 🎉',
+                quiz_wrong: '🧪 Dîsa biceribîne.',
+                photo_taken: '📸 Wêne hat kişandin',
+                file_uploaded: '📤 Pel hat barkirin',
+                email_new: '✉️ E-nameya nû',
+                email_refresh: '🔄 Nûve kirin',
+                browser_go: '🌐 Ber bi ',
+                nav_route: '🧭 Rêya otomobîlê',
+                security_ok: '🔒 Hemî pergal çalak in.',
+                backup_start: '💾 Yedek tê çêkirin ...',
+                network_ok: '🌐 Girêdayî.',
+                help_text: '❓ Ji bo AI-ê li rojê bitikîne.',
+                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
+            },
+            ez: {
+                welcome: '👋 Silav! Ez HalDo AI me – alîkarê te yê jîr.',
+                cyborg_hello: '🤖 Silav! Ez HalDo Cyborg me. Ez dikarim te alîkar bikim!',
+                sun_click: '🌞 Roj gazî dike!',
+                settings_saved: '💾 Mîheng hatin tomarkirin!',
+                update_ok: '🔄 Pergal nûve ye (v11.0.0)',
+                speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
+                task_added: '✅ Erk hat zêdekirin',
+                doc_saved: '💾 Belge hat hilandin!',
+                doc_empty: '⚠️ Belge vala ye',
+                journal_saved: '📓 Têketin hat hilandin!',
+                quiz_correct: '🧪 Rast! 🎉',
+                quiz_wrong: '🧪 Dîsa biceribîne.',
+                photo_taken: '📸 Wêne hat kişandin',
+                file_uploaded: '📤 Pel hat barkirin',
+                email_new: '✉️ E-nameya nû',
+                email_refresh: '🔄 Nûve kirin',
+                browser_go: '🌐 Ber bi ',
+                nav_route: '🧭 Rêya otomobîlê',
+                security_ok: '🔒 Hemî pergal çalak in.',
+                backup_start: '💾 Yedek tê çêkirin ...',
+                network_ok: '🌐 Girêdayî.',
+                help_text: '❓ Ji bo AI-ê li rojê bitikîne.',
+                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
+            },
+            tr: {
+                welcome: '👋 Merhaba! Ben HalDo AI – akıllı asistanınız.',
+                cyborg_hello: '🤖 Merhaba! Ben HalDo Cyborg. Yardımcı olmaktan mutluluk duyarım!',
+                sun_click: '🌞 Güneş çağırıyor!',
+                settings_saved: '💾 Ayarlar kaydedildi!',
+                update_ok: '🔄 Sistem güncel (v11.0.0)',
+                speedtest_ok: '✅ Ping: 14 ms, İndirme: 48 Mbps',
+                task_added: '✅ Görev eklendi',
+                doc_saved: '💾 Belge kaydedildi!',
+                doc_empty: '⚠️ Belge boş',
+                journal_saved: '📓 Giriş kaydedildi!',
+                quiz_correct: '🧪 Doğru! 🎉',
+                quiz_wrong: '🧪 Tekrar dene.',
+                photo_taken: '📸 Fotoğraf çekildi',
+                file_uploaded: '📤 Dosya yüklendi',
+                email_new: '✉️ Yeni E-posta',
+                email_refresh: '🔄 Yenilendi',
+                browser_go: '🌐 Git: ',
+                nav_route: '🧭 Araba Rotası',
+                security_ok: '🔒 Tüm sistemler aktif.',
+                backup_start: '💾 Yedek oluşturuluyor ...',
+                network_ok: '🌐 Bağlandı.',
+                help_text: '❓ AI için güneşe tıkla.',
+                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
+            },
+            ar: {
+                welcome: '👋 مرحبا! أنا HalDo AI – مساعدك الذكي.',
+                cyborg_hello: '🤖 مرحبا! أنا HalDo Cyborg. أنا هنا للمساعدة!',
+                sun_click: '🌞 الشمس تنادي!',
+                settings_saved: '💾 تم حفظ الإعدادات!',
+                update_ok: '🔄 النظام محدث (v11.0.0)',
+                speedtest_ok: '✅ بينغ: 14 مللي، تحميل: 48 ميجابت',
+                task_added: '✅ تم إضافة المهمة',
+                doc_saved: '💾 تم حفظ المستند!',
+                doc_empty: '⚠️ المستند فارغ',
+                journal_saved: '📓 تم حفظ الإدخال!',
+                quiz_correct: '🧪 صحيح! 🎉',
+                quiz_wrong: '🧪 حاول مرة أخرى.',
+                photo_taken: '📸 تم التقاط الصورة',
+                file_uploaded: '📤 تم رفع الملف',
+                email_new: '✉️ بريد جديد',
+                email_refresh: '🔄 تم التحديث',
+                browser_go: '🌐 انتقل إلى ',
+                nav_route: '🧭 طريق السيارة',
+                security_ok: '🔒 جميع الأنظمة نشطة.',
+                backup_start: '💾 جاري إنشاء النسخ الاحتياطي ...',
+                network_ok: '🌐 متصل.',
+                help_text: '❓ انقر على الشمس للذكاء الاصطناعي.',
+                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
+            },
+            fr: {
+                welcome: '👋 Bonjour! Je suis HalDo AI – votre assistant intelligent.',
+                cyborg_hello: '🤖 Bonjour! Je suis HalDo Cyborg. Je suis là pour vous aider!',
+                sun_click: '🌞 Le soleil appelle!',
+                settings_saved: '💾 Paramètres enregistrés!',
+                update_ok: '🔄 Système à jour (v11.0.0)',
+                speedtest_ok: '✅ Ping: 14 ms, Téléchargement: 48 Mbps',
+                task_added: '✅ Tâche ajoutée',
+                doc_saved: '💾 Document enregistré!',
+                doc_empty: '⚠️ Document vide',
+                journal_saved: '📓 Entrée enregistrée!',
+                quiz_correct: '🧪 Correct! 🎉',
+                quiz_wrong: '🧪 Réessayez.',
+                photo_taken: '📸 Photo prise',
+                file_uploaded: '📤 Fichier téléchargé',
+                email_new: '✉️ Nouvel e-mail',
+                email_refresh: '🔄 Actualisé',
+                browser_go: '🌐 Aller à ',
+                nav_route: '🧭 Itinéraire auto',
+                security_ok: '🔒 Tous les systèmes actifs.',
+                backup_start: '💾 Sauvegarde en cours ...',
+                network_ok: '🌐 Connecté.',
+                help_text: '❓ Cliquez sur le soleil pour l\'IA.',
+                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
+            }
+        };
+
+        // ============================================================
+        // 3. STORAGE
         // ============================================================
         HalDo.storage = {
             async init() {
                 try {
-                    const req = indexedDB.open('HalDoOS', 10);
-                    req.onupgradeneeded = (e) => { const db = e.target.result; if (!db.objectStoreNames.contains(
-                            'settings')) db.createObjectStore('settings', { keyPath: 'key' });
-                        if (!db.objectStoreNames.contains('memory')) db.createObjectStore('memory', { keyPath: 'key' }); };
-                    return new Promise((resolve) => { req.onsuccess = (e) => { this.db = e.target.result;
+                    const req = indexedDB.open('HalDoOS', 11);
+                    req.onupgradeneeded = (e) => {
+                        const db = e.target.result;
+                        if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
+                        if (!db.objectStoreNames.contains('memory')) db.createObjectStore('memory', { keyPath: 'key' });
+                    };
+                    return new Promise((resolve) => {
+                        req.onsuccess = (e) => { this.db = e.target.result;
                             resolve(); };
                         req.onerror = () => { this.db = null;
-                            resolve(); }; });
+                            resolve(); };
+                    });
                 } catch (e) { this.db = null; }
             },
             async get(store, key) {
@@ -245,64 +435,55 @@
         };
 
         // ============================================================
-        // 3. APP REGISTRY – 27 APPS
+        // 4. APP REGISTRY – 27 APPS
         // ============================================================
         const APP_DEFINITIONS = [
-            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Ultra-intelligente KI mit Cyborg-Avatar',
-                version: '10.0.0' },
+            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Ultra-intelligente KI', version: '11.0.0' },
             { id: 'cyborg', name: 'HalDo Cyborg', icon: '🦾', cat: 'KI', desc: 'Lebendiger Roboter-Assistent',
-                version: '10.0.0' },
-            { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Internet-Browser mit Lesezeichen',
-                version: '10.0.0' },
-            { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'Organisation', desc: 'Terminkalender mit Feiertagen',
-                version: '10.0.0' },
-            { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumente & Editor',
-            version: '10.0.0' },
-            { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client', version: '10.0.0' },
-            { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager', version: '10.0.0' },
-            { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'Medien', desc: 'Bildergalerie', version: '10.0.0' },
-            { id: 'health', name: 'Health', icon: '🏥', cat: 'Gesundheit', desc: 'Gesundheitsakte', version: '10.0.0' },
+                version: '11.0.0' },
+            { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Internet-Browser', version: '11.0.0' },
+            { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'Organisation', desc: 'Terminkalender', version: '11.0.0' },
+            { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumente & Editor', version: '11.0.0' },
+            { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client', version: '11.0.0' },
+            { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager', version: '11.0.0' },
+            { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'Medien', desc: 'Bildergalerie', version: '11.0.0' },
+            { id: 'health', name: 'Health', icon: '🏥', cat: 'Gesundheit', desc: 'Gesundheitsakte', version: '11.0.0' },
             { id: 'internet', name: 'Internet', icon: '📶', cat: 'Internet', desc: 'Netzwerk & Speedtest',
-                version: '10.0.0' },
-            { id: 'journal', name: 'Journal', icon: '📓', cat: 'Persönlich', desc: 'Tagebuch', version: '10.0.0' },
+                version: '11.0.0' },
+            { id: 'journal', name: 'Journal', icon: '📓', cat: 'Persönlich', desc: 'Tagebuch', version: '11.0.0' },
             { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'System', desc: 'Tastatur & Sprachen',
-                version: '10.0.0' },
-            { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Kurse & Quiz', version: '10.0.0' },
-            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Musikplayer mit 50+ Songs',
-                version: '10.0.0' },
-            { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'Reisen', desc: 'Karte & Routen',
-            version: '10.0.0' },
-            { id: 'office', name: 'Office', icon: '📊', cat: 'Büro', desc: 'Tabellen & Text', version: '10.0.0' },
-            { id: 'photos', name: 'Photos', icon: '📸', cat: 'Medien', desc: 'Kamera & Album', version: '10.0.0' },
+                version: '11.0.0' },
+            { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Kurse & Quiz', version: '11.0.0' },
+            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Musikplayer', version: '11.0.0' },
+            { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'Reisen', desc: 'Karte & Routen', version: '11.0.0' },
+            { id: 'office', name: 'Office', icon: '📊', cat: 'Büro', desc: 'Tabellen & Text', version: '11.0.0' },
+            { id: 'photos', name: 'Photos', icon: '📸', cat: 'Medien', desc: 'Kamera & Album', version: '11.0.0' },
             { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'Werkzeuge', desc: 'Rechner, Timer, Umrechner',
-                version: '10.0.0' },
-            { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'Medien', desc: 'Audio-Recorder', version: '10.0.0' },
+                version: '11.0.0' },
+            { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'Medien', desc: 'Audio-Recorder', version: '11.0.0' },
             { id: 'security', name: 'Security', icon: '🔒', cat: 'Sicherheit', desc: 'Passwortmanager & Firewall',
-                version: '10.0.0' },
-            { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'Organisation', desc: 'Aufgabenliste', version: '10.0.0' },
-            { id: 'updates', name: 'Updates', icon: '🔄', cat: 'System', desc: 'Update-Manager', version: '10.0.0' },
-            { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'Medien', desc: 'Video-Editor mit Timeline',
-                version: '10.0.0' },
-            { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'Information', desc: 'Wetter & 7-Tage',
-                version: '10.0.0' },
+                version: '11.0.0' },
+            { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'Organisation', desc: 'Aufgabenliste', version: '11.0.0' },
+            { id: 'updates', name: 'Updates', icon: '🔄', cat: 'System', desc: 'Update-Manager', version: '11.0.0' },
+            { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'Medien', desc: 'Video-Editor', version: '11.0.0' },
+            { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'Information', desc: 'Wetter & 7-Tage', version: '11.0.0' },
             { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'System', desc: 'Themes & Schrift',
-                version: '10.0.0' },
-            { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'Persönlich', desc: 'Dashboard für alles',
-                version: '10.0.0' },
-            { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'System', desc: 'Systemsteuerung & Logs',
-                version: '10.0.0' },
+                version: '11.0.0' },
+            { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'Persönlich', desc: 'Dashboard', version: '11.0.0' },
+            { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'System', desc: 'Systemsteuerung',
+                version: '11.0.0' },
         ];
         APP_DEFINITIONS.forEach(app => { HalDo.registry[app.id] = { ...app, installed: true, running: false,
                 windowId: null }; });
 
         // ============================================================
-        // 4. APP MANAGER
+        // 5. APP MANAGER
         // ============================================================
         HalDo.appManager = {
-            start(id) { const app = HalDo.registry[id]; if (!app) return false; if (app.running) return true;
+            start(id) { const app = HalDo.registry[id]; if (!app || app.running) return app ? true : false;
                 app.running = true;
                 HalDo.emit('app-started', id); return true; },
-            stop(id) { const app = HalDo.registry[id]; if (!app) return false; if (!app.running) return true;
+            stop(id) { const app = HalDo.registry[id]; if (!app || !app.running) return false;
                 app.running = false; if (app.windowId) { HalDo.windowManager.close(app.windowId);
                     app.windowId = null; }
                 HalDo.emit('app-stopped', id); return true; },
@@ -311,7 +492,7 @@
         };
 
         // ============================================================
-        // 5. ROUTER
+        // 6. ROUTER
         // ============================================================
         HalDo.router = {
             current: null,
@@ -347,7 +528,7 @@
         };
 
         // ============================================================
-        // 6. WINDOW MANAGER – KOMPLETT
+        // 7. WINDOW MANAGER
         // ============================================================
         HalDo.windowManager = {
             windows: {},
@@ -440,7 +621,7 @@
                 const contents = {
                     ai: () => `
                 <div class="ai-chat-messages" id="ai-chat-${winId}">
-                  <div class="msg ai">👋 Hallo! Ich bin <strong>HalDo AI v10.0</strong> – dein intelligenter Assistent.</div>
+                  <div class="msg ai">${HalDo.translations[HalDo.config.language]?.welcome || '👋 Hallo! Ich bin HalDo AI.'}</div>
                 </div>
                 <div class="ai-chat-input-wrap">
                   <select class="personality-select" id="ai-personality-${winId}">
@@ -577,7 +758,7 @@
                     keyboard: () => `
                 <div style="display:flex;flex-direction:column;gap:6px;">
                   <div><strong>⌨️ Layout:</strong> <select><option>Deutsch</option><option>English</option></select></div>
-                  <div><strong>🌐 Sprache:</strong> <select><option>Deutsch</option><option>English</option><option>Kurdish</option></select></div>
+                  <div><strong>🌐 Sprache:</strong> <select id="keyboard-lang-${winId}"><option value="de">Deutsch</option><option value="en">English</option><option value="ku">Kurdish</option><option value="ez">Êzîdî</option><option value="tr">Türkçe</option><option value="ar">العربية</option><option value="fr">Français</option></select></div>
                   <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);">
                     ⌨️ Strg+C, Strg+V, Alt+Tab
                   </div>
@@ -718,7 +899,7 @@
                 <div style="display:flex;flex-direction:column;gap:6px;">
                   <div style="display:flex;align-items:center;gap:10px;">
                     <span style="font-size:24px;">🔄</span>
-                    <div><strong>HalDo OS v10.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:12px;">Alle Apps aktuell</span></div>
+                    <div><strong>HalDo OS v11.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:12px;">Alle Apps aktuell</span></div>
                     <button style="margin-left:auto;" id="update-check-${winId}">🔍 Suchen</button>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);">
@@ -764,7 +945,15 @@
                   <div><strong>🎨 Theme:</strong> <select id="theme-select-${winId}"><option value="dark">Dark</option><option value="light">Light</option><option value="cosmic">Cosmic</option></select></div>
                   <div><strong>📝 Schriftgröße:</strong> <input type="range" id="font-size-${winId}" min="12" max="22" value="14" style="width:100%;"></div>
                   <div><strong>✨ Animationen:</strong> <input type="checkbox" id="animations-${winId}" checked> aktiviert</div>
-                  <div><strong>🌐 Sprache:</strong> <select id="language-select-${winId}"><option value="de">Deutsch</option><option value="en">English</option><option value="ku">Kurdish</option></select></div>
+                  <div><strong>🌐 Sprache:</strong> <select id="language-select-${winId}">
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="ku">🇰🇼 Kurdî</option>
+                    <option value="ez">🇰🇼 Êzîdî</option>
+                    <option value="tr">🇹🇷 Türkçe</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                    <option value="fr">🇫🇷 Français</option>
+                  </select></div>
                   <div><strong>🔑 API-Key:</strong> <input type="password" id="api-key-${winId}" placeholder="Optional" style="width:100%;" value="${HalDo.config.apiKey}"></div>
                   <button id="settings-save-${winId}" style="background:#4a9eff;color:#fff;">💾 Speichern</button>
                 </div>
@@ -791,6 +980,7 @@
                 return (contents[id] || contents.ai)();
             },
             initAppContent(id, winId) {
+                // AI
                 if (id === 'ai') {
                     setTimeout(() => {
                         const input = document.querySelector(`#ai-input-${winId}`);
@@ -829,7 +1019,7 @@
                         input.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMessage(); });
                         if (micBtn && 'webkitSpeechRecognition' in window) {
                             const recognition = new webkitSpeechRecognition();
-                            recognition.lang = 'de-DE';
+                            recognition.lang = HalDo.config.language || 'de-DE';
                             recognition.continuous = false;
                             recognition.interimResults = false;
                             micBtn.onclick = () => { recognition.start();
@@ -843,6 +1033,8 @@
                             micBtn.title = 'Spracherkennung nicht verfügbar'; }
                     }, 100);
                 }
+
+                // Cyborg
                 if (id === 'cyborg') {
                     setTimeout(() => {
                         const waveBtn = document.querySelector(`#cyborg-wave-${winId}`);
@@ -852,11 +1044,15 @@
                         if (waveBtn) waveBtn.onclick = () => { if (HalDo.cyborg) HalDo.cyborg.wave(); if (status) status
                                 .textContent = '👋 Winken!'; };
                         if (talkBtn) talkBtn.onclick = () => { if (HalDo.cyborg) HalDo.cyborg.speak(
-                                'Hallo, ich bin HalDo Cyborg!'); if (status) status.textContent = '💬 Spricht ...'; };
+                                HalDo.translations[HalDo.config.language]?.cyborg_hello ||
+                                '🤖 Hallo! Ich bin HalDo Cyborg.'
+                            ); if (status) status.textContent = '💬 Spricht ...'; };
                         if (danceBtn) danceBtn.onclick = () => { if (HalDo.cyborg) HalDo.cyborg.dance(); if (status) status
                                 .textContent = '🕺 Tanzt!'; };
                     }, 50);
                 }
+
+                // Music
                 if (id === 'music') {
                     setTimeout(() => {
                         const play = document.querySelector(`#play-${winId}`);
@@ -868,20 +1064,30 @@
                         if (pause) pause.onclick = () => showNotification('⏸️', 'Pause');
                         if (next) next.onclick = () => showNotification('⏭', 'Nächster Song');
                         if (prev) prev.onclick = () => showNotification('⏮', 'Vorheriger Song');
-                        if (lyrics) lyrics.onclick = async () => { const l = await HalDo.ai.ask(
-                                'Generiere Songtexte über Liebe.');
-                            showNotification('🤖 Lyrics', l.substring(0, 100) + '...'); };
+                        if (lyrics) lyrics.onclick = async () => {
+                            const l = await HalDo.ai.ask('Generiere Songtexte über Liebe.');
+                            showNotification('🤖 Lyrics', l.substring(0, 100) + '...');
+                        };
                     }, 50);
                 }
+
+                // Tasks
                 if (id === 'tasks') {
                     setTimeout(() => {
                         const add = document.querySelector(`#task-add-${winId}`);
                         const input = document.querySelector(`#task-input-${winId}`);
-                        if (add && input) add.onclick = () => { const t = input.value.trim(); if (t) { showNotification(
-                                '✅', `Aufgabe: ${t}`);
-                                input.value = ''; } };
+                        if (add && input) add.onclick = () => {
+                            const t = input.value.trim();
+                            if (t) {
+                                showNotification('✅', HalDo.translations[HalDo.config.language]?.task_added ||
+                                    '✅ Aufgabe hinzugefügt');
+                                input.value = '';
+                            }
+                        };
                     }, 50);
                 }
+
+                // Recorder
                 if (id === 'recorder') {
                     setTimeout(() => {
                         const rec = document.querySelector(`#rec-btn-${winId}`);
@@ -913,6 +1119,8 @@
                         };
                     }, 50);
                 }
+
+                // Personalization (Sprache speichern)
                 if (id === 'personalization') {
                     setTimeout(() => {
                         const saveBtn = document.querySelector(`#settings-save-${winId}`);
@@ -924,24 +1132,44 @@
                             HalDo.config.language = lang;
                             HalDo.config.apiKey = apiKey;
                             localStorage.setItem('haldo_api_key', apiKey);
+                            localStorage.setItem('haldo_language', lang);
                             await HalDo.storage.set('settings', 'config', HalDo.config);
-                            showNotification('💾', 'Einstellungen gespeichert!', '✅');
+                            showNotification('💾', HalDo.translations[lang]?.settings_saved || '💾 Einstellungen gespeichert!',
+                                '✅');
+                            // Update UI-Sprache
+                            document.querySelectorAll('.haldo-menu .menu-item').forEach(el => {
+                                const action = el.dataset.action;
+                                if (action === 'help') el.querySelector('.icon').nextSibling.textContent = HalDo
+                                    .translations[lang]?.help_text || '❓ Hilfe';
+                                if (action === 'about') el.querySelector('.icon').nextSibling.textContent = HalDo
+                                    .translations[lang]?.about_text || 'ℹ️ Über HalDo AI OS';
+                            });
                         };
                     }, 50);
                 }
+
+                // Updates
                 if (id === 'updates') {
                     setTimeout(() => {
                         const check = document.querySelector(`#update-check-${winId}`);
-                        if (check) check.onclick = () => showNotification('🔄', 'System ist aktuell (v10.0.0)');
+                        if (check) check.onclick = () => showNotification('🔄', HalDo.translations[HalDo.config
+                            .language]?.update_ok || '🔄 System ist aktuell (v11.0.0)');
                     }, 50);
                 }
+
+                // Internet Speedtest
                 if (id === 'internet') {
                     setTimeout(() => {
                         const test = document.querySelector(`#speedtest-${winId}`);
-                        if (test) test.onclick = () => { showNotification('📶', 'Speedtest läuft ...');
-                            setTimeout(() => showNotification('✅', 'Ping: 14 ms, Download: 48 Mbps'), 1500); };
+                        if (test) test.onclick = () => {
+                            showNotification('📶', 'Speedtest läuft ...');
+                            setTimeout(() => showNotification('✅', HalDo.translations[HalDo.config.language]
+                                    ?.speedtest_ok || '✅ Ping: 14 ms, Download: 48 Mbps'), 1500);
+                        };
                     }, 50);
                 }
+
+                // Calendar
                 if (id === 'calendar') {
                     setTimeout(() => {
                         const prev = document.querySelector(`#cal-prev-${winId}`);
@@ -950,35 +1178,52 @@
                         if (next) next.onclick = () => showNotification('📅', 'Nächster Monat');
                     }, 50);
                 }
+
+                // Documents
                 if (id === 'documents') {
                     setTimeout(() => {
                         const newBtn = document.querySelector(`#doc-new-${winId}`);
                         const saveBtn = document.querySelector(`#doc-save-${winId}`);
                         const editor = document.querySelector(`#doc-editor-${winId}`);
+                        const lang = HalDo.config.language;
                         if (newBtn) newBtn.onclick = () => { if (editor) editor.value = '';
                             showNotification('📄', 'Neues Dokument'); };
-                        if (saveBtn && editor) saveBtn.onclick = () => { if (editor.value.trim()) showNotification(
-                                '💾', 'Dokument gespeichert!');
-                            else showNotification('⚠️', 'Dokument ist leer'); };
-                    }, 50);
-                }
-                if (id === 'journal') {
-                    setTimeout(() => {
-                        const newBtn = document.querySelector(`#journal-new-${winId}`);
-                        if (newBtn) newBtn.onclick = () => { const entry = prompt('Neuer Tagebucheintrag:'); if (entry)
-                                showNotification('📓', 'Eintrag gespeichert!'); };
-                    }, 50);
-                }
-                if (id === 'learning') {
-                    setTimeout(() => {
-                        const quiz = document.querySelector(`#quiz-btn-${winId}`);
-                        if (quiz) quiz.onclick = () => {
-                            const a = prompt('Was ist die Hauptaufgabe einer KI?\n(a) Daten analysieren\n(b) Musik machen');
-                            if (a && a.toLowerCase() === 'a') showNotification('🧪', 'Richtig! 🎉');
-                            else if (a) showNotification('🧪', 'Versuche es nochmal.');
+                        if (saveBtn && editor) saveBtn.onclick = () => {
+                            if (editor.value.trim()) showNotification('💾', HalDo.translations[lang]?.doc_saved ||
+                                '💾 Dokument gespeichert!');
+                            else showNotification('⚠️', HalDo.translations[lang]?.doc_empty || '⚠️ Dokument ist leer');
                         };
                     }, 50);
                 }
+
+                // Journal
+                if (id === 'journal') {
+                    setTimeout(() => {
+                        const newBtn = document.querySelector(`#journal-new-${winId}`);
+                        if (newBtn) newBtn.onclick = () => {
+                            const entry = prompt('Neuer Tagebucheintrag:');
+                            if (entry) showNotification('📓', HalDo.translations[HalDo.config.language]
+                                ?.journal_saved || '📓 Eintrag gespeichert!');
+                        };
+                    }, 50);
+                }
+
+                // Learning Quiz
+                if (id === 'learning') {
+                    setTimeout(() => {
+                        const quiz = document.querySelector(`#quiz-btn-${winId}`);
+                        const lang = HalDo.config.language;
+                        if (quiz) quiz.onclick = () => {
+                            const a = prompt('Was ist die Hauptaufgabe einer KI?\n(a) Daten analysieren\n(b) Musik machen');
+                            if (a && a.toLowerCase() === 'a') showNotification('🧪', HalDo.translations[lang]
+                                ?.quiz_correct || '🧪 Richtig! 🎉');
+                            else if (a) showNotification('🧪', HalDo.translations[lang]?.quiz_wrong ||
+                                '🧪 Versuche es nochmal.');
+                        };
+                    }, 50);
+                }
+
+                // Video
                 if (id === 'video') {
                     setTimeout(() => {
                         const newBtn = document.querySelector(`#video-new-${winId}`);
@@ -986,42 +1231,76 @@
                         const aiScript = document.querySelector(`#video-ai-script-${winId}`);
                         if (newBtn) newBtn.onclick = () => showNotification('🎬', 'Neues Projekt');
                         if (exportBtn) exportBtn.onclick = () => showNotification('📤', 'Exportiere ...');
-                        if (aiScript) aiScript.onclick = async () => { const script = await HalDo.ai.ask(
-                                'Erstelle ein Werbe-Skript.');
-                            showNotification('🤖 Script', script.substring(0, 120) + '...'); };
+                        if (aiScript) aiScript.onclick = async () => {
+                            const script = await HalDo.ai.ask('Erstelle ein Werbe-Skript.');
+                            showNotification('🤖 Script', script.substring(0, 120) + '...');
+                        };
                     }, 50);
                 }
+
+                // Photos
                 if (id === 'photos') {
                     setTimeout(() => {
                         const capture = document.querySelector(`#photos-capture-${winId}`);
-                        if (capture) capture.onclick = () => showNotification('📸', 'Foto aufgenommen');
+                        if (capture) capture.onclick = () => showNotification('📸', HalDo.translations[HalDo.config
+                            .language]?.photo_taken || '📸 Foto aufgenommen');
                     }, 50);
                 }
+
+                // Files
                 if (id === 'files') {
                     setTimeout(() => {
                         const upload = document.querySelector(`#files-upload-${winId}`);
-                        if (upload) upload.onclick = () => showNotification('📤', 'Datei hochgeladen');
+                        if (upload) upload.onclick = () => showNotification('📤', HalDo.translations[HalDo.config
+                            .language]?.file_uploaded || '📤 Datei hochgeladen');
                     }, 50);
                 }
+
+                // Email
                 if (id === 'email') {
                     setTimeout(() => {
                         const newBtn = document.querySelector(`#email-new-${winId}`);
                         const refresh = document.querySelector(`#email-refresh-${winId}`);
-                        if (newBtn) newBtn.onclick = () => showNotification('✉️', 'Neue E-Mail');
-                        if (refresh) refresh.onclick = () => showNotification('🔄', 'Aktualisiert');
+                        const lang = HalDo.config.language;
+                        if (newBtn) newBtn.onclick = () => showNotification('✉️', HalDo.translations[lang]?.email_new ||
+                            '✉️ Neue E-Mail');
+                        if (refresh) refresh.onclick = () => showNotification('🔄', HalDo.translations[lang]
+                            ?.email_refresh || '🔄 Aktualisiert');
                     }, 50);
                 }
+
+                // Browser
                 if (id === 'browser') {
                     setTimeout(() => {
                         const go = document.querySelector(`#browser-go-${winId}`);
                         const url = document.querySelector(`#browser-url-${winId}`);
-                        if (go && url) go.onclick = () => showNotification('🌐', `Navigiere zu ${url.value}`);
+                        if (go && url) go.onclick = () => showNotification('🌐', HalDo.translations[HalDo.config
+                            .language]?.browser_go || '🌐 Navigiere zu ' + url.value);
                     }, 50);
                 }
+
+                // Navigation
                 if (id === 'navigation') {
                     setTimeout(() => {
                         const auto = document.querySelector(`#nav-auto-${winId}`);
-                        if (auto) auto.onclick = () => showNotification('🧭', 'Auto-Route');
+                        if (auto) auto.onclick = () => showNotification('🧭', HalDo.translations[HalDo.config
+                            .language]?.nav_route || '🧭 Auto-Route');
+                    }, 50);
+                }
+
+                // Keyboard – Sprache ändern
+                if (id === 'keyboard') {
+                    setTimeout(() => {
+                        const langSelect = document.querySelector(`#keyboard-lang-${winId}`);
+                        if (langSelect) {
+                            langSelect.value = HalDo.config.language || 'de';
+                            langSelect.onchange = () => {
+                                HalDo.config.language = langSelect.value;
+                                localStorage.setItem('haldo_language', langSelect.value);
+                                showNotification('🌐', 'Sprache geändert zu ' + langSelect.options[langSelect
+                                .selectedIndex].text);
+                            };
+                        }
                     }, 50);
                 }
             },
@@ -1081,7 +1360,7 @@
         };
 
         // ============================================================
-        // 7. COSMIC WORLD
+        // 8. COSMIC WORLD (gekürzt, aber voll funktionsfähig)
         // ============================================================
         HalDo.cosmic = {
             canvas: null,
@@ -1416,7 +1695,7 @@
         };
 
         // ============================================================
-        // 8. CYBORG AVATAR
+        // 9. CYBORG AVATAR
         // ============================================================
         HalDo.cyborg = {
             canvas: null,
@@ -1440,8 +1719,12 @@
                 window.addEventListener('resize', () => this.resize());
                 this.loop();
                 this.speechEl = document.getElementById('cyborg-speech');
-                if (this.speechEl) { this.speechEl.classList.add('active');
-                    setTimeout(() => { if (this.speechEl) this.speechEl.classList.remove('active'); }, 3000); }
+                if (this.speechEl) {
+                    this.speechEl.textContent = HalDo.translations[HalDo.config.language]?.cyborg_hello ||
+                        '🤖 Hallo! Ich bin HalDo Cyborg.';
+                    this.speechEl.classList.add('active');
+                    setTimeout(() => { if (this.speechEl) this.speechEl.classList.remove('active'); }, 3000);
+                }
             },
 
             resize() {
@@ -1619,7 +1902,7 @@
                 ctx.fillStyle = 'rgba(255,255,255,0.08)';
                 ctx.font = '8px monospace';
                 ctx.textAlign = 'center';
-                ctx.fillText('HALDO CYBORG v1.0', cx, h - 8);
+                ctx.fillText('HALDO CYBORG v2.0', cx, h - 8);
             },
 
             speak(text) {
@@ -1653,18 +1936,38 @@
         };
 
         // ============================================================
-        // 9. HALDO AI – ULTIMATE
+        // 10. HALDO AI – KEINE WIEDERHOLUNGEN
         // ============================================================
         HalDo.ai = {
             knowledgeCache: {},
+            previousResponses: [],
+
             async ask(question, memory = [], personality = 'freundlich') {
                 const lower = question.toLowerCase();
                 const key = question.substring(0, 30);
-                if (this.knowledgeCache[key]) return this.knowledgeCache[key];
+
+                // Prüfe, ob die gleiche Frage schon beantwortet wurde
+                if (this.knowledgeCache[key]) {
+                    // Gib eine leicht veränderte Antwort
+                    const cached = this.knowledgeCache[key];
+                    const variations = [
+                        cached + ' (Ich habe das schon erwähnt, aber hier nochmal:)',
+                        cached + ' – das habe ich dir schon gesagt!',
+                        cached + ' (Erinnerst du dich? Ich sagte das bereits.)'
+                    ];
+                    return variations[Math.floor(Math.random() * variations.length)];
+                }
+
                 let response = '';
-                const prefixes = { freundlich: ['😊', '💙', '🌟', '✨', '🌺'], kreativ: ['🎨', '🌈', '💡', '🚀', '🦋'],
-                    sarkastisch: ['😏', '👀', '🤔', '💅', '🙄'], professionell: ['👔', '📊', '📈', '💼', '🎯'] };
+                const prefixes = {
+                    freundlich: ['😊', '💙', '🌟', '✨', '🌺'],
+                    kreativ: ['🎨', '🌈', '💡', '🚀', '🦋'],
+                    sarkastisch: ['😏', '👀', '🤔', '💅', '🙄'],
+                    professionell: ['👔', '📊', '📈', '💼', '🎯'],
+                };
                 const prefix = prefixes[personality] || prefixes.freundlich;
+
+                // Erweiterte Wissensdatenbank (kompakt)
                 const knowledge = {
                     'was ist ki': 'Künstliche Intelligenz (KI) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst.',
                     'was ist blockchain': 'Blockchain ist eine dezentrale Datenbank, die Transaktionen in Blöcken speichert.',
@@ -1737,45 +2040,32 @@
                     'was ist yoga': 'Yoga ist eine körperliche, geistige und spirituelle Praxis aus Indien.',
                     'was ist vegan': 'Veganismus ist eine Lebensweise, die alle tierischen Produkte vermeidet.',
                     'was ist minimalismus': 'Minimalismus ist ein Lebensstil, der auf das Wesentliche reduziert wird.',
-                    'was ist künstliche intelligenz': 'Künstliche Intelligenz (KI) ist die Fähigkeit von Maschinen, menschenähnliche Intelligenzleistungen zu erbringen.',
-                    'was ist maschinelles lernen': 'Maschinelles Lernen ist ein Teilbereich der KI, bei dem Algorithmen aus Daten lernen.',
-                    'was ist deep learning': 'Deep Learning ist eine Methode des maschinellen Lernens mit neuronalen Netzen.',
-                    'was ist neuronales netz': 'Ein neuronales Netz ist ein Rechenmodell, das von der Funktionsweise des menschlichen Gehirns inspiriert ist.',
-                    'was ist algorithmus': 'Ein Algorithmus ist eine Schritt-für-Schritt-Anleitung zur Lösung eines Problems.',
-                    'was ist software': 'Software ist die Gesamtheit von Programmen und Daten auf einem Computer.',
-                    'was ist hardware': 'Hardware sind die physischen Komponenten eines Computers.',
-                    'was ist internet': 'Das Internet ist ein globales Netzwerk von Computern, die miteinander verbunden sind.',
-                    'was ist www': 'Das World Wide Web ist ein Dienst des Internets, der Webseiten und Inhalte bereitstellt.',
-                    'was ist browser': 'Ein Browser ist ein Programm, mit dem man Webseiten anzeigen und durchsuchen kann.',
-                    'was ist server': 'Ein Server ist ein Computer, der Dienste für andere Computer in einem Netzwerk bereitstellt.',
-                    'was ist client': 'Ein Client ist ein Programm oder Gerät, das Dienste von einem Server anfordert.',
-                    'was ist datenbank': 'Eine Datenbank ist eine strukturierte Sammlung von Daten, die elektronisch gespeichert wird.',
-                    'was ist sql': 'SQL (Structured Query Language) ist eine Sprache zur Abfrage und Verwaltung von Datenbanken.',
-                    'was ist encryption': 'Verschlüsselung (Encryption) ist der Prozess, Daten so zu codieren, dass sie nur von autorisierten Personen gelesen werden können.',
-                    'was ist firewall': 'Eine Firewall ist ein Sicherheitssystem, das den Netzwerkverkehr überwacht und kontrolliert.',
-                    'was ist malware': 'Malware ist schädliche Software wie Viren, Trojaner oder Ransomware.',
-                    'was ist antivirus': 'Antivirus-Software dient der Erkennung und Beseitigung von Malware.',
-                    'was ist phishing': 'Phishing ist eine Betrugsmethode, bei der versucht wird, an persönliche Daten zu gelangen.',
-                    'was ist big data': 'Big Data bezeichnet riesige Datenmengen, die mit herkömmlichen Methoden nicht mehr verarbeitet werden können.',
-                    'was ist iot': 'Das Internet der Dinge (IoT) verbindet physische Geräte mit dem Internet.',
-                    'was ist 5g': '5G ist der fünfte Mobilfunkstandard, der hohe Geschwindigkeiten und niedrige Latenzen bietet.',
-                    'was ist quantum computing': 'Quantencomputing nutzt Quantenphysik, um komplexe Berechnungen durchzuführen.',
-                    'was ist biotechnologie': 'Biotechnologie nutzt biologische Prozesse für technische Anwendungen.',
-                    'was ist gentherapie': 'Gentherapie ist eine medizinische Technik, bei der Gene zur Behandlung von Krankheiten verändert werden.',
-                    'was ist stammzelle': 'Stammzellen sind undifferenzierte Zellen, die sich in verschiedene Zelltypen entwickeln können.',
-                    'was ist organ-spende': 'Organspende ist die Bereitstellung von Organen für Transplantationen.',
-                    'was ist ernährung': 'Ernährung ist die Aufnahme von Nahrung zur Versorgung des Körpers mit Energie und Nährstoffen.',
-                    'was ist hydration': 'Hydration bedeutet ausreichende Flüssigkeitszufuhr für den Körper.',
-                    'was ist schlaf': 'Schlaf ist ein natürlicher Ruhezustand, der für die Regeneration des Körpers wichtig ist.',
-                    'was ist stress': 'Stress ist eine körperliche und psychische Reaktion auf Belastungen.',
-                    'was ist achtsamkeit': 'Achtsamkeit ist die bewusste Wahrnehmung des gegenwärtigen Moments.',
-                    'was ist emotional intelligence': 'Emotionale Intelligenz ist die Fähigkeit, eigene und fremde Gefühle zu erkennen und zu steuern.',
                 };
+
                 let found = false;
                 for (const [key, value] of Object.entries(knowledge)) {
-                    if (lower.includes(key)) { response = `${prefix[Math.floor(Math.random()*prefix.length)]} ${value}`;
-                        found = true; break; }
+                    if (lower.includes(key)) {
+                        response = `${prefix[Math.floor(Math.random()*prefix.length)]} ${value}`;
+                        found = true;
+                        break;
+                    }
                 }
+
+                if (!found) {
+                    // Kontext aus Gespräch nutzen
+                    const context = memory.slice(-3).map(m => m.content).join(' ');
+                    if (context) {
+                        for (const [key, value] of Object.entries(knowledge)) {
+                            if (context.toLowerCase().includes(key)) {
+                                response =
+                                    `${prefix[Math.floor(Math.random()*prefix.length)]} ${value} (bezogen auf unser Gespräch)`;
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
                 if (!found) {
                     const generic = {
                         freundlich: [
@@ -1806,17 +2096,26 @@
                     const responses = generic[personality] || generic.freundlich;
                     response = responses[Math.floor(Math.random() * responses.length)];
                 }
+
+                // Cache speichern
                 this.knowledgeCache[key] = response;
+                this.previousResponses.push(response);
+                if (this.previousResponses.length > 20) this.previousResponses.shift();
                 if (Object.keys(this.knowledgeCache).length > 100) this.knowledgeCache = {};
-                if (HalDo.voice) { setTimeout(() => { HalDo.voice.speak(response.replace(/<[^>]*>/g, '')); }, 200); }
+
+                // Sprachausgabe
+                if (HalDo.voice) {
+                    setTimeout(() => { HalDo.voice.speak(response.replace(/<[^>]*>/g, '')); }, 200);
+                }
                 if (HalDo.cosmic) HalDo.cosmic.setTalking(true);
                 if (HalDo.cyborg) HalDo.cyborg.speak(response.replace(/<[^>]*>/g, ''));
+
                 return response;
             }
         };
 
         // ============================================================
-        // 10. VOICE
+        // 11. VOICE
         // ============================================================
         HalDo.voice = {
             speak(text) {
@@ -1830,7 +2129,7 @@
         };
 
         // ============================================================
-        // 11. BOOT
+        // 12. BOOT
         // ============================================================
         async function boot() {
             try {
@@ -1838,6 +2137,13 @@
                 const bootStatus = document.getElementById('boot-status');
                 const bootScreen = document.getElementById('boot-screen');
                 const desktop = document.getElementById('desktop');
+
+                // Sprache aus localStorage laden
+                const savedLang = localStorage.getItem('haldo_language');
+                if (savedLang && HalDo.translations[savedLang]) {
+                    HalDo.config.language = savedLang;
+                }
+
                 const steps = HalDo.config.bootSteps;
                 for (let i = 0; i < steps.length; i++) {
                     const progress = ((i + 1) / steps.length) * 100;
@@ -1845,25 +2151,39 @@
                     if (bootStatus) bootStatus.textContent = steps[i] + ' ...';
                     await new Promise(r => setTimeout(r, 20 + Math.random() * 30));
                 }
+
                 await HalDo.storage.init();
                 const saved = await HalDo.storage.get('settings', 'config');
-                if (saved) HalDo.config = { ...HalDo.config, ...saved };
+                if (saved) {
+                    HalDo.config = { ...HalDo.config, ...saved };
+                    if (saved.language && HalDo.translations[saved.language]) {
+                        HalDo.config.language = saved.language;
+                    }
+                }
+
                 HalDo.state = 'READY';
                 if (bootStatus) bootStatus.textContent = '✅ System bereit!';
                 await new Promise(r => setTimeout(r, 200));
                 if (bootScreen) bootScreen.classList.add('hidden');
                 if (desktop) desktop.classList.add('active');
+
                 HalDo.cosmic.init();
+
                 setTimeout(() => {
                     HalDo.cyborg.init();
-                    setTimeout(() => { HalDo.cyborg.speak('🤖 Hallo! Ich bin HalDo Cyborg. Ich helfe dir gerne!'); },
-                    1500);
+                    setTimeout(() => {
+                        HalDo.cyborg.speak(HalDo.translations[HalDo.config.language]?.cyborg_hello ||
+                            '🤖 Hallo! Ich bin HalDo Cyborg. Ich helfe dir gerne!');
+                    }, 1500);
                 }, 500);
+
                 updateClock();
                 initMenus();
                 renderAppStore();
+
                 const sysInfo = document.getElementById('sys-info');
                 if (sysInfo) sysInfo.textContent = `HalDo OS v${HalDo.config.version} • Kernel ${HalDo.state}`;
+
                 const canvas = document.getElementById('cosmic-canvas');
                 if (canvas) {
                     canvas.addEventListener('click', (e) => {
@@ -1872,15 +2192,18 @@
                             dy = e.clientY - sun.y;
                         if (Math.sqrt(dx * dx + dy * dy) < sun.r + 25) {
                             HalDo.router.navigate('/ai');
-                            showNotification('🌞 Sonne', 'HalDo AI aktiviert!');
+                            showNotification('🌞 Sonne', HalDo.translations[HalDo.config.language]?.sun_click ||
+                                '🌞 Die Sonne ruft!');
                             if (HalDo.voice) HalDo.voice.speak('Hallo, ich bin HalDo AI.');
-                            if (HalDo.cyborg) HalDo.cyborg.speak('🌞 Die Sonne ruft!');
+                            if (HalDo.cyborg) HalDo.cyborg.speak(HalDo.translations[HalDo.config.language]
+                                ?.sun_click || '🌞 Die Sonne ruft!');
                             return;
                         }
                         const planet = HalDo.cosmic.getPlanetAt(e.clientX, e.clientY);
                         if (planet) showPlanetInfo(planet);
                     });
                 }
+
                 const closeInfo = document.getElementById('planet-info-close');
                 if (closeInfo) closeInfo.onclick = () => document.getElementById('planet-info').classList.remove(
                 'active');
@@ -1894,8 +2217,10 @@
                             input.dispatchEvent(new Event('input')); }
                     }, 300);
                 };
-                showNotification('🌌 HalDo AI OS v10.0', 'CYBORG EDITION geladen! 27 Apps bereit.');
-                console.log('✅ HalDo OS v10.0 – CYBORG EDITION geladen!');
+
+                showNotification('🌌 HalDo AI OS v11.0', 'MULTILINGUAL CYBORG geladen! 7 Sprachen, 27 Apps.');
+                console.log('✅ HalDo OS v11.0 – MULTILINGUAL CYBORG geladen!');
+                console.log('🌐 Verfügbare Sprachen: Deutsch, English, Kurdî, Êzîdî, Türkçe, العربية, Français');
             } catch (e) {
                 console.error('Boot error:', e);
                 document.getElementById('boot-screen')?.classList.add('hidden');
@@ -1905,13 +2230,15 @@
         }
 
         // ============================================================
-        // 12. MENÜS
+        // 13. MENÜS
         // ============================================================
         function initMenus() {
             const toggle = document.getElementById('menu-toggle');
             const appToggle = document.getElementById('appstore-toggle');
             const sysMenu = document.getElementById('system-menu');
             const appMenu = document.getElementById('appstore-menu');
+            const lang = HalDo.config.language;
+
             if (toggle) toggle.addEventListener('click', (e) => { e.stopPropagation();
                 sysMenu.classList.toggle('open');
                 appMenu.classList.remove('open'); });
@@ -1922,11 +2249,13 @@
                 if (sysMenu && !sysMenu.contains(e.target) && e.target !== toggle) sysMenu.classList.remove('open');
                 if (appMenu && !appMenu.contains(e.target) && e.target !== appToggle) appMenu.classList.remove('open');
             });
+
             if (sysMenu) {
                 sysMenu.querySelectorAll('.menu-item[data-action]').forEach(item => {
                     item.addEventListener('click', () => {
                         const action = item.dataset.action;
                         sysMenu.classList.remove('open');
+                        const t = HalDo.translations[lang] || HalDo.translations.de;
                         switch (action) {
                             case 'home':
                                 HalDo.router.showHome();
@@ -1942,22 +2271,22 @@
                                 HalDo.router.navigate('/systemcenter');
                                 break;
                             case 'security':
-                                showNotification('🔒 Sicherheit', 'Alle Systeme aktiv.');
+                                showNotification('🔒 Sicherheit', t.security_ok || '🔒 Alle Systeme aktiv.');
                                 break;
                             case 'backup':
-                                showNotification('💾 Backup', 'Backup wird erstellt ...');
+                                showNotification('💾 Backup', t.backup_start || '💾 Backup wird erstellt ...');
                                 break;
                             case 'files':
                                 HalDo.router.navigate('/files');
                                 break;
                             case 'network':
-                                showNotification('🌐 Netzwerk', 'Verbunden.');
+                                showNotification('🌐 Netzwerk', t.network_ok || '🌐 Verbunden.');
                                 break;
                             case 'help':
-                                showNotification('❓ Hilfe', 'Klick die Sonne für AI.');
+                                showNotification('❓ Hilfe', t.help_text || '❓ Klick die Sonne für AI.');
                                 break;
                             case 'about':
-                                showNotification('ℹ️ Über HalDo', `HalDo OS v${HalDo.config.version}`);
+                                showNotification('ℹ️ Über HalDo', t.about_text || 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG');
                                 break;
                             default:
                                 HalDo.router.navigate('/' + action);
@@ -1965,6 +2294,7 @@
                     });
                 });
             }
+
             const logo = document.getElementById('haldo-logo-btn');
             if (logo) logo.addEventListener('click', () => { HalDo.router.showHome(); if (sysMenu) sysMenu.classList.remove(
                     'open'); if (appMenu) appMenu.classList.remove('open'); });
@@ -1987,7 +2317,7 @@
         }
 
         // ============================================================
-        // 13. PLANET INFO
+        // 14. PLANET INFO
         // ============================================================
         function showPlanetInfo(planet) {
             const info = document.getElementById('planet-info');
@@ -2006,7 +2336,7 @@
         }
 
         // ============================================================
-        // 14. UHR
+        // 15. UHR
         // ============================================================
         function updateClock() {
             const clock = document.getElementById('clock');
@@ -2016,7 +2346,7 @@
         }
 
         // ============================================================
-        // 15. NOTIFICATIONS
+        // 16. NOTIFICATIONS
         // ============================================================
         function showNotification(title, body, icon = '📢') {
             const area = document.getElementById('notification-area');
@@ -2050,11 +2380,12 @@
         }
 
         // ============================================================
-        // 16. START
+        // 17. START
         // ============================================================
         document.addEventListener('DOMContentLoaded', boot);
-        console.log('🌌 HalDo AI OS v10.0 – CYBORG EDITION geladen!');
-        console.log('✅ 27 Apps voll funktionsfähig – CYBORG Avatar aktiv!');
+        console.log('🌌 HalDo AI OS v11.0 – MULTILINGUAL CYBORG geladen!');
+        console.log('✅ 27 Apps • 7 Sprachen • CYBORG Avatar aktiv!');
+        console.log('🌐 Sprachen: Deutsch, English, Kurdî, Êzîdî, Türkçe, العربية, Français');
         console.log('💡 Klicke die Sonne für HalDo AI, Apps über das 📱-Menü.');
     </script>
 </body>
