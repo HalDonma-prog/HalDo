@@ -1126,7 +1126,7 @@
               <div class="settings-card-stack">
                 <article class="settings-card vertical">
                   <div class="update-status"><span>Status</span><strong id="update-status-label">Bereit</strong></div>
-                  <div class="update-version"><span>HalDo AI OS</span><strong id="current-version-label">20</strong></div>
+                  <div class="update-version"><span>HalDo AI OS</span><strong id="current-version-label">21</strong></div>
                   <button id="check-updates-button" class="primary-action full" type="button">Nach Updates suchen</button>
                 </article>
               </div>
@@ -1149,7 +1149,7 @@
                 <img class="haldo-logo xlarge" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
                 <h3>HalDo AI OS</h3>
                 <p>Cosmic World · Living HalDo AI · Professional AI OS</p>
-                <div class="about-meta"><span>Version</span><strong>20</strong></div>
+                <div class="about-meta"><span>Version</span><strong>21</strong></div>
                 <div class="about-meta"><span>Interface</span><strong>Cosmic World</strong></div>
                 <div class="about-meta"><span>AI</span><strong>Living HalDo AI</strong></div>
               </article>
@@ -1288,7 +1288,7 @@
     </div>
 
     <!-- SYSTEM INFO -->
-    <div id="sys-info" style="display:none;">HalDo OS v20 • Kernel READY</div>
+    <div id="sys-info" style="display:none;">HalDo OS v21 • Kernel READY</div>
 
     <!-- ARIA LIVE REGION -->
     <div id="aria-live-region" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
@@ -1298,7 +1298,7 @@
 
   <script>
     // ============================================================
-    // KOMPLETTES JAVASCRIPT – ULTIMATE MAXIMUM
+    // KOMPLETTES JAVASCRIPT – ULTIMATE MAXIMUM v21
     // ============================================================
 
     (function() {
@@ -1309,7 +1309,7 @@
       // ============================================================
 
       const HALDO = {
-        version: '20',
+        version: '21',
         name: 'HalDo AI OS',
         build: '2026-09-08',
         state: 'BOOTING',
@@ -1366,13 +1366,14 @@
         init() {
           return new Promise((resolve) => {
             try {
-              const req = indexedDB.open('HalDoOS', 20);
+              const req = indexedDB.open('HalDoOS', 21);
               req.onupgradeneeded = (e) => {
                 const db = e.target.result;
                 if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
                 if (!db.objectStoreNames.contains('memory')) db.createObjectStore('memory', { keyPath: 'key' });
                 if (!db.objectStoreNames.contains('notifications')) db.createObjectStore('notifications', { keyPath: 'id', autoIncrement: true });
                 if (!db.objectStoreNames.contains('registry')) db.createObjectStore('registry', { keyPath: 'id' });
+                if (!db.objectStoreNames.contains('appdata')) db.createObjectStore('appdata', { keyPath: 'appId' });
               };
               req.onsuccess = (e) => { this.db = e.target.result; resolve(); };
               req.onerror = () => { this.db = null; resolve(); };
@@ -1432,42 +1433,51 @@
         }
       };
 
-      // App Registry – 27 Apps + Cyborg als eigene App
+      // ============================================================
+      // APP REGISTRY & DATA
+      // ============================================================
+
       const APP_DEFINITIONS = [
-        { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'ai', desc: 'Ultra-intelligente KI mit Cyborg-Avatar', version: '20' },
-        { id: 'cyborg', name: 'HalDo Cyborg', icon: '🦾', cat: 'ai', desc: 'Lebendiger Roboter-Assistent', version: '20' },
-        { id: 'browser', name: 'Browser', icon: '🌐', cat: 'internet', desc: 'Internet-Browser mit Lesezeichen', version: '20' },
-        { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'productivity', desc: 'Terminkalender mit Feiertagen', version: '20' },
-        { id: 'documents', name: 'Documents', icon: '📄', cat: 'productivity', desc: 'Dokumente & Editor', version: '20' },
-        { id: 'email', name: 'Email', icon: '✉️', cat: 'communication', desc: 'E-Mail-Client mit Anhängen', version: '20' },
-        { id: 'files', name: 'Files', icon: '📁', cat: 'system', desc: 'Dateimanager', version: '20' },
-        { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'media', desc: 'Bildergalerie', version: '20' },
-        { id: 'health', name: 'Health', icon: '🏥', cat: 'productivity', desc: 'Gesundheitsakte', version: '20' },
-        { id: 'internet', name: 'Internet', icon: '📶', cat: 'internet', desc: 'Netzwerk & Speedtest', version: '20' },
-        { id: 'journal', name: 'Journal', icon: '📓', cat: 'productivity', desc: 'Tagebuch', version: '20' },
-        { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'system', desc: 'Tastatur & Sprachen', version: '20' },
-        { id: 'learning', name: 'Learning', icon: '📚', cat: 'productivity', desc: 'Kurse & Quiz', version: '20' },
-        { id: 'music', name: 'Music', icon: '🎵', cat: 'media', desc: 'Musikplayer mit 50+ Songs', version: '20' },
-        { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'productivity', desc: 'Karte & Routen', version: '20' },
-        { id: 'office', name: 'Office', icon: '📊', cat: 'productivity', desc: 'Tabellen & Text', version: '20' },
-        { id: 'photos', name: 'Photos', icon: '📸', cat: 'media', desc: 'Kamera & Album', version: '20' },
-        { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'system', desc: 'Rechner, Timer, Umrechner', version: '20' },
-        { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'media', desc: 'Audio-Recorder', version: '20' },
-        { id: 'security', name: 'Security', icon: '🔒', cat: 'system', desc: 'Passwortmanager & Firewall', version: '20' },
-        { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'productivity', desc: 'Aufgabenliste', version: '20' },
-        { id: 'updates', name: 'Updates', icon: '🔄', cat: 'system', desc: 'Update-Manager', version: '20' },
-        { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'media', desc: 'Video-Editor mit Timeline', version: '20' },
-        { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'productivity', desc: 'Wetter & 7-Tage', version: '20' },
-        { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'system', desc: 'Themes & Schrift', version: '20' },
-        { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'productivity', desc: 'Dashboard für alles', version: '20' },
-        { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'system', desc: 'Systemsteuerung & Logs', version: '20' },
-        { id: 'driving', name: 'Fahrschule', icon: '🚗', cat: 'productivity', desc: 'Fahrstunden & Verkehrsregeln', version: '20' },
-        { id: 'chat', name: 'Chat', icon: '💬', cat: 'communication', desc: 'Chat mit Bestätigung', version: '20' },
-        { id: 'call', name: 'Anrufen', icon: '📞', cat: 'communication', desc: 'Videoanruf & Telefonie', version: '20' },
+        // AI & System
+        { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'ai', desc: 'Ultra-intelligente KI mit Cyborg-Avatar', version: '21' },
+        { id: 'cyborg', name: 'HalDo Cyborg', icon: '🦾', cat: 'ai', desc: 'Lebendiger Roboter-Assistent', version: '21' },
+        { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'system', desc: 'Systemsteuerung & Logs', version: '21' },
+        { id: 'updates', name: 'Updates', icon: '🔄', cat: 'system', desc: 'Update-Manager', version: '21' },
+        { id: 'security', name: 'Security', icon: '🔒', cat: 'system', desc: 'Passwortmanager & Firewall', version: '21' },
+        { id: 'files', name: 'Files', icon: '📁', cat: 'system', desc: 'Dateimanager', version: '21' },
+        { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'system', desc: 'Tastatur & Sprachen', version: '21' },
+        { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'system', desc: 'Themes & Schrift', version: '21' },
+        // Media
+        { id: 'music', name: 'Music', icon: '🎵', cat: 'media', desc: 'Musikplayer mit 50+ Songs', version: '21' },
+        { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'media', desc: 'Video-Editor mit Timeline', version: '21' },
+        { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'media', desc: 'Bildergalerie', version: '21' },
+        { id: 'photos', name: 'Photos', icon: '📸', cat: 'media', desc: 'Kamera & Album', version: '21' },
+        { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'media', desc: 'Audio-Recorder', version: '21' },
+        // Productivity
+        { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'productivity', desc: 'Terminkalender mit Feiertagen', version: '21' },
+        { id: 'documents', name: 'Documents', icon: '📄', cat: 'productivity', desc: 'Dokumente & Editor', version: '21' },
+        { id: 'office', name: 'Office', icon: '📊', cat: 'productivity', desc: 'Tabellen & Text', version: '21' },
+        { id: 'journal', name: 'Journal', icon: '📓', cat: 'productivity', desc: 'Tagebuch', version: '21' },
+        { id: 'learning', name: 'Learning', icon: '📚', cat: 'productivity', desc: 'Kurse & Quiz', version: '21' },
+        { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'productivity', desc: 'Aufgabenliste', version: '21' },
+        { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'productivity', desc: 'Karte & Routen', version: '21' },
+        { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'productivity', desc: 'Wetter & 7-Tage', version: '21' },
+        { id: 'health', name: 'Health', icon: '🏥', cat: 'productivity', desc: 'Gesundheitsakte', version: '21' },
+        { id: 'driving', name: 'Fahrschule', icon: '🚗', cat: 'productivity', desc: 'Fahrstunden & Verkehrsregeln', version: '21' },
+        // Communication
+        { id: 'email', name: 'Email', icon: '✉️', cat: 'communication', desc: 'E-Mail-Client mit Anhängen', version: '21' },
+        { id: 'chat', name: 'Chat', icon: '💬', cat: 'communication', desc: 'Chat mit Bestätigung', version: '21' },
+        { id: 'call', name: 'Anrufen', icon: '📞', cat: 'communication', desc: 'Videoanruf & Telefonie', version: '21' },
+        // Internet
+        { id: 'browser', name: 'Browser', icon: '🌐', cat: 'internet', desc: 'Internet-Browser mit Lesezeichen', version: '21' },
+        { id: 'internet', name: 'Internet', icon: '📶', cat: 'internet', desc: 'Netzwerk & Speedtest', version: '21' },
+        // Other
+        { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'system', desc: 'Rechner, Timer, Umrechner', version: '21' },
+        { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'productivity', desc: 'Dashboard für alles', version: '21' },
       ];
 
-      // Erweiterte App-Definitionen mit eigenen Daten
-      const APP_DATA = {
+      // Standard-Daten für jede App
+      const APP_DEFAULT_DATA = {
         email: {
           inbox: [
             { from: 'Max Mustermann', subject: 'Projektupdate', body: 'Neue Unterlagen sind da.', date: 'heute', attachments: ['Bericht.pdf'] },
@@ -1477,14 +1487,14 @@
           sent: []
         },
         health: {
-          diseases: ['Grippe – Fieber, Husten, Gliederschmerzen', 'Allergie – Niesen, Juckreiz, tränende Augen'],
-          medications: ['Ibuprofen', 'Cetirizin'],
-          appointments: ['15.09. Dr. Müller', '22.09. Zahnarzt']
+          diseases: ['Grippe – Fieber, Husten, Gliederschmerzen', 'Allergie – Niesen, Juckreiz, tränende Augen', 'Migräne – starke Kopfschmerzen'],
+          medications: ['Ibuprofen', 'Cetirizin', 'Paracetamol'],
+          appointments: ['15.09. Dr. Müller', '22.09. Zahnarzt', '05.10. Hautarzt']
         },
         driving: {
-          lessons: ['Grundfahraufgaben', 'Parken', 'Autobahnfahrt'],
-          rules: ['Rechtsfahrgebot', 'Blinker setzen', 'Geschwindigkeitsbegrenzungen'],
-          speedtraps: ['A3 bei Köln', 'B1 Berlin']
+          lessons: ['Grundfahraufgaben', 'Parken', 'Autobahnfahrt', 'Fahren bei Nacht'],
+          rules: ['Rechtsfahrgebot', 'Blinker setzen', 'Geschwindigkeitsbegrenzungen', 'Vorfahrtregeln'],
+          speedtraps: ['A3 bei Köln', 'B1 Berlin', 'A7 Hamburg']
         },
         chat: {
           messages: [
@@ -1497,9 +1507,89 @@
             { contact: 'Anna', type: 'Video', duration: '5:23', date: 'heute' },
             { contact: 'Max', type: 'Audio', duration: '2:10', date: 'gestern' }
           ]
+        },
+        calendar: {
+          events: [
+            { title: 'Meeting', date: '2026-09-15', time: '10:00' },
+            { title: 'Arzttermin', date: '2026-09-22', time: '14:30' }
+          ]
+        },
+        tasks: {
+          items: [
+            { title: 'Projektbericht schreiben', done: false },
+            { title: 'E-Mails beantworten', done: false },
+            { title: 'Einkaufen', done: true }
+          ]
+        },
+        music: {
+          playlist: ['Blinding Lights - The Weeknd', 'Levitating - Dua Lipa', 'Stay - The Kid LAROI', 'Montero - Lil Nas X']
+        },
+        journal: {
+          entries: [
+            { date: '01.09.2026', text: 'Heute war ein guter Tag.' },
+            { date: '28.08.2026', text: 'Erste Ideen für das neue HalDo OS.' }
+          ]
+        },
+        documents: {
+          files: ['Projektplan.docx', 'Präsentation.pptx', 'Notizen.txt']
+        },
+        gallery: {
+          images: ['🌅', '🌄', '🌠', '🎆', '🌈', '🌌', '🏔️', '🌺']
+        },
+        notes: {
+          notes: ['Wichtige Ideen notieren', 'Einkaufsliste', 'Termine']
+        },
+        weather: {
+          cities: ['Berlin', 'Köln', 'Hamburg', 'München']
+        },
+        navigation: {
+          routes: ['Home → Office', 'Office → Supermarkt', 'Supermarkt → Home']
+        },
+        learning: {
+          courses: ['Einführung in KI', 'Webentwicklung', 'Design Thinking']
+        },
+        office: {
+          docs: ['Budget.xlsx', 'Report.docx', 'Plan.pptx']
+        },
+        photos: {
+          albums: ['Urlaub 2025', 'Familie', 'Projekte']
+        },
+        recorder: {
+          recordings: ['Besprechung_01.mp3', 'Notiz_05.mp3']
+        },
+        browser: {
+          bookmarks: ['https://haldo-os.com', 'https://github.com', 'https://youtube.com']
+        },
+        internet: {
+          speedtest: { ping: '12 ms', download: '45 Mbps', upload: '12 Mbps' }
+        },
+        keyboard: {
+          layouts: ['Deutsch', 'English', 'Kurdî', 'Êzîdî']
+        },
+        personalization: {
+          themes: ['Cosmic', 'Dark', 'Light', 'Neon']
+        },
+        yourlife: {
+          stats: ['Aufgaben: 2 offen', 'E-Mails: 5 ungelesen', 'Termine: 2 heute']
+        },
+        quicktools: {
+          tools: ['Taschenrechner', 'Timer', 'Einheitenumrechner']
+        },
+        systemcenter: {
+          logs: ['System gestartet: 08.09.2026', 'Update v21 installiert']
+        },
+        security: {
+          passwords: ['Email: ****', 'Bank: ****']
+        },
+        updates: {
+          status: 'Aktuell'
+        },
+        files: {
+          folders: ['Bilder', 'Dokumente', 'Musik', 'Videos']
         }
       };
 
+      // Registry aufbauen
       APP_DEFINITIONS.forEach(app => {
         HALDO.registry[app.id] = {
           ...app,
@@ -1507,9 +1597,13 @@
           running: false,
           windowId: null,
           permissions: ['storage'],
-          settings: {},
-          storageNamespace: `app_${app.id}`,
-          data: APP_DATA[app.id] || {},
+          settings: {
+            language: 'de',
+            notifications: true,
+            theme: 'default',
+            layout: 'standard',
+          },
+          data: APP_DEFAULT_DATA[app.id] || {},
           aiSupport: true,
           voiceSupport: true,
           languageSupport: true,
@@ -1538,6 +1632,14 @@
         const savedMemory = await HALDO.storage.get('memory', 'conversation');
         if (savedMemory && savedMemory.data) {
           HALDO.memory = savedMemory.data;
+        }
+
+        // App-Daten laden
+        for (const appId of Object.keys(HALDO.registry)) {
+          const savedData = await HALDO.storage.get('appdata', appId);
+          if (savedData && savedData.data) {
+            HALDO.registry[appId].data = savedData.data;
+          }
         }
 
         let progress = 0;
@@ -1577,9 +1679,8 @@
         HALDO.state = 'READY';
         updateSystemStatus('HalDo AI OS • Bereit');
 
-        // Willkommens-Grüße
         setTimeout(() => {
-          showToast('🌌', 'HalDo AI OS', 'Willkommen! Die Cosmic World ist bereit.');
+          showToast('🌌', 'HalDo AI OS v' + HALDO.version, 'Willkommen! Die Cosmic World ist bereit.');
           if (HALDO.config.aiEnabled) {
             openAIWindow('Willkommen bei HalDo AI OS. Wie kann ich dir helfen?');
             if (HALDO.voice && HALDO.config.speechOutput) {
@@ -1926,8 +2027,12 @@
             try {
               await HALDO.storage.clear('memory');
               await HALDO.storage.clear('notifications');
+              await HALDO.storage.clear('appdata');
               HALDO.memory = [];
               HALDO.notifications = [];
+              for (const appId of Object.keys(HALDO.registry)) {
+                HALDO.registry[appId].data = APP_DEFAULT_DATA[appId] || {};
+              }
               showToast('🗑️', 'Cache', 'Gelöscht.');
             } catch {
               showToast('⚠️', 'Fehler', 'Cache konnte nicht gelöscht werden.');
@@ -1955,6 +2060,14 @@
             }
             if (data.notifications) {
               HALDO.notifications = data.notifications;
+            }
+            if (data.appdata) {
+              for (const [appId, appData] of Object.entries(data.appdata)) {
+                if (HALDO.registry[appId]) {
+                  HALDO.registry[appId].data = appData;
+                  await HALDO.storage.set('appdata', appId, { data: appData });
+                }
+              }
             }
             showToast('📥', 'Backup', 'Wiederherstellung erfolgreich.');
           } catch {
@@ -2165,37 +2278,37 @@
 
             // App-Intents
             if (!response) {
-              if (lower.includes('musik') || lower.includes('song') || lower.includes('play')) {
-                response = '🎵 Ich öffne die Music-App für dich.';
-                if (HALDO.config.aiAppControl) openApp('music');
-              } else if (lower.includes('video') || lower.includes('film')) {
-                response = '🎬 Ich öffne das Video Studio.';
-                if (HALDO.config.aiAppControl) openApp('video');
-              } else if (lower.includes('gesundheit') || lower.includes('krankheit')) {
-                response = '🏥 Ich öffne die Health-App.';
-                if (HALDO.config.aiAppControl) openApp('health');
-              } else if (lower.includes('navigation') || lower.includes('route')) {
-                response = '🧭 Ich öffne die Navigation.';
-                if (HALDO.config.aiAppControl) openApp('navigation');
-              } else if (lower.includes('kalender') || lower.includes('termin')) {
-                response = '📅 Ich öffne den Kalender.';
-                if (HALDO.config.aiAppControl) openApp('calendar');
-              } else if (lower.includes('email') || lower.includes('mail')) {
-                response = '✉️ Ich öffne die Email-App.';
-                if (HALDO.config.aiAppControl) openApp('email');
-              } else if (lower.includes('cyborg')) {
-                response = '🦾 Ich öffne den HalDo Cyborg.';
-                if (HALDO.config.aiAppControl) openApp('cyborg');
-              } else if (lower.includes('fahrschule') || lower.includes('fahren')) {
-                response = '🚗 Ich öffne die Fahrschule.';
-                if (HALDO.config.aiAppControl) openApp('driving');
-              } else if (lower.includes('chat') || lower.includes('nachricht')) {
-                response = '💬 Ich öffne den Chat.';
-                if (HALDO.config.aiAppControl) openApp('chat');
-              } else if (lower.includes('anruf') || lower.includes('telefon')) {
-                response = '📞 Ich öffne die Anruf-Funktion.';
-                if (HALDO.config.aiAppControl) openApp('call');
-              } else {
+              const intents = {
+                'musik': 'music', 'song': 'music', 'play': 'music',
+                'video': 'video', 'film': 'video',
+                'gesundheit': 'health', 'krankheit': 'health',
+                'navigation': 'navigation', 'route': 'navigation',
+                'kalender': 'calendar', 'termin': 'calendar',
+                'email': 'email', 'mail': 'email',
+                'cyborg': 'cyborg',
+                'fahrschule': 'driving', 'fahren': 'driving',
+                'chat': 'chat', 'nachricht': 'chat',
+                'anruf': 'call', 'telefon': 'call',
+                'browser': 'browser', 'internet': 'browser',
+                'dateien': 'files', 'ordner': 'files',
+                'musik': 'music', 'songs': 'music',
+                'bilder': 'gallery', 'fotos': 'photos',
+                'aufgaben': 'tasks', 'todo': 'tasks',
+                'wetter': 'weather',
+                'dokumente': 'documents',
+                'bücher': 'learning',
+                'einstellungen': 'systemcenter',
+                'sicherheit': 'security',
+                'updates': 'updates',
+              };
+              for (const [keyword, appId] of Object.entries(intents)) {
+                if (lower.includes(keyword)) {
+                  response = `Ich öffne die App "${HALDO.registry[appId]?.name || appId}" für dich.`;
+                  if (HALDO.config.aiAppControl) openApp(appId);
+                  break;
+                }
+              }
+              if (!response) {
                 response = 'Das ist eine interessante Frage. Ich werde mein Bestes tun, um sie zu beantworten. 🤖';
               }
             }
@@ -2709,11 +2822,9 @@
           setTimeout(() => {
             const shell2 = content.querySelector('.app-runtime-shell');
             if (shell2) {
-              // App-spezifischer Inhalt
               const appHTML = getAppHTML(app.id);
               if (appHTML) {
                 shell2.innerHTML = appHTML;
-                // Event-Listener für die App-Buttons
                 setTimeout(() => bindAppEvents(app.id), 100);
               } else {
                 shell2.innerHTML = `
@@ -2738,11 +2849,12 @@
       function getAppHTML(appId) {
         const app = HALDO.registry[appId];
         if (!app) return null;
+        const data = app.data || {};
 
         switch(appId) {
           case 'email':
-            const inbox = app.data.inbox || [];
-            const sent = app.data.sent || [];
+            const inbox = data.inbox || [];
+            const sent = data.sent || [];
             return `
               <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;">
                 <div style="display:flex;gap:6px;flex-wrap:wrap;">
@@ -2766,39 +2878,33 @@
             `;
 
           case 'health':
-            const diseases = app.data.diseases || [];
-            const medications = app.data.medications || [];
-            const appointments = app.data.appointments || [];
             return `
               <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
                 <div><strong>🏥 Krankheiten</strong></div>
-                ${diseases.map(d => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${d}</div>`).join('')}
+                ${(data.diseases || []).map(d => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${d}</div>`).join('')}
                 <div><strong>💊 Medikamente</strong></div>
-                ${medications.map(m => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${m}</div>`).join('')}
+                ${(data.medications || []).map(m => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${m}</div>`).join('')}
                 <div><strong>👨‍⚕️ Termine</strong></div>
-                ${appointments.map(a => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${a}</div>`).join('')}
+                ${(data.appointments || []).map(a => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${a}</div>`).join('')}
                 <button class="secondary-action full" id="health-add">+ Hinzufügen</button>
               </div>
             `;
 
           case 'driving':
-            const lessons = app.data.lessons || [];
-            const rules = app.data.rules || [];
-            const speedtraps = app.data.speedtraps || [];
             return `
               <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
                 <div><strong>🚗 Fahrstunden</strong></div>
-                ${lessons.map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
+                ${(data.lessons || []).map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
                 <div><strong>📏 Verkehrsregeln</strong></div>
-                ${rules.map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
+                ${(data.rules || []).map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
                 <div><strong>📸 Blitzer</strong></div>
-                ${speedtraps.map(s => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${s}</div>`).join('')}
+                ${(data.speedtraps || []).map(s => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${s}</div>`).join('')}
                 <button class="secondary-action full" id="driving-add">+ Hinzufügen</button>
               </div>
             `;
 
           case 'chat':
-            const messages = app.data.messages || [];
+            const messages = data.messages || [];
             return `
               <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
                 <div style="display:flex;gap:6px;">
@@ -2815,7 +2921,6 @@
             `;
 
           case 'call':
-            const history = app.data.history || [];
             return `
               <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;">
                 <div style="display:flex;gap:6px;">
@@ -2823,12 +2928,239 @@
                   <button class="secondary-action" id="call-video">🎥 Videoanruf</button>
                 </div>
                 <div><strong>Verlauf</strong></div>
-                ${history.map(h => `
+                ${(data.history || []).map(h => `
                   <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;display:flex;justify-content:space-between;">
                     <span>${h.contact} (${h.type})</span>
                     <span style="color:var(--haldo-text-muted);font-size:11px;">${h.duration} • ${h.date}</span>
                   </div>
                 `).join('')}
+              </div>
+            `;
+
+          case 'calendar':
+            const events = data.events || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>📅 Termine</strong></div>
+                ${events.map(e => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${e.title} – ${e.date} ${e.time}</div>`).join('')}
+                <button class="secondary-action full" id="calendar-add">+ Termin hinzufügen</button>
+              </div>
+            `;
+
+          case 'tasks':
+            const tasks = data.items || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>✅ Aufgaben</strong></div>
+                ${tasks.map(t => `
+                  <div style="display:flex;justify-content:space-between;padding:3px 8px;border-radius:4px;background:${t.done ? 'rgba(75,231,164,0.1)' : 'rgba(255,255,255,0.02)'};">
+                    <span>${t.title}</span>
+                    <span style="color:${t.done ? 'var(--haldo-green)' : 'var(--haldo-text-muted)'};">${t.done ? '✅ Erledigt' : '⏳ Offen'}</span>
+                  </div>
+                `).join('')}
+                <button class="secondary-action full" id="tasks-add">+ Aufgabe hinzufügen</button>
+              </div>
+            `;
+
+          case 'music':
+            const playlist = data.playlist || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🎵 Playlist</strong></div>
+                ${playlist.map((song, i) => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">${i+1}. ${song}</div>`).join('')}
+                <button class="secondary-action full" id="music-add">+ Song hinzufügen</button>
+              </div>
+            `;
+
+          case 'journal':
+            const entries = data.entries || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>📓 Tagebuch</strong></div>
+                ${entries.map(e => `<div style="background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:8px;border-left:3px solid var(--haldo-blue);"><strong>${e.date}</strong> – ${e.text}</div>`).join('')}
+                <button class="secondary-action full" id="journal-add">+ Eintrag hinzufügen</button>
+              </div>
+            `;
+
+          case 'documents':
+            const docs = data.files || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>📄 Dokumente</strong></div>
+                ${docs.map(d => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${d}</div>`).join('')}
+                <button class="secondary-action full" id="docs-add">+ Dokument hinzufügen</button>
+              </div>
+            `;
+
+          case 'gallery':
+            const images = data.images || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+                  ${images.map(img => `<div style="aspect-ratio:1;background:rgba(255,255,255,0.04);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;">${img}</div>`).join('')}
+                </div>
+                <button class="secondary-action full" id="gallery-add">+ Bild hinzufügen</button>
+              </div>
+            `;
+
+          case 'weather':
+            const cities = data.cities || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🌦️ Wetter</strong></div>
+                ${cities.map(c => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${c}: 22°C, sonnig</div>`).join('')}
+                <button class="secondary-action full" id="weather-add">+ Stadt hinzufügen</button>
+              </div>
+            `;
+
+          case 'navigation':
+            const routes = data.routes || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🧭 Routen</strong></div>
+                ${routes.map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
+                <button class="secondary-action full" id="nav-add">+ Route hinzufügen</button>
+              </div>
+            `;
+
+          case 'learning':
+            const courses = data.courses || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>📚 Kurse</strong></div>
+                ${courses.map(c => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${c}</div>`).join('')}
+                <button class="secondary-action full" id="learning-add">+ Kurs hinzufügen</button>
+              </div>
+            `;
+
+          case 'office':
+            const offDocs = data.docs || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>📊 Office</strong></div>
+                ${offDocs.map(d => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${d}</div>`).join('')}
+                <button class="secondary-action full" id="office-add">+ Datei hinzufügen</button>
+              </div>
+            `;
+
+          case 'photos':
+            const albums = data.albums || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>📸 Alben</strong></div>
+                ${albums.map(a => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${a}</div>`).join('')}
+                <button class="secondary-action full" id="photos-add">+ Album hinzufügen</button>
+              </div>
+            `;
+
+          case 'recorder':
+            const recordings = data.recordings || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🎙️ Aufnahmen</strong></div>
+                ${recordings.map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
+                <button class="secondary-action full" id="recorder-add">+ Aufnahme hinzufügen</button>
+              </div>
+            `;
+
+          case 'browser':
+            const bookmarks = data.bookmarks || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🌐 Lesezeichen</strong></div>
+                ${bookmarks.map(b => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${b}</div>`).join('')}
+                <button class="secondary-action full" id="browser-add">+ Lesezeichen hinzufügen</button>
+              </div>
+            `;
+
+          case 'internet':
+            const speed = data.speedtest || {};
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>📶 Internet</strong></div>
+                <div>Ping: ${speed.ping || '--'}</div>
+                <div>Download: ${speed.download || '--'}</div>
+                <div>Upload: ${speed.upload || '--'}</div>
+                <button class="secondary-action full" id="internet-test">Speedtest starten</button>
+              </div>
+            `;
+
+          case 'keyboard':
+            const layouts = data.layouts || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>⌨️ Tastaturlayouts</strong></div>
+                ${layouts.map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
+                <button class="secondary-action full" id="keyboard-add">+ Layout hinzufügen</button>
+              </div>
+            `;
+
+          case 'personalization':
+            const themes = data.themes || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🎨 Themes</strong></div>
+                ${themes.map(t => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${t}</div>`).join('')}
+                <button class="secondary-action full" id="theme-add">+ Theme hinzufügen</button>
+              </div>
+            `;
+
+          case 'yourlife':
+            const stats = data.stats || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🏠 Dein Leben</strong></div>
+                ${stats.map(s => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${s}</div>`).join('')}
+                <button class="secondary-action full" id="yourlife-add">+ Statistik hinzufügen</button>
+              </div>
+            `;
+
+          case 'quicktools':
+            const tools = data.tools || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🔧 Tools</strong></div>
+                ${tools.map(t => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${t}</div>`).join('')}
+                <button class="secondary-action full" id="tools-add">+ Tool hinzufügen</button>
+              </div>
+            `;
+
+          case 'systemcenter':
+            const logs = data.logs || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>⚙️ Systemlogs</strong></div>
+                ${logs.map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
+                <button class="secondary-action full" id="log-add">+ Log hinzufügen</button>
+              </div>
+            `;
+
+          case 'security':
+            const passwords = data.passwords || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🔒 Passwörter</strong></div>
+                ${passwords.map(p => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${p}</div>`).join('')}
+                <button class="secondary-action full" id="security-add">+ Passwort hinzufügen</button>
+              </div>
+            `;
+
+          case 'updates':
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🔄 Updates</strong></div>
+                <div>Status: ${data.status || 'Aktuell'}</div>
+                <button class="primary-action full" id="updates-check">Prüfen</button>
+              </div>
+            `;
+
+          case 'files':
+            const folders = data.folders || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>📁 Ordner</strong></div>
+                ${folders.map(f => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${f}</div>`).join('')}
+                <button class="secondary-action full" id="files-add">+ Ordner hinzufügen</button>
               </div>
             `;
 
@@ -2840,6 +3172,19 @@
       function bindAppEvents(appId) {
         const app = HALDO.registry[appId];
         if (!app) return;
+        const data = app.data;
+
+        const addItem = (key, label) => {
+          const value = prompt(`Neuen ${label} eingeben:`);
+          if (value) {
+            if (Array.isArray(data[key])) {
+              data[key].push(value);
+              saveAppData(appId);
+              renderAppContent(app.windowId, app);
+              showToast('✅', 'Hinzugefügt', `${label} wurde hinzugefügt.`);
+            }
+          }
+        };
 
         switch(appId) {
           case 'email':
@@ -2849,7 +3194,8 @@
               const subject = prompt('Betreff:');
               const body = prompt('Nachricht:');
               if (body) {
-                app.data.sent.push({ to, subject, body, date: 'heute' });
+                data.sent.push({ to, subject, body, date: 'heute' });
+                saveAppData(appId);
                 showToast('✉️', 'E-Mail gesendet', `An: ${to}`);
                 renderAppContent(app.windowId, app);
               }
@@ -2866,9 +3212,10 @@
               if (!type) return;
               const value = prompt('Eintrag:');
               if (value) {
-                if (type.toLowerCase().includes('krank')) app.data.diseases.push(value);
-                else if (type.toLowerCase().includes('medik')) app.data.medications.push(value);
-                else if (type.toLowerCase().includes('termin')) app.data.appointments.push(value);
+                if (type.toLowerCase().includes('krank')) data.diseases.push(value);
+                else if (type.toLowerCase().includes('medik')) data.medications.push(value);
+                else if (type.toLowerCase().includes('termin')) data.appointments.push(value);
+                saveAppData(appId);
                 showToast('🏥', 'Health', 'Eintrag hinzugefügt.');
                 renderAppContent(app.windowId, app);
               }
@@ -2881,9 +3228,10 @@
               if (!type) return;
               const value = prompt('Eintrag:');
               if (value) {
-                if (type.toLowerCase().includes('fahrstunde')) app.data.lessons.push(value);
-                else if (type.toLowerCase().includes('regel')) app.data.rules.push(value);
-                else if (type.toLowerCase().includes('blitzer')) app.data.speedtraps.push(value);
+                if (type.toLowerCase().includes('fahrstunde')) data.lessons.push(value);
+                else if (type.toLowerCase().includes('regel')) data.rules.push(value);
+                else if (type.toLowerCase().includes('blitzer')) data.speedtraps.push(value);
+                saveAppData(appId);
                 showToast('🚗', 'Fahrschule', 'Eintrag hinzugefügt.');
                 renderAppContent(app.windowId, app);
               }
@@ -2895,13 +3243,14 @@
               const input = document.getElementById('chat-input');
               const text = input?.value.trim();
               if (text) {
-                app.data.messages.push({ from: 'Du', text, time: new Date().toLocaleTimeString() });
+                data.messages.push({ from: 'Du', text, time: new Date().toLocaleTimeString() });
                 input.value = '';
+                saveAppData(appId);
                 showToast('💬', 'Chat', 'Nachricht gesendet.');
                 renderAppContent(app.windowId, app);
-                // Simuliere Antwort
                 setTimeout(() => {
-                  app.data.messages.push({ from: 'HalDo Bot', text: 'Danke für deine Nachricht! 🤖', time: new Date().toLocaleTimeString() });
+                  data.messages.push({ from: 'HalDo Bot', text: 'Danke für deine Nachricht! 🤖', time: new Date().toLocaleTimeString() });
+                  saveAppData(appId);
                   renderAppContent(app.windowId, app);
                 }, 1000);
               }
@@ -2926,6 +3275,70 @@
               });
             });
             break;
+
+          case 'calendar':
+            document.getElementById('calendar-add')?.addEventListener('click', () => {
+              const title = prompt('Termin:');
+              if (!title) return;
+              const date = prompt('Datum (TT.MM.JJJJ):') || 'heute';
+              const time = prompt('Uhrzeit:') || '--:--';
+              data.events.push({ title, date, time });
+              saveAppData(appId);
+              showToast('📅', 'Kalender', 'Termin hinzugefügt.');
+              renderAppContent(app.windowId, app);
+            });
+            break;
+
+          case 'tasks':
+            document.getElementById('tasks-add')?.addEventListener('click', () => {
+              const title = prompt('Aufgabe:');
+              if (title) {
+                data.items.push({ title, done: false });
+                saveAppData(appId);
+                showToast('✅', 'Tasks', 'Aufgabe hinzugefügt.');
+                renderAppContent(app.windowId, app);
+              }
+            });
+            break;
+
+          // Generische Add-Funktion für alle anderen Apps
+          default:
+            const addBtn = document.getElementById(`${appId}-add`);
+            if (addBtn) {
+              const keyMap = {
+                'music': 'playlist',
+                'journal': 'entries',
+                'docs': 'files',
+                'gallery': 'images',
+                'weather': 'cities',
+                'nav': 'routes',
+                'learning': 'courses',
+                'office': 'docs',
+                'photos': 'albums',
+                'recorder': 'recordings',
+                'browser': 'bookmarks',
+                'keyboard': 'layouts',
+                'theme': 'themes',
+                'yourlife': 'stats',
+                'tools': 'tools',
+                'log': 'logs',
+                'security': 'passwords',
+                'files': 'folders',
+              };
+              const key = keyMap[appId] || 'items';
+              addBtn.addEventListener('click', () => {
+                const label = appId.charAt(0).toUpperCase() + appId.slice(1);
+                addItem(key, label);
+              });
+            }
+            break;
+        }
+      }
+
+      async function saveAppData(appId) {
+        const app = HALDO.registry[appId];
+        if (app) {
+          await HALDO.storage.set('appdata', appId, { data: app.data });
         }
       }
 
@@ -3202,7 +3615,6 @@
 
           ctx.clearRect(0, 0, w, h);
 
-          // Hintergrund
           const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w);
           grad.addColorStop(0, 'rgba(74,158,255,0.05)');
           grad.addColorStop(1, 'rgba(0,0,0,0)');
@@ -3213,7 +3625,6 @@
           const cy = h/2.2;
           const radius = Math.min(w, h) * 0.22;
 
-          // Kopf-Glow
           const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 1.8);
           glow.addColorStop(0, 'rgba(74,158,255,0.12)');
           glow.addColorStop(1, 'rgba(0,0,0,0)');
@@ -3222,7 +3633,6 @@
           ctx.arc(cx, cy, radius * 1.8, 0, Math.PI * 2);
           ctx.fill();
 
-          // Kopf
           const headGrad = ctx.createRadialGradient(cx - radius*0.2, cy - radius*0.2, 0, cx, cy, radius);
           headGrad.addColorStop(0, '#4a9eff');
           headGrad.addColorStop(0.5, '#1a3f7a');
@@ -3235,7 +3645,6 @@
           ctx.lineWidth = 1.5;
           ctx.stroke();
 
-          // Augen
           const eyeOff = radius * 0.3;
           const eyeR = radius * 0.16;
           const eyeY = cy - radius * 0.05;
@@ -3251,14 +3660,12 @@
             ctx.beginPath();
             ctx.arc(ex, eyeY, eyeR, 0, Math.PI * 2);
             ctx.fill();
-            // Pupille
             ctx.fillStyle = `rgba(0,0,0,${0.5 * blink})`;
             ctx.beginPath();
             ctx.arc(ex + side * 2, eyeY + 1, eyeR * 0.3, 0, Math.PI * 2);
             ctx.fill();
           }
 
-          // Mund – animierte Linie
           const mouthY = cy + radius * 0.35;
           const mouthW = radius * 0.3;
           const mouthOffset = Math.sin(t * 1.2) * 3;
@@ -3269,7 +3676,6 @@
           ctx.quadraticCurveTo(cx, mouthY + 8 + mouthOffset, cx + mouthW, mouthY + mouthOffset);
           ctx.stroke();
 
-          // Antenne
           ctx.strokeStyle = 'rgba(74,158,255,0.3)';
           ctx.lineWidth = 2;
           ctx.beginPath();
@@ -3284,7 +3690,6 @@
           ctx.arc(cx, cy - radius*1.35, 6, 0, Math.PI * 2);
           ctx.fill();
 
-          // Text
           ctx.fillStyle = 'rgba(255,255,255,0.15)';
           ctx.font = '9px sans-serif';
           ctx.textAlign = 'center';
@@ -3296,7 +3701,6 @@
 
         drawCyborg();
 
-        // Speech-Bubble
         const messages = [
           '🤖 Hallo! Ich bin HalDo Cyborg.',
           '⚡ Ich bin bereit für dich.',
@@ -3321,10 +3725,15 @@
       // ============================================================
 
       function createBackup() {
+        const appData = {};
+        for (const [appId, app] of Object.entries(HALDO.registry)) {
+          appData[appId] = app.data;
+        }
         const data = {
           config: HALDO.config,
           memory: HALDO.memory,
           notifications: HALDO.notifications,
+          appdata: appData,
           version: HALDO.version,
           timestamp: new Date().toISOString(),
         };
@@ -3477,7 +3886,6 @@
       // START
       // ============================================================
 
-      // Boot starten
       boot();
 
       console.log('🌌 HalDo AI OS v' + HALDO.version + ' – Ultimate Maximum geladen.');
