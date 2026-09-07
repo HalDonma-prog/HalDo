@@ -630,20 +630,56 @@
     .dock-window-item:hover { background: rgba(255,255,255,0.08); }
     .dock-window-item img { width: 20px; height: 20px; object-fit: contain; }
 
-    /* Cyborg Avatar */
-    #cyborg-avatar { position: fixed; bottom: 100px; right: 30px; width: 180px; height: 220px; z-index: 50; display: block; }
+    /* Cyborg Avatar – jetzt bewegbar */
+    #cyborg-avatar {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 180px;
+      height: 220px;
+      z-index: 50;
+      cursor: grab;
+      touch-action: none;
+    }
+    #cyborg-avatar.dragging { cursor: grabbing; }
     @media(max-width:768px){ #cyborg-avatar { width: 120px; height: 150px; bottom: 70px; right: 10px; } }
     @media(max-width:480px){ #cyborg-avatar { width: 90px; height: 120px; bottom: 50px; right: 5px; } }
-    #cyborg-avatar canvas { width: 100%; height: 100%; border-radius: 20px; background: rgba(5,8,15,0.7); border: 1px solid rgba(74,158,255,0.2); box-shadow: 0 0 40px rgba(74,158,255,0.15); }
+    #cyborg-avatar canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background: rgba(5,8,15,0.7);
+      border: 1px solid rgba(74,158,255,0.2);
+      box-shadow: 0 0 40px rgba(74,158,255,0.15);
+    }
     #cyborg-avatar .speech-bubble {
-      position: absolute; top: -50px; right: 20px;
-      background: rgba(5,8,15,0.92); backdrop-filter: blur(12px);
-      border: 1px solid rgba(74,158,255,0.15); border-radius: 16px;
-      padding: 8px 14px; font-size: 12px; color: var(--haldo-text);
-      max-width: 200px; white-space: nowrap; opacity: 0; transition: opacity 0.4s ease;
+      position: absolute;
+      top: -50px;
+      right: 20px;
+      background: rgba(5,8,15,0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(74,158,255,0.15);
+      border-radius: 16px;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: var(--haldo-text);
+      max-width: 200px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
     #cyborg-avatar .speech-bubble.active { opacity: 1; }
-    #cyborg-avatar .speech-bubble::after { content: ''; position: absolute; bottom: -8px; right: 30px; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px solid rgba(5,8,15,0.92); }
+    #cyborg-avatar .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      right: 30px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid rgba(5,8,15,0.92);
+    }
 
     /* Toast */
     #toast-container { position: fixed; z-index: 3000; top: calc(70px + var(--safe-top)); right: calc(16px + var(--safe-right)); display: flex; flex-direction: column; gap: 8px; max-width: 380px; pointer-events: none; }
@@ -879,7 +915,7 @@
 
     </main>
 
-    <!-- CYBORG AVATAR -->
+    <!-- CYBORG AVATAR – BEWEGBAR -->
     <div id="cyborg-avatar">
       <canvas id="cyborg-canvas"></canvas>
       <div class="speech-bubble" id="cyborg-speech">🤖 Hallo! Ich bin HalDo Cyborg.</div>
@@ -1403,7 +1439,7 @@
         { id: 'browser', name: 'Browser', icon: '🌐', cat: 'internet', desc: 'Internet-Browser mit Lesezeichen', version: '20' },
         { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'productivity', desc: 'Terminkalender mit Feiertagen', version: '20' },
         { id: 'documents', name: 'Documents', icon: '📄', cat: 'productivity', desc: 'Dokumente & Editor', version: '20' },
-        { id: 'email', name: 'Email', icon: '✉️', cat: 'communication', desc: 'E-Mail-Client', version: '20' },
+        { id: 'email', name: 'Email', icon: '✉️', cat: 'communication', desc: 'E-Mail-Client mit Anhängen', version: '20' },
         { id: 'files', name: 'Files', icon: '📁', cat: 'system', desc: 'Dateimanager', version: '20' },
         { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'media', desc: 'Bildergalerie', version: '20' },
         { id: 'health', name: 'Health', icon: '🏥', cat: 'productivity', desc: 'Gesundheitsakte', version: '20' },
@@ -1425,7 +1461,45 @@
         { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'system', desc: 'Themes & Schrift', version: '20' },
         { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'productivity', desc: 'Dashboard für alles', version: '20' },
         { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'system', desc: 'Systemsteuerung & Logs', version: '20' },
+        { id: 'driving', name: 'Fahrschule', icon: '🚗', cat: 'productivity', desc: 'Fahrstunden & Verkehrsregeln', version: '20' },
+        { id: 'chat', name: 'Chat', icon: '💬', cat: 'communication', desc: 'Chat mit Bestätigung', version: '20' },
+        { id: 'call', name: 'Anrufen', icon: '📞', cat: 'communication', desc: 'Videoanruf & Telefonie', version: '20' },
       ];
+
+      // Erweiterte App-Definitionen mit eigenen Daten
+      const APP_DATA = {
+        email: {
+          inbox: [
+            { from: 'Max Mustermann', subject: 'Projektupdate', body: 'Neue Unterlagen sind da.', date: 'heute', attachments: ['Bericht.pdf'] },
+            { from: 'Team', subject: 'Einladung', body: 'Meeting am Freitag um 10 Uhr.', date: 'gestern', attachments: [] },
+            { from: 'Service GmbH', subject: 'Rechnung', body: 'Rechnung Nr. 2026-0098.', date: '02.09.', attachments: ['Rechnung.pdf'] },
+          ],
+          sent: []
+        },
+        health: {
+          diseases: ['Grippe – Fieber, Husten, Gliederschmerzen', 'Allergie – Niesen, Juckreiz, tränende Augen'],
+          medications: ['Ibuprofen', 'Cetirizin'],
+          appointments: ['15.09. Dr. Müller', '22.09. Zahnarzt']
+        },
+        driving: {
+          lessons: ['Grundfahraufgaben', 'Parken', 'Autobahnfahrt'],
+          rules: ['Rechtsfahrgebot', 'Blinker setzen', 'Geschwindigkeitsbegrenzungen'],
+          speedtraps: ['A3 bei Köln', 'B1 Berlin']
+        },
+        chat: {
+          messages: [
+            { from: 'Anna', text: 'Hey, wie geht es dir?', time: '10:30' },
+            { from: 'Du', text: 'Mir geht es gut, danke!', time: '10:32' }
+          ]
+        },
+        call: {
+          history: [
+            { contact: 'Anna', type: 'Video', duration: '5:23', date: 'heute' },
+            { contact: 'Max', type: 'Audio', duration: '2:10', date: 'gestern' }
+          ]
+        }
+      };
+
       APP_DEFINITIONS.forEach(app => {
         HALDO.registry[app.id] = {
           ...app,
@@ -1435,6 +1509,7 @@
           permissions: ['storage'],
           settings: {},
           storageNamespace: `app_${app.id}`,
+          data: APP_DATA[app.id] || {},
           aiSupport: true,
           voiceSupport: true,
           languageSupport: true,
@@ -1600,7 +1675,7 @@
       }
 
       // ============================================================
-      // EVENT-LISTENER (AUSZUG – alle wichtigen Funktionen sind enthalten)
+      // EVENT-LISTENER
       // ============================================================
 
       function initEventListeners() {
@@ -1908,7 +1983,6 @@
               }
             }
           }
-          // Strg+1..9 für Apps
           if ((e.ctrlKey || e.metaKey) && e.key >= '0' && e.key <= '9') {
             e.preventDefault();
             const index = e.key === '0' ? 9 : parseInt(e.key) - 1;
@@ -1918,6 +1992,75 @@
             }
           }
         });
+
+        // Cyborg Drag & Drop
+        const cyborg = document.getElementById('cyborg-avatar');
+        if (cyborg) {
+          let isDragging = false;
+          let offsetX, offsetY;
+          cyborg.addEventListener('mousedown', (e) => {
+            if (e.target.tagName === 'CANVAS' || e.target === cyborg) {
+              isDragging = true;
+              const rect = cyborg.getBoundingClientRect();
+              offsetX = e.clientX - rect.left;
+              offsetY = e.clientY - rect.top;
+              cyborg.classList.add('dragging');
+              document.addEventListener('mousemove', onDrag);
+              document.addEventListener('mouseup', onDragEnd);
+              e.preventDefault();
+            }
+          });
+          cyborg.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            if (touch) {
+              isDragging = true;
+              const rect = cyborg.getBoundingClientRect();
+              offsetX = touch.clientX - rect.left;
+              offsetY = touch.clientY - rect.top;
+              cyborg.classList.add('dragging');
+              document.addEventListener('touchmove', onTouchDrag);
+              document.addEventListener('touchend', onTouchDragEnd);
+              e.preventDefault();
+            }
+          }, { passive: false });
+
+          function onDrag(e) {
+            if (!isDragging) return;
+            let x = e.clientX - offsetX;
+            let y = e.clientY - offsetY;
+            x = Math.max(0, Math.min(window.innerWidth - cyborg.offsetWidth, x));
+            y = Math.max(0, Math.min(window.innerHeight - cyborg.offsetHeight, y));
+            cyborg.style.left = x + 'px';
+            cyborg.style.top = y + 'px';
+            cyborg.style.right = 'auto';
+            cyborg.style.bottom = 'auto';
+          }
+          function onDragEnd() {
+            isDragging = false;
+            cyborg.classList.remove('dragging');
+            document.removeEventListener('mousemove', onDrag);
+            document.removeEventListener('mouseup', onDragEnd);
+          }
+          function onTouchDrag(e) {
+            if (!isDragging || !e.touches[0]) return;
+            const touch = e.touches[0];
+            let x = touch.clientX - offsetX;
+            let y = touch.clientY - offsetY;
+            x = Math.max(0, Math.min(window.innerWidth - cyborg.offsetWidth, x));
+            y = Math.max(0, Math.min(window.innerHeight - cyborg.offsetHeight, y));
+            cyborg.style.left = x + 'px';
+            cyborg.style.top = y + 'px';
+            cyborg.style.right = 'auto';
+            cyborg.style.bottom = 'auto';
+            e.preventDefault();
+          }
+          function onTouchDragEnd() {
+            isDragging = false;
+            cyborg.classList.remove('dragging');
+            document.removeEventListener('touchmove', onTouchDrag);
+            document.removeEventListener('touchend', onTouchDragEnd);
+          }
+        }
 
         console.log('✅ Event-Listener initialisiert.');
       }
@@ -2043,6 +2186,15 @@
               } else if (lower.includes('cyborg')) {
                 response = '🦾 Ich öffne den HalDo Cyborg.';
                 if (HALDO.config.aiAppControl) openApp('cyborg');
+              } else if (lower.includes('fahrschule') || lower.includes('fahren')) {
+                response = '🚗 Ich öffne die Fahrschule.';
+                if (HALDO.config.aiAppControl) openApp('driving');
+              } else if (lower.includes('chat') || lower.includes('nachricht')) {
+                response = '💬 Ich öffne den Chat.';
+                if (HALDO.config.aiAppControl) openApp('chat');
+              } else if (lower.includes('anruf') || lower.includes('telefon')) {
+                response = '📞 Ich öffne die Anruf-Funktion.';
+                if (HALDO.config.aiAppControl) openApp('call');
               } else {
                 response = 'Das ist eine interessante Frage. Ich werde mein Bestes tun, um sie zu beantworten. 🤖';
               }
@@ -2557,18 +2709,223 @@
           setTimeout(() => {
             const shell2 = content.querySelector('.app-runtime-shell');
             if (shell2) {
-              // Generische App-Ansicht – hier könnten spezifische Inhalte rein
-              shell2.innerHTML = `
-                <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--haldo-text-soft);">
-                  <div style="font-size:48px;">${app.icon}</div>
-                  <div style="font-size:20px;font-weight:600;">${app.name}</div>
-                  <div style="font-size:13px;color:var(--haldo-text-muted);">Version ${app.version}</div>
-                  <div style="font-size:12px;max-width:80%;text-align:center;color:var(--haldo-text-muted);">${app.desc}</div>
-                  <button class="primary-action" style="margin-top:8px;" onclick="alert('${app.name} – Funktionen sind bereit.')">Öffnen</button>
-                </div>
-              `;
+              // App-spezifischer Inhalt
+              const appHTML = getAppHTML(app.id);
+              if (appHTML) {
+                shell2.innerHTML = appHTML;
+                // Event-Listener für die App-Buttons
+                setTimeout(() => bindAppEvents(app.id), 100);
+              } else {
+                shell2.innerHTML = `
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--haldo-text-soft);">
+                    <div style="font-size:48px;">${app.icon}</div>
+                    <div style="font-size:20px;font-weight:600;">${app.name}</div>
+                    <div style="font-size:13px;color:var(--haldo-text-muted);">Version ${app.version}</div>
+                    <div style="font-size:12px;max-width:80%;text-align:center;color:var(--haldo-text-muted);">${app.desc}</div>
+                    <button class="primary-action" style="margin-top:8px;" onclick="alert('${app.name} – Funktionen sind bereit.')">Öffnen</button>
+                  </div>
+                `;
+              }
             }
           }, 400);
+        }
+      }
+
+      // ============================================================
+      // APP-SPEZIFISCHE HTML & EVENTS
+      // ============================================================
+
+      function getAppHTML(appId) {
+        const app = HALDO.registry[appId];
+        if (!app) return null;
+
+        switch(appId) {
+          case 'email':
+            const inbox = app.data.inbox || [];
+            const sent = app.data.sent || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;">
+                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                  <button class="primary-action" id="email-new">✉️ Neu</button>
+                  <button class="secondary-action" id="email-refresh">🔄 Aktualisieren</button>
+                </div>
+                <div><strong>Posteingang</strong></div>
+                ${inbox.map(e => `
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid var(--haldo-blue);cursor:pointer;" onclick="alert('Von: ${e.from}\\nBetreff: ${e.subject}\\n${e.body}')">
+                    <strong>${e.subject}</strong> – <span style="color:var(--haldo-text-muted);">${e.from} • ${e.date}</span>
+                    ${e.attachments && e.attachments.length > 0 ? `<span style="color:var(--haldo-cyan);font-size:11px;">📎 ${e.attachments.join(', ')}</span>` : ''}
+                  </div>
+                `).join('')}
+                <div><strong>Gesendet</strong></div>
+                ${sent.length > 0 ? sent.map(e => `
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid var(--haldo-green);">
+                    <strong>${e.subject}</strong> – <span style="color:var(--haldo-text-muted);">an ${e.to} • ${e.date}</span>
+                  </div>
+                `).join('') : '<div style="color:var(--haldo-text-muted);font-size:12px;">Keine gesendeten E-Mails.</div>'}
+              </div>
+            `;
+
+          case 'health':
+            const diseases = app.data.diseases || [];
+            const medications = app.data.medications || [];
+            const appointments = app.data.appointments || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🏥 Krankheiten</strong></div>
+                ${diseases.map(d => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${d}</div>`).join('')}
+                <div><strong>💊 Medikamente</strong></div>
+                ${medications.map(m => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${m}</div>`).join('')}
+                <div><strong>👨‍⚕️ Termine</strong></div>
+                ${appointments.map(a => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${a}</div>`).join('')}
+                <button class="secondary-action full" id="health-add">+ Hinzufügen</button>
+              </div>
+            `;
+
+          case 'driving':
+            const lessons = app.data.lessons || [];
+            const rules = app.data.rules || [];
+            const speedtraps = app.data.speedtraps || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🚗 Fahrstunden</strong></div>
+                ${lessons.map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
+                <div><strong>📏 Verkehrsregeln</strong></div>
+                ${rules.map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
+                <div><strong>📸 Blitzer</strong></div>
+                ${speedtraps.map(s => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${s}</div>`).join('')}
+                <button class="secondary-action full" id="driving-add">+ Hinzufügen</button>
+              </div>
+            `;
+
+          case 'chat':
+            const messages = app.data.messages || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div style="display:flex;gap:6px;">
+                  <input type="text" id="chat-input" placeholder="Nachricht …" style="flex:1;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:var(--haldo-text);">
+                  <button class="primary-action" id="chat-send">Senden</button>
+                </div>
+                ${messages.map(m => `
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;border-left:3px solid ${m.from === 'Du' ? 'var(--haldo-green)' : 'var(--haldo-blue)'};">
+                    <strong>${m.from}</strong> <span style="color:var(--haldo-text-muted);font-size:11px;">${m.time}</span>
+                    <div>${m.text}</div>
+                  </div>
+                `).join('')}
+              </div>
+            `;
+
+          case 'call':
+            const history = app.data.history || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;">
+                <div style="display:flex;gap:6px;">
+                  <button class="primary-action" id="call-start">📞 Anruf starten</button>
+                  <button class="secondary-action" id="call-video">🎥 Videoanruf</button>
+                </div>
+                <div><strong>Verlauf</strong></div>
+                ${history.map(h => `
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;display:flex;justify-content:space-between;">
+                    <span>${h.contact} (${h.type})</span>
+                    <span style="color:var(--haldo-text-muted);font-size:11px;">${h.duration} • ${h.date}</span>
+                  </div>
+                `).join('')}
+              </div>
+            `;
+
+          default:
+            return null;
+        }
+      }
+
+      function bindAppEvents(appId) {
+        const app = HALDO.registry[appId];
+        if (!app) return;
+
+        switch(appId) {
+          case 'email':
+            document.getElementById('email-new')?.addEventListener('click', () => {
+              const to = prompt('Empfänger:');
+              if (!to) return;
+              const subject = prompt('Betreff:');
+              const body = prompt('Nachricht:');
+              if (body) {
+                app.data.sent.push({ to, subject, body, date: 'heute' });
+                showToast('✉️', 'E-Mail gesendet', `An: ${to}`);
+                renderAppContent(app.windowId, app);
+              }
+            });
+            document.getElementById('email-refresh')?.addEventListener('click', () => {
+              showToast('🔄', 'E-Mails aktualisiert', 'Posteingang wurde aktualisiert.');
+              renderAppContent(app.windowId, app);
+            });
+            break;
+
+          case 'health':
+            document.getElementById('health-add')?.addEventListener('click', () => {
+              const type = prompt('Was möchtest du hinzufügen? (Krankheit/Medikament/Termin)');
+              if (!type) return;
+              const value = prompt('Eintrag:');
+              if (value) {
+                if (type.toLowerCase().includes('krank')) app.data.diseases.push(value);
+                else if (type.toLowerCase().includes('medik')) app.data.medications.push(value);
+                else if (type.toLowerCase().includes('termin')) app.data.appointments.push(value);
+                showToast('🏥', 'Health', 'Eintrag hinzugefügt.');
+                renderAppContent(app.windowId, app);
+              }
+            });
+            break;
+
+          case 'driving':
+            document.getElementById('driving-add')?.addEventListener('click', () => {
+              const type = prompt('Was möchtest du hinzufügen? (Fahrstunde/Regel/Blitzer)');
+              if (!type) return;
+              const value = prompt('Eintrag:');
+              if (value) {
+                if (type.toLowerCase().includes('fahrstunde')) app.data.lessons.push(value);
+                else if (type.toLowerCase().includes('regel')) app.data.rules.push(value);
+                else if (type.toLowerCase().includes('blitzer')) app.data.speedtraps.push(value);
+                showToast('🚗', 'Fahrschule', 'Eintrag hinzugefügt.');
+                renderAppContent(app.windowId, app);
+              }
+            });
+            break;
+
+          case 'chat':
+            document.getElementById('chat-send')?.addEventListener('click', () => {
+              const input = document.getElementById('chat-input');
+              const text = input?.value.trim();
+              if (text) {
+                app.data.messages.push({ from: 'Du', text, time: new Date().toLocaleTimeString() });
+                input.value = '';
+                showToast('💬', 'Chat', 'Nachricht gesendet.');
+                renderAppContent(app.windowId, app);
+                // Simuliere Antwort
+                setTimeout(() => {
+                  app.data.messages.push({ from: 'HalDo Bot', text: 'Danke für deine Nachricht! 🤖', time: new Date().toLocaleTimeString() });
+                  renderAppContent(app.windowId, app);
+                }, 1000);
+              }
+            });
+            break;
+
+          case 'call':
+            document.getElementById('call-start')?.addEventListener('click', () => {
+              showConfirm('Anruf starten', 'Möchtest du einen Audio-Anruf starten?').then(confirmed => {
+                if (confirmed) {
+                  showToast('📞', 'Anruf', 'Verbindung wird hergestellt …');
+                  setTimeout(() => showToast('📞', 'Anruf', 'Verbunden.'), 2000);
+                }
+              });
+            });
+            document.getElementById('call-video')?.addEventListener('click', () => {
+              showConfirm('Videoanruf', 'Möchtest du einen Videoanruf starten?').then(confirmed => {
+                if (confirmed) {
+                  showToast('🎥', 'Videoanruf', 'Verbindung wird hergestellt …');
+                  setTimeout(() => showToast('🎥', 'Videoanruf', 'Verbunden.'), 2000);
+                }
+              });
+            });
+            break;
         }
       }
 
@@ -3052,7 +3409,6 @@
           }
         }
 
-        // Upload-Overlay via Dock (z.B. über App-Menü, hier optional)
         document.addEventListener('keydown', (e) => {
           if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
             e.preventDefault();
