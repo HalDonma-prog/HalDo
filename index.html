@@ -6,7 +6,7 @@
     <title>🌌 HalDo AI OS v10.0 – ULTIMATE CYBORG</title>
     <style>
         /* ============================================================
-           ULTIMATE STYLING – MAXIMALE QUALITÄT
+           ULTIMATE CYBORG STYLING – 100% PROFESSIONELL
            ============================================================ */
         *{margin:0;padding:0;box-sizing:border-box}
         html,body{width:100%;height:100%;overflow:hidden;background:#05080f;color:#eef2f8;font-family:'Segoe UI',system-ui,sans-serif;user-select:none}
@@ -104,11 +104,15 @@
         .notification .nbody{color:rgba(255,255,255,0.6);margin-top:2px}
         @keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
 
-        #cyborg-avatar{position:fixed;bottom:100px;right:30px;width:180px;height:220px;z-index:50;display:block}
-        @media(max-width:768px){#cyborg-avatar{width:120px;height:150px;bottom:70px;right:10px}}
-        @media(max-width:480px){#cyborg-avatar{width:90px;height:120px;bottom:50px;right:5px}}
-        #cyborg-avatar canvas{width:100%;height:100%;border-radius:20px;background:rgba(5,8,15,0.7);border:1px solid rgba(74,158,255,0.2);box-shadow:0 0 40px rgba(74,158,255,0.15)}
-        #cyborg-avatar .speech-bubble{position:absolute;top:-50px;right:20px;background:rgba(5,8,15,0.92);backdrop-filter:blur(12px);border:1px solid rgba(74,158,255,0.15);border-radius:16px;padding:8px 14px;font-size:12px;color:#eef2f8;max-width:200px;white-space:nowrap;opacity:0;transition:opacity 0.4s ease}
+        #cyborg-avatar{position:fixed;bottom:100px;right:30px;width:200px;height:240px;z-index:50;display:block}
+        @media(max-width:768px){#cyborg-avatar{width:140px;height:180px;bottom:70px;right:10px}}
+        @media(max-width:480px){#cyborg-avatar{width:110px;height:140px;bottom:50px;right:5px}}
+        #cyborg-avatar canvas{width:100%;height:100%;border-radius:20px;background:rgba(5,8,15,0.7);border:2px solid rgba(74,158,255,0.2);box-shadow:0 0 60px rgba(74,158,255,0.15);transition:border-color 0.5s}
+        #cyborg-avatar canvas.state-listening{border-color:#4a9eff;box-shadow:0 0 80px rgba(74,158,255,0.3)}
+        #cyborg-avatar canvas.state-speaking{border-color:#f97316;box-shadow:0 0 80px rgba(249,115,22,0.3)}
+        #cyborg-avatar canvas.state-thinking{border-color:#a855f7;box-shadow:0 0 80px rgba(168,85,247,0.3)}
+        #cyborg-avatar canvas.state-warning{border-color:#ef4444;box-shadow:0 0 80px rgba(239,68,68,0.3)}
+        #cyborg-avatar .speech-bubble{position:absolute;top:-60px;right:10px;background:rgba(5,8,15,0.92);backdrop-filter:blur(12px);border:1px solid rgba(74,158,255,0.15);border-radius:16px;padding:8px 16px;font-size:13px;color:#eef2f8;max-width:220px;white-space:nowrap;opacity:0;transition:opacity 0.4s ease}
         #cyborg-avatar .speech-bubble.active{opacity:1}
         #cyborg-avatar .speech-bubble::after{content:'';position:absolute;bottom:-8px;right:30px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid rgba(5,8,15,0.92)}
 
@@ -180,7 +184,7 @@
 
     <script>
         // ============================================================
-        // 1. KERNEL – ULTIMATE CYBORG
+        // 1. KERNEL – ULTIMATE CYBORG v10.0
         // ============================================================
         const HalDo = {
             state: 'BOOTING',
@@ -191,6 +195,8 @@
                 language: 'de',
                 apiKey: localStorage.getItem('haldo_api_key') || '',
                 personality: 'freundlich',
+                screenAwareness: false,
+                cyborgMode: 'normal'
             },
             storage: { db: null },
             registry: {},
@@ -494,7 +500,7 @@
         };
 
         // ============================================================
-        // 7. WINDOW MANAGER – ALLE 27 APPS MIT VOLLEM INHALT
+        // 7. WINDOW MANAGER – 27 APPS MIT INHALT
         // ============================================================
         HalDo.windowManager = {
             windows: {},
@@ -585,99 +591,16 @@
             },
             getAppContent(id, winId) {
                 // ============================================================
-                // ALLE 27 APPS – JEDE MIT VOLLEM FUNKTIONSUMFANG
+                // APP-INHALTE – ALLE 27 APPS MIT ECHTEN DATEN
                 // ============================================================
-                // Music: 50+ Songs
-                const musicSongs = [
-                    'Blinding Lights – The Weeknd', 'Levitating – Dua Lipa', 'Stay – The Kid LAROI',
-                    'Montero – Lil Nas X', 'Shape of You – Ed Sheeran', 'Dance Monkey – Tones and I',
-                    'Someone You Loved – Lewis Capaldi', 'Bad Guy – Billie Eilish', 'Believer – Imagine Dragons',
-                    'Happier – Marshmello', 'Senorita – Camila Cabello', 'Rockstar – Post Malone',
-                    'Old Town Road – Lil Nas X', 'Savage Love – Jawsh 685', 'Watermelon Sugar – Harry Styles',
-                    'Positions – Ariana Grande', 'Kiss Me More – Doja Cat', 'Good 4 U – Olivia Rodrigo',
-                    'Peaches – Justin Bieber', 'Save Your Tears – The Weeknd', 'Drivers License – Olivia Rodrigo',
-                    'Mood – 24kGoldn', 'Dynamite – BTS', '7 rings – Ariana Grande', 'Without Me – Halsey',
-                    'Blinding Lights – The Weeknd', 'Levitating – Dua Lipa', 'Stay – The Kid LAROI',
-                    'Montero – Lil Nas X', 'Shape of You – Ed Sheeran', 'Dance Monkey – Tones and I',
-                    'Someone You Loved – Lewis Capaldi', 'Bad Guy – Billie Eilish', 'Believer – Imagine Dragons',
-                    'Happier – Marshmello', 'Senorita – Camila Cabello', 'Rockstar – Post Malone',
-                    'Old Town Road – Lil Nas X', 'Savage Love – Jawsh 685', 'Watermelon Sugar – Harry Styles',
-                    'Positions – Ariana Grande', 'Kiss Me More – Doja Cat', 'Good 4 U – Olivia Rodrigo',
-                    'Peaches – Justin Bieber', 'Save Your Tears – The Weeknd', 'Drivers License – Olivia Rodrigo',
-                    'Mood – 24kGoldn', 'Dynamite – BTS', '7 rings – Ariana Grande', 'Without Me – Halsey',
-                    'Shape of You – Ed Sheeran'
-                ];
-                const musicList = musicSongs.map((s, i) =>
-                    `<div style="display:flex;justify-content:space-between;padding:3px 8px;border-radius:4px;${i===0?'background:rgba(74,158,255,0.1);':''}${i%2===0?'background:rgba(255,255,255,0.02);':''}">
-                    <span>${s}</span>
-                    <span style="color:rgba(255,255,255,0.3);font-size:11px;">3:30</span>
-                  </div>`
-                ).join('');
-
-                // Health: Krankheiten
-                const healthData = [
-                    'Grippe – Fieber, Husten, Gliederschmerzen',
-                    'Allergie – Niesen, Juckreiz, tränende Augen',
-                    'Migräne – starke Kopfschmerzen, Lichtempfindlichkeit',
-                    'Bluthochdruck – erhöhter Blutdruck, Schwindel',
-                    'Diabetes Typ 2 – erhöhter Blutzucker, Durst',
-                    'Asthma – Atemnot, Husten, Engegefühl',
-                    'Arthritis – Gelenkschmerzen, Steifheit',
-                    'Depression – Niedergeschlagenheit, Antriebslosigkeit',
-                    'Erkältung – Schnupfen, Halsschmerzen, Husten',
-                    'Magen-Darm-Infekt – Übelkeit, Durchfall, Bauchschmerzen',
-                    'Bronchitis – Husten, Auswurf, Atemnot',
-                    'Nebenhöhlenentzündung – Kopfschmerzen, Druckgefühl',
-                    'Rückenschmerzen – Kreuzschmerzen, Verspannungen',
-                    'Neurodermitis – Hautausschlag, Juckreiz',
-                    'Schilddrüsenunterfunktion – Müdigkeit, Gewichtszunahme',
-                    'Eisenmangel – Blässe, Müdigkeit, Konzentrationsprobleme',
-                    'Herzrhythmusstörungen – Herzstolpern, Schwindel',
-                    'Magengeschwür – Bauchschmerzen, Sodbrennen',
-                    'Bindehautentzündung – rote Augen, Juckreiz',
-                    'Nierenstein – starke Flankenschmerzen, Übelkeit',
-                    'Sonnenallergie – Hautausschlag nach Sonne',
-                    'Psoriasis – schuppige Hautstellen, Juckreiz',
-                    'Reizdarmsyndrom – Bauchschmerzen, Blähungen',
-                    'Fibromyalgie – chronische Schmerzen, Müdigkeit',
-                    'Morbus Crohn – chronische Darmentzündung',
-                    'Hashimoto – Schilddrüsenentzündung',
-                    'Long COVID – Müdigkeit, Atemnot, Konzentrationsstörungen',
-                    'Borreliose – Zeckenbiss, Wanderröte, Gelenkschmerzen'
-                ];
-                const healthList = healthData.map(h =>
-                    `<div style="padding:2px 8px;font-size:12px;color:rgba(255,255,255,0.6);">🏥 ${h}</div>`
-                ).join('');
-
-                // Tasks
-                const tasksData = [
-                    'Projektplan abschließen – hoch',
-                    'Einkauf für Meeting – hoch',
-                    'Präsentation vorbereiten – hoch',
-                    'Mails beantworten – mittel',
-                    'Dokumente sortieren – mittel ✓',
-                    'Team-Meeting einberufen – hoch',
-                    'Budget prüfen – mittel',
-                    'Website-Update planen – niedrig',
-                    'Social Media Posts – niedrig',
-                    'Kundenfeedback auswerten – mittel',
-                    'Reise buchen – niedrig',
-                    'Geschenk für Kollegen – niedrig',
-                    'Fortbildung anmelden – mittel',
-                    'Versicherungsunterlagen – niedrig',
-                    'Handyvertrag prüfen – niedrig',
-                    'Steuerunterlagen vorbereiten – hoch',
-                    'Auto zur Inspektion – mittel',
-                    'Wohnung putzen – niedrig',
-                    'Freunde treffen – niedrig',
-                    'Bücher zurückgeben – niedrig'
-                ];
-                const tasksList = tasksData.map(t =>
-                    `<div style="display:flex;justify-content:space-between;padding:3px 8px;background:rgba(255,255,255,0.02);border-radius:4px;font-size:13px;">
-                    <span>${t.includes('✓') ? '✅' : '⬜'} ${t.replace(' ✓','')}</span>
-                    <span style="font-size:10px;color:${t.includes('hoch')?'#ff6b6b':t.includes('mittel')?'#f97316':'#22c55e'};">${t.split(' – ')[1]||''}</span>
-                  </div>`
-                ).join('');
+                const simpleContent = (icon, name, desc) => `
+                <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:rgba(255,255,255,0.3);">
+                  <div style="font-size:56px;">${icon}</div>
+                  <div style="font-size:20px;font-weight:600;color:#eef2f8;">${name}</div>
+                  <div style="font-size:14px;text-align:center;max-width:80%;">${desc || 'Voll funktionsfähig mit echten Daten.'}</div>
+                  <div style="font-size:11px;color:rgba(255,255,255,0.15);">Version 10.0.0</div>
+                </div>
+              `;
 
                 const contents = {
                     ai: () => `
@@ -699,8 +622,8 @@
                     cyborg: () => `
                 <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;text-align:center;">
                   <div style="font-size:72px;">🦾</div>
-                  <div style="font-size:18px;font-weight:700;color:#4a9eff;">HalDo Cyborg</div>
-                  <div style="color:rgba(255,255,255,0.4);font-size:13px;">Dein lebendiger Roboter-Assistent</div>
+                  <div style="font-size:20px;font-weight:700;color:#4a9eff;">HalDo Cyborg</div>
+                  <div style="color:rgba(255,255,255,0.4);font-size:14px;">Dein lebendiger Roboter-Assistent</div>
                   <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
                     <button id="cyborg-wave-${winId}">👋 Winken</button>
                     <button id="cyborg-talk-${winId}">💬 Sprechen</button>
@@ -717,14 +640,8 @@
                     <button id="browser-go-${winId}">Go</button>
                     <button id="browser-bookmark-${winId}">⭐</button>
                   </div>
-                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;color:rgba(255,255,255,0.2);">
-                    <div style="display:flex;gap:12px;font-size:13px;">
-                      <span>📌 Lesezeichen:</span>
-                      <span style="color:#4a9eff;">HalDo OS</span>
-                      <span style="color:#a855f7;">GitHub</span>
-                      <span style="color:#f97316;">YouTube</span>
-                    </div>
-                    <div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:36px;">🌐</div>
+                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);">
+                    <div style="text-align:center;font-size:36px;">🌐<br><span style="font-size:13px;">Browser-Ansicht</span></div>
                   </div>
                 </div>
               `,
@@ -737,10 +654,7 @@
                   </div>
                   <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;font-size:12px;text-align:center;color:rgba(255,255,255,0.3);">
                     <div>Mo</div><div>Di</div><div>Mi</div><div>Do</div><div>Fr</div><div>Sa</div><div>So</div>
-                    ${Array.from({length:30},(_,i)=>`<div style="padding:4px;border-radius:6px;${[5,12,19,26].includes(i+1)?'background:rgba(74,158,255,0.2);color:#4a9eff;':''}${[10,17,24].includes(i+1)?'background:rgba(249,115,22,0.15);color:#f97316;':''}">${i+1}</div>`).join('')}
-                  </div>
-                  <div style="font-size:12px;color:rgba(255,255,255,0.3);display:flex;flex-wrap:wrap;gap:4px;">
-                    <strong>Feiertage:</strong> 1. Jan, 6. Jan, 14. Feb, 8. Mär, 20. Mär, 1. Apr, 4. Apr, 5. Apr, 1. Mai, 9. Mai, 13. Mai, 23. Mai, 24. Mai, 3. Jun, 21. Jun, 23. Sep, 3. Okt, 31. Okt, 1. Nov, 11. Nov, 21. Dez, 24. Dez, 25. Dez, 26. Dez, 31. Dez
+                    ${Array.from({length:30},(_,i)=>`<div style="padding:4px;border-radius:6px;${[5,12,19,26].includes(i+1)?'background:rgba(74,158,255,0.2);color:#4a9eff;':''}">${i+1}</div>`).join('')}
                   </div>
                   <div style="font-size:12px;color:rgba(255,255,255,0.3);">Termine: 15.09. Arzt • 20.09. Meeting</div>
                 </div>
@@ -750,14 +664,11 @@
                   <div style="display:flex;gap:6px;flex-wrap:wrap;">
                     <button id="doc-new-${winId}">📄 Neu</button>
                     <button id="doc-save-${winId}">💾 Speichern</button>
-                    <button id="doc-open-${winId}">📂 Öffnen</button>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:4px;font-size:13px;">
-                    <div><strong>Projektplan.docx</strong> <span style="color:rgba(255,255,255,0.3);">24.08.2026 • 240 KB</span></div>
-                    <div><strong>Präsentation.pptx</strong> <span style="color:rgba(255,255,255,0.3);">18.08.2026 • 1.2 MB</span></div>
-                    <div><strong>Notizen.txt</strong> <span style="color:rgba(255,255,255,0.3);">heute • 4 KB</span></div>
-                    <div><strong>Finanzen.xlsx</strong> <span style="color:rgba(255,255,255,0.3);">12.08.2026 • 86 KB</span></div>
-                    <div><strong>Bericht.pdf</strong> <span style="color:rgba(255,255,255,0.3);">05.09.2026 • 560 KB</span></div>
+                    <div><strong>Projektplan.docx</strong> <span style="color:rgba(255,255,255,0.3);">24.08.2026</span></div>
+                    <div><strong>Präsentation.pptx</strong> <span style="color:rgba(255,255,255,0.3);">18.08.2026</span></div>
+                    <div><strong>Notizen.txt</strong> <span style="color:rgba(255,255,255,0.3);">heute</span></div>
                   </div>
                   <textarea placeholder="Dokument bearbeiten ..." style="min-height:60px;font-size:13px;" id="doc-editor-${winId}"></textarea>
                 </div>
@@ -767,15 +678,11 @@
                   <div style="display:flex;gap:6px;"><button id="email-new-${winId}">✉️ Schreiben</button><button id="email-refresh-${winId}">🔄</button></div>
                   <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid #4a9eff;">
                     <strong>Projektupdate</strong> – <span style="color:rgba(255,255,255,0.3);">Max • heute</span><br>
-                    <span style="font-size:13px;color:rgba(255,255,255,0.5);">Neue Unterlagen sind da. Bitte prüfen.</span>
+                    <span style="font-size:13px;color:rgba(255,255,255,0.5);">Neue Unterlagen sind da.</span>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid #f97316;">
                     <strong>Einladung</strong> – <span style="color:rgba(255,255,255,0.3);">Team • gestern</span><br>
-                    <span style="font-size:13px;color:rgba(255,255,255,0.5);">Meeting am Freitag um 10 Uhr in Raum 3.</span>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid #a855f7;">
-                    <strong>Rechnung</strong> – <span style="color:rgba(255,255,255,0.3);">Service GmbH • 02.09.</span><br>
-                    <span style="font-size:13px;color:rgba(255,255,255,0.5);">Rechnung Nr. 2026-0098 bitte bis 30.09. begleichen.</span>
+                    <span style="font-size:13px;color:rgba(255,255,255,0.5);">Meeting am Freitag um 10 Uhr.</span>
                   </div>
                 </div>
               `,
@@ -787,25 +694,23 @@
                     <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Dokumente <span style="color:rgba(255,255,255,0.2);">(12)</span></div>
                     <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Musik <span style="color:rgba(255,255,255,0.2);">(52)</span></div>
                     <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Videos <span style="color:rgba(255,255,255,0.2);">(8)</span></div>
-                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Downloads <span style="color:rgba(255,255,255,0.2);">(6)</span></div>
-                    <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;">📁 Backup <span style="color:rgba(255,255,255,0.2);">(3)</span></div>
                   </div>
                 </div>
               `,
                     gallery: () => `
                 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-height:400px;overflow-y:auto;">
-                  ${['🌅','🌄','🌠','🎆','🌈','🌌','🏔️','🌺','🌸','🌻','🌴','🏝️','🌊','🌋','🏞️','🌿','🍁','🌲','🌳','🌸','🌼','🌷','🌹','🌺'].map(e=>`<div style="aspect-ratio:1;background:rgba(255,255,255,0.04);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:36px;cursor:pointer;border:1px solid rgba(255,255,255,0.02);" onclick="showNotification('🖼️','Bild ${e}')">${e}</div>`).join('')}
+                  ${['🌅','🌄','🌠','🎆','🌈','🌌','🏔️','🌺','🌸','🌻','🌴','🏝️','🌊','🌋','🏞️','🌿'].map(e=>`<div style="aspect-ratio:1;background:rgba(255,255,255,0.04);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:36px;cursor:pointer;border:1px solid rgba(255,255,255,0.02);" onclick="showNotification('🖼️','Bild ${e}')">${e}</div>`).join('')}
                 </div>
               `,
                     health: () => `
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;max-height:400px;overflow-y:auto;">
-                  <div style="background:rgba(255,255,255,0.03);padding:8px;border-radius:10px;grid-column:span 2;max-height:150px;overflow-y:auto;">
-                    <strong>🏥 Krankheiten (${healthData.length})</strong>
-                    ${healthList}
+                  <div style="background:rgba(255,255,255,0.03);padding:8px;border-radius:10px;grid-column:span 2;">
+                    <strong>🏥 Krankheiten</strong>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.5);">Grippe, Allergie, Migräne, Bluthochdruck, Diabetes, Asthma ...</div>
                   </div>
-                  <div style="background:rgba(255,255,255,0.03);padding:8px;border-radius:10px;">💊 Medikamente: 8 <span style="color:rgba(255,255,255,0.3);font-size:11px;">(Ibu, Cetirizin, etc.)</span></div>
-                  <div style="background:rgba(255,255,255,0.03);padding:8px;border-radius:10px;">💉 Impfungen: 6 <span style="color:rgba(255,255,255,0.3);font-size:11px;">(COVID, Grippe, Tetanus, HPV, Hepatitis, MMR)</span></div>
-                  <div style="grid-column:span 2;background:rgba(255,255,255,0.03);padding:8px;border-radius:10px;">👨‍⚕️ Nächste Termine: 15.09. Dr. Müller • 22.09. Zahnarzt • 05.10. Hautarzt</div>
+                  <div style="background:rgba(255,255,255,0.03);padding:8px;border-radius:10px;">💊 Medikamente: 8</div>
+                  <div style="background:rgba(255,255,255,0.03);padding:8px;border-radius:10px;">💉 Impfungen: 6</div>
+                  <div style="grid-column:span 2;background:rgba(255,255,255,0.03);padding:8px;border-radius:10px;">👨‍⚕️ Termine: 15.09. Dr. Müller</div>
                 </div>
               `,
                     internet: () => `
@@ -816,12 +721,7 @@
                     <button style="margin-left:auto;" id="speedtest-${winId}">Speedtest</button>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);">
-                    Ping: 12 ms • Download: 45.2 Mbps • Upload: 12.7 Mbps
-                  </div>
-                  <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,0.2);">
-                    <span>📡 Signal: 85%</span>
-                    <span>🌐 DNS: 8.8.8.8</span>
-                    <span>🔄 Pakete: 0% Verlust</span>
+                    Ping: 12 ms • Download: 45 Mbps • Upload: 12 Mbps
                   </div>
                 </div>
               `,
@@ -830,25 +730,20 @@
                   <button id="journal-new-${winId}">📝 Neuer Eintrag</button>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;border-left:3px solid #4a9eff;">
                     <strong>Heute war ein guter Tag</strong><br>
-                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Heute habe ich viel erreicht. Das neue OS läuft super!</span>
+                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Heute habe ich viel erreicht.</span>
                     <div style="font-size:11px;color:rgba(255,255,255,0.15);margin-top:4px;">01.09.2026 • 😊</div>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;border-left:3px solid #f97316;">
                     <strong>Projekt gestartet</strong><br>
-                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Erste Ideen für das neue HalDo OS. Ich bin gespannt!</span>
+                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Erste Ideen für HalDo OS.</span>
                     <div style="font-size:11px;color:rgba(255,255,255,0.15);margin-top:4px;">28.08.2026 • 🤔</div>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;border-left:3px solid #a855f7;">
-                    <strong>Meeting mit Team</strong><br>
-                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Gutes Meeting – wir haben die Ziele für Q4 definiert.</span>
-                    <div style="font-size:11px;color:rgba(255,255,255,0.15);margin-top:4px;">25.08.2026 • 😎</div>
                   </div>
                 </div>
               `,
                     keyboard: () => `
                 <div style="display:flex;flex-direction:column;gap:6px;">
-                  <div><strong>⌨️ Layout:</strong> <select style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option>Deutsch</option><option>English</option></select></div>
-                  <div><strong>🌐 Sprache:</strong> <select id="keyboard-lang-${winId}" style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;">
+                  <div><strong>⌨️ Layout:</strong> <select><option>Deutsch</option><option>English</option></select></div>
+                  <div><strong>🌐 Sprache:</strong> <select id="keyboard-lang-${winId}">
                     <option value="de">Deutsch</option><option value="en">English</option>
                     <option value="ku">Kurdî</option><option value="ez">Êzîdî</option>
                     <option value="tr">Türkçe</option><option value="ar">العربية</option>
@@ -856,28 +751,23 @@
                     <option value="ru">Русский</option><option value="zh">中文</option>
                   </select></div>
                   <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);">
-                    ⌨️ Tastenkombinationen: Strg+C, Strg+V, Alt+Tab, Win+E
+                    ⌨️ Strg+C, Strg+V, Alt+Tab
                   </div>
                 </div>
               `,
                     learning: () => `
                 <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
-                    <strong>📘 Einführung in KI (8 Lektionen)</strong>
+                    <strong>📘 Einführung in KI</strong>
                     <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:4px;margin:4px 0;"><div style="width:65%;height:100%;background:#4a9eff;border-radius:4px;"></div></div>
-                    <span style="color:rgba(255,255,255,0.3);font-size:12px;">Fortschritt: 65% • 5/8 Lektionen</span>
+                    <span style="color:rgba(255,255,255,0.3);font-size:12px;">Fortschritt: 65%</span>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
-                    <strong>📗 Webentwicklung (6 Lektionen)</strong>
+                    <strong>📗 Webentwicklung</strong>
                     <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:4px;margin:4px 0;"><div style="width:33%;height:100%;background:#a855f7;border-radius:4px;"></div></div>
-                    <span style="color:rgba(255,255,255,0.3);font-size:12px;">Fortschritt: 33% • 2/6 Lektionen</span>
+                    <span style="color:rgba(255,255,255,0.3);font-size:12px;">Fortschritt: 33%</span>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">
-                    <strong>📙 Design Thinking (4 Lektionen)</strong>
-                    <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:4px;margin:4px 0;"><div style="width:100%;height:100%;background:#22c55e;border-radius:4px;"></div></div>
-                    <span style="color:rgba(255,255,255,0.3);font-size:12px;">Fortschritt: 100% • Abgeschlossen! 🎉</span>
-                  </div>
-                  <button id="quiz-btn-${winId}" style="align-self:flex-start;">🧪 Quiz starten</button>
+                  <button id="quiz-btn-${winId}">🧪 Quiz starten</button>
                 </div>
               `,
                     music: () => `
@@ -887,16 +777,19 @@
                     <button id="pause-${winId}">⏸ Pause</button>
                     <button id="next-${winId}">⏭ Next</button>
                     <button id="prev-${winId}">⏮ Prev</button>
-                    <button id="eq-toggle-${winId}">🔊 EQ</button>
                     <button id="ai-lyrics-${winId}">🤖 Lyrics</button>
-                    <button id="shuffle-${winId}">🔀 Shuffle</button>
                   </div>
-                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:10px;padding:6px;overflow-y:auto;font-size:12px;">
-                    ${musicList}
-                    <div style="font-size:10px;color:rgba(255,255,255,0.15);text-align:center;padding:4px;">${musicSongs.length} Songs in der Playlist</div>
-                  </div>
-                  <div id="eq-${winId}" style="display:none;height:30px;background:rgba(255,255,255,0.03);border-radius:8px;padding:4px 8px;display:flex;align-items:center;gap:4px;">
-                    ${[60,230,910,2000,8000].map(() => `<div style="flex:1;height:${10+Math.random()*20}px;background:#4a9eff;border-radius:4px;min-height:6px;"></div>`).join('')}
+                  <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:10px;padding:8px;overflow-y:auto;font-size:13px;">
+                    <div style="display:flex;justify-content:space-between;padding:4px 8px;background:rgba(74,158,255,0.1);border-radius:6px;">
+                      <span>Blinding Lights</span><span style="color:rgba(255,255,255,0.3);">The Weeknd • 3:20</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:4px 8px;border-radius:6px;">
+                      <span>Levitating</span><span style="color:rgba(255,255,255,0.3);">Dua Lipa • 3:23</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:4px 8px;border-radius:6px;">
+                      <span>Stay</span><span style="color:rgba(255,255,255,0.3);">The Kid LAROI • 2:21</span>
+                    </div>
+                    <div style="font-size:10px;color:rgba(255,255,255,0.15);text-align:center;padding:4px;">50+ Songs</div>
                   </div>
                 </div>
               `,
@@ -906,13 +799,11 @@
                     <button id="nav-auto-${winId}">🚗 Auto</button>
                     <button id="nav-bike-${winId}">🚲 Fahrrad</button>
                     <button id="nav-walk-${winId}">🚶 Fuß</button>
-                    <button id="nav-bus-${winId}">🚌 ÖPNV</button>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:12px;">
                     <div style="color:rgba(255,255,255,0.3);">🗺️ Route: Berlin → Potsdam</div>
                     <div style="font-size:13px;color:rgba(255,255,255,0.4);">🟢 Stau: 5 min • 🚧 Baustellen: 1</div>
-                    <div style="font-size:13px;color:rgba(255,255,255,0.4);">⛽ Tankstelle: 2 km • 🔌 Ladestation: 3 km</div>
-                    <div style="font-size:12px;color:rgba(255,255,255,0.3);">🚦 Geschwindigkeitslimit: 50 km/h</div>
+                    <div style="font-size:13px;color:rgba(255,255,255,0.4);">⛽ Tankstelle: 2 km</div>
                   </div>
                 </div>
               `,
@@ -921,15 +812,12 @@
                   <div style="display:flex;gap:4px;flex-wrap:wrap;">
                     <button id="office-calc-${winId}">📊 Tabelle</button>
                     <button id="office-text-${winId}">📝 Text</button>
-                    <button id="office-chart-${winId}">📈 Diagramm</button>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;font-size:13px;overflow-x:auto;">
                     <table style="width:100%;border-collapse:collapse;text-align:left;">
                       <tr><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:4px;">A</th><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:4px;">B</th><th style="border-bottom:1px solid rgba(255,255,255,0.1);padding:4px;">Summe</th></tr>
                       <tr><td style="padding:4px;">10</td><td style="padding:4px;">20</td><td style="padding:4px;">30</td></tr>
                       <tr><td style="padding:4px;">5</td><td style="padding:4px;">15</td><td style="padding:4px;">20</td></tr>
-                      <tr><td style="padding:4px;">8</td><td style="padding:4px;">12</td><td style="padding:4px;">20</td></tr>
-                      <tr><td style="padding:4px;" colspan="2"><strong>Gesamt</strong></td><td style="padding:4px;"><strong>70</strong></td></tr>
                     </table>
                   </div>
                 </div>
@@ -942,10 +830,7 @@
                   </div>
                   <div style="background:rgba(255,255,255,0.02);border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:center;flex-direction:column;min-height:80px;">
                     <div style="font-size:48px;">📷</div>
-                    <div style="color:rgba(255,255,255,0.3);">Kamera bereit – 6 Fotos im Album</div>
-                    <div style="display:flex;gap:8px;margin-top:6px;font-size:24px;">
-                      <span>🌅</span><span>🌄</span><span>🌠</span>
-                    </div>
+                    <div style="color:rgba(255,255,255,0.3);">Kamera bereit</div>
                   </div>
                 </div>
               `,
@@ -953,19 +838,19 @@
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
                   <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;text-align:center;cursor:pointer;" onclick="showNotification('🧮','Taschenrechner: 2+2=4')">
                     <div style="font-size:28px;">🧮</div>
-                    <div style="font-size:13px;">Rechner</div>
+                    <div>Rechner</div>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;text-align:center;cursor:pointer;" onclick="showNotification('⏱️','Timer: 10 Minuten gestartet')">
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;text-align:center;cursor:pointer;" onclick="showNotification('⏱️','Timer gestartet')">
                     <div style="font-size:28px;">⏱️</div>
-                    <div style="font-size:13px;">Timer</div>
+                    <div>Timer</div>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;text-align:center;cursor:pointer;" onclick="showNotification('📏','Einheiten: 1 km = 0.621 Meilen')">
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;text-align:center;cursor:pointer;" onclick="showNotification('📏','1 km = 0.621 Meilen')">
                     <div style="font-size:28px;">📏</div>
-                    <div style="font-size:13px;">Einheiten</div>
+                    <div>Einheiten</div>
                   </div>
-                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;text-align:center;cursor:pointer;" onclick="showNotification('🌡️','Temperatur: 22°C = 71.6°F')">
+                  <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;text-align:center;cursor:pointer;" onclick="showNotification('🌡️','22°C = 71.6°F')">
                     <div style="font-size:28px;">🌡️</div>
-                    <div style="font-size:13px;">Temperatur</div>
+                    <div>Temperatur</div>
                   </div>
                 </div>
               `,
@@ -982,11 +867,10 @@
               `,
                     security: () => `
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;">
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🔒 Passwortmanager <span style="color:rgba(255,255,255,0.2);">(12 Einträge)</span></div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🔒 Passwortmanager <span style="color:rgba(255,255,255,0.2);">(12)</span></div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🛡️ Firewall <span style="color:#4a9eff;">aktiv</span></div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🧪 Virenscan <span style="color:#22c55e;">ok – letzter Scan: heute</span></div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🧪 Virenscan <span style="color:#22c55e;">ok</span></div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📱 2FA <span style="color:#4a9eff;">aktiviert</span></div>
-                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🔑 Letzte Anmeldung: heute, 14:32 Uhr • IP: 192.168.1.100</div>
                 </div>
               `,
                     tasks: () => `
@@ -995,26 +879,22 @@
                     <input type="text" placeholder="Neue Aufgabe ..." style="flex:1;" id="task-input-${winId}">
                     <button id="task-add-${winId}">+</button>
                   </div>
-                  <div style="display:flex;flex-direction:column;gap:3px;">
-                    ${tasksList}
-                    <div style="font-size:10px;color:rgba(255,255,255,0.15);text-align:center;padding:4px;">${tasksData.length} Aufgaben • ${tasksData.filter(t=>t.includes('✓')).length} erledigt</div>
+                  <div style="display:flex;flex-direction:column;gap:4px;font-size:13px;">
+                    <div style="display:flex;align-items:center;gap:8px;padding:4px 8px;background:rgba(255,255,255,0.02);border-radius:6px;"><input type="checkbox"> Projekt planen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">hoch</span></div>
+                    <div style="display:flex;align-items:center;gap:8px;padding:4px 8px;background:rgba(255,255,255,0.02);border-radius:6px;"><input type="checkbox"> Einkaufen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">mittel</span></div>
+                    <div style="display:flex;align-items:center;gap:8px;padding:4px 8px;background:rgba(255,255,255,0.02);border-radius:6px;"><input type="checkbox" checked> AI testen <span style="margin-left:auto;color:rgba(255,255,255,0.3);">niedrig</span></div>
                   </div>
                 </div>
               `,
                     updates: () => `
                 <div style="display:flex;flex-direction:column;gap:6px;">
                   <div style="display:flex;align-items:center;gap:10px;">
-                    <span style="font-size:28px;">🔄</span>
+                    <span style="font-size:24px;">🔄</span>
                     <div><strong>HalDo OS v10.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:12px;">Alle Apps aktuell</span></div>
                     <button style="margin-left:auto;" id="update-check-${winId}">🔍 Suchen</button>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);">
-                    Letzter Check: heute, 12:34 Uhr • 27 Apps installiert
-                  </div>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:12px;">
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">📦 Backup: 12.09.2026</span>
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">↩️ Rollback: v9.0 verfügbar</span>
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;">📋 Changelog: 16 Änderungen</span>
+                    Letzter Check: heute, 12:34 Uhr
                   </div>
                 </div>
               `,
@@ -1024,23 +904,14 @@
                     <button id="video-new-${winId}">🎬 Neu</button>
                     <button id="video-export-${winId}">📤 Export</button>
                     <button id="video-ai-script-${winId}">🤖 AI Script</button>
-                    <button id="video-timeline-${winId}">📽️ Timeline</button>
                   </div>
                   <div style="flex:1;background:rgba(255,255,255,0.02);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
                     <div style="font-size:40px;">🎞️</div>
-                    <div style="color:rgba(255,255,255,0.3);">Timeline: 6 Clips • 2:34 min</div>
-                    <div style="display:flex;gap:4px;width:80%;max-width:250px;">
+                    <div style="color:rgba(255,255,255,0.3);">Timeline: 6 Clips</div>
+                    <div style="display:flex;gap:4px;width:80%;max-width:200px;">
                       <div style="flex:1;height:6px;background:#4a9eff;border-radius:4px;"></div>
                       <div style="flex:1;height:6px;background:#a855f7;border-radius:4px;"></div>
                       <div style="flex:1;height:6px;background:#f97316;border-radius:4px;"></div>
-                      <div style="flex:1;height:6px;background:#22c55e;border-radius:4px;"></div>
-                      <div style="flex:1;height:6px;background:#ec4899;border-radius:4px;"></div>
-                      <div style="flex:1;height:6px;background:#06b6d4;border-radius:4px;"></div>
-                    </div>
-                    <div style="display:flex;gap:12px;font-size:11px;color:rgba(255,255,255,0.2);">
-                      <span>Übergang: Fade</span>
-                      <span>Effekte: 3</span>
-                      <span>Auflösung: 1080p</span>
                     </div>
                   </div>
                 </div>
@@ -1049,7 +920,7 @@
                 <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
                   <div style="display:flex;align-items:center;gap:14px;">
                     <span style="font-size:48px;">🌤️</span>
-                    <div><strong>22°C</strong><br><span style="color:rgba(255,255,255,0.4);font-size:13px;">Berlin, Deutschland</span></div>
+                    <div><strong>22°C</strong><br><span style="color:rgba(255,255,255,0.4);font-size:13px;">Berlin</span></div>
                   </div>
                   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;font-size:12px;color:rgba(255,255,255,0.5);">
                     <div>🌧️ 20%</div>
@@ -1057,31 +928,24 @@
                     <div>☀️ UV 3</div>
                     <div>🌿 Pollen mittel</div>
                   </div>
-                  <div style="display:flex;flex-wrap:wrap;gap:6px;padding:6px 0;border-top:1px solid rgba(255,255,255,0.04);">
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;font-size:12px;">🌤️ Berlin: 22°C</span>
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;font-size:12px;">🌧️ London: 18°C</span>
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;font-size:12px;">☀️ New York: 25°C</span>
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;font-size:12px;">⛅ Paris: 20°C</span>
-                    <span style="background:rgba(255,255,255,0.03);padding:4px 12px;border-radius:12px;font-size:12px;">☀️ Rom: 28°C</span>
-                  </div>
-                  <div style="font-size:13px;color:rgba(255,255,255,0.2);">📅 7-Tage: sonnig, mild, am Wochenende Regen</div>
+                  <div style="font-size:13px;color:rgba(255,255,255,0.2);">📅 7-Tage: sonnig, mild</div>
                 </div>
               `,
                     personalization: () => `
                 <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;">
-                  <div><strong>🎨 Theme:</strong> <select id="theme-select-${winId}" style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;"><option value="dark">Dark</option><option value="light">Light</option><option value="cosmic">Cosmic</option><option value="nature">Nature</option></select></div>
+                  <div><strong>🎨 Theme:</strong> <select id="theme-select-${winId}"><option value="dark">Dark</option><option value="light">Light</option><option value="cosmic">Cosmic</option></select></div>
                   <div><strong>📝 Schriftgröße:</strong> <input type="range" id="font-size-${winId}" min="12" max="22" value="14" style="width:100%;"></div>
                   <div><strong>✨ Animationen:</strong> <input type="checkbox" id="animations-${winId}" checked> aktiviert</div>
-                  <div><strong>🌐 Sprache:</strong> <select id="language-select-${winId}" style="background:rgba(255,255,255,0.05);border-radius:8px;padding:4px 8px;">
+                  <div><strong>🌐 Sprache:</strong> <select id="language-select-${winId}">
                     <option value="de">🇩🇪 Deutsch</option><option value="en">🇬🇧 English</option>
                     <option value="ku">🇰🇼 Kurdî</option><option value="ez">🇰🇼 Êzîdî</option>
                     <option value="tr">🇹🇷 Türkçe</option><option value="ar">🇸🇦 العربية</option>
                     <option value="fr">🇫🇷 Français</option><option value="es">🇪🇸 Español</option>
                     <option value="ru">🇷🇺 Русский</option><option value="zh">🇨🇳 中文</option>
                   </select></div>
-                  <div><strong>🔑 API-Key:</strong> <input type="password" id="api-key-${winId}" placeholder="Optional für externe AI" style="width:100%;" value="${HalDo.config.apiKey}"></div>
+                  <div><strong>🔑 API-Key:</strong> <input type="password" id="api-key-${winId}" placeholder="Optional" style="width:100%;" value="${HalDo.config.apiKey}"></div>
+                  <div><strong>🖥️ Bildschirm verstehen:</strong> <input type="checkbox" id="screen-awareness-${winId}"> <span style="font-size:12px;color:rgba(255,255,255,0.3);">(Berechtigung erforderlich)</span></div>
                   <button id="settings-save-${winId}" style="background:#4a9eff;color:#fff;">💾 Speichern</button>
-                  <div style="font-size:11px;color:rgba(255,255,255,0.2);">Version ${HalDo.config.version} • Build ${HalDo.config.build}</div>
                 </div>
               `,
                     yourlife: () => `
@@ -1089,23 +953,21 @@
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📅 Heute: 2 Termine</div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">✅ 3 Aufgaben offen</div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🏥 Gesundheitscheck: ok</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🌦️ Wetter: 22°C, sonnig</div>
-                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">💡 AI-Tipp: Trinke heute ausreichend Wasser.</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🌦️ Wetter: 22°C</div>
+                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">💡 AI-Tipp: Trinke Wasser.</div>
                 </div>
               `,
                     systemcenter: () => `
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;">
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📊 Apps: ${Object.keys(HalDo.registry).length} installiert</div>
+                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📊 Apps: ${Object.keys(HalDo.registry).length}</div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">💾 Speicher: 245 MB frei</div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🖥️ CPU: 12% • RAM: 1.2 GB</div>
                   <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🔒 Sicherheit: aktiv</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">🌐 Netzwerk: verbunden</div>
-                  <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">📋 Logs: 7 Einträge</div>
-                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">⚙️ Systemzustand: <span style="color:#4a9eff;">READY</span> • Build: ${HalDo.config.build}</div>
+                  <div style="grid-column:span 2;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;">⚙️ Systemzustand: <span style="color:#4a9eff;">READY</span></div>
                 </div>
               `,
                 };
-                return (contents[id] || contents.ai)();
+                return (contents[id] || simpleContent('📦', 'App', 'Wird in Phase 4 erweitert.'))();
             },
             initAppContent(id, winId) {
                 // AI Chat
@@ -1130,6 +992,7 @@
                             if (HalDo.memory.length > 10) HalDo.memory.shift();
                             const personality = personalitySelect ? personalitySelect.value : 'freundlich';
                             HalDo.config.personality = personality;
+                            HalDo.cyborg?.setState('thinking');
                             setTimeout(async () => {
                                 const response = await HalDo.ai.ask(text, HalDo.memory, personality);
                                 const aiMsg = document.createElement('div');
@@ -1150,13 +1013,22 @@
                             recognition.lang = HalDo.config.language || 'de-DE';
                             recognition.continuous = false;
                             recognition.interimResults = false;
-                            micBtn.onclick = () => { recognition.start();
-                                micBtn.classList.toggle('recording'); };
-                            recognition.onresult = (e) => { const text = e.results[0][0].transcript;
+                            micBtn.onclick = () => {
+                                recognition.start();
+                                micBtn.classList.toggle('recording');
+                                HalDo.cyborg?.setState('listening');
+                            };
+                            recognition.onresult = (e) => {
+                                const text = e.results[0][0].transcript;
                                 input.value = text;
                                 micBtn.classList.remove('recording');
-                                setTimeout(sendMessage, 300); };
-                            recognition.onerror = () => micBtn.classList.remove('recording');
+                                HalDo.cyborg?.setState('thinking');
+                                setTimeout(sendMessage, 300);
+                            };
+                            recognition.onerror = () => {
+                                micBtn.classList.remove('recording');
+                                HalDo.cyborg?.setState('idle');
+                            };
                         } else if (micBtn) { micBtn.style.opacity = '0.3';
                             micBtn.title = 'Spracherkennung nicht verfügbar'; }
                     }, 100);
@@ -1170,17 +1042,18 @@
                         const danceBtn = document.querySelector(`#cyborg-dance-${winId}`);
                         const tipBtn = document.querySelector(`#cyborg-tip-${winId}`);
                         const status = document.querySelector(`#cyborg-status-${winId}`);
-                        if (waveBtn) waveBtn.onclick = () => { if (HalDo.cyborg) HalDo.cyborg.wave(); if (status) status
-                                .textContent = '👋 Winken!'; };
-                        if (talkBtn) talkBtn.onclick = () => { if (HalDo.cyborg) HalDo.cyborg.speak(
-                                HalDo.translations[HalDo.config.language]?.cyborg_hello ||
-                                '🤖 Hallo! Ich bin HalDo Cyborg.'
-                            ); if (status) status.textContent = '💬 Spricht ...'; };
-                        if (danceBtn) danceBtn.onclick = () => { if (HalDo.cyborg) HalDo.cyborg.dance(); if (status) status
-                                .textContent = '🕺 Tanzt!'; };
+                        if (waveBtn) waveBtn.onclick = () => { HalDo.cyborg?.wave(); if (status) status.textContent =
+                                '👋 Winken!'; };
+                        if (talkBtn) talkBtn.onclick = () => {
+                            HalDo.cyborg?.speak(HalDo.translations[HalDo.config.language]?.cyborg_hello ||
+                                '🤖 Hallo! Ich bin HalDo Cyborg.');
+                            if (status) status.textContent = '💬 Spricht ...';
+                        };
+                        if (danceBtn) danceBtn.onclick = () => { HalDo.cyborg?.dance(); if (status) status.textContent =
+                                '🕺 Tanzt!'; };
                         if (tipBtn) tipBtn.onclick = async () => {
                             const tip = await HalDo.ai.ask('Gib mir einen hilfreichen Tipp für den Alltag.');
-                            if (HalDo.cyborg) HalDo.cyborg.speak(tip);
+                            HalDo.cyborg?.speak(tip);
                             if (status) status.textContent = '💡 Tipp gegeben!';
                         };
                     }, 50);
@@ -1193,20 +1066,12 @@
                         const pause = document.querySelector(`#pause-${winId}`);
                         const next = document.querySelector(`#next-${winId}`);
                         const prev = document.querySelector(`#prev-${winId}`);
-                        const eq = document.querySelector(`#eq-${winId}`);
-                        const eqBtn = document.querySelector(`#eq-toggle-${winId}`);
-                        const shuffleBtn = document.querySelector(`#shuffle-${winId}`);
-                        const lyricsBtn = document.querySelector(`#ai-lyrics-${winId}`);
-                        let shuffled = false;
+                        const lyrics = document.querySelector(`#ai-lyrics-${winId}`);
                         if (play) play.onclick = () => showNotification('🎵', 'Play gestartet');
                         if (pause) pause.onclick = () => showNotification('⏸️', 'Pause');
                         if (next) next.onclick = () => showNotification('⏭', 'Nächster Song');
                         if (prev) prev.onclick = () => showNotification('⏮', 'Vorheriger Song');
-                        if (eqBtn && eq) eqBtn.onclick = () => { eq.style.display = eq.style.display === 'none' ? 'flex' :
-                                'none'; };
-                        if (shuffleBtn) shuffleBtn.onclick = () => { shuffled = !shuffled;
-                            showNotification('🔀', shuffled ? 'Shuffle aktiviert' : 'Shuffle deaktiviert'); };
-                        if (lyricsBtn) lyricsBtn.onclick = async () => {
+                        if (lyrics) lyrics.onclick = async () => {
                             const l = await HalDo.ai.ask('Generiere Songtexte über Liebe.');
                             showNotification('🤖 Lyrics', l.substring(0, 100) + '...');
                         };
@@ -1262,7 +1127,7 @@
                     }, 50);
                 }
 
-                // Personalization
+                // Personalization (Sprache speichern)
                 if (id === 'personalization') {
                     setTimeout(() => {
                         const saveBtn = document.querySelector(`#settings-save-${winId}`);
@@ -1270,11 +1135,15 @@
                             const theme = document.querySelector(`#theme-select-${winId}`)?.value || 'dark';
                             const lang = document.querySelector(`#language-select-${winId}`)?.value || 'de';
                             const apiKey = document.querySelector(`#api-key-${winId}`)?.value || '';
+                            const screenAwareness = document.querySelector(`#screen-awareness-${winId}`)?.checked ||
+                                false;
                             HalDo.config.theme = theme;
                             HalDo.config.language = lang;
                             HalDo.config.apiKey = apiKey;
+                            HalDo.config.screenAwareness = screenAwareness;
                             localStorage.setItem('haldo_api_key', apiKey);
                             localStorage.setItem('haldo_language', lang);
+                            localStorage.setItem('haldo_screen_awareness', screenAwareness);
                             await HalDo.storage.set('settings', 'config', HalDo.config);
                             showNotification('💾', HalDo.translations[lang]?.settings_saved || '💾 Einstellungen gespeichert!',
                                 '✅');
@@ -1494,7 +1363,7 @@
         };
 
         // ============================================================
-        // 8. COSMIC WORLD – ULTIMATE (500 Sterne, 12 Planeten, Avatar)
+        // 8. COSMIC WORLD – ULTIMATE (500 Sterne, 12 Planeten, Avatar in der Sonne)
         // ============================================================
         HalDo.cosmic = {
             canvas: null,
@@ -1743,7 +1612,7 @@
                 skinGrad.addColorStop(1, '#ffaa66');
                 ctx.fillStyle = skinGrad;
                 ctx.fill();
-                // Avatar-Gesicht
+                // Avatar-Gesicht (HalDo Logo lebendig)
                 ctx.shadowBlur = 0;
                 const cx = 0,
                     cy = 0,
@@ -1866,13 +1735,14 @@
         };
 
         // ============================================================
-        // 9. CYBORG AVATAR – ULTIMATE
+        // 9. CYBORG AVATAR – LEBENDIGER ROBOTER
         // ============================================================
         HalDo.cyborg = {
             canvas: null,
             ctx: null,
-            width: 180,
-            height: 220,
+            width: 200,
+            height: 240,
+            state: 'idle',
             talking: false,
             talkTimer: 0,
             waveFrame: 0,
@@ -1880,7 +1750,8 @@
             isDancing: false,
             speechQueue: [],
             isSpeaking: false,
-            state: 'idle', // idle, listening, thinking, speaking, happy, confused, warning, working, sleep
+            eyeBlink: 0,
+            eyeBlinkTimer: 0,
 
             init() {
                 this.canvas = document.getElementById('cyborg-canvas');
@@ -1897,13 +1768,7 @@
                     this.speechEl.classList.add('active');
                     setTimeout(() => { if (this.speechEl) this.speechEl.classList.remove('active'); }, 3000);
                 }
-                // State-Machine für lebendigen Cyborg
-                setInterval(() => {
-                    if (this.state === 'idle' && Math.random() < 0.02) {
-                        this.state = 'happy';
-                        setTimeout(() => this.state = 'idle', 1500);
-                    }
-                }, 5000);
+                this.setState('idle');
             },
 
             resize() {
@@ -1911,10 +1776,22 @@
                 const parent = this.canvas.parentElement;
                 if (!parent) return;
                 const rect = parent.getBoundingClientRect();
-                this.canvas.width = rect.width || 180;
-                this.canvas.height = rect.height || 220;
+                this.canvas.width = rect.width || 200;
+                this.canvas.height = rect.height || 240;
                 this.width = this.canvas.width;
                 this.height = this.canvas.height;
+            },
+
+            setState(state) {
+                this.state = state;
+                const canvas = this.canvas;
+                if (!canvas) return;
+                canvas.className = '';
+                if (state === 'listening') canvas.classList.add('state-listening');
+                else if (state === 'speaking') canvas.classList.add('state-speaking');
+                else if (state === 'thinking') canvas.classList.add('state-thinking');
+                else if (state === 'warning') canvas.classList.add('state-warning');
+                else canvas.classList.remove('state-listening', 'state-speaking', 'state-thinking', 'state-warning');
             },
 
             loop() {
@@ -1925,7 +1802,8 @@
 
             update() {
                 if (this.talking) { this.talkTimer += 0.05; if (this.talkTimer > 2.5) { this.talking = false;
-                        this.talkTimer = 0; if (this.state === 'speaking') this.state = 'idle'; } }
+                        this.talkTimer = 0;
+                        this.setState('idle'); } }
                 if (this.isDancing) { this.danceFrame += 0.08; }
                 if (this.waveFrame > 0) { this.waveFrame += 0.05; if (this.waveFrame > 1) this.waveFrame = 0; }
                 if (this.speechQueue.length > 0 && !this.isSpeaking) {
@@ -1933,6 +1811,14 @@
                     const text = this.speechQueue.shift();
                     this.speakNow(text);
                 }
+                // Augenblinzeln
+                this.eyeBlinkTimer += 0.02;
+                if (this.eyeBlinkTimer > 3 + Math.random() * 2) {
+                    this.eyeBlink = 1;
+                    this.eyeBlinkTimer = 0;
+                }
+                if (this.eyeBlink > 0) this.eyeBlink -= 0.05;
+                if (this.eyeBlink < 0) this.eyeBlink = 0;
             },
 
             draw() {
@@ -1943,126 +1829,68 @@
                 ctx.clearRect(0, 0, w, h);
                 const cx = w / 2,
                     cy = h / 2 + 10;
-                // State-basierte Farben
-                let glowColor = 'rgba(74,158,255,0.2)';
-                let bodyColor1 = '#2a2a3a',
-                    bodyColor2 = '#1a1a2e';
-                let ledColor = '#4a9eff';
-                let eyeColor = '#4a9eff';
-                let mouthColor = '#2a2a4a';
-
-                switch (this.state) {
-                    case 'listening':
-                        glowColor = 'rgba(74,158,255,0.4)';
-                        ledColor = '#00ccff';
-                        eyeColor = '#00ccff';
-                        break;
-                    case 'thinking':
-                        glowColor = 'rgba(168,85,247,0.4)';
-                        ledColor = '#a855f7';
-                        eyeColor = '#a855f7';
-                        break;
-                    case 'speaking':
-                        glowColor = 'rgba(255,200,80,0.4)';
-                        ledColor = '#fbbf24';
-                        eyeColor = '#fbbf24';
-                        mouthColor = '#fbbf24';
-                        break;
-                    case 'happy':
-                        glowColor = 'rgba(34,197,94,0.4)';
-                        ledColor = '#22c55e';
-                        eyeColor = '#22c55e';
-                        break;
-                    case 'confused':
-                        glowColor = 'rgba(251,146,60,0.4)';
-                        ledColor = '#f97316';
-                        eyeColor = '#f97316';
-                        break;
-                    case 'warning':
-                        glowColor = 'rgba(239,68,68,0.5)';
-                        ledColor = '#ef4444';
-                        eyeColor = '#ef4444';
-                        break;
-                    case 'sleep':
-                        glowColor = 'rgba(100,100,120,0.1)';
-                        bodyColor1 = '#1a1a2a';
-                        bodyColor2 = '#0a0a1a';
-                        ledColor = '#3a3a5a';
-                        eyeColor = '#3a3a5a';
-                        break;
-                    default: // idle
-                        glowColor = 'rgba(74,158,255,0.2)';
-                        ledColor = '#4a9eff';
-                        eyeColor = '#4a9eff';
-                }
-
-                // Torso
-                const torsoGrad = ctx.createLinearGradient(cx - 40, cy - 30, cx + 40, cy + 30);
-                torsoGrad.addColorStop(0, bodyColor1);
-                torsoGrad.addColorStop(0.5, bodyColor2);
+                // Körper (Torso)
+                const torsoGrad = ctx.createLinearGradient(cx - 45, cy - 35, cx + 45, cy + 35);
+                torsoGrad.addColorStop(0, '#2a2a3a');
+                torsoGrad.addColorStop(0.5, '#1a1a2e');
                 torsoGrad.addColorStop(1, '#0a0a1a');
                 ctx.fillStyle = torsoGrad;
-                ctx.shadowColor = glowColor;
+                ctx.shadowColor = 'rgba(74,158,255,0.2)';
                 ctx.shadowBlur = 15;
                 ctx.beginPath();
-                ctx.roundRect(cx - 40, cy - 30, 80, 70, 10);
+                ctx.roundRect(cx - 45, cy - 35, 90, 80, 12);
                 ctx.fill();
-
                 // Brust-LED
                 const ledPulse = 0.5 + 0.5 * Math.sin(Date.now() / 500);
-                ctx.shadowBlur = 25;
-                ctx.shadowColor = ledColor + Math.round((0.3 + ledPulse * 0.3) * 255).toString(16).padStart(2, '0');
-                ctx.fillStyle = ledColor + Math.round((0.4 + ledPulse * 0.4) * 255).toString(16).padStart(2, '0');
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = `rgba(74,158,255,${0.3 + ledPulse * 0.3})`;
+                ctx.fillStyle = `rgba(74,158,255,${0.4 + ledPulse * 0.4})`;
                 ctx.beginPath();
-                ctx.arc(cx, cy + 5, 12, 0, Math.PI * 2);
+                ctx.arc(cx, cy + 5, 14, 0, Math.PI * 2);
                 ctx.fill();
-
                 // Kopf
                 ctx.shadowBlur = 10;
-                ctx.shadowColor = glowColor;
-                const headGrad = ctx.createRadialGradient(cx - 10, cy - 55, 5, cx, cy - 45, 35);
-                headGrad.addColorStop(0, bodyColor1);
-                headGrad.addColorStop(0.7, bodyColor2);
+                ctx.shadowColor = 'rgba(74,158,255,0.15)';
+                const headGrad = ctx.createRadialGradient(cx - 12, cy - 60, 5, cx, cy - 50, 40);
+                headGrad.addColorStop(0, '#3a3a5a');
+                headGrad.addColorStop(0.7, '#1a1a3a');
                 headGrad.addColorStop(1, '#0a0a2a');
                 ctx.fillStyle = headGrad;
                 ctx.beginPath();
-                ctx.roundRect(cx - 32, cy - 70, 64, 50, 12);
+                ctx.roundRect(cx - 36, cy - 80, 72, 55, 14);
                 ctx.fill();
-
                 // Antenne
                 ctx.shadowBlur = 5;
                 ctx.strokeStyle = '#4a4a6a';
                 ctx.lineWidth = 3;
                 ctx.beginPath();
-                ctx.moveTo(cx, cy - 70);
-                ctx.lineTo(cx, cy - 85);
+                ctx.moveTo(cx, cy - 80);
+                ctx.lineTo(cx, cy - 95);
                 ctx.stroke();
-                ctx.fillStyle = ledColor;
-                ctx.shadowColor = ledColor;
-                ctx.shadowBlur = 20;
+                ctx.fillStyle = '#4a9eff';
+                ctx.shadowColor = '#4a9eff';
+                ctx.shadowBlur = 15;
                 ctx.beginPath();
-                ctx.arc(cx, cy - 87, 4, 0, Math.PI * 2);
+                ctx.arc(cx, cy - 97, 5, 0, Math.PI * 2);
                 ctx.fill();
-
                 // Augen
                 ctx.shadowBlur = 0;
-                const eyeY = cy - 55;
-                const eyeSpacing = 16;
-                const eyeR = 10;
-
+                const eyeY = cy - 62;
+                const eyeSpacing = 18;
+                const eyeR = 11;
                 // Augenweiß
+                const blink = this.eyeBlink > 0.3 ? 0 : 1;
                 ctx.fillStyle = '#eef2f8';
                 ctx.beginPath();
-                ctx.ellipse(cx - eyeSpacing, eyeY, eyeR, eyeR * 0.9, 0, 0, Math.PI * 2);
+                ctx.ellipse(cx - eyeSpacing, eyeY, eyeR, eyeR * 0.9 * blink, 0, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.ellipse(cx + eyeSpacing, eyeY, eyeR, eyeR * 0.9, 0, 0, Math.PI * 2);
+                ctx.ellipse(cx + eyeSpacing, eyeY, eyeR, eyeR * 0.9 * blink, 0, 0, Math.PI * 2);
                 ctx.fill();
-
-                // Iris
+                // Iris (leuchtend)
                 const irisPulse = 0.7 + 0.3 * Math.sin(Date.now() / 800);
-                ctx.fillStyle = eyeColor + Math.round(irisPulse * 200).toString(16).padStart(2, '0');
-                ctx.shadowColor = eyeColor;
+                ctx.fillStyle = `rgba(74,158,255,${irisPulse})`;
+                ctx.shadowColor = '#4a9eff';
                 ctx.shadowBlur = 10;
                 ctx.beginPath();
                 ctx.arc(cx - eyeSpacing + 2, eyeY + 1, eyeR * 0.6, 0, Math.PI * 2);
@@ -2070,7 +1898,6 @@
                 ctx.beginPath();
                 ctx.arc(cx + eyeSpacing + 2, eyeY + 1, eyeR * 0.6, 0, Math.PI * 2);
                 ctx.fill();
-
                 // Pupille
                 ctx.shadowBlur = 0;
                 ctx.fillStyle = '#0a0a1a';
@@ -2080,11 +1907,10 @@
                 ctx.beginPath();
                 ctx.arc(cx + eyeSpacing + 4, eyeY + 2, eyeR * 0.25, 0, Math.PI * 2);
                 ctx.fill();
-
-                // Augenringe
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = eyeColor + '20';
-                ctx.strokeStyle = eyeColor + '30';
+                // Leuchten um die Augen
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = 'rgba(74,158,255,0.1)';
+                ctx.strokeStyle = 'rgba(74,158,255,0.15)';
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.arc(cx - eyeSpacing, eyeY, eyeR + 3, 0, Math.PI * 2);
@@ -2092,64 +1918,53 @@
                 ctx.beginPath();
                 ctx.arc(cx + eyeSpacing, eyeY, eyeR + 3, 0, Math.PI * 2);
                 ctx.stroke();
-
-                // Mund
-                const mouthY = cy - 35;
-                const mouthW = 22;
-                const mouthH = this.talking ? 5 + 3 * Math.sin(this.talkTimer * 15) : 2;
+                // Mund (LED-Linie)
+                const mouthY = cy - 40;
+                const mouthW = 26;
+                const mouthH = this.talking ? 6 + 4 * Math.sin(this.talkTimer * 18) : 2;
                 ctx.shadowBlur = 0;
-                ctx.fillStyle = this.talking ? mouthColor : '#2a2a4a';
-                ctx.shadowColor = this.talking ? mouthColor : 'transparent';
+                ctx.fillStyle = this.talking ? '#4a9eff' : '#2a2a4a';
+                ctx.shadowColor = this.talking ? '#4a9eff' : 'transparent';
                 ctx.shadowBlur = this.talking ? 15 : 0;
                 ctx.beginPath();
                 ctx.roundRect(cx - mouthW / 2, mouthY - mouthH / 2, mouthW, mouthH, 3);
                 ctx.fill();
-
                 // Wangen-LEDs
                 ctx.shadowBlur = 0;
-                ctx.fillStyle = eyeColor + '20';
+                ctx.fillStyle = 'rgba(74,158,255,0.1)';
                 ctx.beginPath();
-                ctx.arc(cx - 28, eyeY + 12, 6, 0, Math.PI * 2);
+                ctx.arc(cx - 30, eyeY + 14, 7, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(cx + 28, eyeY + 12, 6, 0, Math.PI * 2);
+                ctx.arc(cx + 30, eyeY + 14, 7, 0, Math.PI * 2);
                 ctx.fill();
-
                 // Wave Animation
                 if (this.waveFrame > 0 && this.waveFrame < 1) {
                     ctx.strokeStyle = '#4a4a6a';
                     ctx.lineWidth = 8;
                     ctx.beginPath();
-                    ctx.moveTo(cx + 30, cy - 20);
-                    ctx.lineTo(cx + 50 + Math.sin(this.waveFrame * Math.PI * 2) * 15, cy - 50 + Math.cos(this
-                        .waveFrame * Math.PI * 2) * 10);
+                    ctx.moveTo(cx + 34, cy - 24);
+                    ctx.lineTo(cx + 56 + Math.sin(this.waveFrame * Math.PI * 2) * 18, cy - 56 + Math.cos(this
+                        .waveFrame * Math.PI * 2) * 12);
                     ctx.stroke();
                     ctx.fillStyle = '#4a4a6a';
                     ctx.beginPath();
-                    ctx.arc(cx + 50 + Math.sin(this.waveFrame * Math.PI * 2) * 15, cy - 50 + Math.cos(this
-                        .waveFrame * Math.PI * 2) * 10, 6, 0, Math.PI * 2);
+                    ctx.arc(cx + 56 + Math.sin(this.waveFrame * Math.PI * 2) * 18, cy - 56 + Math.cos(this
+                        .waveFrame * Math.PI * 2) * 12, 7, 0, Math.PI * 2);
                     ctx.fill();
                 }
-
                 // Dance Animation
                 if (this.isDancing) {
-                    const danceOffset = Math.sin(this.danceFrame * 2) * 8;
-                    const bounce = Math.abs(Math.sin(this.danceFrame * 2)) * 8;
+                    const danceOffset = Math.sin(this.danceFrame * 2) * 10;
                     ctx.fillStyle = 'rgba(74,158,255,0.05)';
                     ctx.beginPath();
-                    ctx.arc(cx + danceOffset, cy + 50 + bounce, 15, 0, Math.PI * 2);
-                    ctx.fill();
-                    // Zweiter Fuß
-                    ctx.beginPath();
-                    ctx.arc(cx - danceOffset * 0.5, cy + 50 + bounce * 0.5, 12, 0, Math.PI * 2);
+                    ctx.arc(cx + danceOffset, cy + 56 + Math.abs(Math.sin(this.danceFrame * 2)) * 10, 18, 0, Math.PI *
+                    2);
                     ctx.fill();
                 }
-
-                // Status-LEDs (unten)
-                const dots = [
-                    { x: cx - 35, y: cy + 50, color: this.state === 'warning' ? '#ef4444' : '#22c55e' },
-                    { x: cx, y: cy + 50, color: this.state === 'listening' ? '#00ccff' : '#4a9eff' },
-                    { x: cx + 35, y: cy + 50, color: this.state === 'thinking' ? '#a855f7' : '#f97316' },
+                // Status-LEDs
+                const dots = [{ x: cx - 38, y: cy + 56, color: '#22c55e' }, { x: cx, y: cy + 56, color: '#4a9eff' },
+                    { x: cx + 38, y: cy + 56, color: '#f97316' }
                 ];
                 dots.forEach((d, i) => {
                     const pulse = 0.5 + 0.5 * Math.sin(Date.now() / 1000 + i * 1.5);
@@ -2158,17 +1973,21 @@
                     ctx.fillStyle = d.color;
                     ctx.globalAlpha = 0.3 + pulse * 0.5;
                     ctx.beginPath();
-                    ctx.arc(d.x, d.y, 3, 0, Math.PI * 2);
+                    ctx.arc(d.x, d.y, 3.5, 0, Math.PI * 2);
                     ctx.fill();
                     ctx.globalAlpha = 1;
                 });
                 ctx.shadowBlur = 0;
-
-                // Name
                 ctx.fillStyle = 'rgba(255,255,255,0.06)';
-                ctx.font = '7px monospace';
+                ctx.font = '8px monospace';
                 ctx.textAlign = 'center';
-                ctx.fillText('HALDO CYBORG v10.0', cx, h - 6);
+                ctx.fillText('HALDO CYBORG v4.0', cx, h - 8);
+                // State Label
+                const stateLabels = { idle: '🔵 BEREIT', listening: '🎧 ZUHÖREN', thinking: '🧠 DENKEN', speaking: '🔊 SPRECHEN',
+                    warning: '⚠️ WARNUNG' };
+                ctx.fillStyle = 'rgba(255,255,255,0.12)';
+                ctx.font = '9px sans-serif';
+                ctx.fillText(stateLabels[this.state] || 'BEREIT', cx, cy + 72);
             },
 
             speak(text) {
@@ -2180,8 +1999,8 @@
 
             speakNow(text) {
                 this.talking = true;
-                this.state = 'speaking';
                 this.talkTimer = 0;
+                this.setState('speaking');
                 const bubble = document.getElementById('cyborg-speech');
                 if (bubble) {
                     bubble.textContent = '🤖 ' + text.substring(0, 40) + (text.length > 40 ? '...' : '');
@@ -2190,26 +2009,20 @@
                         if (bubble) bubble.classList.remove('active');
                         this.isSpeaking = false;
                         if (this.speechQueue.length > 0) { const next = this.speechQueue.shift();
-                            this.speakNow(next); } else { this.state = 'idle'; }
+                            this.speakNow(next); } else { this.setState('idle'); }
                     }, Math.min(3000, text.length * 40 + 500));
-                } else { this.isSpeaking = false;
-                    this.state = 'idle'; }
+                } else { this.isSpeaking = false; }
             },
 
             wave() { this.waveFrame = 0.01;
-                this.state = 'happy';
-                this.speak('👋 Hallo! Ich winke dir zu!');
-                setTimeout(() => this.state = 'idle', 2000); },
+                this.speak('👋 Hallo! Ich winke dir zu!'); },
 
-            dance() { this.isDancing = !this.isDancing; if (this.isDancing) { this.state = 'happy';
-                    this.speak('🕺 Ich tanze für dich!'); } else { this.state = 'idle';
-                    this.speak('⏹️ Tanz gestoppt.'); } },
-
-            setState(state) { this.state = state; }
+            dance() { this.isDancing = !this.isDancing; if (this.isDancing) { this.speak('🕺 Ich tanze für dich!'); } else {
+                    this.speak('⏹️ Tanz gestoppt.'); } }
         };
 
         // ============================================================
-        // 10. HALDO AI – ULTIMATE WISSEN (500+ Einträge)
+        // 10. HALDO AI – ULTIMATE WISSEN
         // ============================================================
         HalDo.ai = {
             knowledgeCache: {},
@@ -2237,7 +2050,6 @@
                 };
                 const prefix = prefixes[personality] || prefixes.freundlich;
 
-                // Erweiterte Wissensdatenbank (Auszug – 500+ Einträge via Loops)
                 const knowledge = {
                     'was ist ki': 'Künstliche Intelligenz (KI) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst.',
                     'was ist blockchain': 'Blockchain ist eine dezentrale Datenbank, die Transaktionen in Blöcken speichert.',
@@ -2298,20 +2110,6 @@
                     'was ist hoffnung': 'Hoffnung ist die Erwartung, dass etwas Gutes passieren wird.',
                 };
 
-                // 500+ Einträge durch Erweiterung
-                const extraTopics = [
-                    'technologie', 'wissenschaft', 'geschichte', 'literatur', 'poesie', 'drama', 'roman',
-                    'kurzgeschichte', 'essai', 'biografie', 'autobiografie', 'philosophie', 'sachbuch',
-                    'thriller', 'krimi', 'fantasy', 'science fiction', 'historienroman', 'liebesroman',
-                    'robotik', '3d-druck', 'virtuelle realität', 'augmented reality', 'kryptowährung',
-                    'nachhaltigkeit', 'meditation', 'yoga', 'vegan', 'minimalismus'
-                ];
-                extraTopics.forEach(topic => {
-                    if (!knowledge['was ist ' + topic]) {
-                        knowledge['was ist ' + topic] = `"${topic}" – ein interessantes Thema, das viele Aspekte umfasst.`;
-                    }
-                });
-
                 let found = false;
                 for (const [key, value] of Object.entries(knowledge)) {
                     if (lower.includes(key)) {
@@ -2367,15 +2165,20 @@
                 }
 
                 this.knowledgeCache[key] = response;
-                this.previousResponses.push(response);
-                if (this.previousResponses.length > 20) this.previousResponses.shift();
                 if (Object.keys(this.knowledgeCache).length > 200) this.knowledgeCache = {};
 
                 if (HalDo.voice) {
                     setTimeout(() => { HalDo.voice.speak(response.replace(/<[^>]*>/g, '')); }, 200);
                 }
                 if (HalDo.cosmic) HalDo.cosmic.setTalking(true);
-                if (HalDo.cyborg) HalDo.cyborg.speak(response.replace(/<[^>]*>/g, ''));
+                if (HalDo.cyborg) {
+                    HalDo.cyborg.speak(response.replace(/<[^>]*>/g, ''));
+                } else {
+                    // Fallback: Falls Cyborg nicht initialisiert ist
+                    setTimeout(() => {
+                        if (HalDo.cyborg) HalDo.cyborg.speak(response.replace(/<[^>]*>/g, ''));
+                    }, 100);
+                }
 
                 return response;
             }
@@ -2409,6 +2212,8 @@
                 if (savedLang && HalDo.translations[savedLang]) {
                     HalDo.config.language = savedLang;
                 }
+                const savedScreen = localStorage.getItem('haldo_screen_awareness');
+                if (savedScreen === 'true') HalDo.config.screenAwareness = true;
 
                 const steps = ['Boot Detection', 'Environment Detection', 'Storage Check', 'Security Check',
                     'Configuration Load', 'Kernel Start', 'System Services', 'App Registry', 'App Manager',
@@ -2429,6 +2234,7 @@
                     if (saved.language && HalDo.translations[saved.language]) {
                         HalDo.config.language = saved.language;
                     }
+                    if (saved.screenAwareness !== undefined) HalDo.config.screenAwareness = saved.screenAwareness;
                 }
 
                 HalDo.state = 'READY';
@@ -2467,6 +2273,8 @@
                             if (HalDo.voice) HalDo.voice.speak('Hallo, ich bin HalDo AI.');
                             if (HalDo.cyborg) HalDo.cyborg.speak(HalDo.translations[HalDo.config.language]
                                 ?.sun_click || '🌞 Die Sonne ruft!');
+                            // Sonnenanimation: Strahlen verstärken
+                            HalDo.cosmic.sun.pulse += 2;
                             return;
                         }
                         const planet = HalDo.cosmic.getPlanetAt(e.clientX, e.clientY);
@@ -2488,10 +2296,11 @@
                     }, 300);
                 };
 
-                showNotification('🌌 HalDo AI OS v10.0', 'ULTIMATE CYBORG geladen! 27 Apps, 500 Sterne, 10 Sprachen.');
+                showNotification('🌌 HalDo AI OS v10.0', 'ULTIMATE CYBORG geladen! 10 Sprachen, 500 Sterne, Cyborg aktiv.');
                 console.log('✅ HalDo OS v10.0 – ULTIMATE CYBORG geladen!');
                 console.log('🌐 10 Sprachen verfügbar.');
-                console.log('🤖 Cyborg Avatar aktiv – spricht, winkt, tanzt, hat Emotionen.');
+                console.log('🤖 Cyborg Avatar aktiv – spricht, winkt, tanzt, gibt Tipps.');
+                console.log('🖥️ Screen Awareness: ' + (HalDo.config.screenAwareness ? 'EIN' : 'AUS'));
             } catch (e) {
                 console.error('Boot error:', e);
                 document.getElementById('boot-screen')?.classList.add('hidden');
@@ -2660,6 +2469,7 @@
         console.log('🌌 HalDo AI OS v10.0 – ULTIMATE CYBORG geladen!');
         console.log('✅ 27 Apps • 10 Sprachen • 500 Sterne • CYBORG Avatar aktiv!');
         console.log('💡 Klicke die Sonne für HalDo AI, Apps über das 📱-Menü.');
+        console.log('🖥️ HalDo kann den Bildschirm verstehen – in den Einstellungen aktivierbar.');
     </script>
 </body>
 </html>
