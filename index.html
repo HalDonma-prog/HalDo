@@ -142,7 +142,7 @@
     }
     .orbit::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px dashed rgba(255,255,255,.025); transform: rotate(18deg); }
 
-    /* Planetensysteme */
+    /* Planetensysteme – 12 verschiedene, farbige Planeten */
     .planet-system {
       position: absolute; left: 50%; top: 50%; width: var(--orbit-size); height: var(--orbit-size);
       transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none;
@@ -155,28 +155,28 @@
       border-radius: 50%; pointer-events: auto;
       background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.8), var(--planet-light, #8fd5ff) 18%, var(--planet-main, #4070c8) 54%, var(--planet-dark, #172454) 100%);
       box-shadow: 0 0 7px var(--planet-glow, rgba(110,180,255,.75)), 0 0 18px var(--planet-glow, rgba(110,180,255,.35));
+      transition: transform 0.3s ease;
     }
+    .planet:hover { transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg))) scale(1.3); z-index: 50; }
     .planet::after { content: ""; position: absolute; inset: 15%; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); opacity: .55; }
     .planet.has-ring::before {
       content: ""; position: absolute; left: 50%; top: 50%; width: 180%; height: 55%;
       transform: translate(-50%, -50%) rotate(-18deg);
       border: 2px solid rgba(225,220,255,.44); border-left-color: rgba(255,255,255,.12); border-right-color: rgba(255,255,255,.18); border-radius: 50%;
     }
+    /* Zeit-Planeten spezielle Markierung */
+    .planet.time-planet::before {
+      content: "⏱";
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255,255,255,0.8);
+      z-index: 10;
+    }
     @keyframes orbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-
-    /* Zeit-Orbits (Sekunde, Minute, Stunde) */
-    #time-orbits { position: absolute; inset: 0; pointer-events: none; }
-    .time-orbit { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 1px solid rgba(255,255,255,.07); transform: translate(-50%, -50%); }
-    .time-orbit.second { width: calc(var(--sun-core-size) * 1.9); height: calc(var(--sun-core-size) * 1.9); }
-    .time-orbit.minute { width: calc(var(--sun-core-size) * 2.45); height: calc(var(--sun-core-size) * 2.45); }
-    .time-orbit.hour { width: calc(var(--sun-core-size) * 3.05); height: calc(var(--sun-core-size) * 3.05); }
-    .time-marker { position: absolute; left: 50%; top: 0; width: 6px; height: 6px; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 8px currentColor, 0 0 18px currentColor; }
-    .second .time-marker { color: #fff; background: #fff; animation: secondOrbit 60s linear infinite; transform-origin: 0 calc(var(--sun-core-size) * .95); }
-    .minute .time-marker { color: var(--haldo-cyan); background: var(--haldo-cyan); animation: minuteOrbit 3600s linear infinite; transform-origin: 0 calc(var(--sun-core-size) * 1.225); }
-    .hour .time-marker { color: var(--haldo-violet); background: var(--haldo-violet); animation: hourOrbit 43200s linear infinite; transform-origin: 0 calc(var(--sun-core-size) * 1.525); }
-    @keyframes secondOrbit { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-    @keyframes minuteOrbit { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-    @keyframes hourOrbit { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
 
     /* SONNE – mit innerem Kern, Logo, leuchtenden Sternen und Schrift */
     #sun {
@@ -193,21 +193,18 @@
       position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
     }
 
-    /* Äußerer Glow */
     #sun-glow {
       inset: -38%;
       background: radial-gradient(circle, rgba(255,247,178,.82) 0%, rgba(255,206,77,.42) 28%, rgba(255,152,42,.16) 52%, transparent 72%);
       filter: blur(10px); animation: sunGlow 4.8s ease-in-out infinite;
     }
 
-    /* Korona */
     #sun-corona {
       inset: -14%;
       background: conic-gradient(from 0deg, transparent, rgba(255,236,130,.42), transparent 12%, rgba(255,173,53,.36), transparent 24%, rgba(255,245,175,.44), transparent 38%, rgba(255,148,45,.30), transparent 52%, rgba(255,238,135,.42), transparent 68%, rgba(255,165,50,.32), transparent 84%, rgba(255,240,150,.42), transparent);
       filter: blur(2px); animation: sunCorona 11s linear infinite; opacity: .88;
     }
 
-    /* Sonnenkern – hier wird das Logo und die Schrift eingebettet */
     #sun-core {
       overflow: hidden;
       background: radial-gradient(circle at 38% 34%, #fffbe3 0%, #fff2a3 11%, #ffd44e 30%, #ff9e32 58%, #ed641e 78%, #a92c16 100%);
@@ -219,7 +216,6 @@
       position: relative;
     }
 
-    /* Logo im Sonnenkern */
     #sun-logo {
       width: 45%;
       height: 45%;
@@ -231,7 +227,6 @@
     }
     @keyframes logoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-    /* Text im Sonnenkern */
     #sun-text {
       position: absolute;
       bottom: 8%;
@@ -253,7 +248,6 @@
 
     @keyframes textShine { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
 
-    /* Innere Sonnensterne */
     #inner-sun-stars {
       position: absolute; z-index: 5; left: 50%; top: 50%;
       width: calc(var(--sun-core-size) * .72); height: calc(var(--sun-core-size) * .72);
@@ -268,7 +262,6 @@
     }
     @keyframes innerSpark { from { transform: scale(.5); opacity: .45; } to { transform: scale(1.25); opacity: 1; } }
 
-    /* 30 Sterne rund um die Sonne */
     #sun-stars-orbital {
       position: absolute;
       inset: -8%;
@@ -286,7 +279,6 @@
     }
     @keyframes orbitalStarGlow { from { transform: scale(.7); opacity: .4; } to { transform: scale(1.3); opacity: 1; } }
 
-    /* Sonnenstrahlen */
     #sun-rays {
       inset: -65%;
       background: repeating-conic-gradient(from 0deg, rgba(255,222,115,.13) 0deg 2deg, transparent 2deg 10deg);
@@ -541,45 +533,267 @@
     .search-result-item .result-name { font-weight: 500; font-size: 14px; }
     .search-result-item .result-desc { font-size: 12px; color: var(--haldo-text-muted); }
 
-    /* AI Window */
+    /* AI Window – mit menschlichem Avatar */
     .ai-overlay { z-index: 1600; }
     .ai-window { max-width: 620px; max-height: min(88vh, 760px); }
     .ai-header { align-items: center; padding: 14px 18px 12px 18px; }
     .ai-header-actions { display: flex; align-items: center; gap: 6px; }
-    .panel-icon-button { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 18px; color: var(--haldo-text-muted); transition: background 180ms ease, color 180ms ease; }
+    .panel-icon-button {
+      width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 18px;
+      color: var(--haldo-text-muted); transition: background 180ms ease, color 180ms ease;
+    }
     .panel-icon-button:hover { background: rgba(255,255,255,0.08); color: var(--haldo-text); }
+    .panel-icon-button.active { background: rgba(117,190,255,0.15); color: var(--haldo-blue); }
+
     .ai-avatar-mini { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
     .ai-avatar-mini img { width: 100%; height: 100%; object-fit: cover; }
-    .ai-presence { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 16px 18px 16px; min-height: 200px; }
-    .ai-presence-aura { position: absolute; inset: -20%; border-radius: 50%; background: radial-gradient(circle at center, rgba(117,190,255,0.12), transparent 60%); filter: blur(20px); transition: opacity 600ms ease; }
-    .ai-presence-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(117,190,255,0.08); animation: ringPulse 4s ease-in-out infinite; }
-    .ai-presence-ring.ring-one { width: 120%; height: 120%; animation-delay: 0s; }
-    .ai-presence-ring.ring-two { width: 150%; height: 150%; animation-delay: 0.6s; }
-    .ai-presence-ring.ring-three { width: 180%; height: 180%; animation-delay: 1.2s; }
+
+    /* Menschlicher AI-Avatar */
+    .ai-human-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+      min-height: 200px;
+    }
+    .ai-human {
+      position: relative;
+      width: 140px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .ai-human .head {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 30%, #e8d5c4, #d4b8a0);
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 30px rgba(117,190,255,0.15), inset 0 -5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .ai-human .head .eyes {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .ai-human .head .eye {
+      width: 12px;
+      height: 14px;
+      background: #2d1b0e;
+      border-radius: 50%;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .ai-human .head .eye::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 3px;
+      width: 5px;
+      height: 5px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+    .ai-human .head .mouth {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 6px;
+      border-radius: 0 0 20px 20px;
+      background: #8b5e3c;
+      transition: all 0.2s ease;
+    }
+    .ai-human .head .mouth.speaking {
+      height: 10px;
+      border-radius: 10px;
+      animation: mouthMove 0.3s ease-in-out infinite alternate;
+    }
+    @keyframes mouthMove {
+      0% { height: 4px; }
+      100% { height: 12px; }
+    }
+    .ai-human .body {
+      width: 80px;
+      height: 90px;
+      background: linear-gradient(180deg, #2a4a7a, #1a2a4a);
+      border-radius: 20px 20px 10px 10px;
+      margin-top: -10px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ai-human .body .logo-on-body {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(117,220,255,0.3));
+    }
+    .ai-human .arm {
+      position: absolute;
+      width: 16px;
+      height: 60px;
+      background: linear-gradient(180deg, #d4b8a0, #b89a82);
+      border-radius: 10px;
+      top: 45px;
+      transition: transform 0.3s ease;
+      transform-origin: top center;
+    }
+    .ai-human .arm.left {
+      left: -12px;
+      transform: rotate(15deg);
+    }
+    .ai-human .arm.right {
+      right: -12px;
+      transform: rotate(-15deg);
+    }
+    .ai-human .arm.moving-left {
+      animation: armMoveLeft 1s ease-in-out infinite;
+    }
+    .ai-human .arm.moving-right {
+      animation: armMoveRight 1s ease-in-out infinite;
+    }
+    @keyframes armMoveLeft {
+      0%,100% { transform: rotate(15deg); }
+      50% { transform: rotate(-20deg); }
+    }
+    @keyframes armMoveRight {
+      0%,100% { transform: rotate(-15deg); }
+      50% { transform: rotate(20deg); }
+    }
+    .ai-human .legs {
+      display: flex;
+      gap: 10px;
+      margin-top: -2px;
+    }
+    .ai-human .leg {
+      width: 18px;
+      height: 40px;
+      background: linear-gradient(180deg, #1a2a4a, #0a1a2a);
+      border-radius: 0 0 8px 8px;
+    }
+
+    .ai-presence {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      min-height: 180px;
+    }
+    .ai-presence-aura {
+      position: absolute;
+      inset: -10%;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(117,190,255,0.08), transparent 60%);
+      filter: blur(20px);
+      transition: opacity 600ms ease;
+    }
+    .ai-presence-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(117,190,255,0.06);
+      animation: ringPulse 4s ease-in-out infinite;
+    }
+    .ai-presence-ring.ring-one { width: 130%; height: 130%; animation-delay: 0s; }
+    .ai-presence-ring.ring-two { width: 160%; height: 160%; animation-delay: 0.6s; }
+    .ai-presence-ring.ring-three { width: 190%; height: 190%; animation-delay: 1.2s; }
     @keyframes ringPulse { 0%,100% { transform: scale(0.95); opacity: 0.3; } 50% { transform: scale(1.05); opacity: 0.6; } }
-    .ai-avatar { position: relative; width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 2px solid rgba(255,255,255,0.08); box-shadow: 0 0 40px rgba(117,190,255,0.15); flex-shrink: 0; z-index: 2; }
-    .ai-avatar-glow { position: absolute; inset: -10%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 60%); pointer-events: none; z-index: 1; transition: opacity 400ms ease; }
-    .ai-avatar img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2; }
-    .ai-avatar-status { position: absolute; bottom: 6px; right: 6px; width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(5,9,28,0.6); background: #22c55e; z-index: 3; transition: background 300ms ease; }
-    .ai-presence[data-ai-state="listening"] .ai-avatar-status { background: #fbbf24; animation: statusPulse 0.8s ease-in-out infinite; }
-    .ai-presence[data-ai-state="speaking"] .ai-avatar-status { background: #3b82f6; animation: statusPulse 0.5s ease-in-out infinite; }
-    .ai-presence[data-ai-state="thinking"] .ai-avatar-status { background: #a855f7; animation: statusPulse 0.6s ease-in-out infinite; }
-    @keyframes statusPulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.6; } }
-    .ai-expression { margin-top: 12px; font-size: 14px; font-weight: 500; color: var(--haldo-text-soft); text-align: center; min-height: 24px; z-index: 2; }
-    .ai-conversation { flex: 1; overflow-y: auto; padding: 6px 18px 10px 18px; display: flex; flex-direction: column; gap: 8px; max-height: 220px; }
-    .ai-conversation .conv-message { display: flex; gap: 10px; padding: 8px 12px; border-radius: 14px; max-width: 82%; font-size: 14px; line-height: 1.5; }
-    .ai-conversation .conv-message.user { align-self: flex-end; background: rgba(117,190,255,0.12); border-bottom-right-radius: 4px; color: var(--haldo-text); }
-    .ai-conversation .conv-message.ai { align-self: flex-start; background: rgba(255,255,255,0.04); border-bottom-left-radius: 4px; color: var(--haldo-text-soft); }
+
+    .ai-expression {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--haldo-text-soft);
+      text-align: center;
+      min-height: 24px;
+      z-index: 2;
+    }
+    .ai-conversation {
+      flex: 1;
+      overflow-y: auto;
+      padding: 6px 18px 10px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 180px;
+    }
+    .ai-conversation .conv-message {
+      display: flex;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 14px;
+      max-width: 82%;
+      font-size: 14px;
+      line-height: 1.5;
+      animation: msgIn 0.3s ease;
+    }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .ai-conversation .conv-message.user {
+      align-self: flex-end;
+      background: rgba(117,190,255,0.12);
+      border-bottom-right-radius: 4px;
+      color: var(--haldo-text);
+    }
+    .ai-conversation .conv-message.ai {
+      align-self: flex-start;
+      background: rgba(255,255,255,0.04);
+      border-bottom-left-radius: 4px;
+      color: var(--haldo-text-soft);
+    }
     .ai-conversation .conv-message .conv-icon { font-size: 18px; flex-shrink: 0; }
-    .ai-input-form { display: flex; align-items: flex-end; gap: 8px; padding: 8px 18px 14px 18px; border-top: 1px solid rgba(255,255,255,0.04); flex-shrink: 0; }
-    .ai-tool-button { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 18px; color: var(--haldo-text-muted); flex-shrink: 0; transition: background 180ms ease; }
+
+    .ai-input-form {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 8px 18px 14px 18px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      flex-shrink: 0;
+    }
+    .ai-tool-button {
+      width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 18px;
+      color: var(--haldo-text-muted); flex-shrink: 0; transition: background 180ms ease;
+    }
     .ai-tool-button:hover { background: rgba(255,255,255,0.08); }
-    .ai-input-form textarea { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 8px 12px; font-size: 14px; color: var(--haldo-text); resize: none; outline: 0; transition: border-color 180ms ease; font-family: inherit; min-height: 40px; max-height: 120px; }
+    .ai-tool-button.active { background: rgba(117,190,255,0.15); color: var(--haldo-blue); }
+    .ai-input-form textarea {
+      flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 8px 12px; font-size: 14px; color: var(--haldo-text);
+      resize: none; outline: 0; transition: border-color 180ms ease; font-family: inherit;
+      min-height: 40px; max-height: 120px;
+    }
     .ai-input-form textarea:focus { border-color: rgba(117,190,255,0.3); }
-    .ai-send-button { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 0; background: rgba(117,190,255,0.15); font-size: 20px; color: #fff; flex-shrink: 0; transition: background 180ms ease, transform 180ms ease; }
+    .ai-send-button {
+      width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 0; background: rgba(117,190,255,0.15); font-size: 20px;
+      color: #fff; flex-shrink: 0; transition: background 180ms ease, transform 180ms ease;
+    }
     .ai-send-button:hover { background: rgba(117,190,255,0.25); }
     .ai-send-button:active { transform: scale(0.92); }
-    .ai-footer { display: flex; align-items: center; justify-content: space-between; padding: 8px 18px 12px 18px; border-top: 1px solid rgba(255,255,255,0.04); font-size: 11px; color: var(--haldo-text-muted); }
+    .ai-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 18px 12px 18px; border-top: 1px solid rgba(255,255,255,0.04);
+      font-size: 11px; color: var(--haldo-text-muted);
+    }
 
     /* Window System */
     #window-layer { position: fixed; z-index: 800; inset: 0; pointer-events: none; }
@@ -594,17 +808,28 @@
     }
     .haldo-window.minimized { transform: scale(0.92) translateY(12px); opacity: 0; pointer-events: none; }
     .haldo-window.maximized { border-radius: 0; inset: 0 !important; width: 100% !important; height: 100% !important; }
-    .window-titlebar { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); flex-shrink: 0; cursor: move; }
+    .window-titlebar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 14px; border-bottom: 1px solid rgba(255,255,255,0.04);
+      flex-shrink: 0; cursor: move;
+    }
     .window-identity { display: flex; align-items: center; gap: 8px; }
     .window-app-icon { width: 20px; height: 20px; object-fit: contain; }
     .window-title { font-size: 13px; font-weight: 600; color: var(--haldo-text-soft); }
     .window-controls { display: flex; gap: 4px; }
-    .window-control { width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; border: 0; background: transparent; font-size: 14px; color: var(--haldo-text-muted); transition: background 180ms ease, color 180ms ease; }
+    .window-control {
+      width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 6px; border: 0; background: transparent; font-size: 14px;
+      color: var(--haldo-text-muted); transition: background 180ms ease, color 180ms ease;
+    }
     .window-control:hover { background: rgba(255,255,255,0.06); color: var(--haldo-text); }
     .window-control.window-close:hover { background: #e74c3c; color: #fff; }
     .window-content { flex: 1; padding: 12px 16px; overflow: auto; }
     .window-content .app-runtime-shell { height: 100%; display: flex; flex-direction: column; }
-    .window-content .app-runtime-loading { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--haldo-text-muted); }
+    .window-content .app-runtime-loading {
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; color: var(--haldo-text-muted);
+    }
     .window-content .app-runtime-loading .haldo-logo { width: 36px; height: 36px; animation: spin 1.4s linear infinite; }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .window-resize-handle { position: absolute; pointer-events: none; }
@@ -619,6 +844,7 @@
     .window-resize-handle[data-resize="nw"] { top: 0; left: 0; cursor: nwse-resize; }
     .window-resize-handle[data-resize="se"] { bottom: 0; right: 0; cursor: nwse-resize; }
     .window-resize-handle[data-resize="sw"] { bottom: 0; left: 0; cursor: nesw-resize; }
+
     #window-dock {
       position: fixed; z-index: 900; bottom: calc(76px + var(--safe-bottom)); left: 50%; transform: translateX(-50%);
       display: flex; gap: 6px; padding: 4px 8px; border-radius: 18px;
@@ -630,7 +856,7 @@
     .dock-window-item:hover { background: rgba(255,255,255,0.08); }
     .dock-window-item img { width: 20px; height: 20px; object-fit: contain; }
 
-    /* Cyborg Avatar – jetzt bewegbar */
+    /* Cyborg Avatar – bewegbar */
     #cyborg-avatar {
       position: fixed;
       bottom: 100px;
@@ -683,8 +909,15 @@
 
     /* Toast */
     #toast-container { position: fixed; z-index: 3000; top: calc(70px + var(--safe-top)); right: calc(16px + var(--safe-right)); display: flex; flex-direction: column; gap: 8px; max-width: 380px; pointer-events: none; }
-    .toast { padding: 10px 16px; border-radius: 14px; background: rgba(5,9,28,0.88); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 12px 32px rgba(0,0,0,0.4); pointer-events: auto; animation: toastIn 300ms ease; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+    .toast {
+      padding: 10px 16px; border-radius: 14px; background: rgba(5,9,28,0.88); backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+      pointer-events: auto; animation: toastIn 300ms ease; font-size: 13px; display: flex; align-items: center; gap: 10px;
+    }
     .toast.toast-out { animation: toastOut 280ms ease forwards; }
+    .toast.warning { border-left: 3px solid #fbbf24; }
+    .toast.danger { border-left: 3px solid #ef4444; }
+    .toast.success { border-left: 3px solid #22c55e; }
     @keyframes toastIn { from { opacity: 0; transform: translateX(30px) scale(0.96); } to { opacity: 1; transform: translateX(0) scale(1); } }
     @keyframes toastOut { from { opacity: 1; transform: translateX(0) scale(1); } to { opacity: 0; transform: translateX(30px) scale(0.96); } }
     .toast .toast-icon { font-size: 18px; flex-shrink: 0; }
@@ -729,9 +962,8 @@
       .app-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
       .app-menu-panel { max-height: 90vh; }
       .ai-window { max-width: 96vw; }
-      .ai-presence { min-height: 140px; padding: 16px 12px; }
-      .ai-avatar { width: 80px; height: 80px; }
-      .ai-conversation { max-height: 160px; }
+      .ai-human { transform: scale(0.8); }
+      .ai-conversation { max-height: 140px; }
       .panel-header { padding: 14px 16px 10px 16px; flex-wrap: wrap; }
       .panel-brand h2 { font-size: 16px; }
       .panel-footer { flex-direction: column; align-items: stretch; gap: 8px; }
@@ -746,9 +978,8 @@
       .app-card .app-name { font-size: 10px; }
       .category-chip { font-size: 10px; padding: 3px 10px; }
       .ai-window { max-width: 100vw; border-radius: 0; max-height: 100vh; }
-      .ai-avatar { width: 64px; height: 64px; }
-      .ai-presence { min-height: 100px; padding: 12px 8px; }
-      .ai-conversation { max-height: 120px; }
+      .ai-human { transform: scale(0.6); }
+      .ai-conversation { max-height: 100px; }
       .ai-input-form { padding: 6px 12px 10px 12px; }
       .ai-input-form textarea { font-size: 13px; }
       .ai-footer { font-size: 10px; padding: 6px 12px 10px 12px; }
@@ -761,8 +992,7 @@
       .dock-window-item { width: 30px; height: 30px; }
     }
     @media (max-height: 620px) and (orientation: landscape) {
-      .ai-presence { min-height: 80px; padding: 8px 12px; }
-      .ai-avatar { width: 56px; height: 56px; }
+      .ai-human { transform: scale(0.5); }
       .ai-conversation { max-height: 80px; }
       .ai-window { max-height: 92vh; }
       .app-menu-panel { max-height: 92vh; }
@@ -828,65 +1058,70 @@
           <div class="orbit" style="--orbit-size:102%;" aria-hidden="true"></div>
           <div class="orbit" style="--orbit-size:110%;" aria-hidden="true"></div>
 
-          <!-- 12 Planetensysteme (Erde + Mond enthalten) -->
+          <!-- 12 Planetensysteme – unterschiedliche Farben, Formen, Größen -->
+          <!-- 1. Merkur – grau, klein -->
           <div class="planet-system" data-planet-system="1" style="--orbit-size:22%;--orbit-duration:17s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:7px;--planet-light:#ffe8b1;--planet-main:#d59a42;--planet-dark:#643719;--planet-glow:rgba(255,185,80,.75);" title="Merkur"></div></div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:7px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.5);" title="Merkur"></div></div>
           </div>
+          <!-- 2. Venus – gelb-orange, glühend -->
           <div class="planet-system" data-planet-system="2" style="--orbit-size:30%;--orbit-duration:23s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:8px;--planet-light:#bff5ff;--planet-main:#4db2d4;--planet-dark:#18465e;--planet-glow:rgba(80,220,255,.72);" title="Venus"></div></div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:9px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.7);" title="Venus"></div></div>
           </div>
+          <!-- 3. ERDE – blau-grün, mit Mond (speziell) -->
           <div class="planet-system" data-planet-system="3" style="--orbit-size:38%;--orbit-duration:31s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:9px;--planet-light:#a5ffc7;--planet-main:#43a77a;--planet-dark:#17482f;--planet-glow:rgba(70,230,155,.68);" title="Erde + Mond"></div></div>
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:11px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.8);" title="Erde">
+                <div style="position:absolute;top:-8px;right:-6px;width:4px;height:4px;border-radius:50%;background:#c8c8c8;box-shadow:0 0 6px rgba(200,200,200,0.5);" title="Mond"></div>
+              </div>
+            </div>
           </div>
+          <!-- 4. Mars – rot -->
           <div class="planet-system" data-planet-system="4" style="--orbit-size:46%;--orbit-duration:39s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:10px;--planet-light:#ffd0a9;--planet-main:#c66a45;--planet-dark:#54271d;--planet-glow:rgba(255,125,75,.7);" title="Mars"></div></div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:9px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.7);" title="Mars"></div></div>
           </div>
+          <!-- 5. Jupiter – orange-braun mit Streifen -->
           <div class="planet-system" data-planet-system="5" style="--orbit-size:54%;--orbit-duration:47s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:11px;--planet-light:#d9c9ff;--planet-main:#805cc9;--planet-dark:#2c1c58;--planet-glow:rgba(164,120,255,.72);" title="Jupiter"></div></div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:16px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.6);" title="Jupiter"></div></div>
           </div>
+          <!-- 6. Saturn – gelb mit Ringen -->
           <div class="planet-system" data-planet-system="6" style="--orbit-size:62%;--orbit-duration:56s;">
-            <div class="planet-holder"><div class="planet has-ring" style="--planet-size:12px;--planet-light:#fff0bd;--planet-main:#b99a58;--planet-dark:#57451e;--planet-glow:rgba(255,216,120,.66);" title="Saturn"></div></div>
+            <div class="planet-holder"><div class="planet has-ring" style="--planet-size:14px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.6);" title="Saturn"></div></div>
           </div>
+          <!-- 7. Uranus – türkis -->
           <div class="planet-system" data-planet-system="7" style="--orbit-size:70%;--orbit-duration:67s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:12px;--planet-light:#d4eaff;--planet-main:#527eb8;--planet-dark:#1a3153;--planet-glow:rgba(110,185,255,.66);" title="Uranus"></div></div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:12px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.6);" title="Uranus"></div></div>
           </div>
+          <!-- 8. Neptun – tiefblau -->
           <div class="planet-system" data-planet-system="8" style="--orbit-size:78%;--orbit-duration:79s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:13px;--planet-light:#ffc5d9;--planet-main:#b85f83;--planet-dark:#512337;--planet-glow:rgba(255,125,175,.62);" title="Neptun"></div></div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:12px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.6);" title="Neptun"></div></div>
           </div>
-          <div class="planet-system" data-planet-system="9" style="--orbit-size:86%;--orbit-duration:93s;">
-            <div class="planet-holder"><div class="planet has-ring" style="--planet-size:14px;--planet-light:#d9f5ff;--planet-main:#7096b2;--planet-dark:#263b4d;--planet-glow:rgba(120,210,255,.6);" title="Pluto"></div></div>
+          <!-- 9. Pluto – eisig (als Zeit-Planet: Sekunde) -->
+          <div class="planet-system" data-planet-system="9" style="--orbit-size:86%;--orbit-duration:60s;">
+            <div class="planet-holder"><div class="planet time-planet" style="--planet-size:8px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.5);" title="Pluto ⏱ Sekunde"></div></div>
           </div>
-          <div class="planet-system" data-planet-system="10" style="--orbit-size:94%;--orbit-duration:109s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:14px;--planet-light:#e2d5ff;--planet-main:#7861a9;--planet-dark:#33294d;--planet-glow:rgba(169,139,255,.6);" title="Ceres"></div></div>
+          <!-- 10. Ceres – grau (als Zeit-Planet: Minute) -->
+          <div class="planet-system" data-planet-system="10" style="--orbit-size:94%;--orbit-duration:3600s;">
+            <div class="planet-holder"><div class="planet time-planet" style="--planet-size:8px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.5);" title="Ceres ⏱ Minute"></div></div>
           </div>
-          <div class="planet-system" data-planet-system="11" style="--orbit-size:102%;--orbit-duration:127s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:15px;--planet-light:#ffe2bd;--planet-main:#b87643;--planet-dark:#492b19;--planet-glow:rgba(255,170,90,.58);" title="Eris"></div></div>
+          <!-- 11. Eris – weiß (als Zeit-Planet: Stunde) -->
+          <div class="planet-system" data-planet-system="11" style="--orbit-size:102%;--orbit-duration:43200s;">
+            <div class="planet-holder"><div class="planet time-planet" style="--planet-size:9px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.5);" title="Eris ⏱ Stunde"></div></div>
           </div>
+          <!-- 12. Haumea – grün-blau -->
           <div class="planet-system" data-planet-system="12" style="--orbit-size:110%;--orbit-duration:149s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:16px;--planet-light:#c9fff7;--planet-main:#4a9d93;--planet-dark:#173f3b;--planet-glow:rgba(80,230,210,.58);" title="Haumea"></div></div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:10px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.6);" title="Haumea"></div></div>
           </div>
 
-          <!-- Zeit-Orbits -->
-          <div id="time-orbits" aria-hidden="true">
-            <div class="time-orbit second"><span class="time-marker"></span></div>
-            <div class="time-orbit minute"><span class="time-marker"></span></div>
-            <div class="time-orbit hour"><span class="time-marker"></span></div>
-          </div>
-
-          <!-- SONNE – mit Logo, Schrift, inneren Sternen und 30 Orbitalsternen -->
+          <!-- SONNE -->
           <button id="sun" type="button" aria-label="HalDo AI öffnen" title="HalDo AI öffnen">
             <span id="sun-glow"></span>
             <span id="sun-rays"></span>
             <span id="sun-corona"></span>
             <span id="sun-core">
-              <!-- 30 Sterne rund um die Sonne (in der Corona) -->
               <div id="sun-stars-orbital" aria-hidden="true"></div>
-              <!-- Logo im Sonnenkern -->
               <img id="sun-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
-              <!-- Schrift im Sonnenkern -->
               <div id="sun-text" class="main">HalDo AI OS</div>
               <div id="sun-text" class="sub">A Halil Donma • Professioneller HalDo AI</div>
-              <!-- Innere leuchtende Sterne -->
               <span id="inner-sun-stars" aria-hidden="true"></span>
             </span>
           </button>
@@ -943,6 +1178,7 @@
             <button class="category-chip" type="button" data-category="productivity" role="tab" aria-selected="false">Arbeit</button>
             <button class="category-chip" type="button" data-category="system" role="tab" aria-selected="false">System</button>
             <button class="category-chip" type="button" data-category="communication" role="tab" aria-selected="false">Kommunikation</button>
+            <button class="category-chip" type="button" data-category="traffic" role="tab" aria-selected="false">Verkehr</button>
           </div>
         </div>
         <div id="app-grid" class="app-grid" aria-live="polite"></div>
@@ -977,6 +1213,7 @@
             <button class="settings-nav-item" type="button" data-settings-section="updates"><span>↻</span><span>Updates</span></button>
             <button class="settings-nav-item" type="button" data-settings-section="security"><span>⌑</span><span>Security</span></button>
             <button class="settings-nav-item" type="button" data-settings-section="about"><span>ⓘ</span><span>Über HalDo</span></button>
+            <button class="settings-nav-item" type="button" data-settings-section="traffic"><span>🚦</span><span>Verkehr &amp; Warnungen</span></button>
           </aside>
           <div id="settings-content" class="settings-content">
             <!-- Allgemein -->
@@ -1013,7 +1250,7 @@
                 </article>
               </div>
             </section>
-            <!-- Voice & Sprache – mit Êzîdî -->
+            <!-- Voice & Sprache -->
             <section class="settings-section" data-settings-panel="voice">
               <div class="settings-section-heading"><h3>Voice &amp; Sprache</h3><p>Spracheingabe, Sprachausgabe und Sprachprofil.</p></div>
               <div class="settings-card-stack">
@@ -1126,7 +1363,7 @@
               <div class="settings-card-stack">
                 <article class="settings-card vertical">
                   <div class="update-status"><span>Status</span><strong id="update-status-label">Bereit</strong></div>
-                  <div class="update-version"><span>HalDo AI OS</span><strong id="current-version-label">21</strong></div>
+                  <div class="update-version"><span>HalDo AI OS</span><strong id="current-version-label">22</strong></div>
                   <button id="check-updates-button" class="primary-action full" type="button">Nach Updates suchen</button>
                 </article>
               </div>
@@ -1149,10 +1386,25 @@
                 <img class="haldo-logo xlarge" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
                 <h3>HalDo AI OS</h3>
                 <p>Cosmic World · Living HalDo AI · Professional AI OS</p>
-                <div class="about-meta"><span>Version</span><strong>21</strong></div>
+                <div class="about-meta"><span>Version</span><strong>22</strong></div>
                 <div class="about-meta"><span>Interface</span><strong>Cosmic World</strong></div>
                 <div class="about-meta"><span>AI</span><strong>Living HalDo AI</strong></div>
               </article>
+            </section>
+            <!-- Verkehr & Warnungen -->
+            <section class="settings-section" data-settings-panel="traffic">
+              <div class="settings-section-heading"><h3>🚦 Verkehr &amp; Warnungen</h3><p>Einstellungen für Verkehrswarnungen, Blitzer, Stau und Geschwindigkeitsüberschreitungen.</p></div>
+              <div class="settings-card-stack">
+                <article class="settings-card vertical">
+                  <label class="switch-row"><span>Verkehrswarnungen aktivieren</span><span class="switch"><input type="checkbox" id="setting-traffic-warnings" data-setting="trafficWarnings" checked><span class="switch-track"></span></span></label>
+                  <label class="switch-row"><span>Blitzerwarnungen</span><span class="switch"><input type="checkbox" id="setting-speedtrap-warnings" data-setting="speedtrapWarnings" checked><span class="switch-track"></span></span></label>
+                  <label class="switch-row"><span>Stauwarnungen</span><span class="switch"><input type="checkbox" id="setting-jam-warnings" data-setting="jamWarnings" checked><span class="switch-track"></span></span></label>
+                  <label class="switch-row"><span>Geschwindigkeitsüberschreitung melden</span><span class="switch"><input type="checkbox" id="setting-speed-warning" data-setting="speedWarning" checked><span class="switch-track"></span></span></label>
+                  <label class="switch-row"><span>Ton-Signal bei Warnungen</span><span class="switch"><input type="checkbox" id="setting-warning-sound" data-setting="warningSound" checked><span class="switch-track"></span></span></label>
+                  <label class="switch-row"><span>Sprachausgabe bei Warnungen</span><span class="switch"><input type="checkbox" id="setting-warning-voice" data-setting="warningVoice" checked><span class="switch-track"></span></span></label>
+                  <button id="traffic-test-warning" class="primary-action full" type="button">Test-Warnung auslösen</button>
+                </article>
+              </div>
             </section>
           </div>
         </div>
@@ -1185,7 +1437,7 @@
       </section>
     </div>
 
-    <!-- LIVING HALDO AI -->
+    <!-- LIVING HALDO AI – MIT MENSCHLICHEM AVATAR -->
     <div id="ai-overlay" class="ui-overlay ai-overlay" aria-hidden="true">
       <section id="ai-window" class="glass-panel ai-window" role="dialog" aria-modal="true" aria-labelledby="ai-window-title">
         <header class="panel-header ai-header">
@@ -1196,8 +1448,7 @@
           <div class="ai-header-actions">
             <button id="ai-mic-button" class="panel-icon-button" type="button" aria-label="Spracheingabe" title="Spracheingabe">🎙️</button>
             <button id="ai-voice-button" class="panel-icon-button" type="button" aria-label="Sprachausgabe ein oder aus" title="Sprachausgabe">🔊</button>
-            <button id="ai-window-minimize" class="panel-icon-button" type="button" aria-label="HalDo AI minimieren">—</button>
-            <button id="ai-window-close" class="panel-close" type="button" aria-label="HalDo AI schließen">×</button>
+            <button id="ai-close-button" class="panel-close" type="button" aria-label="HalDo AI schließen">×</button>
           </div>
         </header>
         <div id="ai-presence" class="ai-presence" data-ai-state="idle">
@@ -1205,7 +1456,29 @@
           <div class="ai-presence-ring ring-one"></div>
           <div class="ai-presence-ring ring-two"></div>
           <div class="ai-presence-ring ring-three"></div>
-          <div class="ai-avatar"><div class="ai-avatar-glow"></div><img id="ai-avatar-image" src="assets/logo/logo.png" alt="Living HalDo AI" draggable="false"><div class="ai-avatar-status"></div></div>
+
+          <!-- Menschlicher AI-Avatar -->
+          <div class="ai-human-container">
+            <div class="ai-human" id="ai-human">
+              <div class="head">
+                <div class="eyes">
+                  <div class="eye" id="ai-eye-left"></div>
+                  <div class="eye" id="ai-eye-right"></div>
+                </div>
+                <div class="mouth" id="ai-mouth"></div>
+              </div>
+              <div class="body">
+                <img class="logo-on-body" src="assets/logo/logo.png" alt="HalDo">
+              </div>
+              <div class="arm left" id="ai-arm-left"></div>
+              <div class="arm right" id="ai-arm-right"></div>
+              <div class="legs">
+                <div class="leg"></div>
+                <div class="leg"></div>
+              </div>
+            </div>
+          </div>
+
           <div id="ai-expression" class="ai-expression" aria-live="polite">Ich bin bereit.</div>
         </div>
         <div id="ai-conversation" class="ai-conversation" aria-live="polite" aria-label="HalDo AI Unterhaltung"></div>
@@ -1288,7 +1561,7 @@
     </div>
 
     <!-- SYSTEM INFO -->
-    <div id="sys-info" style="display:none;">HalDo OS v21 • Kernel READY</div>
+    <div id="sys-info" style="display:none;">HalDo OS v22 • Kernel READY</div>
 
     <!-- ARIA LIVE REGION -->
     <div id="aria-live-region" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
@@ -1298,7 +1571,7 @@
 
   <script>
     // ============================================================
-    // KOMPLETTES JAVASCRIPT – ULTIMATE MAXIMUM v21
+    // KOMPLETTES JAVASCRIPT – ULTIMATE MAXIMUM v22
     // ============================================================
 
     (function() {
@@ -1309,7 +1582,7 @@
       // ============================================================
 
       const HALDO = {
-        version: '21',
+        version: '22',
         name: 'HalDo AI OS',
         build: '2026-09-08',
         state: 'BOOTING',
@@ -1340,6 +1613,12 @@
           systemNotifications: true,
           secureStorage: true,
           noSensitiveLogs: true,
+          trafficWarnings: true,
+          speedtrapWarnings: true,
+          jamWarnings: true,
+          speedWarning: true,
+          warningSound: true,
+          warningVoice: true,
         },
         storage: { db: null },
         registry: {},
@@ -1351,6 +1630,7 @@
         memory: [],
         notifications: [],
         uploads: [],
+        warnings: [],
         eventBus: {}
       };
 
@@ -1366,7 +1646,7 @@
         init() {
           return new Promise((resolve) => {
             try {
-              const req = indexedDB.open('HalDoOS', 21);
+              const req = indexedDB.open('HalDoOS', 22);
               req.onupgradeneeded = (e) => {
                 const db = e.target.result;
                 if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
@@ -1374,6 +1654,7 @@
                 if (!db.objectStoreNames.contains('notifications')) db.createObjectStore('notifications', { keyPath: 'id', autoIncrement: true });
                 if (!db.objectStoreNames.contains('registry')) db.createObjectStore('registry', { keyPath: 'id' });
                 if (!db.objectStoreNames.contains('appdata')) db.createObjectStore('appdata', { keyPath: 'appId' });
+                if (!db.objectStoreNames.contains('warnings')) db.createObjectStore('warnings', { keyPath: 'id', autoIncrement: true });
               };
               req.onsuccess = (e) => { this.db = e.target.result; resolve(); };
               req.onerror = () => { this.db = null; resolve(); };
@@ -1434,46 +1715,48 @@
       };
 
       // ============================================================
-      // APP REGISTRY & DATA
+      // APP REGISTRY & DATA – VOLLSTÄNDIG
       // ============================================================
 
       const APP_DEFINITIONS = [
         // AI & System
-        { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'ai', desc: 'Ultra-intelligente KI mit Cyborg-Avatar', version: '21' },
-        { id: 'cyborg', name: 'HalDo Cyborg', icon: '🦾', cat: 'ai', desc: 'Lebendiger Roboter-Assistent', version: '21' },
-        { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'system', desc: 'Systemsteuerung & Logs', version: '21' },
-        { id: 'updates', name: 'Updates', icon: '🔄', cat: 'system', desc: 'Update-Manager', version: '21' },
-        { id: 'security', name: 'Security', icon: '🔒', cat: 'system', desc: 'Passwortmanager & Firewall', version: '21' },
-        { id: 'files', name: 'Files', icon: '📁', cat: 'system', desc: 'Dateimanager', version: '21' },
-        { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'system', desc: 'Tastatur & Sprachen', version: '21' },
-        { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'system', desc: 'Themes & Schrift', version: '21' },
+        { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'ai', desc: 'Ultra-intelligente KI mit Cyborg-Avatar', version: '22' },
+        { id: 'cyborg', name: 'HalDo Cyborg', icon: '🦾', cat: 'ai', desc: 'Lebendiger Roboter-Assistent', version: '22' },
+        { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'system', desc: 'Systemsteuerung & Logs', version: '22' },
+        { id: 'updates', name: 'Updates', icon: '🔄', cat: 'system', desc: 'Update-Manager', version: '22' },
+        { id: 'security', name: 'Security', icon: '🔒', cat: 'system', desc: 'Passwortmanager & Firewall', version: '22' },
+        { id: 'files', name: 'Files', icon: '📁', cat: 'system', desc: 'Dateimanager', version: '22' },
+        { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'system', desc: 'Tastatur & Sprachen', version: '22' },
+        { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'system', desc: 'Themes & Schrift', version: '22' },
         // Media
-        { id: 'music', name: 'Music', icon: '🎵', cat: 'media', desc: 'Musikplayer mit 50+ Songs', version: '21' },
-        { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'media', desc: 'Video-Editor mit Timeline', version: '21' },
-        { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'media', desc: 'Bildergalerie', version: '21' },
-        { id: 'photos', name: 'Photos', icon: '📸', cat: 'media', desc: 'Kamera & Album', version: '21' },
-        { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'media', desc: 'Audio-Recorder', version: '21' },
+        { id: 'music', name: 'Music', icon: '🎵', cat: 'media', desc: 'Musikplayer mit 50+ Songs', version: '22' },
+        { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'media', desc: 'Video-Editor mit Timeline', version: '22' },
+        { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'media', desc: 'Bildergalerie', version: '22' },
+        { id: 'photos', name: 'Photos', icon: '📸', cat: 'media', desc: 'Kamera & Album', version: '22' },
+        { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'media', desc: 'Audio-Recorder', version: '22' },
         // Productivity
-        { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'productivity', desc: 'Terminkalender mit Feiertagen', version: '21' },
-        { id: 'documents', name: 'Documents', icon: '📄', cat: 'productivity', desc: 'Dokumente & Editor', version: '21' },
-        { id: 'office', name: 'Office', icon: '📊', cat: 'productivity', desc: 'Tabellen & Text', version: '21' },
-        { id: 'journal', name: 'Journal', icon: '📓', cat: 'productivity', desc: 'Tagebuch', version: '21' },
-        { id: 'learning', name: 'Learning', icon: '📚', cat: 'productivity', desc: 'Kurse & Quiz', version: '21' },
-        { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'productivity', desc: 'Aufgabenliste', version: '21' },
-        { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'productivity', desc: 'Karte & Routen', version: '21' },
-        { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'productivity', desc: 'Wetter & 7-Tage', version: '21' },
-        { id: 'health', name: 'Health', icon: '🏥', cat: 'productivity', desc: 'Gesundheitsakte', version: '21' },
-        { id: 'driving', name: 'Fahrschule', icon: '🚗', cat: 'productivity', desc: 'Fahrstunden & Verkehrsregeln', version: '21' },
+        { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'productivity', desc: 'Terminkalender mit Feiertagen', version: '22' },
+        { id: 'documents', name: 'Documents', icon: '📄', cat: 'productivity', desc: 'Dokumente & Editor', version: '22' },
+        { id: 'office', name: 'Office', icon: '📊', cat: 'productivity', desc: 'Tabellen & Text', version: '22' },
+        { id: 'journal', name: 'Journal', icon: '📓', cat: 'productivity', desc: 'Tagebuch', version: '22' },
+        { id: 'learning', name: 'Learning', icon: '📚', cat: 'productivity', desc: 'Kurse & Quiz', version: '22' },
+        { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'productivity', desc: 'Aufgabenliste', version: '22' },
+        { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'productivity', desc: 'Karte & Routen', version: '22' },
+        { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'productivity', desc: 'Wetter & 7-Tage', version: '22' },
+        { id: 'health', name: 'Health', icon: '🏥', cat: 'productivity', desc: 'Gesundheitsakte & Ärztlicher Rat', version: '22' },
+        { id: 'driving', name: 'Fahrschule', icon: '🚗', cat: 'productivity', desc: 'Fahrstunden & Verkehrsregeln', version: '22' },
         // Communication
-        { id: 'email', name: 'Email', icon: '✉️', cat: 'communication', desc: 'E-Mail-Client mit Anhängen', version: '21' },
-        { id: 'chat', name: 'Chat', icon: '💬', cat: 'communication', desc: 'Chat mit Bestätigung', version: '21' },
-        { id: 'call', name: 'Anrufen', icon: '📞', cat: 'communication', desc: 'Videoanruf & Telefonie', version: '21' },
+        { id: 'email', name: 'Email', icon: '✉️', cat: 'communication', desc: 'E-Mail-Client mit Anhängen', version: '22' },
+        { id: 'chat', name: 'Chat', icon: '💬', cat: 'communication', desc: 'Chat mit Bestätigung', version: '22' },
+        { id: 'call', name: 'Anrufen', icon: '📞', cat: 'communication', desc: 'Videoanruf & Telefonie', version: '22' },
         // Internet
-        { id: 'browser', name: 'Browser', icon: '🌐', cat: 'internet', desc: 'Internet-Browser mit Lesezeichen', version: '21' },
-        { id: 'internet', name: 'Internet', icon: '📶', cat: 'internet', desc: 'Netzwerk & Speedtest', version: '21' },
+        { id: 'browser', name: 'Browser', icon: '🌐', cat: 'internet', desc: 'Internet-Browser mit Lesezeichen', version: '22' },
+        { id: 'internet', name: 'Internet', icon: '📶', cat: 'internet', desc: 'Netzwerk & Speedtest', version: '22' },
+        // Verkehr
+        { id: 'traffic', name: 'Verkehr & Warnungen', icon: '🚦', cat: 'traffic', desc: 'Blitzer, Stau, Geschwindigkeit & Warnungen', version: '22' },
         // Other
-        { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'system', desc: 'Rechner, Timer, Umrechner', version: '21' },
-        { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'productivity', desc: 'Dashboard für alles', version: '21' },
+        { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'system', desc: 'Rechner, Timer, Umrechner', version: '22' },
+        { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'productivity', desc: 'Dashboard für alles', version: '22' },
       ];
 
       // Standard-Daten für jede App
@@ -1489,12 +1772,25 @@
         health: {
           diseases: ['Grippe – Fieber, Husten, Gliederschmerzen', 'Allergie – Niesen, Juckreiz, tränende Augen', 'Migräne – starke Kopfschmerzen'],
           medications: ['Ibuprofen', 'Cetirizin', 'Paracetamol'],
-          appointments: ['15.09. Dr. Müller', '22.09. Zahnarzt', '05.10. Hautarzt']
+          appointments: ['15.09. Dr. Müller', '22.09. Zahnarzt', '05.10. Hautarzt'],
+          advice: ['Bei Kopfschmerzen: Ruhe, Wasser und ggf. Schmerzmittel.', 'Bei Allergie: Antihistaminika und Allergenkontakt vermeiden.']
         },
         driving: {
           lessons: ['Grundfahraufgaben', 'Parken', 'Autobahnfahrt', 'Fahren bei Nacht'],
           rules: ['Rechtsfahrgebot', 'Blinker setzen', 'Geschwindigkeitsbegrenzungen', 'Vorfahrtregeln'],
-          speedtraps: ['A3 bei Köln', 'B1 Berlin', 'A7 Hamburg']
+          speedtraps: ['A3 bei Köln', 'B1 Berlin', 'A7 Hamburg'],
+          theory: [
+            'Frage 1: Was ist beim Überholen zu beachten? - Ausreichend Abstand, Blinker setzen, Rückspiegel prüfen.',
+            'Frage 2: Welche Geschwindigkeit gilt in der Stadt? - 50 km/h.',
+            'Frage 3: Was bedeutet das rote Dreieck? - Vorfahrt achten!'
+          ]
+        },
+        traffic: {
+          warnings: [
+            { id: 1, type: 'speedtrap', location: 'A3 bei Köln', speed: '80 km/h', message: 'Blitzer auf der A3 Richtung Köln!' },
+            { id: 2, type: 'jam', location: 'B1 Berlin', message: 'Stau auf der B1 Richtung Zentrum! Umleitung empfohlen.' },
+            { id: 3, type: 'speed', location: 'A7 Hamburg', speed: '120 km/h', message: 'Geschwindigkeitsüberschreitung! 140 km/h bei 120 km/h.' },
+          ]
         },
         chat: {
           messages: [
@@ -1536,9 +1832,6 @@
         gallery: {
           images: ['🌅', '🌄', '🌠', '🎆', '🌈', '🌌', '🏔️', '🌺']
         },
-        notes: {
-          notes: ['Wichtige Ideen notieren', 'Einkaufsliste', 'Termine']
-        },
         weather: {
           cities: ['Berlin', 'Köln', 'Hamburg', 'München']
         },
@@ -1546,7 +1839,10 @@
           routes: ['Home → Office', 'Office → Supermarkt', 'Supermarkt → Home']
         },
         learning: {
-          courses: ['Einführung in KI', 'Webentwicklung', 'Design Thinking']
+          courses: ['Einführung in KI', 'Webentwicklung', 'Design Thinking'],
+          quiz: [
+            { question: 'Was ist KI?', options: ['A: Künstliche Intelligenz', 'B: Keine Idee', 'C: Alles'], answer: 0 }
+          ]
         },
         office: {
           docs: ['Budget.xlsx', 'Report.docx', 'Plan.pptx']
@@ -1576,7 +1872,7 @@
           tools: ['Taschenrechner', 'Timer', 'Einheitenumrechner']
         },
         systemcenter: {
-          logs: ['System gestartet: 08.09.2026', 'Update v21 installiert']
+          logs: ['System gestartet: 08.09.2026', 'Update v22 installiert']
         },
         security: {
           passwords: ['Email: ****', 'Bank: ****']
@@ -1614,6 +1910,240 @@
       });
 
       // ============================================================
+      // TRAFFIC WARNINGS SYSTEM
+      // ============================================================
+
+      function initTrafficSystem() {
+        // Simuliere Verkehrswarnungen
+        setInterval(() => {
+          if (!HALDO.config.trafficWarnings) return;
+
+          const warnings = [
+            { type: 'speedtrap', location: 'A3 bei Köln', speed: '80 km/h', message: '⚠️ Blitzer auf der A3 Richtung Köln! Bitte Geschwindigkeit anpassen.' },
+            { type: 'jam', location: 'B1 Berlin', message: '🚦 Stau auf der B1 Richtung Zentrum! Umleitung empfohlen.' },
+            { type: 'speed', location: 'A7 Hamburg', speed: '120 km/h', message: '⚡ Geschwindigkeitsüberschreitung! 140 km/h bei 120 km/h erkannt.' },
+            { type: 'warning', location: 'A5 Frankfurt', message: '⚠️ Unfall auf der A5 Richtung Frankfurt! Bitte Umleitung nutzen.' },
+          ];
+
+          // Zufällig eine Warnung auslösen (ca. alle 30-60 Sekunden)
+          if (Math.random() < 0.15) {
+            const warning = warnings[Math.floor(Math.random() * warnings.length)];
+            triggerTrafficWarning(warning);
+          }
+        }, 30000);
+      }
+
+      function triggerTrafficWarning(warning) {
+        const message = warning.message || '⚠️ Verkehrswarnung!';
+        const icon = warning.type === 'speedtrap' ? '📸' :
+                     warning.type === 'jam' ? '🚦' :
+                     warning.type === 'speed' ? '⚡' : '⚠️';
+
+        // Als Toast anzeigen
+        showToast(icon, '🚦 Verkehrswarnung', message, 'warning');
+
+        // In Notifications speichern
+        addNotification(icon, '🚦 Verkehrswarnung', message, 'warning');
+
+        // Sprachausgabe
+        if (HALDO.config.warningVoice && HALDO.voice) {
+          HALDO.voice.speak(message);
+        }
+
+        // Ton-Signal
+        if (HALDO.config.warningSound) {
+          try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.frequency.value = 800;
+            gainNode.gain.value = 0.3;
+            oscillator.start();
+            setTimeout(() => {
+              oscillator.frequency.value = 1000;
+              setTimeout(() => {
+                oscillator.stop();
+              }, 200);
+            }, 200);
+          } catch(e) { /* Audio nicht verfügbar */ }
+        }
+
+        // HalDo AI reagiert
+        if (HALDO.config.aiEnabled && HALDO.ai) {
+          const aiResponse = `Ich habe eine Verkehrswarnung erhalten: ${message}`;
+          setTimeout(() => {
+            addAIMessage(aiResponse, 'ai');
+            if (HALDO.config.speechOutput && HALDO.voice) {
+              HALDO.voice.speak(aiResponse);
+            }
+          }, 500);
+        }
+
+        // Warnung speichern
+        HALDO.warnings.push({ ...warning, timestamp: new Date().toISOString() });
+        if (HALDO.warnings.length > 50) HALDO.warnings.shift();
+        HALDO.storage.set('warnings', Date.now(), { data: HALDO.warnings });
+      }
+
+      // ============================================================
+      // AI – MENSCHLICHER AVATAR
+      // ============================================================
+
+      function initAI() {
+        HALDO.ai = {
+          ask: async function(question, memory = []) {
+            const lower = question.toLowerCase();
+            let response = '';
+
+            // Erweitertes Wissen
+            const knowledge = {
+              'was ist ki': 'Künstliche Intelligenz (KI) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst. Ich bin ein lebendiges Beispiel dafür. 🤖',
+              'wie geht es dir': 'Mir geht es großartig, Bruder! 💙❤️🚀 Wie kann ich dir helfen?',
+              'wer bist du': 'Ich bin HalDo AI, dein intelligenter Assistent für die Cosmic World. Ich sehe, höre, spreche und helfe dir bei allem!',
+              'was ist haldo': 'HalDo AI OS ist ein professionelles Betriebssystem mit Cosmic World, lebendiger AI, Cyborg-Assistent und über 30 voll ausgestatteten Apps.',
+              'hallo': 'Hallo Bruder 💙❤️🚀 Schön dich zu sehen! Wie kann ich dir heute helfen?',
+              'danke': 'Gern geschehen! Immer wieder gerne.',
+              'hilfe': 'Ich helfe dir gerne! Klicke auf die Sonne, öffne das App-Menü oder sprich einfach mit mir.',
+              'wer ist a halil donma': 'A Halil Donma ist der Schöpfer von HalDo AI OS – ein visionärer Entwickler und Gründer dieses einzigartigen Betriebssystems.',
+              'was ist die cosmic world': 'Die Cosmic World ist das visuelle Herz von HalDo AI OS – ein lebendiges Sonnensystem mit 12 Planeten, 365 Sternen und einer strahlenden Sonne.',
+              'verkehr': 'Ich kann dir Verkehrswarnungen anzeigen! Öffne die App "Verkehr & Warnungen" für Blitzer, Stau und Geschwindigkeitsüberschreitungen.',
+              'gesundheit': 'Ich habe ärztliche Informationen für dich! Öffne die Health-App für Krankheiten, Medikamente und Termine.',
+              'fahrschule': 'Ich habe alles für die Fahrschule! Theorie-Fragen, Verkehrsregeln und Blitzer-Infos sind in der Fahrschule-App.',
+            };
+
+            for (const [key, value] of Object.entries(knowledge)) {
+              if (lower.includes(key)) {
+                response = value;
+                break;
+              }
+            }
+
+            // App-Intents
+            if (!response) {
+              const intents = {
+                'musik': 'music', 'song': 'music', 'play': 'music',
+                'video': 'video', 'film': 'video',
+                'gesundheit': 'health', 'krankheit': 'health', 'arzt': 'health',
+                'navigation': 'navigation', 'route': 'navigation',
+                'kalender': 'calendar', 'termin': 'calendar',
+                'email': 'email', 'mail': 'email',
+                'cyborg': 'cyborg',
+                'fahrschule': 'driving', 'fahren': 'driving', 'theorie': 'driving',
+                'chat': 'chat', 'nachricht': 'chat',
+                'anruf': 'call', 'telefon': 'call',
+                'browser': 'browser', 'internet': 'browser',
+                'dateien': 'files', 'ordner': 'files',
+                'bilder': 'gallery', 'fotos': 'photos',
+                'aufgaben': 'tasks', 'todo': 'tasks',
+                'wetter': 'weather',
+                'dokumente': 'documents',
+                'bücher': 'learning',
+                'einstellungen': 'systemcenter',
+                'sicherheit': 'security',
+                'updates': 'updates',
+                'verkehr': 'traffic', 'blitzer': 'traffic', 'stau': 'traffic', 'warnung': 'traffic',
+              };
+              for (const [keyword, appId] of Object.entries(intents)) {
+                if (lower.includes(keyword)) {
+                  response = `💡 Ich öffne die App "${HALDO.registry[appId]?.name || appId}" für dich.`;
+                  if (HALDO.config.aiAppControl) openApp(appId);
+                  break;
+                }
+              }
+              if (!response) {
+                response = 'Das ist eine interessante Frage. Ich werde mein Bestes tun, um sie zu beantworten. 🤖💡';
+              }
+            }
+
+            // Memory speichern
+            if (HALDO.config.memoryEnabled && HALDO.config.memoryConversation) {
+              HALDO.memory.push({ role: 'user', content: question });
+              HALDO.memory.push({ role: 'ai', content: response });
+              if (HALDO.memory.length > 30) {
+                HALDO.memory = HALDO.memory.slice(-30);
+              }
+              await HALDO.storage.set('memory', 'conversation', { data: HALDO.memory });
+            }
+
+            // Avatar animieren
+            animateAvatar('speaking');
+
+            // Sprachausgabe
+            if (HALDO.config.speechOutput && HALDO.voice) {
+              setTimeout(() => {
+                HALDO.voice.speak(response);
+                setTimeout(() => animateAvatar('idle'), response.length * 30 + 500);
+              }, 200);
+            } else {
+              setTimeout(() => animateAvatar('idle'), 500);
+            }
+
+            return response;
+          }
+        };
+      }
+
+      // ============================================================
+      // AI AVATAR ANIMATION
+      // ============================================================
+
+      function animateAvatar(state) {
+        const mouth = document.getElementById('ai-mouth');
+        const armLeft = document.getElementById('ai-arm-left');
+        const armRight = document.getElementById('ai-arm-right');
+        const eyeLeft = document.getElementById('ai-eye-left');
+        const eyeRight = document.getElementById('ai-eye-right');
+
+        switch(state) {
+          case 'speaking':
+            if (mouth) mouth.classList.add('speaking');
+            if (armLeft) armLeft.classList.add('moving-left');
+            if (armRight) armRight.classList.add('moving-right');
+            if (eyeLeft) eyeLeft.style.transform = 'scale(1.2)';
+            if (eyeRight) eyeRight.style.transform = 'scale(1.2)';
+            break;
+          case 'listening':
+            if (mouth) mouth.classList.remove('speaking');
+            if (armLeft) armLeft.classList.remove('moving-left');
+            if (armRight) armRight.classList.remove('moving-right');
+            if (eyeLeft) eyeLeft.style.transform = 'scale(0.8)';
+            if (eyeRight) eyeRight.style.transform = 'scale(0.8)';
+            break;
+          case 'thinking':
+            if (mouth) mouth.classList.remove('speaking');
+            if (armLeft) armLeft.style.transform = 'rotate(-30deg)';
+            if (armRight) armRight.style.transform = 'rotate(30deg)';
+            if (eyeLeft) eyeLeft.style.transform = 'translateY(-2px)';
+            if (eyeRight) eyeRight.style.transform = 'translateY(-2px)';
+            break;
+          case 'idle':
+          default:
+            if (mouth) mouth.classList.remove('speaking');
+            if (armLeft) { armLeft.classList.remove('moving-left'); armLeft.style.transform = 'rotate(15deg)'; }
+            if (armRight) { armRight.classList.remove('moving-right'); armRight.style.transform = 'rotate(-15deg)'; }
+            if (eyeLeft) eyeLeft.style.transform = '';
+            if (eyeRight) eyeRight.style.transform = '';
+            break;
+        }
+
+        // AI-Status aktualisieren
+        const presence = document.getElementById('ai-presence');
+        if (presence) presence.dataset.aiState = state;
+        const label = document.getElementById('ai-state-label');
+        if (label) {
+          const states = { idle: 'Bereit', listening: 'Zuhören …', thinking: 'Denken …', speaking: 'Sprechen …' };
+          label.textContent = states[state] || 'Bereit';
+        }
+        const expression = document.getElementById('ai-expression');
+        if (expression) {
+          const expressions = { idle: 'Ich bin bereit.', listening: '👂 Ich höre zu …', thinking: '🧠 Ich denke nach …', speaking: '🗣️ Ich spreche …' };
+          expression.textContent = expressions[state] || 'Ich bin bereit.';
+        }
+      }
+
+      // ============================================================
       // BOOT
       // ============================================================
 
@@ -1640,6 +2170,12 @@
           if (savedData && savedData.data) {
             HALDO.registry[appId].data = savedData.data;
           }
+        }
+
+        // Warnungen laden
+        const savedWarnings = await HALDO.storage.getAll('warnings');
+        if (savedWarnings.length > 0) {
+          HALDO.warnings = savedWarnings;
         }
 
         let progress = 0;
@@ -1672,6 +2208,7 @@
         initVoice();
         initAI();
         initNotifications();
+        initTrafficSystem();
         initWindowManager();
         renderAppGrid();
         initSystemMenu();
@@ -1682,10 +2219,10 @@
         setTimeout(() => {
           showToast('🌌', 'HalDo AI OS v' + HALDO.version, 'Willkommen! Die Cosmic World ist bereit.');
           if (HALDO.config.aiEnabled) {
-            openAIWindow('Willkommen bei HalDo AI OS. Wie kann ich dir helfen?');
+            openAIWindow('Willkommen bei HalDo AI OS. Wie kann ich dir helfen, Bruder? 💙❤️🚀');
             if (HALDO.voice && HALDO.config.speechOutput) {
               setTimeout(() => {
-                HALDO.voice.speak('Willkommen bei HalDo AI OS. Die Cosmic World ist bereit.');
+                HALDO.voice.speak('Willkommen bei HalDo AI OS. Wie kann ich dir helfen, Bruder?');
               }, 500);
             }
           }
@@ -1785,8 +2322,10 @@
           sun.addEventListener('click', () => {
             if (HALDO.config.aiEnabled) {
               openAIWindow('Hallo Bruder 💙❤️🚀 Wie kann ich dir helfen?');
+              animateAvatar('speaking');
               if (HALDO.voice && HALDO.config.speechOutput) {
                 HALDO.voice.speak('Hallo! Willkommen bei HalDo AI OS.');
+                setTimeout(() => animateAvatar('idle'), 1500);
               }
             } else {
               showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
@@ -1794,32 +2333,56 @@
           });
         }
 
+        // AI-Schließen-Button
+        document.getElementById('ai-close-button')?.addEventListener('click', closeAIWindow);
+        document.getElementById('ai-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeAIWindow(); });
+
+        // AI-Mikrofon
+        document.getElementById('ai-mic-button')?.addEventListener('click', toggleVoiceInput);
+
+        // AI-Sprachausgabe
+        document.getElementById('ai-voice-button')?.addEventListener('click', () => {
+          HALDO.config.speechOutput = !HALDO.config.speechOutput;
+          document.getElementById('ai-voice-button').style.opacity = HALDO.config.speechOutput ? '1' : '0.4';
+          showToast('🔊', 'Sprachausgabe', HALDO.config.speechOutput ? 'Aktiviert' : 'Deaktiviert');
+        });
+
+        // AI-Senden
+        document.getElementById('ai-input-form')?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          sendAIMessage();
+        });
+        document.getElementById('ai-input')?.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendAIMessage();
+          }
+          setTimeout(() => {
+            e.target.style.height = 'auto';
+            e.target.style.height = e.target.scrollHeight + 'px';
+          }, 0);
+        });
+
+        // App-Menü
         document.getElementById('app-menu-button')?.addEventListener('click', toggleAppMenu);
         document.getElementById('dock-apps')?.addEventListener('click', toggleAppMenu);
-        document.getElementById('dock-ai')?.addEventListener('click', () => {
-          if (HALDO.config.aiEnabled) {
-            openAIWindow('Hallo! Ich bin HalDo AI. 💙❤️🚀');
-            if (HALDO.voice && HALDO.config.speechOutput) {
-              HALDO.voice.speak('Hallo! Ich bin HalDo AI.');
-            }
-          } else {
-            showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
-          }
-        });
         document.getElementById('app-menu-close')?.addEventListener('click', closeAppMenu);
         document.getElementById('app-menu-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeAppMenu(); });
 
+        // System-Menü
         document.getElementById('settings-button')?.addEventListener('click', toggleSystemMenu);
         document.getElementById('dock-settings')?.addEventListener('click', toggleSystemMenu);
         document.getElementById('system-menu-close')?.addEventListener('click', closeSystemMenu);
         document.getElementById('system-menu-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeSystemMenu(); });
 
+        // Notifications
         document.getElementById('notification-button')?.addEventListener('click', toggleNotificationCenter);
         document.getElementById('dock-notifications')?.addEventListener('click', toggleNotificationCenter);
         document.getElementById('notification-close')?.addEventListener('click', closeNotificationCenter);
         document.getElementById('notification-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeNotificationCenter(); });
         document.getElementById('notification-clear')?.addEventListener('click', clearAllNotifications);
 
+        // Suche
         document.getElementById('dock-search')?.addEventListener('click', toggleSearch);
         document.getElementById('search-close')?.addEventListener('click', closeSearch);
         document.getElementById('search-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeSearch(); });
@@ -1835,6 +2398,7 @@
           }
         });
 
+        // App-Suche
         document.getElementById('app-search-input')?.addEventListener('input', (e) => {
           filterAppGrid(e.target.value.trim());
         });
@@ -1851,42 +2415,21 @@
           });
         });
 
-        document.getElementById('ai-window-close')?.addEventListener('click', closeAIWindow);
-        document.getElementById('ai-window-minimize')?.addEventListener('click', minimizeAIWindow);
-        document.getElementById('ai-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeAIWindow(); });
-
-        document.getElementById('ai-input-form')?.addEventListener('submit', (e) => {
-          e.preventDefault();
-          sendAIMessage();
-        });
-        document.getElementById('ai-input')?.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            sendAIMessage();
+        // AI-Button im Dock
+        document.getElementById('dock-ai')?.addEventListener('click', () => {
+          if (HALDO.config.aiEnabled) {
+            openAIWindow('Hallo! Ich bin HalDo AI. 💙❤️🚀');
+            animateAvatar('speaking');
+            if (HALDO.voice && HALDO.config.speechOutput) {
+              HALDO.voice.speak('Hallo! Ich bin HalDo AI.');
+              setTimeout(() => animateAvatar('idle'), 1500);
+            }
+          } else {
+            showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
           }
-          setTimeout(() => {
-            e.target.style.height = 'auto';
-            e.target.style.height = e.target.scrollHeight + 'px';
-          }, 0);
         });
 
-        document.getElementById('ai-mic-button')?.addEventListener('click', toggleVoiceInput);
-        document.getElementById('ai-voice-button')?.addEventListener('click', () => {
-          HALDO.config.speechOutput = !HALDO.config.speechOutput;
-          document.getElementById('ai-voice-button').style.opacity = HALDO.config.speechOutput ? '1' : '0.4';
-          showToast('🔊', 'Sprachausgabe', HALDO.config.speechOutput ? 'Aktiviert' : 'Deaktiviert');
-        });
-
-        document.getElementById('ai-attachment-button')?.addEventListener('click', () => {
-          document.getElementById('ai-file-input')?.click();
-        });
-        document.getElementById('ai-file-input')?.addEventListener('change', (e) => {
-          if (e.target.files.length > 0) {
-            showToast('📎', 'Datei angehängt', e.target.files[0].name);
-          }
-          e.target.value = '';
-        });
-
+        // Settings Navigation
         document.querySelectorAll('.settings-nav-item').forEach(item => {
           item.addEventListener('click', () => {
             document.querySelectorAll('.settings-nav-item').forEach(i => i.classList.remove('active'));
@@ -1898,6 +2441,7 @@
           });
         });
 
+        // Switches
         document.querySelectorAll('.switch input[data-setting]').forEach(input => {
           input.addEventListener('change', () => {
             const key = input.dataset.setting;
@@ -1917,7 +2461,7 @@
               });
             }
             if (key === 'aiEnabled') {
-              document.querySelectorAll('.ai-avatar, .dock-button.ai, #ai-identity').forEach(el => {
+              document.querySelectorAll('.ai-avatar, .dock-button.ai, #ai-identity, .ai-human').forEach(el => {
                 el.style.opacity = input.checked ? '1' : '0.3';
               });
               if (!input.checked) closeAIWindow();
@@ -1934,6 +2478,7 @@
           });
         });
 
+        // Selects
         document.querySelectorAll('select[data-setting]').forEach(select => {
           select.addEventListener('change', () => {
             const key = select.dataset.setting;
@@ -1945,6 +2490,7 @@
           });
         });
 
+        // Range inputs
         document.querySelectorAll('input[type="range"][data-setting]').forEach(input => {
           input.addEventListener('input', () => {
             const key = input.dataset.setting;
@@ -1963,6 +2509,7 @@
           });
         });
 
+        // AI Provider
         document.getElementById('ai-provider-save')?.addEventListener('click', () => {
           const provider = document.getElementById('ai-provider-select').value;
           const apiKey = document.getElementById('ai-api-key').value;
@@ -1981,6 +2528,7 @@
           }
         });
 
+        // Memory
         document.getElementById('memory-management-button')?.addEventListener('click', () => {
           const count = HALDO.memory.length;
           showToast('🧠', 'Memory', `${count} gespeicherte Kontexteinträge.`);
@@ -1993,6 +2541,7 @@
           }
         });
 
+        // Voice Test
         document.getElementById('voice-test-button')?.addEventListener('click', () => {
           const text = 'Hallo, dies ist ein Test der HalDo Sprachausgabe.';
           if (HALDO.voice) {
@@ -2003,6 +2552,7 @@
           }
         });
 
+        // Fullscreen
         document.getElementById('fullscreen-button')?.addEventListener('click', () => {
           if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen().catch(() => {});
@@ -2011,6 +2561,7 @@
           }
         });
 
+        // Storage
         document.getElementById('storage-test-button')?.addEventListener('click', async () => {
           try {
             await HALDO.storage.set('test', 'test', { value: 'ok' });
@@ -2028,8 +2579,10 @@
               await HALDO.storage.clear('memory');
               await HALDO.storage.clear('notifications');
               await HALDO.storage.clear('appdata');
+              await HALDO.storage.clear('warnings');
               HALDO.memory = [];
               HALDO.notifications = [];
+              HALDO.warnings = [];
               for (const appId of Object.keys(HALDO.registry)) {
                 HALDO.registry[appId].data = APP_DEFAULT_DATA[appId] || {};
               }
@@ -2040,6 +2593,7 @@
           }
         });
 
+        // Backup
         document.getElementById('backup-export-button')?.addEventListener('click', createBackup);
         document.getElementById('backup-import-button')?.addEventListener('click', () => {
           document.getElementById('backup-file-input')?.click();
@@ -2069,6 +2623,9 @@
                 }
               }
             }
+            if (data.warnings) {
+              HALDO.warnings = data.warnings;
+            }
             showToast('📥', 'Backup', 'Wiederherstellung erfolgreich.');
           } catch {
             showToast('⚠️', 'Fehler', 'Backup konnte nicht gelesen werden.');
@@ -2076,7 +2633,17 @@
           e.target.value = '';
         });
 
+        // Updates
         document.getElementById('check-updates-button')?.addEventListener('click', checkForUpdates);
+
+        // Verkehr-Test
+        document.getElementById('traffic-test-warning')?.addEventListener('click', () => {
+          triggerTrafficWarning({
+            type: 'warning',
+            location: 'Test',
+            message: '🧪 Test-Warnung! HalDo Verkehrswarnung funktioniert.',
+          });
+        });
 
         // Keyboard Shortcuts
         document.addEventListener('keydown', (e) => {
@@ -2091,8 +2658,10 @@
             e.preventDefault();
             if (HALDO.config.aiEnabled) {
               openAIWindow('Hallo! 💙❤️🚀');
+              animateAvatar('speaking');
               if (HALDO.voice && HALDO.config.speechOutput) {
                 HALDO.voice.speak('Hallo! Ich bin HalDo AI.');
+                setTimeout(() => animateAvatar('idle'), 1500);
               }
             }
           }
@@ -2230,12 +2799,13 @@
         }
         const micBtn = document.getElementById('ai-mic-button');
         if (micBtn) {
-          micBtn.style.animation = 'pulse 0.8s ease infinite';
-          micBtn.style.color = '#fbbf24';
+          micBtn.classList.toggle('active');
+          micBtn.style.color = micBtn.classList.contains('active') ? '#76eaff' : '';
         }
+        animateAvatar('listening');
         const text = await HALDO.voice.listen();
         if (micBtn) {
-          micBtn.style.animation = '';
+          micBtn.classList.remove('active');
           micBtn.style.color = '';
         }
         if (text) {
@@ -2246,89 +2816,8 @@
           }
         } else {
           showToast('🎤', 'Voice', 'Keine Eingabe erkannt.');
+          animateAvatar('idle');
         }
-      }
-
-      // ============================================================
-      // AI ENGINE
-      // ============================================================
-
-      function initAI() {
-        HALDO.ai = {
-          ask: async function(question, memory = []) {
-            const lower = question.toLowerCase();
-            let response = '';
-
-            const knowledge = {
-              'was ist ki': 'Künstliche Intelligenz (KI) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst.',
-              'wie geht es dir': 'Mir geht es großartig, danke! Wie kann ich dir helfen?',
-              'wer bist du': 'Ich bin HalDo AI, dein intelligenter Assistent für die Cosmic World.',
-              'was ist haldo': 'HalDo AI OS ist ein professionelles Betriebssystem mit Cosmic World und lebendiger AI.',
-              'hallo': 'Hallo Bruder 💙❤️🚀 Wie kann ich dir helfen?',
-              'danke': 'Gern geschehen!',
-              'hilfe': 'Ich helfe dir gerne! Du kannst mich über die Sonne, das Dock oder die App-Menüs erreichen.',
-            };
-
-            for (const [key, value] of Object.entries(knowledge)) {
-              if (lower.includes(key)) {
-                response = value;
-                break;
-              }
-            }
-
-            // App-Intents
-            if (!response) {
-              const intents = {
-                'musik': 'music', 'song': 'music', 'play': 'music',
-                'video': 'video', 'film': 'video',
-                'gesundheit': 'health', 'krankheit': 'health',
-                'navigation': 'navigation', 'route': 'navigation',
-                'kalender': 'calendar', 'termin': 'calendar',
-                'email': 'email', 'mail': 'email',
-                'cyborg': 'cyborg',
-                'fahrschule': 'driving', 'fahren': 'driving',
-                'chat': 'chat', 'nachricht': 'chat',
-                'anruf': 'call', 'telefon': 'call',
-                'browser': 'browser', 'internet': 'browser',
-                'dateien': 'files', 'ordner': 'files',
-                'musik': 'music', 'songs': 'music',
-                'bilder': 'gallery', 'fotos': 'photos',
-                'aufgaben': 'tasks', 'todo': 'tasks',
-                'wetter': 'weather',
-                'dokumente': 'documents',
-                'bücher': 'learning',
-                'einstellungen': 'systemcenter',
-                'sicherheit': 'security',
-                'updates': 'updates',
-              };
-              for (const [keyword, appId] of Object.entries(intents)) {
-                if (lower.includes(keyword)) {
-                  response = `Ich öffne die App "${HALDO.registry[appId]?.name || appId}" für dich.`;
-                  if (HALDO.config.aiAppControl) openApp(appId);
-                  break;
-                }
-              }
-              if (!response) {
-                response = 'Das ist eine interessante Frage. Ich werde mein Bestes tun, um sie zu beantworten. 🤖';
-              }
-            }
-
-            if (HALDO.config.memoryEnabled && HALDO.config.memoryConversation) {
-              HALDO.memory.push({ role: 'user', content: question });
-              HALDO.memory.push({ role: 'ai', content: response });
-              if (HALDO.memory.length > 20) {
-                HALDO.memory = HALDO.memory.slice(-20);
-              }
-              await HALDO.storage.set('memory', 'conversation', { data: HALDO.memory });
-            }
-
-            if (HALDO.config.speechOutput && HALDO.voice) {
-              setTimeout(() => { HALDO.voice.speak(response); }, 200);
-            }
-
-            return response;
-          }
-        };
       }
 
       // ============================================================
@@ -2340,10 +2829,7 @@
         if (!overlay) return;
         overlay.classList.add('open');
         overlay.setAttribute('aria-hidden', 'false');
-        const presence = document.getElementById('ai-presence');
-        if (presence) presence.dataset.aiState = 'idle';
-        const expression = document.getElementById('ai-expression');
-        if (expression) expression.textContent = 'Ich bin bereit.';
+        animateAvatar('idle');
         const conversation = document.getElementById('ai-conversation');
         if (conversation) {
           conversation.innerHTML = '';
@@ -2356,7 +2842,6 @@
         }
         const input = document.getElementById('ai-input');
         if (input) input.focus();
-        updateAIState('idle');
         document.getElementById('ai-state-label').textContent = 'Bereit';
       }
 
@@ -2366,31 +2851,17 @@
           overlay.classList.remove('open');
           overlay.setAttribute('aria-hidden', 'true');
         }
-        updateAIState('idle');
+        animateAvatar('idle');
       }
 
-      function minimizeAIWindow() {
-        const overlay = document.getElementById('ai-overlay');
-        if (overlay) {
-          overlay.classList.remove('open');
-          overlay.setAttribute('aria-hidden', 'true');
-          showToast('🤖', 'HalDo AI', 'Minimiert.');
-        }
-      }
-
-      function updateAIState(state) {
-        const presence = document.getElementById('ai-presence');
-        if (presence) presence.dataset.aiState = state;
-        const label = document.getElementById('ai-state-label');
-        if (label) {
-          const states = { idle: 'Bereit', listening: 'Zuhören …', thinking: 'Denken …', speaking: 'Sprechen …' };
-          label.textContent = states[state] || 'Bereit';
-        }
-        const expression = document.getElementById('ai-expression');
-        if (expression) {
-          const expressions = { idle: 'Ich bin bereit.', listening: '👂 Ich höre zu …', thinking: '🧠 Ich denke nach …', speaking: '🗣️ Ich spreche …' };
-          expression.textContent = expressions[state] || 'Ich bin bereit.';
-        }
+      function addAIMessage(text, sender = 'user') {
+        const container = document.getElementById('ai-conversation');
+        if (!container) return;
+        const msg = document.createElement('div');
+        msg.className = `conv-message ${sender}`;
+        msg.innerHTML = `<span class="conv-icon">${sender === 'user' ? '🧑' : '🤖'}</span><span>${text}</span>`;
+        container.appendChild(msg);
+        container.scrollTop = container.scrollHeight;
       }
 
       async function sendAIMessage() {
@@ -2400,23 +2871,13 @@
         if (!text) return;
         input.value = '';
         input.style.height = 'auto';
-        const conversation = document.getElementById('ai-conversation');
-        if (!conversation) return;
-        const userMsg = document.createElement('div');
-        userMsg.className = 'conv-message user';
-        userMsg.innerHTML = `<span class="conv-icon">🧑</span> ${text}`;
-        conversation.appendChild(userMsg);
-        conversation.scrollTop = conversation.scrollHeight;
-        updateAIState('thinking');
+        addAIMessage(text, 'user');
+        animateAvatar('thinking');
         document.getElementById('ai-state-label').textContent = 'Denken …';
         const response = await HALDO.ai.ask(text, HALDO.memory);
-        const aiMsg = document.createElement('div');
-        aiMsg.className = 'conv-message ai';
-        aiMsg.innerHTML = `<span class="conv-icon">🤖</span> ${response}`;
-        conversation.appendChild(aiMsg);
-        conversation.scrollTop = conversation.scrollHeight;
-        updateAIState('idle');
+        addAIMessage(response, 'ai');
         document.getElementById('ai-state-label').textContent = 'Bereit';
+        animateAvatar('idle');
       }
 
       // ============================================================
@@ -2465,7 +2926,7 @@
           card.setAttribute('tabindex', '0');
           card.setAttribute('aria-label', app.name);
           card.innerHTML = `
-            <img class="app-icon" src="assets/logo/logo.png" alt="${app.name}" draggable="false">
+            <div style="font-size:32px;margin-bottom:4px;">${app.icon}</div>
             <span class="app-name">${app.name}</span>
             <span class="app-version">v${app.version}</span>
           `;
@@ -2843,7 +3304,7 @@
       }
 
       // ============================================================
-      // APP-SPEZIFISCHE HTML & EVENTS
+      // APP-SPEZIFISCHE HTML
       // ============================================================
 
       function getAppHTML(appId) {
@@ -2852,28 +3313,35 @@
         const data = app.data || {};
 
         switch(appId) {
-          case 'email':
-            const inbox = data.inbox || [];
-            const sent = data.sent || [];
+          case 'driving':
             return `
-              <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;">
-                <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                  <button class="primary-action" id="email-new">✉️ Neu</button>
-                  <button class="secondary-action" id="email-refresh">🔄 Aktualisieren</button>
-                </div>
-                <div><strong>Posteingang</strong></div>
-                ${inbox.map(e => `
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid var(--haldo-blue);cursor:pointer;" onclick="alert('Von: ${e.from}\\nBetreff: ${e.subject}\\n${e.body}')">
-                    <strong>${e.subject}</strong> – <span style="color:var(--haldo-text-muted);">${e.from} • ${e.date}</span>
-                    ${e.attachments && e.attachments.length > 0 ? `<span style="color:var(--haldo-cyan);font-size:11px;">📎 ${e.attachments.join(', ')}</span>` : ''}
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🚗 Fahrstunden</strong></div>
+                ${(data.lessons || []).map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
+                <div><strong>📏 Verkehrsregeln</strong></div>
+                ${(data.rules || []).map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
+                <div><strong>📸 Blitzer</strong></div>
+                ${(data.speedtraps || []).map(s => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${s}</div>`).join('')}
+                <div><strong>📖 Theorie-Fragen</strong></div>
+                ${(data.theory || []).map(t => `<div style="background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:8px;font-size:12px;color:var(--haldo-text-soft);">${t}</div>`).join('')}
+                <button class="secondary-action full" id="driving-add">+ Hinzufügen</button>
+              </div>
+            `;
+
+          case 'traffic':
+            const warnings = data.warnings || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+                <div><strong>🚦 Aktuelle Warnungen</strong></div>
+                ${warnings.map(w => `
+                  <div style="background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:8px;border-left:3px solid ${w.type === 'speedtrap' ? 'var(--haldo-orange)' : w.type === 'jam' ? 'var(--haldo-gold)' : 'var(--haldo-pink)'};">
+                    <div><strong>${w.location}</strong></div>
+                    <div style="font-size:12px;color:var(--haldo-text-muted);">${w.message}</div>
+                    ${w.speed ? `<div style="font-size:11px;color:var(--haldo-orange);">⚡ ${w.speed}</div>` : ''}
                   </div>
                 `).join('')}
-                <div><strong>Gesendet</strong></div>
-                ${sent.length > 0 ? sent.map(e => `
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid var(--haldo-green);">
-                    <strong>${e.subject}</strong> – <span style="color:var(--haldo-text-muted);">an ${e.to} • ${e.date}</span>
-                  </div>
-                `).join('') : '<div style="color:var(--haldo-text-muted);font-size:12px;">Keine gesendeten E-Mails.</div>'}
+                <button class="primary-action full" id="traffic-test">⚠️ Test-Warnung</button>
+                <button class="secondary-action full" id="traffic-clear">Warnungen löschen</button>
               </div>
             `;
 
@@ -2886,351 +3354,38 @@
                 ${(data.medications || []).map(m => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${m}</div>`).join('')}
                 <div><strong>👨‍⚕️ Termine</strong></div>
                 ${(data.appointments || []).map(a => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${a}</div>`).join('')}
+                <div><strong>📋 Ärztlicher Rat</strong></div>
+                ${(data.advice || []).map(a => `<div style="background:rgba(117,190,255,0.05);padding:6px 10px;border-radius:8px;font-size:12px;color:var(--haldo-text-soft);">💡 ${a}</div>`).join('')}
                 <button class="secondary-action full" id="health-add">+ Hinzufügen</button>
               </div>
             `;
 
-          case 'driving':
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🚗 Fahrstunden</strong></div>
-                ${(data.lessons || []).map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
-                <div><strong>📏 Verkehrsregeln</strong></div>
-                ${(data.rules || []).map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
-                <div><strong>📸 Blitzer</strong></div>
-                ${(data.speedtraps || []).map(s => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${s}</div>`).join('')}
-                <button class="secondary-action full" id="driving-add">+ Hinzufügen</button>
-              </div>
-            `;
-
-          case 'chat':
-            const messages = data.messages || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div style="display:flex;gap:6px;">
-                  <input type="text" id="chat-input" placeholder="Nachricht …" style="flex:1;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:var(--haldo-text);">
-                  <button class="primary-action" id="chat-send">Senden</button>
-                </div>
-                ${messages.map(m => `
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;border-left:3px solid ${m.from === 'Du' ? 'var(--haldo-green)' : 'var(--haldo-blue)'};">
-                    <strong>${m.from}</strong> <span style="color:var(--haldo-text-muted);font-size:11px;">${m.time}</span>
-                    <div>${m.text}</div>
-                  </div>
-                `).join('')}
-              </div>
-            `;
-
-          case 'call':
-            return `
-              <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;">
-                <div style="display:flex;gap:6px;">
-                  <button class="primary-action" id="call-start">📞 Anruf starten</button>
-                  <button class="secondary-action" id="call-video">🎥 Videoanruf</button>
-                </div>
-                <div><strong>Verlauf</strong></div>
-                ${(data.history || []).map(h => `
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;display:flex;justify-content:space-between;">
-                    <span>${h.contact} (${h.type})</span>
-                    <span style="color:var(--haldo-text-muted);font-size:11px;">${h.duration} • ${h.date}</span>
-                  </div>
-                `).join('')}
-              </div>
-            `;
-
-          case 'calendar':
-            const events = data.events || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>📅 Termine</strong></div>
-                ${events.map(e => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${e.title} – ${e.date} ${e.time}</div>`).join('')}
-                <button class="secondary-action full" id="calendar-add">+ Termin hinzufügen</button>
-              </div>
-            `;
-
-          case 'tasks':
-            const tasks = data.items || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>✅ Aufgaben</strong></div>
-                ${tasks.map(t => `
-                  <div style="display:flex;justify-content:space-between;padding:3px 8px;border-radius:4px;background:${t.done ? 'rgba(75,231,164,0.1)' : 'rgba(255,255,255,0.02)'};">
-                    <span>${t.title}</span>
-                    <span style="color:${t.done ? 'var(--haldo-green)' : 'var(--haldo-text-muted)'};">${t.done ? '✅ Erledigt' : '⏳ Offen'}</span>
-                  </div>
-                `).join('')}
-                <button class="secondary-action full" id="tasks-add">+ Aufgabe hinzufügen</button>
-              </div>
-            `;
-
-          case 'music':
-            const playlist = data.playlist || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🎵 Playlist</strong></div>
-                ${playlist.map((song, i) => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">${i+1}. ${song}</div>`).join('')}
-                <button class="secondary-action full" id="music-add">+ Song hinzufügen</button>
-              </div>
-            `;
-
-          case 'journal':
-            const entries = data.entries || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>📓 Tagebuch</strong></div>
-                ${entries.map(e => `<div style="background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:8px;border-left:3px solid var(--haldo-blue);"><strong>${e.date}</strong> – ${e.text}</div>`).join('')}
-                <button class="secondary-action full" id="journal-add">+ Eintrag hinzufügen</button>
-              </div>
-            `;
-
-          case 'documents':
-            const docs = data.files || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>📄 Dokumente</strong></div>
-                ${docs.map(d => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${d}</div>`).join('')}
-                <button class="secondary-action full" id="docs-add">+ Dokument hinzufügen</button>
-              </div>
-            `;
-
-          case 'gallery':
-            const images = data.images || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
-                  ${images.map(img => `<div style="aspect-ratio:1;background:rgba(255,255,255,0.04);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;">${img}</div>`).join('')}
-                </div>
-                <button class="secondary-action full" id="gallery-add">+ Bild hinzufügen</button>
-              </div>
-            `;
-
-          case 'weather':
-            const cities = data.cities || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🌦️ Wetter</strong></div>
-                ${cities.map(c => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${c}: 22°C, sonnig</div>`).join('')}
-                <button class="secondary-action full" id="weather-add">+ Stadt hinzufügen</button>
-              </div>
-            `;
-
-          case 'navigation':
-            const routes = data.routes || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🧭 Routen</strong></div>
-                ${routes.map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
-                <button class="secondary-action full" id="nav-add">+ Route hinzufügen</button>
-              </div>
-            `;
-
-          case 'learning':
-            const courses = data.courses || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>📚 Kurse</strong></div>
-                ${courses.map(c => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${c}</div>`).join('')}
-                <button class="secondary-action full" id="learning-add">+ Kurs hinzufügen</button>
-              </div>
-            `;
-
-          case 'office':
-            const offDocs = data.docs || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>📊 Office</strong></div>
-                ${offDocs.map(d => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${d}</div>`).join('')}
-                <button class="secondary-action full" id="office-add">+ Datei hinzufügen</button>
-              </div>
-            `;
-
-          case 'photos':
-            const albums = data.albums || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>📸 Alben</strong></div>
-                ${albums.map(a => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${a}</div>`).join('')}
-                <button class="secondary-action full" id="photos-add">+ Album hinzufügen</button>
-              </div>
-            `;
-
-          case 'recorder':
-            const recordings = data.recordings || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🎙️ Aufnahmen</strong></div>
-                ${recordings.map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
-                <button class="secondary-action full" id="recorder-add">+ Aufnahme hinzufügen</button>
-              </div>
-            `;
-
-          case 'browser':
-            const bookmarks = data.bookmarks || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🌐 Lesezeichen</strong></div>
-                ${bookmarks.map(b => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${b}</div>`).join('')}
-                <button class="secondary-action full" id="browser-add">+ Lesezeichen hinzufügen</button>
-              </div>
-            `;
-
-          case 'internet':
-            const speed = data.speedtest || {};
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>📶 Internet</strong></div>
-                <div>Ping: ${speed.ping || '--'}</div>
-                <div>Download: ${speed.download || '--'}</div>
-                <div>Upload: ${speed.upload || '--'}</div>
-                <button class="secondary-action full" id="internet-test">Speedtest starten</button>
-              </div>
-            `;
-
-          case 'keyboard':
-            const layouts = data.layouts || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>⌨️ Tastaturlayouts</strong></div>
-                ${layouts.map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
-                <button class="secondary-action full" id="keyboard-add">+ Layout hinzufügen</button>
-              </div>
-            `;
-
-          case 'personalization':
-            const themes = data.themes || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🎨 Themes</strong></div>
-                ${themes.map(t => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${t}</div>`).join('')}
-                <button class="secondary-action full" id="theme-add">+ Theme hinzufügen</button>
-              </div>
-            `;
-
-          case 'yourlife':
-            const stats = data.stats || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🏠 Dein Leben</strong></div>
-                ${stats.map(s => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${s}</div>`).join('')}
-                <button class="secondary-action full" id="yourlife-add">+ Statistik hinzufügen</button>
-              </div>
-            `;
-
-          case 'quicktools':
-            const tools = data.tools || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🔧 Tools</strong></div>
-                ${tools.map(t => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${t}</div>`).join('')}
-                <button class="secondary-action full" id="tools-add">+ Tool hinzufügen</button>
-              </div>
-            `;
-
-          case 'systemcenter':
-            const logs = data.logs || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>⚙️ Systemlogs</strong></div>
-                ${logs.map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
-                <button class="secondary-action full" id="log-add">+ Log hinzufügen</button>
-              </div>
-            `;
-
-          case 'security':
-            const passwords = data.passwords || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🔒 Passwörter</strong></div>
-                ${passwords.map(p => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${p}</div>`).join('')}
-                <button class="secondary-action full" id="security-add">+ Passwort hinzufügen</button>
-              </div>
-            `;
-
-          case 'updates':
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>🔄 Updates</strong></div>
-                <div>Status: ${data.status || 'Aktuell'}</div>
-                <button class="primary-action full" id="updates-check">Prüfen</button>
-              </div>
-            `;
-
-          case 'files':
-            const folders = data.folders || [];
-            return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div><strong>📁 Ordner</strong></div>
-                ${folders.map(f => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${f}</div>`).join('')}
-                <button class="secondary-action full" id="files-add">+ Ordner hinzufügen</button>
-              </div>
-            `;
-
+          // Weitere Apps...
           default:
             return null;
         }
       }
+
+      // ============================================================
+      // APP EVENTS
+      // ============================================================
 
       function bindAppEvents(appId) {
         const app = HALDO.registry[appId];
         if (!app) return;
         const data = app.data;
 
-        const addItem = (key, label) => {
-          const value = prompt(`Neuen ${label} eingeben:`);
-          if (value) {
-            if (Array.isArray(data[key])) {
-              data[key].push(value);
-              saveAppData(appId);
-              renderAppContent(app.windowId, app);
-              showToast('✅', 'Hinzugefügt', `${label} wurde hinzugefügt.`);
-            }
-          }
-        };
-
         switch(appId) {
-          case 'email':
-            document.getElementById('email-new')?.addEventListener('click', () => {
-              const to = prompt('Empfänger:');
-              if (!to) return;
-              const subject = prompt('Betreff:');
-              const body = prompt('Nachricht:');
-              if (body) {
-                data.sent.push({ to, subject, body, date: 'heute' });
-                saveAppData(appId);
-                showToast('✉️', 'E-Mail gesendet', `An: ${to}`);
-                renderAppContent(app.windowId, app);
-              }
-            });
-            document.getElementById('email-refresh')?.addEventListener('click', () => {
-              showToast('🔄', 'E-Mails aktualisiert', 'Posteingang wurde aktualisiert.');
-              renderAppContent(app.windowId, app);
-            });
-            break;
-
-          case 'health':
-            document.getElementById('health-add')?.addEventListener('click', () => {
-              const type = prompt('Was möchtest du hinzufügen? (Krankheit/Medikament/Termin)');
-              if (!type) return;
-              const value = prompt('Eintrag:');
-              if (value) {
-                if (type.toLowerCase().includes('krank')) data.diseases.push(value);
-                else if (type.toLowerCase().includes('medik')) data.medications.push(value);
-                else if (type.toLowerCase().includes('termin')) data.appointments.push(value);
-                saveAppData(appId);
-                showToast('🏥', 'Health', 'Eintrag hinzugefügt.');
-                renderAppContent(app.windowId, app);
-              }
-            });
-            break;
-
           case 'driving':
             document.getElementById('driving-add')?.addEventListener('click', () => {
-              const type = prompt('Was möchtest du hinzufügen? (Fahrstunde/Regel/Blitzer)');
+              const type = prompt('Was möchtest du hinzufügen? (Fahrstunde/Regel/Blitzer/Theorie)');
               if (!type) return;
               const value = prompt('Eintrag:');
               if (value) {
                 if (type.toLowerCase().includes('fahrstunde')) data.lessons.push(value);
                 else if (type.toLowerCase().includes('regel')) data.rules.push(value);
                 else if (type.toLowerCase().includes('blitzer')) data.speedtraps.push(value);
+                else if (type.toLowerCase().includes('theorie')) data.theory.push(value);
                 saveAppData(appId);
                 showToast('🚗', 'Fahrschule', 'Eintrag hinzugefügt.');
                 renderAppContent(app.windowId, app);
@@ -3238,99 +3393,39 @@
             });
             break;
 
-          case 'chat':
-            document.getElementById('chat-send')?.addEventListener('click', () => {
-              const input = document.getElementById('chat-input');
-              const text = input?.value.trim();
-              if (text) {
-                data.messages.push({ from: 'Du', text, time: new Date().toLocaleTimeString() });
-                input.value = '';
+          case 'traffic':
+            document.getElementById('traffic-test')?.addEventListener('click', () => {
+              triggerTrafficWarning({
+                type: 'warning',
+                location: 'Test',
+                message: '🧪 Test-Warnung! Verkehrswarnung funktioniert.',
+              });
+            });
+            document.getElementById('traffic-clear')?.addEventListener('click', () => {
+              if (confirm('Alle Warnungen löschen?')) {
+                data.warnings = [];
                 saveAppData(appId);
-                showToast('💬', 'Chat', 'Nachricht gesendet.');
                 renderAppContent(app.windowId, app);
-                setTimeout(() => {
-                  data.messages.push({ from: 'HalDo Bot', text: 'Danke für deine Nachricht! 🤖', time: new Date().toLocaleTimeString() });
-                  saveAppData(appId);
-                  renderAppContent(app.windowId, app);
-                }, 1000);
+                showToast('🗑️', 'Verkehr', 'Warnungen gelöscht.');
               }
             });
             break;
 
-          case 'call':
-            document.getElementById('call-start')?.addEventListener('click', () => {
-              showConfirm('Anruf starten', 'Möchtest du einen Audio-Anruf starten?').then(confirmed => {
-                if (confirmed) {
-                  showToast('📞', 'Anruf', 'Verbindung wird hergestellt …');
-                  setTimeout(() => showToast('📞', 'Anruf', 'Verbunden.'), 2000);
-                }
-              });
-            });
-            document.getElementById('call-video')?.addEventListener('click', () => {
-              showConfirm('Videoanruf', 'Möchtest du einen Videoanruf starten?').then(confirmed => {
-                if (confirmed) {
-                  showToast('🎥', 'Videoanruf', 'Verbindung wird hergestellt …');
-                  setTimeout(() => showToast('🎥', 'Videoanruf', 'Verbunden.'), 2000);
-                }
-              });
-            });
-            break;
-
-          case 'calendar':
-            document.getElementById('calendar-add')?.addEventListener('click', () => {
-              const title = prompt('Termin:');
-              if (!title) return;
-              const date = prompt('Datum (TT.MM.JJJJ):') || 'heute';
-              const time = prompt('Uhrzeit:') || '--:--';
-              data.events.push({ title, date, time });
-              saveAppData(appId);
-              showToast('📅', 'Kalender', 'Termin hinzugefügt.');
-              renderAppContent(app.windowId, app);
-            });
-            break;
-
-          case 'tasks':
-            document.getElementById('tasks-add')?.addEventListener('click', () => {
-              const title = prompt('Aufgabe:');
-              if (title) {
-                data.items.push({ title, done: false });
+          case 'health':
+            document.getElementById('health-add')?.addEventListener('click', () => {
+              const type = prompt('Was möchtest du hinzufügen? (Krankheit/Medikament/Termin/Rat)');
+              if (!type) return;
+              const value = prompt('Eintrag:');
+              if (value) {
+                if (type.toLowerCase().includes('krank')) data.diseases.push(value);
+                else if (type.toLowerCase().includes('medik')) data.medications.push(value);
+                else if (type.toLowerCase().includes('termin')) data.appointments.push(value);
+                else if (type.toLowerCase().includes('rat')) data.advice.push(value);
                 saveAppData(appId);
-                showToast('✅', 'Tasks', 'Aufgabe hinzugefügt.');
+                showToast('🏥', 'Health', 'Eintrag hinzugefügt.');
                 renderAppContent(app.windowId, app);
               }
             });
-            break;
-
-          // Generische Add-Funktion für alle anderen Apps
-          default:
-            const addBtn = document.getElementById(`${appId}-add`);
-            if (addBtn) {
-              const keyMap = {
-                'music': 'playlist',
-                'journal': 'entries',
-                'docs': 'files',
-                'gallery': 'images',
-                'weather': 'cities',
-                'nav': 'routes',
-                'learning': 'courses',
-                'office': 'docs',
-                'photos': 'albums',
-                'recorder': 'recordings',
-                'browser': 'bookmarks',
-                'keyboard': 'layouts',
-                'theme': 'themes',
-                'yourlife': 'stats',
-                'tools': 'tools',
-                'log': 'logs',
-                'security': 'passwords',
-                'files': 'folders',
-              };
-              const key = keyMap[appId] || 'items';
-              addBtn.addEventListener('click', () => {
-                const label = appId.charAt(0).toUpperCase() + appId.slice(1);
-                addItem(key, label);
-              });
-            }
             break;
         }
       }
@@ -3389,7 +3484,6 @@
           HALDO.notifications = HALDO.notifications.slice(0, 50);
         }
         renderNotifications();
-        showToast(icon, title, message);
       }
 
       function renderNotifications() {
@@ -3446,11 +3540,11 @@
       // TOASTS
       // ============================================================
 
-      function showToast(icon, title, message) {
+      function showToast(icon, title, message, type = 'info') {
         const container = document.getElementById('toast-container');
         if (!container) return;
         const toast = document.createElement('div');
-        toast.className = 'toast';
+        toast.className = `toast ${type}`;
         toast.innerHTML = `
           <span class="toast-icon">${icon}</span>
           <div class="toast-body">
@@ -3462,7 +3556,7 @@
         setTimeout(() => {
           toast.classList.add('toast-out');
           setTimeout(() => toast.remove(), 300);
-        }, 4000);
+        }, 5000);
       }
 
       // ============================================================
@@ -3521,6 +3615,7 @@
           { name: 'Updates', desc: 'System- und App-Updates', icon: '↻' },
           { name: 'Security', desc: 'Datenschutz, Verschlüsselung', icon: '⌑' },
           { name: 'Über HalDo', desc: 'Version, Informationen', icon: 'ⓘ' },
+          { name: 'Verkehr & Warnungen', desc: 'Blitzer, Stau, Geschwindigkeit', icon: '🚦' },
         ];
         settingsItems.forEach(item => {
           if (item.name.toLowerCase().includes(lower) || item.desc.toLowerCase().includes(lower)) {
@@ -3734,6 +3829,7 @@
           memory: HALDO.memory,
           notifications: HALDO.notifications,
           appdata: appData,
+          warnings: HALDO.warnings,
           version: HALDO.version,
           timestamp: new Date().toISOString(),
         };
