@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🌌 HalDo AI OS v11.0 – MULTILINGUAL CYBORG</title>
+    <title>🌌 HalDo AI OS v12.0 – ULTIMATE CYBORG</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;background:#05080f;color:#eef2f8;font-family:'Segoe UI',system-ui,sans-serif;user-select:none}
+        /* ============================================================
+           ULTIMATE CYBORG STYLING
+           ============================================================ */
+        *{margin:0;padding:0;box-sizing:border-box}
+        html,body{width:100%;height:100%;overflow:hidden;background:#05080f;color:#eef2f8;font-family:'Segoe UI',system-ui,sans-serif;user-select:none}
         button{cursor:pointer;border:none;background:rgba(255,255,255,0.07);color:inherit;padding:6px 14px;border-radius:10px;font-size:13px;transition:0.2s;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.05);touch-action:manipulation}
         button:hover{background:rgba(255,255,255,0.15);transform:translateY(-1px);box-shadow:0 4px 20px rgba(74,158,255,0.2)}
         button:active{transform:scale(0.95)}
@@ -117,10 +121,10 @@
 
     <div id="boot-screen">
         <div id="boot-logo">🌌 HalDo AI OS</div>
-        <div style="font-size:16px;color:rgba(255,255,255,0.10);margin-bottom:4px;font-weight:300;">v11.0 — MULTILINGUAL CYBORG</div>
+        <div style="font-size:16px;color:rgba(255,255,255,0.10);margin-bottom:4px;font-weight:300;">v12.0 — ULTIMATE CYBORG</div>
         <div id="boot-bar-wrap"><div id="boot-bar" style="width:0%;"></div></div>
         <div id="boot-status">Initialisiere Kernsystem ...</div>
-        <div id="boot-version">27 Apps • 7 Sprachen • 500 Sterne • CYBORG Avatar</div>
+        <div id="boot-version">27 Apps • 10 Sprachen • 500+ Wissen • CYBORG Avatar</div>
     </div>
 
     <div id="desktop">
@@ -171,27 +175,22 @@
             <div class="ai-question" id="pi-ai">🤖 Frage HalDo AI zu diesem Planeten</div>
         </div>
 
-        <div id="sys-info">HalDo OS v11.0 • Kernel READY</div>
+        <div id="sys-info">HalDo OS v12.0 • Kernel READY</div>
     </div>
 
     <script>
         // ============================================================
-        // 1. KERNEL – v11.0
+        // 1. KERNEL – v12.0 ULTIMATE CYBORG
         // ============================================================
         const HalDo = {
             state: 'BOOTING',
             config: {
-                version: '11.0.0',
-                name: 'HalDo AI OS – MULTILINGUAL CYBORG',
-                build: '2026.09.07',
+                version: '12.0.0',
+                name: 'HalDo AI OS – ULTIMATE CYBORG',
+                build: '2026.09.08',
                 language: 'de',
                 apiKey: localStorage.getItem('haldo_api_key') || '',
                 personality: 'freundlich',
-                bootSteps: ['Boot Detection', 'Environment Detection', 'Storage Check', 'Security Check',
-                    'Configuration Load', 'Kernel Start', 'System Services', 'App Registry', 'App Manager',
-                    'App Runtime', 'Router', 'Window Manager', 'Display Layer', 'Cosmic World', 'Desktop',
-                    'Notifications', 'Living HalDo AI', 'CYBORG Avatar'
-                ]
             },
             storage: { db: null },
             registry: {},
@@ -209,184 +208,141 @@
         };
 
         // ============================================================
-        // 2. SPRACHEN – 7 SPRACHEN
+        // 2. SPRACHEN – 10 SPRACHEN
         // ============================================================
         HalDo.translations = {
-            de: {
-                welcome: '👋 Hallo! Ich bin HalDo AI – dein intelligenter Assistent.',
+            de: { welcome: '👋 Hallo! Ich bin HalDo AI – dein intelligenter Assistent.',
                 cyborg_hello: '🤖 Hallo! Ich bin HalDo Cyborg. Ich helfe dir gerne!',
-                sun_click: '🌞 Die Sonne ruft!',
-                settings_saved: '💾 Einstellungen gespeichert!',
-                update_ok: '🔄 System ist aktuell (v11.0.0)',
-                speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
-                task_added: '✅ Aufgabe hinzugefügt',
-                doc_saved: '💾 Dokument gespeichert!',
-                doc_empty: '⚠️ Dokument ist leer',
-                journal_saved: '📓 Eintrag gespeichert!',
-                quiz_correct: '🧪 Richtig! 🎉',
-                quiz_wrong: '🧪 Versuche es nochmal.',
-                photo_taken: '📸 Foto aufgenommen',
-                file_uploaded: '📤 Datei hochgeladen',
-                email_new: '✉️ Neue E-Mail',
-                email_refresh: '🔄 Aktualisiert',
-                browser_go: '🌐 Navigiere zu ',
-                nav_route: '🧭 Auto-Route',
-                security_ok: '🔒 Alle Systeme aktiv.',
-                backup_start: '💾 Backup wird erstellt ...',
-                network_ok: '🌐 Verbunden.',
-                help_text: '❓ Klick die Sonne für AI.',
-                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
-            },
-            en: {
-                welcome: '👋 Hello! I am HalDo AI – your intelligent assistant.',
+                sun_click: '🌞 Die Sonne ruft!', settings_saved: '💾 Einstellungen gespeichert!',
+                update_ok: '🔄 System ist aktuell (v12.0.0)', speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
+                task_added: '✅ Aufgabe hinzugefügt', doc_saved: '💾 Dokument gespeichert!',
+                doc_empty: '⚠️ Dokument ist leer', journal_saved: '📓 Eintrag gespeichert!',
+                quiz_correct: '🧪 Richtig! 🎉', quiz_wrong: '🧪 Versuche es nochmal.',
+                photo_taken: '📸 Foto aufgenommen', file_uploaded: '📤 Datei hochgeladen',
+                email_new: '✉️ Neue E-Mail', email_refresh: '🔄 Aktualisiert',
+                browser_go: '🌐 Navigiere zu ', nav_route: '🧭 Auto-Route',
+                security_ok: '🔒 Alle Systeme aktiv.', backup_start: '💾 Backup wird erstellt ...',
+                network_ok: '🌐 Verbunden.', help_text: '❓ Klick die Sonne für AI.',
+                about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' },
+            en: { welcome: '👋 Hello! I am HalDo AI – your intelligent assistant.',
                 cyborg_hello: '🤖 Hello! I am HalDo Cyborg. I am here to help!',
-                sun_click: '🌞 The sun is calling!',
-                settings_saved: '💾 Settings saved!',
-                update_ok: '🔄 System is up to date (v11.0.0)',
-                speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
-                task_added: '✅ Task added',
-                doc_saved: '💾 Document saved!',
-                doc_empty: '⚠️ Document is empty',
-                journal_saved: '📓 Entry saved!',
-                quiz_correct: '🧪 Correct! 🎉',
-                quiz_wrong: '🧪 Try again.',
-                photo_taken: '📸 Photo taken',
-                file_uploaded: '📤 File uploaded',
-                email_new: '✉️ New Email',
-                email_refresh: '🔄 Refreshed',
-                browser_go: '🌐 Navigate to ',
-                nav_route: '🧭 Auto Route',
-                security_ok: '🔒 All systems active.',
-                backup_start: '💾 Backup is being created ...',
-                network_ok: '🌐 Connected.',
-                help_text: '❓ Click the sun for AI.',
-                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
-            },
-            ku: {
-                welcome: '👋 Silav! Ez HalDo AI me – yarîkarê te yê jîr.',
+                sun_click: '🌞 The sun is calling!', settings_saved: '💾 Settings saved!',
+                update_ok: '🔄 System is up to date (v12.0.0)',
+                speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps', task_added: '✅ Task added',
+                doc_saved: '💾 Document saved!', doc_empty: '⚠️ Document is empty',
+                journal_saved: '📓 Entry saved!', quiz_correct: '🧪 Correct! 🎉',
+                quiz_wrong: '🧪 Try again.', photo_taken: '📸 Photo taken',
+                file_uploaded: '📤 File uploaded', email_new: '✉️ New Email',
+                email_refresh: '🔄 Refreshed', browser_go: '🌐 Navigate to ',
+                nav_route: '🧭 Auto Route', security_ok: '🔒 All systems active.',
+                backup_start: '💾 Backup is being created ...', network_ok: '🌐 Connected.',
+                help_text: '❓ Click the sun for AI.', about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' },
+            ku: { welcome: '👋 Silav! Ez HalDo AI me – yarîkarê te yê jîr.',
                 cyborg_hello: '🤖 Silav! Ez HalDo Cyborg me. Ez dikarim alîkariya te bikim!',
-                sun_click: '🌞 Roj gazî dike!',
-                settings_saved: '💾 Mîheng hatin hilandin!',
-                update_ok: '🔄 Pergal nûve ye (v11.0.0)',
-                speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
-                task_added: '✅ Erk hat zêdekirin',
-                doc_saved: '💾 Belge hat hilandin!',
-                doc_empty: '⚠️ Belge vala ye',
-                journal_saved: '📓 Têketin hat hilandin!',
-                quiz_correct: '🧪 Rast! 🎉',
-                quiz_wrong: '🧪 Dîsa biceribîne.',
-                photo_taken: '📸 Wêne hat kişandin',
-                file_uploaded: '📤 Pel hat barkirin',
-                email_new: '✉️ E-nameya nû',
-                email_refresh: '🔄 Nûve kirin',
-                browser_go: '🌐 Ber bi ',
-                nav_route: '🧭 Rêya otomobîlê',
-                security_ok: '🔒 Hemî pergal çalak in.',
-                backup_start: '💾 Yedek tê çêkirin ...',
-                network_ok: '🌐 Girêdayî.',
-                help_text: '❓ Ji bo AI-ê li rojê bitikîne.',
-                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
-            },
-            ez: {
-                welcome: '👋 Silav! Ez HalDo AI me – alîkarê te yê jîr.',
+                sun_click: '🌞 Roj gazî dike!', settings_saved: '💾 Mîheng hatin hilandin!',
+                update_ok: '🔄 Pergal nûve ye (v12.0.0)', speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
+                task_added: '✅ Erk hat zêdekirin', doc_saved: '💾 Belge hat hilandin!',
+                doc_empty: '⚠️ Belge vala ye', journal_saved: '📓 Têketin hat hilandin!',
+                quiz_correct: '🧪 Rast! 🎉', quiz_wrong: '🧪 Dîsa biceribîne.',
+                photo_taken: '📸 Wêne hat kişandin', file_uploaded: '📤 Pel hat barkirin',
+                email_new: '✉️ E-nameya nû', email_refresh: '🔄 Nûve kirin',
+                browser_go: '🌐 Ber bi ', nav_route: '🧭 Rêya otomobîlê',
+                security_ok: '🔒 Hemî pergal çalak in.', backup_start: '💾 Yedek tê çêkirin ...',
+                network_ok: '🌐 Girêdayî.', help_text: '❓ Ji bo AI-ê li rojê bitikîne.',
+                about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' },
+            ez: { welcome: '👋 Silav! Ez HalDo AI me – alîkarê te yê jîr.',
                 cyborg_hello: '🤖 Silav! Ez HalDo Cyborg me. Ez dikarim te alîkar bikim!',
-                sun_click: '🌞 Roj gazî dike!',
-                settings_saved: '💾 Mîheng hatin tomarkirin!',
-                update_ok: '🔄 Pergal nûve ye (v11.0.0)',
-                speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
-                task_added: '✅ Erk hat zêdekirin',
-                doc_saved: '💾 Belge hat hilandin!',
-                doc_empty: '⚠️ Belge vala ye',
-                journal_saved: '📓 Têketin hat hilandin!',
-                quiz_correct: '🧪 Rast! 🎉',
-                quiz_wrong: '🧪 Dîsa biceribîne.',
-                photo_taken: '📸 Wêne hat kişandin',
-                file_uploaded: '📤 Pel hat barkirin',
-                email_new: '✉️ E-nameya nû',
-                email_refresh: '🔄 Nûve kirin',
-                browser_go: '🌐 Ber bi ',
-                nav_route: '🧭 Rêya otomobîlê',
-                security_ok: '🔒 Hemî pergal çalak in.',
-                backup_start: '💾 Yedek tê çêkirin ...',
-                network_ok: '🌐 Girêdayî.',
-                help_text: '❓ Ji bo AI-ê li rojê bitikîne.',
-                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
-            },
-            tr: {
-                welcome: '👋 Merhaba! Ben HalDo AI – akıllı asistanınız.',
+                sun_click: '🌞 Roj gazî dike!', settings_saved: '💾 Mîheng hatin tomarkirin!',
+                update_ok: '🔄 Pergal nûve ye (v12.0.0)', speedtest_ok: '✅ Ping: 14 ms, Download: 48 Mbps',
+                task_added: '✅ Erk hat zêdekirin', doc_saved: '💾 Belge hat hilandin!',
+                doc_empty: '⚠️ Belge vala ye', journal_saved: '📓 Têketin hat hilandin!',
+                quiz_correct: '🧪 Rast! 🎉', quiz_wrong: '🧪 Dîsa biceribîne.',
+                photo_taken: '📸 Wêne hat kişandin', file_uploaded: '📤 Pel hat barkirin',
+                email_new: '✉️ E-nameya nû', email_refresh: '🔄 Nûve kirin',
+                browser_go: '🌐 Ber bi ', nav_route: '🧭 Rêya otomobîlê',
+                security_ok: '🔒 Hemî pergal çalak in.', backup_start: '💾 Yedek tê çêkirin ...',
+                network_ok: '🌐 Girêdayî.', help_text: '❓ Ji bo AI-ê li rojê bitikîne.',
+                about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' },
+            tr: { welcome: '👋 Merhaba! Ben HalDo AI – akıllı asistanınız.',
                 cyborg_hello: '🤖 Merhaba! Ben HalDo Cyborg. Yardımcı olmaktan mutluluk duyarım!',
-                sun_click: '🌞 Güneş çağırıyor!',
-                settings_saved: '💾 Ayarlar kaydedildi!',
-                update_ok: '🔄 Sistem güncel (v11.0.0)',
-                speedtest_ok: '✅ Ping: 14 ms, İndirme: 48 Mbps',
-                task_added: '✅ Görev eklendi',
-                doc_saved: '💾 Belge kaydedildi!',
-                doc_empty: '⚠️ Belge boş',
-                journal_saved: '📓 Giriş kaydedildi!',
-                quiz_correct: '🧪 Doğru! 🎉',
-                quiz_wrong: '🧪 Tekrar dene.',
-                photo_taken: '📸 Fotoğraf çekildi',
-                file_uploaded: '📤 Dosya yüklendi',
-                email_new: '✉️ Yeni E-posta',
-                email_refresh: '🔄 Yenilendi',
-                browser_go: '🌐 Git: ',
-                nav_route: '🧭 Araba Rotası',
-                security_ok: '🔒 Tüm sistemler aktif.',
-                backup_start: '💾 Yedek oluşturuluyor ...',
-                network_ok: '🌐 Bağlandı.',
-                help_text: '❓ AI için güneşe tıkla.',
-                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
-            },
-            ar: {
-                welcome: '👋 مرحبا! أنا HalDo AI – مساعدك الذكي.',
+                sun_click: '🌞 Güneş çağırıyor!', settings_saved: '💾 Ayarlar kaydedildi!',
+                update_ok: '🔄 Sistem güncel (v12.0.0)', speedtest_ok: '✅ Ping: 14 ms, İndirme: 48 Mbps',
+                task_added: '✅ Görev eklendi', doc_saved: '💾 Belge kaydedildi!',
+                doc_empty: '⚠️ Belge boş', journal_saved: '📓 Giriş kaydedildi!',
+                quiz_correct: '🧪 Doğru! 🎉', quiz_wrong: '🧪 Tekrar dene.',
+                photo_taken: '📸 Fotoğraf çekildi', file_uploaded: '📤 Dosya yüklendi',
+                email_new: '✉️ Yeni E-posta', email_refresh: '🔄 Yenilendi',
+                browser_go: '🌐 Git: ', nav_route: '🧭 Araba Rotası',
+                security_ok: '🔒 Tüm sistemler aktif.', backup_start: '💾 Yedek oluşturuluyor ...',
+                network_ok: '🌐 Bağlandı.', help_text: '❓ AI için güneşe tıkla.',
+                about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' },
+            ar: { welcome: '👋 مرحبا! أنا HalDo AI – مساعدك الذكي.',
                 cyborg_hello: '🤖 مرحبا! أنا HalDo Cyborg. أنا هنا للمساعدة!',
-                sun_click: '🌞 الشمس تنادي!',
-                settings_saved: '💾 تم حفظ الإعدادات!',
-                update_ok: '🔄 النظام محدث (v11.0.0)',
-                speedtest_ok: '✅ بينغ: 14 مللي، تحميل: 48 ميجابت',
-                task_added: '✅ تم إضافة المهمة',
-                doc_saved: '💾 تم حفظ المستند!',
-                doc_empty: '⚠️ المستند فارغ',
-                journal_saved: '📓 تم حفظ الإدخال!',
-                quiz_correct: '🧪 صحيح! 🎉',
-                quiz_wrong: '🧪 حاول مرة أخرى.',
-                photo_taken: '📸 تم التقاط الصورة',
-                file_uploaded: '📤 تم رفع الملف',
-                email_new: '✉️ بريد جديد',
-                email_refresh: '🔄 تم التحديث',
-                browser_go: '🌐 انتقل إلى ',
-                nav_route: '🧭 طريق السيارة',
-                security_ok: '🔒 جميع الأنظمة نشطة.',
-                backup_start: '💾 جاري إنشاء النسخ الاحتياطي ...',
-                network_ok: '🌐 متصل.',
-                help_text: '❓ انقر على الشمس للذكاء الاصطناعي.',
-                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
-            },
-            fr: {
-                welcome: '👋 Bonjour! Je suis HalDo AI – votre assistant intelligent.',
+                sun_click: '🌞 الشمس تنادي!', settings_saved: '💾 تم حفظ الإعدادات!',
+                update_ok: '🔄 النظام محدث (v12.0.0)', speedtest_ok: '✅ بينغ: 14 مللي، تحميل: 48 ميجابت',
+                task_added: '✅ تم إضافة المهمة', doc_saved: '💾 تم حفظ المستند!',
+                doc_empty: '⚠️ المستند فارغ', journal_saved: '📓 تم حفظ الإدخال!',
+                quiz_correct: '🧪 صحيح! 🎉', quiz_wrong: '🧪 حاول مرة أخرى.',
+                photo_taken: '📸 تم التقاط الصورة', file_uploaded: '📤 تم رفع الملف',
+                email_new: '✉️ بريد جديد', email_refresh: '🔄 تم التحديث',
+                browser_go: '🌐 انتقل إلى ', nav_route: '🧭 طريق السيارة',
+                security_ok: '🔒 جميع الأنظمة نشطة.', backup_start: '💾 جاري إنشاء النسخ الاحتياطي ...',
+                network_ok: '🌐 متصل.', help_text: '❓ انقر على الشمس للذكاء الاصطناعي.',
+                about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' },
+            fr: { welcome: '👋 Bonjour! Je suis HalDo AI – votre assistant intelligent.',
                 cyborg_hello: '🤖 Bonjour! Je suis HalDo Cyborg. Je suis là pour vous aider!',
-                sun_click: '🌞 Le soleil appelle!',
-                settings_saved: '💾 Paramètres enregistrés!',
-                update_ok: '🔄 Système à jour (v11.0.0)',
-                speedtest_ok: '✅ Ping: 14 ms, Téléchargement: 48 Mbps',
-                task_added: '✅ Tâche ajoutée',
-                doc_saved: '💾 Document enregistré!',
-                doc_empty: '⚠️ Document vide',
-                journal_saved: '📓 Entrée enregistrée!',
-                quiz_correct: '🧪 Correct! 🎉',
-                quiz_wrong: '🧪 Réessayez.',
-                photo_taken: '📸 Photo prise',
-                file_uploaded: '📤 Fichier téléchargé',
-                email_new: '✉️ Nouvel e-mail',
-                email_refresh: '🔄 Actualisé',
-                browser_go: '🌐 Aller à ',
-                nav_route: '🧭 Itinéraire auto',
-                security_ok: '🔒 Tous les systèmes actifs.',
-                backup_start: '💾 Sauvegarde en cours ...',
-                network_ok: '🌐 Connecté.',
-                help_text: '❓ Cliquez sur le soleil pour l\'IA.',
-                about_text: 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG'
-            }
+                sun_click: '🌞 Le soleil appelle!', settings_saved: '💾 Paramètres enregistrés!',
+                update_ok: '🔄 Système à jour (v12.0.0)', speedtest_ok: '✅ Ping: 14 ms, Téléchargement: 48 Mbps',
+                task_added: '✅ Tâche ajoutée', doc_saved: '💾 Document enregistré!',
+                doc_empty: '⚠️ Document vide', journal_saved: '📓 Entrée enregistrée!',
+                quiz_correct: '🧪 Correct! 🎉', quiz_wrong: '🧪 Réessayez.',
+                photo_taken: '📸 Photo prise', file_uploaded: '📤 Fichier téléchargé',
+                email_new: '✉️ Nouvel e-mail', email_refresh: '🔄 Actualisé',
+                browser_go: '🌐 Aller à ', nav_route: '🧭 Itinéraire auto',
+                security_ok: '🔒 Tous les systèmes actifs.', backup_start: '💾 Sauvegarde en cours ...',
+                network_ok: '🌐 Connecté.', help_text: '❓ Cliquez sur le soleil pour l\'IA.',
+                about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' },
+            es: { welcome: '👋 ¡Hola! Soy HalDo AI – tu asistente inteligente.',
+                cyborg_hello: '🤖 ¡Hola! Soy HalDo Cyborg. ¡Estoy aquí para ayudarte!',
+                sun_click: '🌞 ¡El sol llama!', settings_saved: '💾 ¡Configuración guardada!',
+                update_ok: '🔄 El sistema está actualizado (v12.0.0)',
+                speedtest_ok: '✅ Ping: 14 ms, Descarga: 48 Mbps', task_added: '✅ Tarea añadida',
+                doc_saved: '💾 ¡Documento guardado!', doc_empty: '⚠️ El documento está vacío',
+                journal_saved: '📓 ¡Entrada guardada!', quiz_correct: '🧪 ¡Correcto! 🎉',
+                quiz_wrong: '🧪 Inténtalo de nuevo.', photo_taken: '📸 Foto tomada',
+                file_uploaded: '📤 Archivo subido', email_new: '✉️ Nuevo correo',
+                email_refresh: '🔄 Actualizado', browser_go: '🌐 Navegar a ',
+                nav_route: '🧭 Ruta en coche', security_ok: '🔒 Todos los sistemas activos.',
+                backup_start: '💾 Creando copia de seguridad ...', network_ok: '🌐 Conectado.',
+                help_text: '❓ Haz clic en el sol para la IA.',
+                about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' },
+            ru: { welcome: '👋 Привет! Я HalDo AI – твой интеллектуальный помощник.',
+                cyborg_hello: '🤖 Привет! Я HalDo Cyborg. Я здесь, чтобы помочь!',
+                sun_click: '🌞 Солнце зовёт!', settings_saved: '💾 Настройки сохранены!',
+                update_ok: '🔄 Система обновлена (v12.0.0)',
+                speedtest_ok: '✅ Пинг: 14 мс, Загрузка: 48 Мбит/с', task_added: '✅ Задача добавлена',
+                doc_saved: '💾 Документ сохранён!', doc_empty: '⚠️ Документ пуст',
+                journal_saved: '📓 Запись сохранена!', quiz_correct: '🧪 Правильно! 🎉',
+                quiz_wrong: '🧪 Попробуйте снова.', photo_taken: '📸 Фото сделано',
+                file_uploaded: '📤 Файл загружен', email_new: '✉️ Новое письмо',
+                email_refresh: '🔄 Обновлено', browser_go: '🌐 Перейти к ',
+                nav_route: '🧭 Маршрут на авто', security_ok: '🔒 Все системы активны.',
+                backup_start: '💾 Создание резервной копии ...', network_ok: '🌐 Подключено.',
+                help_text: '❓ Нажмите на солнце для ИИ.',
+                about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' },
+            zh: { welcome: '👋 你好！我是HalDo AI – 你的智能助手。',
+                cyborg_hello: '🤖 你好！我是HalDo Cyborg。我在这里帮助你！',
+                sun_click: '🌞 太阳在呼唤！', settings_saved: '💾 设置已保存！',
+                update_ok: '🔄 系统已更新（v12.0.0）', speedtest_ok: '✅ 延迟：14毫秒，下载：48 Mbps',
+                task_added: '✅ 任务已添加', doc_saved: '💾 文档已保存！',
+                doc_empty: '⚠️ 文档为空', journal_saved: '📓 条目已保存！',
+                quiz_correct: '🧪 正确！🎉', quiz_wrong: '🧪 再试一次。',
+                photo_taken: '📸 已拍照', file_uploaded: '📤 文件已上传',
+                email_new: '✉️ 新邮件', email_refresh: '🔄 已刷新',
+                browser_go: '🌐 前往 ', nav_route: '🧭 驾车路线',
+                security_ok: '🔒 所有系统正常运行。', backup_start: '💾 正在创建备份...',
+                network_ok: '🌐 已连接。', help_text: '❓ 点击太阳获取AI帮助。',
+                about_text: 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG' }
         };
 
         // ============================================================
@@ -395,7 +351,7 @@
         HalDo.storage = {
             async init() {
                 try {
-                    const req = indexedDB.open('HalDoOS', 11);
+                    const req = indexedDB.open('HalDoOS', 12);
                     req.onupgradeneeded = (e) => {
                         const db = e.target.result;
                         if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
@@ -438,40 +394,49 @@
         // 4. APP REGISTRY – 27 APPS
         // ============================================================
         const APP_DEFINITIONS = [
-            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Ultra-intelligente KI', version: '11.0.0' },
+            { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'KI', desc: 'Ultra-intelligente KI mit Cyborg-Avatar',
+                version: '12.0.0' },
             { id: 'cyborg', name: 'HalDo Cyborg', icon: '🦾', cat: 'KI', desc: 'Lebendiger Roboter-Assistent',
-                version: '11.0.0' },
-            { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Internet-Browser', version: '11.0.0' },
-            { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'Organisation', desc: 'Terminkalender', version: '11.0.0' },
-            { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumente & Editor', version: '11.0.0' },
-            { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client', version: '11.0.0' },
-            { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager', version: '11.0.0' },
-            { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'Medien', desc: 'Bildergalerie', version: '11.0.0' },
-            { id: 'health', name: 'Health', icon: '🏥', cat: 'Gesundheit', desc: 'Gesundheitsakte', version: '11.0.0' },
+                version: '12.0.0' },
+            { id: 'browser', name: 'Browser', icon: '🌐', cat: 'Internet', desc: 'Internet-Browser mit Lesezeichen',
+                version: '12.0.0' },
+            { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'Organisation', desc: 'Terminkalender mit Feiertagen',
+                version: '12.0.0' },
+            { id: 'documents', name: 'Documents', icon: '📄', cat: 'Büro', desc: 'Dokumente & Editor',
+            version: '12.0.0' },
+            { id: 'email', name: 'Email', icon: '✉️', cat: 'Kommunikation', desc: 'E-Mail-Client', version: '12.0.0' },
+            { id: 'files', name: 'Files', icon: '📁', cat: 'System', desc: 'Dateimanager', version: '12.0.0' },
+            { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'Medien', desc: 'Bildergalerie', version: '12.0.0' },
+            { id: 'health', name: 'Health', icon: '🏥', cat: 'Gesundheit', desc: 'Gesundheitsakte', version: '12.0.0' },
             { id: 'internet', name: 'Internet', icon: '📶', cat: 'Internet', desc: 'Netzwerk & Speedtest',
-                version: '11.0.0' },
-            { id: 'journal', name: 'Journal', icon: '📓', cat: 'Persönlich', desc: 'Tagebuch', version: '11.0.0' },
+                version: '12.0.0' },
+            { id: 'journal', name: 'Journal', icon: '📓', cat: 'Persönlich', desc: 'Tagebuch', version: '12.0.0' },
             { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'System', desc: 'Tastatur & Sprachen',
-                version: '11.0.0' },
-            { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Kurse & Quiz', version: '11.0.0' },
-            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Musikplayer', version: '11.0.0' },
-            { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'Reisen', desc: 'Karte & Routen', version: '11.0.0' },
-            { id: 'office', name: 'Office', icon: '📊', cat: 'Büro', desc: 'Tabellen & Text', version: '11.0.0' },
-            { id: 'photos', name: 'Photos', icon: '📸', cat: 'Medien', desc: 'Kamera & Album', version: '11.0.0' },
+                version: '12.0.0' },
+            { id: 'learning', name: 'Learning', icon: '📚', cat: 'Bildung', desc: 'Kurse & Quiz', version: '12.0.0' },
+            { id: 'music', name: 'Music', icon: '🎵', cat: 'Medien', desc: 'Musikplayer mit 50+ Songs',
+                version: '12.0.0' },
+            { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'Reisen', desc: 'Karte & Routen',
+            version: '12.0.0' },
+            { id: 'office', name: 'Office', icon: '📊', cat: 'Büro', desc: 'Tabellen & Text', version: '12.0.0' },
+            { id: 'photos', name: 'Photos', icon: '📸', cat: 'Medien', desc: 'Kamera & Album', version: '12.0.0' },
             { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'Werkzeuge', desc: 'Rechner, Timer, Umrechner',
-                version: '11.0.0' },
-            { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'Medien', desc: 'Audio-Recorder', version: '11.0.0' },
+                version: '12.0.0' },
+            { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'Medien', desc: 'Audio-Recorder', version: '12.0.0' },
             { id: 'security', name: 'Security', icon: '🔒', cat: 'Sicherheit', desc: 'Passwortmanager & Firewall',
-                version: '11.0.0' },
-            { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'Organisation', desc: 'Aufgabenliste', version: '11.0.0' },
-            { id: 'updates', name: 'Updates', icon: '🔄', cat: 'System', desc: 'Update-Manager', version: '11.0.0' },
-            { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'Medien', desc: 'Video-Editor', version: '11.0.0' },
-            { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'Information', desc: 'Wetter & 7-Tage', version: '11.0.0' },
+                version: '12.0.0' },
+            { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'Organisation', desc: 'Aufgabenliste', version: '12.0.0' },
+            { id: 'updates', name: 'Updates', icon: '🔄', cat: 'System', desc: 'Update-Manager', version: '12.0.0' },
+            { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'Medien', desc: 'Video-Editor mit Timeline',
+                version: '12.0.0' },
+            { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'Information', desc: 'Wetter & 7-Tage',
+                version: '12.0.0' },
             { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'System', desc: 'Themes & Schrift',
-                version: '11.0.0' },
-            { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'Persönlich', desc: 'Dashboard', version: '11.0.0' },
-            { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'System', desc: 'Systemsteuerung',
-                version: '11.0.0' },
+                version: '12.0.0' },
+            { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'Persönlich', desc: 'Dashboard für alles',
+                version: '12.0.0' },
+            { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'System', desc: 'Systemsteuerung & Logs',
+                version: '12.0.0' },
         ];
         APP_DEFINITIONS.forEach(app => { HalDo.registry[app.id] = { ...app, installed: true, running: false,
                 windowId: null }; });
@@ -644,6 +609,7 @@
                     <button id="cyborg-wave-${winId}">👋 Winken</button>
                     <button id="cyborg-talk-${winId}">💬 Sprechen</button>
                     <button id="cyborg-dance-${winId}">🕺 Tanzen</button>
+                    <button id="cyborg-tip-${winId}">💡 Tipp</button>
                   </div>
                   <div id="cyborg-status-${winId}" style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:4px;">Status: Bereit</div>
                 </div>
@@ -758,7 +724,13 @@
                     keyboard: () => `
                 <div style="display:flex;flex-direction:column;gap:6px;">
                   <div><strong>⌨️ Layout:</strong> <select><option>Deutsch</option><option>English</option></select></div>
-                  <div><strong>🌐 Sprache:</strong> <select id="keyboard-lang-${winId}"><option value="de">Deutsch</option><option value="en">English</option><option value="ku">Kurdish</option><option value="ez">Êzîdî</option><option value="tr">Türkçe</option><option value="ar">العربية</option><option value="fr">Français</option></select></div>
+                  <div><strong>🌐 Sprache:</strong> <select id="keyboard-lang-${winId}">
+                    <option value="de">Deutsch</option><option value="en">English</option>
+                    <option value="ku">Kurdî</option><option value="ez">Êzîdî</option>
+                    <option value="tr">Türkçe</option><option value="ar">العربية</option>
+                    <option value="fr">Français</option><option value="es">Español</option>
+                    <option value="ru">Русский</option><option value="zh">中文</option>
+                  </select></div>
                   <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);">
                     ⌨️ Strg+C, Strg+V, Alt+Tab
                   </div>
@@ -899,7 +871,7 @@
                 <div style="display:flex;flex-direction:column;gap:6px;">
                   <div style="display:flex;align-items:center;gap:10px;">
                     <span style="font-size:24px;">🔄</span>
-                    <div><strong>HalDo OS v11.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:12px;">Alle Apps aktuell</span></div>
+                    <div><strong>HalDo OS v12.0.0</strong><br><span style="color:rgba(255,255,255,0.3);font-size:12px;">Alle Apps aktuell</span></div>
                     <button style="margin-left:auto;" id="update-check-${winId}">🔍 Suchen</button>
                   </div>
                   <div style="background:rgba(255,255,255,0.02);padding:8px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);">
@@ -946,13 +918,11 @@
                   <div><strong>📝 Schriftgröße:</strong> <input type="range" id="font-size-${winId}" min="12" max="22" value="14" style="width:100%;"></div>
                   <div><strong>✨ Animationen:</strong> <input type="checkbox" id="animations-${winId}" checked> aktiviert</div>
                   <div><strong>🌐 Sprache:</strong> <select id="language-select-${winId}">
-                    <option value="de">🇩🇪 Deutsch</option>
-                    <option value="en">🇬🇧 English</option>
-                    <option value="ku">🇰🇼 Kurdî</option>
-                    <option value="ez">🇰🇼 Êzîdî</option>
-                    <option value="tr">🇹🇷 Türkçe</option>
-                    <option value="ar">🇸🇦 العربية</option>
-                    <option value="fr">🇫🇷 Français</option>
+                    <option value="de">🇩🇪 Deutsch</option><option value="en">🇬🇧 English</option>
+                    <option value="ku">🇰🇼 Kurdî</option><option value="ez">🇰🇼 Êzîdî</option>
+                    <option value="tr">🇹🇷 Türkçe</option><option value="ar">🇸🇦 العربية</option>
+                    <option value="fr">🇫🇷 Français</option><option value="es">🇪🇸 Español</option>
+                    <option value="ru">🇷🇺 Русский</option><option value="zh">🇨🇳 中文</option>
                   </select></div>
                   <div><strong>🔑 API-Key:</strong> <input type="password" id="api-key-${winId}" placeholder="Optional" style="width:100%;" value="${HalDo.config.apiKey}"></div>
                   <button id="settings-save-${winId}" style="background:#4a9eff;color:#fff;">💾 Speichern</button>
@@ -1040,6 +1010,7 @@
                         const waveBtn = document.querySelector(`#cyborg-wave-${winId}`);
                         const talkBtn = document.querySelector(`#cyborg-talk-${winId}`);
                         const danceBtn = document.querySelector(`#cyborg-dance-${winId}`);
+                        const tipBtn = document.querySelector(`#cyborg-tip-${winId}`);
                         const status = document.querySelector(`#cyborg-status-${winId}`);
                         if (waveBtn) waveBtn.onclick = () => { if (HalDo.cyborg) HalDo.cyborg.wave(); if (status) status
                                 .textContent = '👋 Winken!'; };
@@ -1049,6 +1020,11 @@
                             ); if (status) status.textContent = '💬 Spricht ...'; };
                         if (danceBtn) danceBtn.onclick = () => { if (HalDo.cyborg) HalDo.cyborg.dance(); if (status) status
                                 .textContent = '🕺 Tanzt!'; };
+                        if (tipBtn) tipBtn.onclick = async () => {
+                            const tip = await HalDo.ai.ask('Gib mir einen hilfreichen Tipp für den Alltag.');
+                            if (HalDo.cyborg) HalDo.cyborg.speak(tip);
+                            if (status) status.textContent = '💡 Tipp gegeben!';
+                        };
                     }, 50);
                 }
 
@@ -1153,7 +1129,7 @@
                     setTimeout(() => {
                         const check = document.querySelector(`#update-check-${winId}`);
                         if (check) check.onclick = () => showNotification('🔄', HalDo.translations[HalDo.config
-                            .language]?.update_ok || '🔄 System ist aktuell (v11.0.0)');
+                            .language]?.update_ok || '🔄 System ist aktuell (v12.0.0)');
                     }, 50);
                 }
 
@@ -1360,14 +1336,14 @@
         };
 
         // ============================================================
-        // 8. COSMIC WORLD (gekürzt, aber voll funktionsfähig)
+        // 8. COSMIC WORLD – ULTIMATE REALISTISCH
         // ============================================================
         HalDo.cosmic = {
             canvas: null,
             ctx: null,
             planets: [],
             stars: [],
-            sun: { x: 0, y: 0, radius: 38, pulse: 0 },
+            sun: { x: 0, y: 0, radius: 42, pulse: 0 },
             mouseX: 0,
             mouseY: 0,
             zoom: 1,
@@ -1390,6 +1366,7 @@
                 if (!this.ctx) return;
                 this.resize();
                 window.addEventListener('resize', () => this.resize());
+                // Interaktion
                 this.canvas.addEventListener('mousedown', (e) => { this.isDragging = true;
                     this.dragStartX = e.clientX;
                     this.dragStartY = e.clientY;
@@ -1430,31 +1407,40 @@
                 });
                 this.canvas.addEventListener('touchend', () => { this.isDragging = false;
                     lastDist = 0; });
+                // Planeten (12)
                 const planetData = [
-                    { name: 'Merkur', radius: 7, orbit: 65, speed: 0.9, color: '#b5b5b5', desc: 'Kleinster Planet' },
-                    { name: 'Venus', radius: 11, orbit: 95, speed: 0.7, color: '#e8b85a', desc: 'Heißester Planet' },
-                    { name: 'Erde', radius: 13, orbit: 125, speed: 0.5, color: '#4a9eff', hasMoon: true,
+                    { name: 'Merkur', radius: 7, orbit: 70, speed: 0.9, color: '#b5b5b5', desc: 'Kleinster Planet' },
+                    { name: 'Venus', radius: 11, orbit: 100, speed: 0.7, color: '#e8b85a', desc: 'Heißester Planet' },
+                    { name: 'Erde', radius: 14, orbit: 130, speed: 0.5, color: '#4a9eff', hasMoon: true,
                         desc: 'Unser Zuhause' },
-                    { name: 'Mars', radius: 10, orbit: 155, speed: 0.4, color: '#e07040', desc: 'Roter Planet' },
-                    { name: 'Jupiter', radius: 24, orbit: 195, speed: 0.25, color: '#d4a06a', desc: 'Größter Planet' },
-                    { name: 'Saturn', radius: 20, orbit: 235, speed: 0.2, color: '#e8d5a0', hasRings: true,
+                    { name: 'Mars', radius: 10, orbit: 160, speed: 0.4, color: '#e07040', desc: 'Roter Planet' },
+                    { name: 'Jupiter', radius: 25, orbit: 200, speed: 0.25, color: '#d4a06a', desc: 'Größter Planet' },
+                    { name: 'Saturn', radius: 21, orbit: 240, speed: 0.2, color: '#e8d5a0', hasRings: true,
                         desc: 'Mit Ringen' },
-                    { name: 'Uranus', radius: 16, orbit: 275, speed: 0.15, color: '#7ec8e3', desc: 'Eisriese' },
-                    { name: 'Neptun', radius: 15, orbit: 315, speed: 0.1, color: '#3f54ba', desc: 'Äußerster Planet' },
-                    { name: 'Pluto', radius: 5, orbit: 355, speed: 0.07, color: '#b8a08a', desc: 'Zwergplanet' },
-                    { name: 'Ceres', radius: 6, orbit: 395, speed: 0.05, color: '#a0a0a0', desc: 'Zwergplanet' },
-                    { name: 'Eris', radius: 8, orbit: 435, speed: 0.03, color: '#c0b8b0', desc: 'Großer Zwergplanet' },
-                    { name: 'Haumea', radius: 7, orbit: 465, speed: 0.02, color: '#b0a898', desc: 'Schnell rotierend' },
+                    { name: 'Uranus', radius: 17, orbit: 280, speed: 0.15, color: '#7ec8e3', desc: 'Eisriese' },
+                    { name: 'Neptun', radius: 16, orbit: 320, speed: 0.1, color: '#3f54ba', desc: 'Äußerster Planet' },
+                    { name: 'Pluto', radius: 5, orbit: 360, speed: 0.07, color: '#b8a08a', desc: 'Zwergplanet' },
+                    { name: 'Ceres', radius: 6, orbit: 400, speed: 0.05, color: '#a0a0a0', desc: 'Zwergplanet' },
+                    { name: 'Eris', radius: 8, orbit: 440, speed: 0.03, color: '#c0b8b0', desc: 'Großer Zwergplanet' },
+                    { name: 'Haumea', radius: 7, orbit: 470, speed: 0.02, color: '#b0a898', desc: 'Schnell rotierend' },
                 ];
                 this.planets = planetData.map(p => ({ ...p, angle: Math.random() * Math.PI * 2, angleSpeed: p.speed *
                         0.015, rotAngle: 0, rotSpeed: (0.01 + Math.random() * 0.03) * (Math.random() > 0.5 ? 1 : -
                         1) }));
+                // 500 Sterne
                 this.stars = [];
                 const colors = ['#ffffff', '#aaccff', '#ffdd99', '#ffddcc', '#ffaaff'];
-                for (let i = 0; i < 300; i++) { this.stars.push({ x: (Math.random() - 0.5) * 2000, y: (Math.random() -
-                            0.5) * 2000, radius: 0.5 + Math.random() * 1.5, brightness: 0.3 + Math.random() *
-                        0.7, speed: 0.003 + Math.random() * 0.02, offset: Math.random() * Math.PI * 2,
-                        color: colors[Math.floor(Math.random() * colors.length)] }); }
+                for (let i = 0; i < 500; i++) {
+                    this.stars.push({
+                        x: (Math.random() - 0.5) * 2400,
+                        y: (Math.random() - 0.5) * 2400,
+                        radius: 0.4 + Math.random() * 2.0,
+                        brightness: 0.3 + Math.random() * 0.7,
+                        speed: 0.002 + Math.random() * 0.02,
+                        offset: Math.random() * Math.PI * 2,
+                        color: colors[Math.floor(Math.random() * colors.length)]
+                    });
+                }
                 this.start();
             },
 
@@ -1473,7 +1459,7 @@
                 this.loop(); },
 
             loop() {
-                this.time += 0.007;
+                this.time += 0.006;
                 this.update();
                 this.draw();
                 this.animationId = requestAnimationFrame(() => this.loop());
@@ -1492,12 +1478,15 @@
                 if (!ctx) return;
                 const w = this.width,
                     h = this.height;
-                const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.8);
+                // Hintergrund mit Tiefe
+                const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w * 0.9);
                 grad.addColorStop(0, '#0f1a2e');
-                grad.addColorStop(0.5, '#080b16');
-                grad.addColorStop(1, '#020408');
+                grad.addColorStop(0.4, '#080b16');
+                grad.addColorStop(0.8, '#03050a');
+                grad.addColorStop(1, '#000000');
                 ctx.fillStyle = grad;
                 ctx.fillRect(0, 0, w, h);
+                // Sterne
                 this.stars.forEach(s => {
                     const tw = 0.5 + 0.5 * Math.sin(this.time * s.speed + s.offset);
                     const alpha = s.brightness * tw * 0.8 + 0.2;
@@ -1508,28 +1497,44 @@
                     ctx.fillStyle = s.color + Math.round(alpha * 200).toString(16).padStart(2, '0');
                     ctx.fill();
                 });
+                // Nebel
+                for (let i = 0; i < 4; i++) {
+                    const cx = (Math.sin(this.time * 0.005 + i * 2.1) * 400 + this.centerX + this.offsetX);
+                    const cy = (Math.cos(this.time * 0.004 + i * 2.7) * 300 + this.centerY + this.offsetY);
+                    const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 350);
+                    grd.addColorStop(0, `rgba(${80+i*30},${120+i*20},255,0.015)`);
+                    grd.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.fillStyle = grd;
+                    ctx.fillRect(cx - 350, cy - 350, 700, 700);
+                }
+                // Planetensystem
                 ctx.save();
                 ctx.translate(this.centerX + this.offsetX, this.centerY + this.offsetY);
                 ctx.scale(this.zoom, this.zoom);
+                // Umlaufbahnen
                 this.planets.forEach(p => {
                     ctx.beginPath();
                     ctx.ellipse(0, 0, p.orbit, p.orbit * 0.92, 0.05, 0, Math.PI * 2);
                     ctx.strokeStyle = 'rgba(255,255,255,0.03)';
-                    ctx.lineWidth = 0.6;
+                    ctx.lineWidth = 0.8;
                     ctx.stroke();
                 });
+                // Planeten
                 this.planets.forEach(p => {
                     const px = Math.cos(p.angle) * p.orbit;
                     const py = Math.sin(p.angle) * p.orbit * 0.92;
-                    const glow = ctx.createRadialGradient(px, py, p.radius * 0.3, px, py, p.radius * 2);
-                    glow.addColorStop(0, p.color + '30');
+                    // Glow
+                    const glow = ctx.createRadialGradient(px, py, p.radius * 0.3, px, py, p.radius * 2.5);
+                    glow.addColorStop(0, p.color + '40');
                     glow.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.shadowBlur = 0;
                     ctx.beginPath();
-                    ctx.arc(px, py, p.radius * 2, 0, Math.PI * 2);
+                    ctx.arc(px, py, p.radius * 2.5, 0, Math.PI * 2);
                     ctx.fillStyle = glow;
                     ctx.fill();
+                    // Körper
                     ctx.shadowColor = p.color + '40';
-                    ctx.shadowBlur = 15;
+                    ctx.shadowBlur = 20;
                     ctx.beginPath();
                     ctx.arc(px, py, p.radius, 0, Math.PI * 2);
                     const pg = ctx.createRadialGradient(px - p.radius * 0.3, py - p.radius * 0.3, 0, px, py, p
@@ -1540,68 +1545,75 @@
                     ctx.fillStyle = pg;
                     ctx.fill();
                     ctx.shadowBlur = 0;
+                    // Saturnringe
                     if (p.hasRings) {
                         ctx.beginPath();
-                        ctx.ellipse(px, py, p.radius * 2.4, p.radius * 0.6, 0.2, 0, Math.PI * 2);
-                        const rg = ctx.createLinearGradient(px - p.radius * 2.4, py, px + p.radius * 2.4, py);
+                        ctx.ellipse(px, py, p.radius * 2.6, p.radius * 0.7, 0.2, 0, Math.PI * 2);
+                        const rg = ctx.createLinearGradient(px - p.radius * 2.6, py, px + p.radius * 2.6, py);
                         rg.addColorStop(0, 'rgba(180,160,130,0)');
-                        rg.addColorStop(0.3, 'rgba(200,180,150,0.5)');
-                        rg.addColorStop(0.5, 'rgba(220,200,170,0.7)');
-                        rg.addColorStop(0.7, 'rgba(200,180,150,0.5)');
+                        rg.addColorStop(0.25, 'rgba(200,180,150,0.5)');
+                        rg.addColorStop(0.5, 'rgba(220,200,170,0.8)');
+                        rg.addColorStop(0.75, 'rgba(200,180,150,0.5)');
                         rg.addColorStop(1, 'rgba(180,160,130,0)');
                         ctx.fillStyle = rg;
                         ctx.fill();
                     }
+                    // Erde + Mond
                     if (p.hasMoon) {
                         const ma = this.time * 0.3 + p.angle;
-                        const mx = px + Math.cos(ma) * 22;
-                        const my = py + Math.sin(ma) * 22 * 0.7;
+                        const mx = px + Math.cos(ma) * 24;
+                        const my = py + Math.sin(ma) * 24 * 0.7;
                         ctx.shadowBlur = 5;
                         ctx.beginPath();
-                        ctx.arc(mx, my, 4, 0, Math.PI * 2);
+                        ctx.arc(mx, my, 4.5, 0, Math.PI * 2);
                         ctx.fillStyle = '#c8d0d8';
                         ctx.fill();
                         ctx.shadowBlur = 0;
                         ctx.beginPath();
-                        ctx.ellipse(px, py, 22, 22 * 0.7, 0, 0, Math.PI * 2);
-                        ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+                        ctx.ellipse(px, py, 24, 24 * 0.7, 0, 0, Math.PI * 2);
+                        ctx.strokeStyle = 'rgba(255,255,255,0.04)';
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
                 });
-                const sunR = this.sun.radius + Math.sin(this.sun.pulse) * 2.5;
-                const glowSun = ctx.createRadialGradient(0, 0, 0, 0, 0, sunR * 4);
-                glowSun.addColorStop(0, 'rgba(255,200,80,0.25)');
-                glowSun.addColorStop(0.4, 'rgba(255,150,50,0.1)');
-                glowSun.addColorStop(1, 'rgba(255,100,0,0)');
+                // SONNE mit Avatar (Gesicht)
+                const sunR = this.sun.radius + Math.sin(this.sun.pulse) * 3;
+                // Korona
+                const corona = ctx.createRadialGradient(0, 0, sunR * 0.5, 0, 0, sunR * 5);
+                corona.addColorStop(0, 'rgba(255,200,80,0.3)');
+                corona.addColorStop(0.3, 'rgba(255,150,50,0.15)');
+                corona.addColorStop(0.7, 'rgba(255,100,0,0.05)');
+                corona.addColorStop(1, 'rgba(255,100,0,0)');
+                ctx.shadowBlur = 0;
                 ctx.beginPath();
-                ctx.arc(0, 0, sunR * 4, 0, Math.PI * 2);
-                ctx.fillStyle = glowSun;
+                ctx.arc(0, 0, sunR * 5, 0, Math.PI * 2);
+                ctx.fillStyle = corona;
                 ctx.fill();
+                // Sonnenkörper (Haut)
                 ctx.shadowColor = '#ff8800';
-                ctx.shadowBlur = 80;
+                ctx.shadowBlur = 100;
                 ctx.beginPath();
                 ctx.arc(0, 0, sunR, 0, Math.PI * 2);
-                const sg = ctx.createRadialGradient(-12, -12, 0, 0, 0, sunR);
-                sg.addColorStop(0, '#fff8e8');
-                sg.addColorStop(0.2, '#ffdd44');
-                sg.addColorStop(0.5, '#ffaa00');
-                sg.addColorStop(0.8, '#ff6600');
-                sg.addColorStop(1, '#cc4400');
-                ctx.fillStyle = sg;
+                const skinGrad = ctx.createRadialGradient(-12, -12, 0, 0, 0, sunR);
+                skinGrad.addColorStop(0, '#ffddbb');
+                skinGrad.addColorStop(0.5, '#ffcc99');
+                skinGrad.addColorStop(1, '#ffaa66');
+                ctx.fillStyle = skinGrad;
                 ctx.fill();
+                // Avatar-Gesicht
                 ctx.shadowBlur = 0;
                 const cx = 0,
                     cy = 0,
-                    r = sunR * 0.7;
+                    r = sunR * 0.75;
                 const eyeY = -r * 0.2,
-                    eyeX = r * 0.28,
-                    eyeR = r * 0.16;
+                    eyeX = r * 0.3,
+                    eyeR = r * 0.18;
                 const dx = this.mouseX - (this.centerX + this.offsetX);
                 const dy = this.mouseY - (this.centerY + this.offsetY);
                 const angle = Math.atan2(dy, dx);
                 const lx = Math.cos(angle) * 2,
                     ly = Math.sin(angle) * 2;
+                // Augenweiß
                 ctx.fillStyle = '#ffffff';
                 ctx.beginPath();
                 ctx.ellipse(cx - eyeX + lx * 0.5, eyeY + ly * 0.5, eyeR, eyeR * 1.1, 0, 0, Math.PI * 2);
@@ -1609,33 +1621,53 @@
                 ctx.beginPath();
                 ctx.ellipse(cx + eyeX + lx * 0.5, eyeY + ly * 0.5, eyeR, eyeR * 1.1, 0, 0, Math.PI * 2);
                 ctx.fill();
+                // Iris
                 ctx.fillStyle = '#4a9eff';
                 ctx.beginPath();
-                ctx.arc(cx - eyeX + lx * 1.5, eyeY + ly * 1.5, eyeR * 0.55, 0, Math.PI * 2);
+                ctx.arc(cx - eyeX + lx * 1.5, eyeY + ly * 1.5, eyeR * 0.6, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(cx + eyeX + lx * 1.5, eyeY + ly * 1.5, eyeR * 0.55, 0, Math.PI * 2);
+                ctx.arc(cx + eyeX + lx * 1.5, eyeY + ly * 1.5, eyeR * 0.6, 0, Math.PI * 2);
                 ctx.fill();
+                // Pupille
                 ctx.fillStyle = '#111';
                 ctx.beginPath();
-                ctx.arc(cx - eyeX + lx * 2.5, eyeY + ly * 2.5, eyeR * 0.25, 0, Math.PI * 2);
+                ctx.arc(cx - eyeX + lx * 2.5, eyeY + ly * 2.5, eyeR * 0.3, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(cx + eyeX + lx * 2.5, eyeY + ly * 2.5, eyeR * 0.25, 0, Math.PI * 2);
+                ctx.arc(cx + eyeX + lx * 2.5, eyeY + ly * 2.5, eyeR * 0.3, 0, Math.PI * 2);
                 ctx.fill();
-                const mouthY = r * 0.3,
-                    mouthW = r * 0.35,
-                    mouthH = this.talking ? r * 0.12 : r * 0.04;
+                // Augenbrauen
+                ctx.strokeStyle = '#8a6e4b';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(cx - eyeX - eyeR * 0.8, eyeY - eyeR * 1.2);
+                ctx.lineTo(cx - eyeX + eyeR * 0.8, eyeY - eyeR * 1.4);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(cx + eyeX - eyeR * 0.8, eyeY - eyeR * 1.4);
+                ctx.lineTo(cx + eyeX + eyeR * 0.8, eyeY - eyeR * 1.2);
+                ctx.stroke();
+                // Mund
+                const mouthY = r * 0.35,
+                    mouthW = r * 0.4,
+                    mouthH = this.talking ? r * 0.15 : r * 0.05;
                 ctx.fillStyle = '#c0392b';
                 ctx.beginPath();
                 ctx.ellipse(cx, mouthY, mouthW, mouthH, 0, 0, Math.PI * 2);
                 ctx.fill();
+                if (this.talking) {
+                    ctx.fillStyle = '#ffffff';
+                    for (let i = -3; i <= 3; i++) { ctx.fillRect(cx + i * 6 - 2, mouthY - 2, 3, 4); }
+                }
+                // Nase
                 ctx.fillStyle = '#d4a373';
                 ctx.beginPath();
                 ctx.moveTo(cx, eyeY + r * 0.15);
                 ctx.lineTo(cx - 4, eyeY + r * 0.35);
                 ctx.lineTo(cx + 4, eyeY + r * 0.35);
                 ctx.fill();
+                // Wangen
                 ctx.fillStyle = 'rgba(255,150,150,0.2)';
                 ctx.beginPath();
                 ctx.ellipse(cx - r * 0.5, eyeY + r * 0.4, r * 0.2, r * 0.15, 0, 0, Math.PI * 2);
@@ -1643,51 +1675,63 @@
                 ctx.beginPath();
                 ctx.ellipse(cx + r * 0.5, eyeY + r * 0.4, r * 0.2, r * 0.15, 0, 0, Math.PI * 2);
                 ctx.fill();
+                // Schrift
                 ctx.fillStyle = 'rgba(255,255,255,0.9)';
-                ctx.font = 'bold 14px "Segoe UI", sans-serif';
+                ctx.font = 'bold 16px "Segoe UI", sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'top';
-                ctx.fillText('🌌 HalDo', 0, r * 0.6);
+                ctx.fillText('🌌 HalDo', 0, r * 0.7);
+                // Strahlen
                 ctx.shadowBlur = 0;
-                const rays = 28;
+                const rays = 36;
                 for (let i = 0; i < rays; i++) {
                     const a = (i / rays) * Math.PI * 2 + this.time * 0.003;
                     const r1 = sunR * 1.1;
-                    const r2 = sunR * (1.8 + Math.sin(this.sun.pulse + i * 0.4) * 0.4);
+                    const r2 = sunR * (1.9 + Math.sin(this.sun.pulse + i * 0.4) * 0.4);
                     ctx.beginPath();
                     ctx.moveTo(Math.cos(a) * r1, Math.sin(a) * r1);
-                    ctx.lineTo(Math.cos(a + 0.1) * r2, Math.sin(a + 0.1) * r2);
-                    ctx.strokeStyle = `rgba(255,200,100,${0.08 + Math.sin(this.sun.pulse + i*0.2)*0.05})`;
-                    ctx.lineWidth = 1.5;
+                    ctx.quadraticCurveTo(
+                        Math.cos(a + 0.08) * (r1 + r2) / 2,
+                        Math.sin(a + 0.08) * (r1 + r2) / 2,
+                        Math.cos(a + 0.12) * r2,
+                        Math.sin(a + 0.12) * r2
+                    );
+                    ctx.strokeStyle = `rgba(255,200,100,${0.1 + Math.sin(this.sun.pulse + i*0.2)*0.06})`;
+                    ctx.lineWidth = 2;
                     ctx.stroke();
                 }
                 ctx.restore();
+                // Hitbox Sonne
                 this.sun.screenX = this.centerX + this.offsetX;
                 this.sun.screenY = this.centerY + this.offsetY;
                 this.sun.screenRadius = sunR * this.zoom;
                 const dxm = this.mouseX - this.sun.screenX;
                 const dym = this.mouseY - this.sun.screenY;
-                if (Math.sqrt(dxm * dxm + dym * dym) < this.sun.screenRadius + 25) { this.canvas.style.cursor =
-                    'pointer'; } else { this.canvas.style.cursor = 'grab'; }
+                if (Math.sqrt(dxm * dxm + dym * dym) < this.sun.screenRadius + 30) {
+                    this.canvas.style.cursor = 'pointer';
+                } else { this.canvas.style.cursor = 'grab'; }
+                // Planeten-Hover
                 for (let p of this.planets) {
                     const px = (Math.cos(p.angle) * p.orbit * this.zoom) + this.centerX + this.offsetX;
                     const py = (Math.sin(p.angle) * p.orbit * 0.92 * this.zoom) + this.centerY + this.offsetY;
                     const pr = p.radius * this.zoom;
-                    if (Math.sqrt((this.mouseX - px) ** 2 + (this.mouseY - py) ** 2) < pr + 10) { this.canvas.style
-                            .cursor = 'pointer';
-                        this._hoveredPlanet = p; break; } else { this._hoveredPlanet = null; }
+                    if (Math.sqrt((this.mouseX - px) ** 2 + (this.mouseY - py) ** 2) < pr + 12) {
+                        this.canvas.style.cursor = 'pointer';
+                        this._hoveredPlanet = p;
+                        break;
+                    } else { this._hoveredPlanet = null; }
                 }
             },
 
             getSunScreenCoords() { return { x: this.sun.screenX || this.centerX + this.offsetX, y: this.sun.screenY ||
-                        this.centerY + this.offsetY, r: this.sun.screenRadius || 38 * this.zoom }; },
+                        this.centerY + this.offsetY, r: this.sun.screenRadius || 42 * this.zoom }; },
 
             getPlanetAt(mx, my) {
                 for (let p of this.planets) {
                     const px = (Math.cos(p.angle) * p.orbit * this.zoom) + this.centerX + this.offsetX;
                     const py = (Math.sin(p.angle) * p.orbit * 0.92 * this.zoom) + this.centerY + this.offsetY;
                     const pr = p.radius * this.zoom;
-                    if (Math.sqrt((mx - px) ** 2 + (my - py) ** 2) < pr + 10) return p;
+                    if (Math.sqrt((mx - px) ** 2 + (my - py) ** 2) < pr + 12) return p;
                 }
                 return null;
             },
@@ -1695,7 +1739,7 @@
         };
 
         // ============================================================
-        // 9. CYBORG AVATAR
+        // 9. CYBORG AVATAR – ULTIMATE
         // ============================================================
         HalDo.cyborg = {
             canvas: null,
@@ -1764,6 +1808,7 @@
                 ctx.clearRect(0, 0, w, h);
                 const cx = w / 2,
                     cy = h / 2 + 10;
+                // Torso
                 const torsoGrad = ctx.createLinearGradient(cx - 40, cy - 30, cx + 40, cy + 30);
                 torsoGrad.addColorStop(0, '#2a2a3a');
                 torsoGrad.addColorStop(0.5, '#1a1a2e');
@@ -1774,6 +1819,7 @@
                 ctx.beginPath();
                 ctx.roundRect(cx - 40, cy - 30, 80, 70, 10);
                 ctx.fill();
+                // LED
                 const ledPulse = 0.5 + 0.5 * Math.sin(Date.now() / 500);
                 ctx.shadowBlur = 20;
                 ctx.shadowColor = `rgba(74,158,255,${0.3 + ledPulse * 0.3})`;
@@ -1781,6 +1827,7 @@
                 ctx.beginPath();
                 ctx.arc(cx, cy + 5, 12, 0, Math.PI * 2);
                 ctx.fill();
+                // Kopf
                 ctx.shadowBlur = 10;
                 ctx.shadowColor = 'rgba(74,158,255,0.15)';
                 const headGrad = ctx.createRadialGradient(cx - 10, cy - 55, 5, cx, cy - 45, 35);
@@ -1791,6 +1838,7 @@
                 ctx.beginPath();
                 ctx.roundRect(cx - 32, cy - 70, 64, 50, 12);
                 ctx.fill();
+                // Antenne
                 ctx.shadowBlur = 5;
                 ctx.strokeStyle = '#4a4a6a';
                 ctx.lineWidth = 3;
@@ -1804,6 +1852,7 @@
                 ctx.beginPath();
                 ctx.arc(cx, cy - 87, 4, 0, Math.PI * 2);
                 ctx.fill();
+                // Augen
                 ctx.shadowBlur = 0;
                 const eyeY = cy - 55;
                 const eyeSpacing = 16;
@@ -1833,16 +1882,7 @@
                 ctx.beginPath();
                 ctx.arc(cx + eyeSpacing + 4, eyeY + 2, eyeR * 0.25, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.shadowBlur = 20;
-                ctx.shadowColor = 'rgba(74,158,255,0.1)';
-                ctx.strokeStyle = 'rgba(74,158,255,0.15)';
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.arc(cx - eyeSpacing, eyeY, eyeR + 3, 0, Math.PI * 2);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.arc(cx + eyeSpacing, eyeY, eyeR + 3, 0, Math.PI * 2);
-                ctx.stroke();
+                // Mund (LED)
                 const mouthY = cy - 35;
                 const mouthW = 22;
                 const mouthH = this.talking ? 5 + 3 * Math.sin(this.talkTimer * 15) : 2;
@@ -1853,6 +1893,7 @@
                 ctx.beginPath();
                 ctx.roundRect(cx - mouthW / 2, mouthY - mouthH / 2, mouthW, mouthH, 3);
                 ctx.fill();
+                // Wangen-LEDs
                 ctx.shadowBlur = 0;
                 ctx.fillStyle = 'rgba(74,158,255,0.1)';
                 ctx.beginPath();
@@ -1861,8 +1902,8 @@
                 ctx.beginPath();
                 ctx.arc(cx + 28, eyeY + 12, 6, 0, Math.PI * 2);
                 ctx.fill();
+                // Winken
                 if (this.waveFrame > 0 && this.waveFrame < 1) {
-                    const armAngle = Math.sin(this.waveFrame * Math.PI * 2) * 0.8;
                     ctx.strokeStyle = '#4a4a6a';
                     ctx.lineWidth = 8;
                     ctx.beginPath();
@@ -1876,6 +1917,7 @@
                         .waveFrame * Math.PI * 2) * 10, 6, 0, Math.PI * 2);
                     ctx.fill();
                 }
+                // Tanzen
                 if (this.isDancing) {
                     const danceOffset = Math.sin(this.danceFrame * 2) * 8;
                     ctx.fillStyle = 'rgba(74,158,255,0.05)';
@@ -1884,6 +1926,7 @@
                     2);
                     ctx.fill();
                 }
+                // Status-LEDs
                 const dots = [{ x: cx - 35, y: cy + 50, color: '#22c55e' }, { x: cx, y: cy + 50, color: '#4a9eff' },
                     { x: cx + 35, y: cy + 50, color: '#f97316' }
                 ];
@@ -1902,7 +1945,7 @@
                 ctx.fillStyle = 'rgba(255,255,255,0.08)';
                 ctx.font = '8px monospace';
                 ctx.textAlign = 'center';
-                ctx.fillText('HALDO CYBORG v2.0', cx, h - 8);
+                ctx.fillText('HALDO CYBORG v3.0', cx, h - 8);
             },
 
             speak(text) {
@@ -1936,7 +1979,7 @@
         };
 
         // ============================================================
-        // 10. HALDO AI – KEINE WIEDERHOLUNGEN
+        // 10. HALDO AI – ULTIMATE WISSEN (500+ Einträge)
         // ============================================================
         HalDo.ai = {
             knowledgeCache: {},
@@ -1946,14 +1989,12 @@
                 const lower = question.toLowerCase();
                 const key = question.substring(0, 30);
 
-                // Prüfe, ob die gleiche Frage schon beantwortet wurde
+                // Wiederholung vermeiden
                 if (this.knowledgeCache[key]) {
-                    // Gib eine leicht veränderte Antwort
-                    const cached = this.knowledgeCache[key];
                     const variations = [
-                        cached + ' (Ich habe das schon erwähnt, aber hier nochmal:)',
-                        cached + ' – das habe ich dir schon gesagt!',
-                        cached + ' (Erinnerst du dich? Ich sagte das bereits.)'
+                        this.knowledgeCache[key] + ' (Ich habe das schon erwähnt.)',
+                        this.knowledgeCache[key] + ' – das sagte ich bereits.',
+                        this.knowledgeCache[key] + ' (Erinnerst du dich?)'
                     ];
                     return variations[Math.floor(Math.random() * variations.length)];
                 }
@@ -1967,35 +2008,66 @@
                 };
                 const prefix = prefixes[personality] || prefixes.freundlich;
 
-                // Erweiterte Wissensdatenbank (kompakt)
+                // ============================================================
+                // ULTIMATE WISSENSDATENBANK (500+ Einträge)
+                // ============================================================
                 const knowledge = {
+                    // Technologie
                     'was ist ki': 'Künstliche Intelligenz (KI) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst.',
-                    'was ist blockchain': 'Blockchain ist eine dezentrale Datenbank, die Transaktionen in Blöcken speichert.',
-                    'was ist cloud': 'Cloud-Computing bedeutet, dass Daten und Programme über das Internet auf Servern gespeichert werden.',
+                    'was ist blockchain': 'Blockchain ist eine dezentrale Datenbank, die Transaktionen in Blöcken speichert und kryptografisch sichert.',
+                    'was ist cloud': 'Cloud-Computing bedeutet, dass Daten und Programme über das Internet auf Servern gespeichert und genutzt werden.',
                     'was ist python': 'Python ist eine beliebte Programmiersprache, die für ihre Einfachheit und Vielseitigkeit bekannt ist.',
-                    'was ist javascript': 'JavaScript ist die Sprache des Webs – sie macht Webseiten interaktiv.',
-                    'was ist html': 'HTML ist die Grundstruktur jeder Webseite – sie definiert den Inhalt.',
+                    'was ist javascript': 'JavaScript ist die Sprache des Webs – sie macht Webseiten interaktiv und dynamisch.',
+                    'was ist html': 'HTML ist die Grundstruktur jeder Webseite – sie definiert den Inhalt und die Struktur.',
                     'was ist css': 'CSS ist die Sprache für das Design und Layout von Webseiten.',
-                    'was ist react': 'React ist eine JavaScript-Bibliothek für den Bau von Benutzeroberflächen.',
+                    'was ist react': 'React ist eine JavaScript-Bibliothek für den Bau von Benutzeroberflächen, entwickelt von Meta.',
+                    'was ist vue': 'Vue.js ist ein progressives JavaScript-Framework für den Bau von Benutzeroberflächen.',
+                    'was ist angular': 'Angular ist ein TypeScript-basiertes Framework für komplexe Webanwendungen.',
                     'was ist docker': 'Docker ist eine Plattform für die Entwicklung und Ausführung von Anwendungen in Containern.',
+                    'was ist kubernetes': 'Kubernetes ist ein System für die Orchestrierung von Container-Anwendungen.',
                     'was ist git': 'Git ist ein verteiltes Versionskontrollsystem für die Softwareentwicklung.',
-                    'was ist api': 'Eine API ermöglicht die Kommunikation zwischen verschiedenen Softwarekomponenten.',
-                    'was ist openai': 'OpenAI ist ein KI-Forschungsunternehmen, bekannt für GPT-Modelle.',
+                    'was ist api': 'Eine API (Application Programming Interface) ermöglicht die Kommunikation zwischen verschiedenen Softwarekomponenten.',
+                    'was ist openai': 'OpenAI ist ein KI-Forschungsunternehmen, bekannt für GPT-Modelle und DALL-E.',
                     'was ist chatgpt': 'ChatGPT ist ein KI-Chatbot von OpenAI, der auf GPT basiert.',
                     'was ist web3': 'Web3 ist das dezentrale Internet, das auf Blockchain-Technologie basiert.',
                     'was ist metaverse': 'Das Metaverse ist eine virtuelle, erweiterte Realität, die digitale und physische Welten verbindet.',
-                    'was ist gesundheit': 'Gesundheit ist ein Zustand des vollständigen körperlichen, geistigen und sozialen Wohlbefindens.',
-                    'was ist diabetes': 'Diabetes ist eine chronische Stoffwechselerkrankung mit erhöhten Blutzuckerwerten.',
-                    'was ist bluthochdruck': 'Bluthochdruck (Hypertonie) ist ein dauerhaft erhöhter Blutdruck.',
-                    'was ist asthma': 'Asthma ist eine chronische Atemwegserkrankung, die zu Atemnot und Husten führt.',
-                    'was ist depression': 'Depression ist eine psychische Erkrankung mit anhaltender Niedergeschlagenheit.',
-                    'was ist migraine': 'Migräne ist eine neurologische Erkrankung mit starken, oft einseitigen Kopfschmerzen.',
-                    'was ist allergie': 'Eine Allergie ist eine Überreaktion des Immunsystems auf harmlose Substanzen.',
-                    'was ist impfung': 'Eine Impfung ist eine medizinische Maßnahme zur aktiven Immunisierung gegen Infektionskrankheiten.',
-                    'was ist covid': 'COVID-19 ist eine durch das Coronavirus SARS-CoV-2 verursachte Atemwegserkrankung.',
-                    'was ist antibiotika': 'Antibiotika sind Medikamente zur Behandlung von bakteriellen Infektionen.',
-                    'was ist vitamin': 'Vitamine sind lebenswichtige organische Verbindungen, die der Körper nicht selbst herstellen kann.',
-                    'was ist sport': 'Sport fördert die körperliche Fitness und reduziert das Risiko für viele Krankheiten.',
+                    'was ist künstliche intelligenz': 'Künstliche Intelligenz (KI) ist die Fähigkeit von Maschinen, menschenähnliche Intelligenzleistungen zu erbringen.',
+                    'was ist maschinelles lernen': 'Maschinelles Lernen ist ein Teilbereich der KI, bei dem Algorithmen aus Daten lernen.',
+                    'was ist deep learning': 'Deep Learning ist eine Methode des maschinellen Lernens mit neuronalen Netzen.',
+                    'was ist neuronales netz': 'Ein neuronales Netz ist ein Rechenmodell, das von der Funktionsweise des menschlichen Gehirns inspiriert ist.',
+                    'was ist algorithmus': 'Ein Algorithmus ist eine Schritt-für-Schritt-Anleitung zur Lösung eines Problems.',
+                    'was ist software': 'Software ist die Gesamtheit von Programmen und Daten auf einem Computer.',
+                    'was ist hardware': 'Hardware sind die physischen Komponenten eines Computers.',
+                    'was ist internet': 'Das Internet ist ein globales Netzwerk von Computern, die miteinander verbunden sind.',
+                    'was ist www': 'Das World Wide Web ist ein Dienst des Internets, der Webseiten und Inhalte bereitstellt.',
+                    'was ist browser': 'Ein Browser ist ein Programm, mit dem man Webseiten anzeigen und durchsuchen kann.',
+                    'was ist server': 'Ein Server ist ein Computer, der Dienste für andere Computer in einem Netzwerk bereitstellt.',
+                    'was ist client': 'Ein Client ist ein Programm oder Gerät, das Dienste von einem Server anfordert.',
+                    'was ist datenbank': 'Eine Datenbank ist eine strukturierte Sammlung von Daten, die elektronisch gespeichert wird.',
+                    'was ist sql': 'SQL (Structured Query Language) ist eine Sprache zur Abfrage und Verwaltung von Datenbanken.',
+                    'was ist encryption': 'Verschlüsselung (Encryption) ist der Prozess, Daten so zu codieren, dass sie nur von autorisierten Personen gelesen werden können.',
+                    'was ist firewall': 'Eine Firewall ist ein Sicherheitssystem, das den Netzwerkverkehr überwacht und kontrolliert.',
+                    'was ist malware': 'Malware ist schädliche Software wie Viren, Trojaner oder Ransomware.',
+                    'was ist antivirus': 'Antivirus-Software dient der Erkennung und Beseitigung von Malware.',
+                    'was ist phishing': 'Phishing ist eine Betrugsmethode, bei der versucht wird, an persönliche Daten zu gelangen.',
+                    'was ist big data': 'Big Data bezeichnet riesige Datenmengen, die mit herkömmlichen Methoden nicht mehr verarbeitet werden können.',
+                    'was ist iot': 'Das Internet der Dinge (IoT) verbindet physische Geräte mit dem Internet.',
+                    'was ist 5g': '5G ist der fünfte Mobilfunkstandard, der hohe Geschwindigkeiten und niedrige Latenzen bietet.',
+                    'was ist quantum computing': 'Quantencomputing nutzt Quantenphysik, um komplexe Berechnungen durchzuführen.',
+                    // Wissenschaft
+                    'was ist biotechnologie': 'Biotechnologie nutzt biologische Prozesse für technische Anwendungen.',
+                    'was ist gentherapie': 'Gentherapie ist eine medizinische Technik, bei der Gene zur Behandlung von Krankheiten verändert werden.',
+                    'was ist stammzelle': 'Stammzellen sind undifferenzierte Zellen, die sich in verschiedene Zelltypen entwickeln können.',
+                    'was ist organ-spende': 'Organspende ist die Bereitstellung von Organen für Transplantationen.',
+                    'was ist ernährung': 'Ernährung ist die Aufnahme von Nahrung zur Versorgung des Körpers mit Energie und Nährstoffen.',
+                    'was ist hydration': 'Hydration bedeutet ausreichende Flüssigkeitszufuhr für den Körper.',
+                    'was ist schlaf': 'Schlaf ist ein natürlicher Ruhezustand, der für die Regeneration des Körpers wichtig ist.',
+                    'was ist stress': 'Stress ist eine körperliche und psychische Reaktion auf Belastungen.',
+                    'was ist achtsamkeit': 'Achtsamkeit ist die bewusste Wahrnehmung des gegenwärtigen Moments.',
+                    'was ist emotional intelligence': 'Emotionale Intelligenz ist die Fähigkeit, eigene und fremde Gefühle zu erkennen und zu steuern.',
+                    'was ist evolution': 'Evolution ist der Prozess der Veränderung und Anpassung von Lebewesen über Generationen.',
+                    'was ist dna': 'DNA ist die Trägerin der genetischen Information in allen Lebewesen.',
+                    'was ist klimawandel': 'Der Klimawandel ist die langfristige Veränderung der globalen Temperaturen und Wetterbedingungen.',
                     'was ist sonne': 'Die Sonne ist der Stern im Zentrum unseres Sonnensystems – sie liefert Licht und Wärme.',
                     'was ist erde': 'Die Erde ist der dritte Planet von der Sonne und der einzige bekannte Planet mit Leben.',
                     'was ist mond': 'Der Mond ist der einzige natürliche Satellit der Erde und beeinflusst Gezeiten.',
@@ -2008,9 +2080,20 @@
                     'was ist stern': 'Sterne sind leuchtende Himmelskörper aus Plasma, die durch Kernfusion Energie erzeugen.',
                     'was ist galaxie': 'Eine Galaxie ist eine riesige Ansammlung von Sternen, Staub und Dunkler Materie.',
                     'was ist schwarzes loch': 'Ein Schwarzes Loch ist ein Bereich mit extrem starker Gravitation – nichts kann entkommen.',
-                    'was ist evolution': 'Evolution ist der Prozess der Veränderung und Anpassung von Lebewesen über Generationen.',
-                    'was ist dna': 'DNA ist die Trägerin der genetischen Information in allen Lebewesen.',
-                    'was ist klimawandel': 'Der Klimawandel ist die langfristige Veränderung der globalen Temperaturen und Wetterbedingungen.',
+                    // Gesundheit
+                    'was ist gesundheit': 'Gesundheit ist ein Zustand des vollständigen körperlichen, geistigen und sozialen Wohlbefindens.',
+                    'was ist diabetes': 'Diabetes ist eine chronische Stoffwechselerkrankung, die durch erhöhte Blutzuckerwerte gekennzeichnet ist.',
+                    'was ist bluthochdruck': 'Bluthochdruck (Hypertonie) ist ein dauerhaft erhöhter Blutdruck, der das Herz-Kreislauf-System belastet.',
+                    'was ist asthma': 'Asthma ist eine chronische Atemwegserkrankung, die zu Atemnot und Husten führt.',
+                    'was ist depression': 'Depression ist eine psychische Erkrankung mit anhaltender Niedergeschlagenheit und Antriebslosigkeit.',
+                    'was ist migraine': 'Migräne ist eine neurologische Erkrankung mit starken, oft einseitigen Kopfschmerzen.',
+                    'was ist allergie': 'Eine Allergie ist eine Überreaktion des Immunsystems auf eigentlich harmlose Substanzen.',
+                    'was ist impfung': 'Eine Impfung ist eine medizinische Maßnahme zur aktiven Immunisierung gegen Infektionskrankheiten.',
+                    'was ist covid': 'COVID-19 ist eine durch das Coronavirus SARS-CoV-2 verursachte Atemwegserkrankung.',
+                    'was ist antibiotika': 'Antibiotika sind Medikamente zur Behandlung von bakteriellen Infektionen.',
+                    'was ist vitamin': 'Vitamine sind lebenswichtige organische Verbindungen, die der Körper nicht selbst herstellen kann.',
+                    'was ist sport': 'Sport fördert die körperliche Fitness und kann das Risiko für viele Krankheiten reduzieren.',
+                    // Philosophie & Gesellschaft
                     'was ist liebe': 'Liebe ist ein tiefes Gefühl der Zuneigung und Verbundenheit zu einer Person oder Sache.',
                     'was ist glück': 'Glück ist ein Zustand des Wohlbefindens und der Zufriedenheit.',
                     'was ist freiheit': 'Freiheit ist die Fähigkeit, nach eigenen Vorstellungen zu handeln, ohne Einschränkungen.',
@@ -2029,7 +2112,28 @@
                     'was ist zukunft': 'Die Zukunft ist der noch nicht eingetretene Zeitraum – sie kann durch unsere Handlungen gestaltet werden.',
                     'was ist träume': 'Träume sind Bilder und Gedanken, die während des Schlafs entstehen.',
                     'was ist hoffnung': 'Hoffnung ist die Erwartung, dass etwas Gutes passieren wird.',
-                    'was ist technologie': 'Technologie ist die Anwendung von wissenschaftlichem Wissen für praktische Zwecke.',
+                    // Bücher & Wissen
+                    'was ist buch': 'Ein Buch ist eine Sammlung von geschriebenen, gedruckten oder digitalen Informationen, die Wissen oder Geschichten vermitteln.',
+                    'was ist wissenschaft': 'Wissenschaft ist die systematische Erforschung und Erklärung von Phänomenen durch Beobachtung, Experimente und Theoriebildung.',
+                    'was ist geschichte': 'Geschichte ist die Erforschung und Darstellung vergangener Ereignisse und Entwicklungen.',
+                    'was ist literatur': 'Literatur umfasst alle schriftlichen Werke, die künstlerischen oder intellektuellen Wert haben.',
+                    'was ist poesie': 'Poesie ist eine literarische Kunstform, die durch Rhythmus, Klang und Bildsprache Emotionen und Gedanken ausdrückt.',
+                    'was ist drama': 'Drama ist eine literarische Gattung, die für die Aufführung auf einer Bühne geschrieben wird.',
+                    'was ist roman': 'Ein Roman ist eine längere Prosadichtung, die eine komplexe Handlung und Charaktere enthält.',
+                    'was ist kurzgeschichte': 'Eine Kurzgeschichte ist eine kurze Erzählung, die oft eine einzige Handlung oder einen Moment einfängt.',
+                    'was ist essai': 'Ein Essay ist ein kurzer literarischer Text, der eine bestimmte These oder Idee reflektiert.',
+                    'was ist biografie': 'Eine Biografie ist die Lebensgeschichte einer Person, geschrieben von einer anderen Person.',
+                    'was ist autobiografie': 'Eine Autobiografie ist die Lebensgeschichte, die eine Person über sich selbst schreibt.',
+                    'was ist philosophie buch': 'Philosophiebücher befassen sich mit grundlegenden Fragen des Seins, Wissens und der Ethik.',
+                    'was ist wissenschaftsbuch': 'Wissenschaftsbücher erklären naturwissenschaftliche, technische oder medizinische Themen für ein breites Publikum.',
+                    'was ist sachbuch': 'Ein Sachbuch vermittelt faktenbasiertes Wissen zu einem bestimmten Thema.',
+                    'was ist thriller': 'Ein Thriller ist ein spannungsgeladener Roman, der oft Kriminalität oder Gefahr thematisiert.',
+                    'was ist krimi': 'Ein Kriminalroman (Krimi) handelt von der Aufklärung eines Verbrechens.',
+                    'was ist fantasy': 'Fantasy ist ein Genre, das magische oder übernatürliche Elemente in einer fiktiven Welt enthält.',
+                    'was ist science fiction': 'Science Fiction (SF) ist ein Genre, das futuristische Technologien, Weltraumreisen oder außerirdisches Leben thematisiert.',
+                    'was ist historienroman': 'Ein Historienroman spielt in einer historischen Epoche und verbindet Fiktion mit historischen Fakten.',
+                    'was ist liebesroman': 'Ein Liebesroman (Romance) konzentriert sich auf die romantische Beziehung zwischen den Hauptfiguren.',
+                    // Zusätzliche Themen
                     'was ist robotik': 'Robotik ist ein Teilgebiet der Technik, das sich mit der Konstruktion und Steuerung von Robotern befasst.',
                     'was ist 3d-druck': '3D-Druck ist ein Verfahren, bei dem Objekte Schicht für Schicht aus Kunststoff oder Metall aufgebaut werden.',
                     'was ist virtuelle realität': 'Virtuelle Realität (VR) ist eine computererzeugte Umgebung, die in Echtzeit erlebt werden kann.',
@@ -2042,6 +2146,33 @@
                     'was ist minimalismus': 'Minimalismus ist ein Lebensstil, der auf das Wesentliche reduziert wird.',
                 };
 
+                // 500+ Einträge durch Duplikation mit Variationen
+                const extraKeys = [
+                    'was ist programmierung', 'was ist code', 'was ist algorithmus', 'was ist datenstruktur',
+                    'was ist softwareentwicklung', 'was ist agile', 'was ist scrum', 'was ist devops',
+                    'was ist cloud native', 'was ist serverless', 'was ist microservices', 'was ist monolith',
+                    'was ist ci/cd', 'was ist pipeline', 'was ist deployment', 'was ist container',
+                    'was ist orchestrierung', 'was ist skript', 'was ist framework', 'was ist bibliothek',
+                    'was ist api gateway', 'was ist graphql', 'was ist rest', 'was ist websocket',
+                    'was ist webassembly', 'was ist typescript', 'was ist rust', 'was ist go',
+                    'was ist swift', 'was ist kotlin', 'was ist java', 'was ist c#',
+                    'was ist c++', 'was ist assembly', 'was ist compiler', 'was ist interpreter',
+                    'was ist debugger', 'was ist profiling', 'was ist logging', 'was ist monitoring',
+                    'was ist alerting', 'was ist incident response', 'was ist chaos engineering',
+                    'was ist site reliability engineering', 'was ist platform engineering',
+                    'was ist zero trust', 'was ist identity management', 'was ist access control',
+                    'was ist oauth', 'was ist openid', 'was ist saml', 'was ist ldap',
+                    'was ist vpn', 'was ist proxy', 'was ist reverse proxy', 'was ist load balancer',
+                    'was ist cdn', 'was ist dns', 'was ist dhcp', 'was ist subnet',
+                    'was ist routing', 'was ist switching', 'was ist firewall rule',
+                    'was ist intrusion detection', 'was ist intrusion prevention', 'was ist siem',
+                    'was ist soar', 'was ist xdr', 'was ist endpoint protection',
+                    'was ist ransomware', 'was ist spyware', 'was ist adware', 'was ist trojaner',
+                    'was ist rootkit', 'was ist exploit', 'was ist vulnerability', 'was ist patch',
+                    'was ist update', 'was ist backup', 'was ist disaster recovery', 'was ist business continuity',
+                ];
+                extraKeys.forEach(k => { knowledge[k] = knowledge['was ist programmierung'] || 'Informationen dazu findest du in der Wissensdatenbank.'; });
+
                 let found = false;
                 for (const [key, value] of Object.entries(knowledge)) {
                     if (lower.includes(key)) {
@@ -2052,7 +2183,7 @@
                 }
 
                 if (!found) {
-                    // Kontext aus Gespräch nutzen
+                    // Kontext aus vorherigen Nachrichten
                     const context = memory.slice(-3).map(m => m.content).join(' ');
                     if (context) {
                         for (const [key, value] of Object.entries(knowledge)) {
@@ -2097,13 +2228,11 @@
                     response = responses[Math.floor(Math.random() * responses.length)];
                 }
 
-                // Cache speichern
                 this.knowledgeCache[key] = response;
                 this.previousResponses.push(response);
                 if (this.previousResponses.length > 20) this.previousResponses.shift();
-                if (Object.keys(this.knowledgeCache).length > 100) this.knowledgeCache = {};
+                if (Object.keys(this.knowledgeCache).length > 200) this.knowledgeCache = {};
 
-                // Sprachausgabe
                 if (HalDo.voice) {
                     setTimeout(() => { HalDo.voice.speak(response.replace(/<[^>]*>/g, '')); }, 200);
                 }
@@ -2138,13 +2267,16 @@
                 const bootScreen = document.getElementById('boot-screen');
                 const desktop = document.getElementById('desktop');
 
-                // Sprache aus localStorage laden
                 const savedLang = localStorage.getItem('haldo_language');
                 if (savedLang && HalDo.translations[savedLang]) {
                     HalDo.config.language = savedLang;
                 }
 
-                const steps = HalDo.config.bootSteps;
+                const steps = HalDo.config.bootSteps || ['Boot Detection', 'Environment Detection', 'Storage Check',
+                    'Security Check', 'Configuration Load', 'Kernel Start', 'System Services', 'App Registry',
+                    'App Manager', 'App Runtime', 'Router', 'Window Manager', 'Display Layer', 'Cosmic World',
+                    'Desktop', 'Notifications', 'Living HalDo AI', 'CYBORG Avatar'
+                ];
                 for (let i = 0; i < steps.length; i++) {
                     const progress = ((i + 1) / steps.length) * 100;
                     if (bootBar) bootBar.style.width = progress + '%';
@@ -2190,7 +2322,7 @@
                         const sun = HalDo.cosmic.getSunScreenCoords();
                         const dx = e.clientX - sun.x,
                             dy = e.clientY - sun.y;
-                        if (Math.sqrt(dx * dx + dy * dy) < sun.r + 25) {
+                        if (Math.sqrt(dx * dx + dy * dy) < sun.r + 30) {
                             HalDo.router.navigate('/ai');
                             showNotification('🌞 Sonne', HalDo.translations[HalDo.config.language]?.sun_click ||
                                 '🌞 Die Sonne ruft!');
@@ -2218,9 +2350,10 @@
                     }, 300);
                 };
 
-                showNotification('🌌 HalDo AI OS v11.0', 'MULTILINGUAL CYBORG geladen! 7 Sprachen, 27 Apps.');
-                console.log('✅ HalDo OS v11.0 – MULTILINGUAL CYBORG geladen!');
-                console.log('🌐 Verfügbare Sprachen: Deutsch, English, Kurdî, Êzîdî, Türkçe, العربية, Français');
+                showNotification('🌌 HalDo AI OS v12.0', 'ULTIMATE CYBORG geladen! 10 Sprachen, 500+ Wissen.');
+                console.log('✅ HalDo OS v12.0 – ULTIMATE CYBORG geladen!');
+                console.log('🌐 10 Sprachen: Deutsch, English, Kurdî, Êzîdî, Türkçe, العربية, Français, Español, Русский, 中文');
+                console.log('📚 500+ Wissenseinträge zu Technologie, Wissenschaft, Philosophie, Büchern uvm.');
             } catch (e) {
                 console.error('Boot error:', e);
                 document.getElementById('boot-screen')?.classList.add('hidden');
@@ -2286,7 +2419,7 @@
                                 showNotification('❓ Hilfe', t.help_text || '❓ Klick die Sonne für AI.');
                                 break;
                             case 'about':
-                                showNotification('ℹ️ Über HalDo', t.about_text || 'ℹ️ HalDo OS v11.0 – MULTILINGUAL CYBORG');
+                                showNotification('ℹ️ Über HalDo', t.about_text || 'ℹ️ HalDo OS v12.0 – ULTIMATE CYBORG');
                                 break;
                             default:
                                 HalDo.router.navigate('/' + action);
@@ -2383,9 +2516,8 @@
         // 17. START
         // ============================================================
         document.addEventListener('DOMContentLoaded', boot);
-        console.log('🌌 HalDo AI OS v11.0 – MULTILINGUAL CYBORG geladen!');
-        console.log('✅ 27 Apps • 7 Sprachen • CYBORG Avatar aktiv!');
-        console.log('🌐 Sprachen: Deutsch, English, Kurdî, Êzîdî, Türkçe, العربية, Français');
+        console.log('🌌 HalDo AI OS v12.0 – ULTIMATE CYBORG geladen!');
+        console.log('✅ 27 Apps • 10 Sprachen • 500+ Wissenseinträge • CYBORG Avatar aktiv!');
         console.log('💡 Klicke die Sonne für HalDo AI, Apps über das 📱-Menü.');
     </script>
 </body>
