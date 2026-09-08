@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#02030a">
-  <meta name="description" content="HalDo AI OS – Phase 4: Menschliche Avatare & reales Planetensystem">
+  <meta name="description" content="HalDo AI OS – Wissenschaftliches Planetensystem & Avatar">
   <meta name="application-name" content="HalDo AI OS">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,16 +15,15 @@
 
   <style>
     /* ============================================================
-       PHASE 4 – MENSCHLICHE AVATARE + REALISTISCHES PLANETENSYSTEM
+       PHASE 4 – WISSENSCHAFTLICHES PLANETENSYSTEM
        ============================================================ */
     :root {
       --haldo-bg: #02030a;
       --haldo-bg-deep: #000107;
-      --haldo-panel: rgba(7, 10, 25, 0.86);
       --haldo-text: #ffffff;
-      --haldo-text-soft: rgba(255, 255, 255, 0.72);
-      --haldo-text-muted: rgba(255, 255, 255, 0.48);
-      --haldo-border: rgba(255, 255, 255, 0.14);
+      --haldo-text-soft: rgba(255,255,255,0.72);
+      --haldo-text-muted: rgba(255,255,255,0.48);
+      --haldo-border: rgba(255,255,255,0.14);
       --haldo-blue: #72a9ff;
       --haldo-cyan: #76eaff;
       --haldo-violet: #b68cff;
@@ -38,7 +37,6 @@
       --safe-bottom: env(safe-area-inset-bottom, 0px);
       --safe-left: env(safe-area-inset-left, 0px);
       --cosmic-ui-radius: 22px;
-      --window-radius: 18px;
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -71,14 +69,12 @@
     @keyframes titleLight { from { background-position: 0% 50%; } to { background-position: 240% 50%; } }
 
     /* ============================================================
-       COSMIC WORLD – HINTERGRUND
+       COSMIC WORLD
        ============================================================ */
     #cosmic-world {
       position: absolute; inset: 0; overflow: hidden;
       background: radial-gradient(ellipse at center, rgba(33,42,105,0.34) 0%, rgba(9,13,39,0.48) 30%, rgba(2,3,12,0.88) 68%, #000107 100%);
-      transition: opacity 700ms ease, transform 1000ms cubic-bezier(.2,.75,.2,1), filter 700ms ease;
     }
-    #cosmic-world.is-transitioning { opacity: 0; transform: scale(1.08); filter: brightness(1.8) blur(3px); }
     #cosmic-world::before, #cosmic-world::after { content: ""; position: absolute; inset: -20%; pointer-events: none; }
     #cosmic-world::before {
       background: radial-gradient(ellipse at 25% 35%, rgba(94,76,196,0.16), transparent 30%), radial-gradient(ellipse at 72% 25%, rgba(40,137,255,0.13), transparent 28%), radial-gradient(ellipse at 58% 80%, rgba(198,75,177,0.10), transparent 32%);
@@ -93,7 +89,7 @@
     @keyframes cosmicPulse { 0%,100% { opacity:0.55; } 50% { opacity:1; } }
 
     /* ============================================================
-       STERNE – 365 + 30 SPECIAL
+       STERNE – 365 + 30
        ============================================================ */
     #star-field, #special-star-field { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
     .star {
@@ -116,7 +112,7 @@
     @keyframes specialStarPulse { from { transform: scale(.55); opacity: .55; } to { transform: scale(1.15); opacity: 1; } }
 
     /* ============================================================
-       SYSTEM-BAR mit Menü oben rechts (logo.png)
+       SYSTEM-BAR
        ============================================================ */
     #system-bar {
       position: absolute; z-index: 900; top: var(--safe-top); left: 0; right: 0; min-height: 54px;
@@ -147,12 +143,12 @@
       backdrop-filter: blur(8px);
       padding: 4px;
       cursor: pointer;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      transition: transform 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .menu-logo-btn:hover { transform: scale(1.08); border-color: rgba(255,200,100,0.5); }
+    .menu-logo-btn:hover { transform: scale(1.08); }
     .menu-logo-btn img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
 
     /* ============================================================
@@ -178,9 +174,10 @@
       text-transform: uppercase;
       text-shadow: 0 0 10px rgba(255,255,255,.18), 0 0 24px rgba(117,190,255,.16);
     }
+    @keyframes titleLight { from { background-position: 0% 50%; } to { background-position: 240% 50%; } }
 
     /* ============================================================
-       SOLAR STAGE – REALISTISCHES PLANETENSYSTEM
+       SOLAR STAGE – WISSENSCHAFTLICHES PLANETENSYSTEM
        ============================================================ */
     #solar-stage {
       position: absolute; z-index: 100; left: 50%; top: 52%; width: min(92vw, 900px); height: min(78vh, 760px);
@@ -193,10 +190,10 @@
 
     .orbit {
       position: absolute; left: 50%; top: 50%; width: var(--orbit-size); height: var(--orbit-size);
-      transform: translate(-50%, -50%); border: 1px solid rgba(132,180,255,.14); border-radius: 50%;
-      pointer-events: none; box-shadow: 0 0 14px rgba(100,150,255,.035), inset 0 0 14px rgba(100,150,255,.025);
+      transform: translate(-50%, -50%); border: 1px solid rgba(132,180,255,.12); border-radius: 50%;
+      pointer-events: none; box-shadow: 0 0 14px rgba(100,150,255,.03);
     }
-    .orbit::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px dashed rgba(255,255,255,.025); transform: rotate(18deg); }
+    .orbit::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px dashed rgba(255,255,255,.02); transform: rotate(18deg); }
 
     .planet-system {
       position: absolute; left: 50%; top: 50%; width: var(--orbit-size); height: var(--orbit-size);
@@ -212,21 +209,21 @@
       transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg)));
       border-radius: 50%; pointer-events: auto; cursor: pointer;
       background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.8), var(--planet-light, #8fd5ff) 18%, var(--planet-main, #4070c8) 54%, var(--planet-dark, #172454) 100%);
-      box-shadow: 0 0 12px var(--planet-glow, rgba(110,180,255,.75)), 0 0 30px var(--planet-glow, rgba(110,180,255,.35));
+      box-shadow: 0 0 12px var(--planet-glow, rgba(110,180,255,.6)), 0 0 30px var(--planet-glow, rgba(110,180,255,.3));
       transition: transform 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
     }
-    .planet:hover { transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg))) scale(1.5); z-index: 50; }
+    .planet:hover { transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg))) scale(1.4); z-index: 50; }
     .planet::after {
       content: "";
       position: absolute;
       inset: 15%;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.15);
-      opacity: .55;
+      border: 1px solid rgba(255,255,255,.12);
+      opacity: .5;
     }
     .planet.has-ring::before {
       content: "";
@@ -234,38 +231,65 @@
       left: 50%;
       top: 50%;
       width: 200%;
-      height: 50%;
+      height: 45%;
       transform: translate(-50%, -50%) rotate(-18deg);
-      border: 2px solid rgba(225,220,255,.4);
-      border-left-color: rgba(255,255,255,.1);
-      border-right-color: rgba(255,255,255,.15);
+      border: 2px solid rgba(200,190,255,.35);
+      border-left-color: rgba(255,255,255,.08);
+      border-right-color: rgba(255,255,255,.12);
       border-radius: 50%;
-      box-shadow: 0 0 20px rgba(200,180,255,0.15);
+      box-shadow: 0 0 20px rgba(200,180,255,0.1);
     }
     .planet .moon {
       position: absolute;
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: #ccc;
-      box-shadow: 0 0 8px rgba(200,200,200,0.5);
+      background: #bbb;
+      box-shadow: 0 0 8px rgba(200,200,200,0.4);
       top: -10px;
       right: -10px;
     }
     .planet-label {
       position: absolute;
-      bottom: -22px;
+      bottom: -24px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 9px;
-      color: rgba(255,255,255,0.6);
+      font-size: 8px;
+      color: rgba(255,255,255,0.5);
       white-space: nowrap;
       pointer-events: none;
-      text-shadow: 0 0 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.7);
+      text-shadow: 0 0 10px rgba(0,0,0,0.9);
       font-weight: 500;
-      letter-spacing: .05em;
+      letter-spacing: .04em;
     }
-    .planet .sub-orbit {
+    .planet.time-planet::before {
+      content: "⏱";
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: rgba(255,255,255,0.8);
+      text-shadow: 0 0 15px rgba(255,255,255,0.5);
+      z-index: 10;
+    }
+
+    /* Van-Allen-Gürtel für Erde */
+    .van-allen {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+      border: 1px dashed rgba(0, 180, 255, 0.2);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      animation: vanPulse 4s ease-in-out infinite;
+    }
+    .van-allen.inner { width: 42px; height: 42px; border-color: rgba(0, 180, 255, 0.3); animation-delay: 0s; }
+    .van-allen.outer { width: 62px; height: 62px; border-color: rgba(0, 180, 255, 0.15); animation-delay: 1s; }
+    @keyframes vanPulse { 0%,100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; } 50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.8; } }
+
+    .sub-orbit {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -276,7 +300,7 @@
       pointer-events: none;
       animation: subOrbitRotation var(--sub-orbit-duration) linear infinite;
     }
-    .planet .sub-planet {
+    .sub-planet {
       position: absolute;
       left: 50%;
       top: 0;
@@ -286,55 +310,27 @@
       border-radius: 50%;
       pointer-events: auto;
       cursor: pointer;
-      background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.8), var(--sub-planet-light, #ffdd88) 18%, var(--sub-planet-main, #e8a840) 54%, var(--sub-planet-dark, #a06020) 100%);
-      box-shadow: 0 0 10px var(--sub-planet-glow, rgba(255,200,80,.6)), 0 0 25px var(--sub-planet-glow, rgba(255,200,80,.3));
+      background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.7), var(--sub-planet-light, #ddd) 18%, var(--sub-planet-main, #aaa) 54%, var(--sub-planet-dark, #666) 100%);
+      box-shadow: 0 0 10px var(--sub-planet-glow, rgba(200,200,200,.4));
       transition: transform 0.3s ease;
     }
-    .planet .sub-planet:hover { transform: translate(-50%, -50%) scale(1.4); z-index: 60; }
-    .planet .sub-label {
+    .sub-planet:hover { transform: translate(-50%, -50%) scale(1.4); z-index: 60; }
+    .sub-label {
       position: absolute;
       bottom: -16px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 7px;
-      color: rgba(255,255,255,0.5);
+      font-size: 6px;
+      color: rgba(255,255,255,0.4);
       white-space: nowrap;
       text-shadow: 0 0 8px rgba(0,0,0,0.9);
-    }
-
-    /* Van-Allen-Gürtel für Erde (nur optisch) */
-    .van-allen-belt {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      border-radius: 50%;
-      border: 1px dashed rgba(0, 200, 255, 0.2);
-      pointer-events: none;
-      animation: vanAllenPulse 4s ease-in-out infinite;
-      transform: translate(-50%, -50%);
-    }
-    .van-allen-belt.inner {
-      width: 45px;
-      height: 45px;
-      border-color: rgba(0, 200, 255, 0.3);
-      animation-delay: 0s;
-    }
-    .van-allen-belt.outer {
-      width: 65px;
-      height: 65px;
-      border-color: rgba(0, 200, 255, 0.15);
-      animation-delay: 1s;
-    }
-    @keyframes vanAllenPulse {
-      0%,100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
     }
 
     @keyframes orbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
     @keyframes subOrbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
 
     /* ============================================================
-       SONNE – MIT logo.png IM KERN UND FLAMMIGER SCHRIFT
+       SONNE – MIT logo.png IM KERN + DREHENDEN TEXTEN
        ============================================================ */
     #sun {
       position: absolute; z-index: 200; left: 50%; top: 50%; width: var(--sun-core-size); height: var(--sun-core-size);
@@ -343,7 +339,7 @@
       filter: drop-shadow(0 0 18px rgba(255,198,75,.8)) drop-shadow(0 0 45px rgba(255,164,45,.5)) drop-shadow(0 0 90px rgba(255,120,30,.24));
       transition: transform 350ms cubic-bezier(.2,.8,.2,1), filter 350ms ease;
     }
-    #sun:hover, #sun:focus-visible { transform: translate(-50%, -50%) scale(1.045); filter: drop-shadow(0 0 22px rgba(255,220,100,.95)) drop-shadow(0 0 55px rgba(255,170,45,.72)) drop-shadow(0 0 110px rgba(255,120,30,.34)); outline: none; }
+    #sun:hover { transform: translate(-50%, -50%) scale(1.045); filter: drop-shadow(0 0 22px rgba(255,220,100,.95)) drop-shadow(0 0 55px rgba(255,170,45,.72)) drop-shadow(0 0 110px rgba(255,120,30,.34)); }
     #sun:active { transform: translate(-50%, -50%) scale(.97); }
 
     #sun-glow, #sun-core, #sun-corona, #sun-rays {
@@ -385,27 +381,63 @@
     }
     @keyframes logoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
 
-    #sun-text {
+    /* Drehende Texte um die Sonne */
+    #sun-orbit-texts {
       position: absolute;
-      bottom: 6%;
+      inset: -45%;
+      pointer-events: none;
+      z-index: 15;
+    }
+    .sun-orbital-text {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 50%;
+      transform-origin: bottom center;
+      font-size: clamp(9px, 1.1vw, 14px);
+      font-weight: 700;
+      color: rgba(255,215,100,0.7);
+      text-shadow: 0 0 15px rgba(255,200,100,0.3);
+      white-space: nowrap;
+      letter-spacing: .06em;
+      animation: textOrbit 20s linear infinite;
+    }
+    .sun-orbital-text .text-content {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) rotate(0deg);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-weight: 700;
+      background: linear-gradient(180deg, #ffd700, #ff8c00, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding: 2px;
+    }
+    /* Zweiter Text, anders positioniert */
+    .sun-orbital-text:nth-child(1) { animation-duration: 25s; }
+    .sun-orbital-text:nth-child(2) { animation-duration: 30s; animation-delay: 5s; top: 50%; height: 50%; transform-origin: top center; }
+    .sun-orbital-text:nth-child(2) .text-content { writing-mode: vertical-lr; bottom: auto; top: 0; }
+    .sun-orbital-text:nth-child(3) { animation-duration: 35s; animation-delay: 10s; }
+    @keyframes textOrbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    #sun-text-overlay {
+      position: absolute;
+      bottom: 4%;
       left: 0;
       width: 100%;
       text-align: center;
-      z-index: 10;
+      z-index: 12;
       pointer-events: none;
-      font-weight: 700;
-      text-shadow: 0 0 20px rgba(255,200,100,.9), 0 0 40px rgba(255,200,100,.4);
-      background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700, #ffd700);
-      background-size: 300% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textShine 4s linear infinite;
-      letter-spacing: .06em;
+      font-size: clamp(7px, 0.8vw, 11px);
+      font-weight: 600;
+      color: rgba(255,215,100,0.5);
+      letter-spacing: .08em;
+      text-shadow: 0 0 20px rgba(255,200,100,0.2);
     }
-    #sun-text.main { font-size: clamp(11px, 1.4vw, 18px); }
-    #sun-text.sub { font-size: clamp(7px, 0.8vw, 11px); bottom: 1%; opacity: .85; letter-spacing: .08em; }
-
-    @keyframes textShine { from { background-position: 0% 50%; } to { background-position: 300% 50%; } }
 
     #inner-sun-stars {
       position: absolute; z-index: 5; left: 50%; top: 50%;
@@ -448,24 +480,24 @@
     @keyframes sunRays { to { transform: rotate(360deg); } }
 
     /* ============================================================
-       AI-IDENTITY UNTERHALB DER SONNE
+       AI-IDENTITY
        ============================================================ */
     #ai-identity {
-      position: absolute; z-index: 310; left: 50%; top: calc(50% + var(--sun-core-size) * .72); transform: translateX(-50%);
+      position: absolute; z-index: 310; left: 50%; top: calc(50% + var(--sun-core-size) * .75); transform: translateX(-50%);
       width: min(90vw, 620px); text-align: center; pointer-events: none;
     }
     #ai-identity-name {
-      margin: 0; font-size: clamp(16px, 2vw, 26px); font-weight: 700; letter-spacing: .055em;
+      margin: 0; font-size: clamp(14px, 1.8vw, 22px); font-weight: 700; letter-spacing: .055em;
       background: linear-gradient(90deg, #fff, #ffd873, #fff, #8beeff, #fff, #c89cff);
       background-size: 250% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
       animation: identityGlow 8s linear infinite;
       filter: drop-shadow(0 0 9px rgba(255,210,100,.24)) drop-shadow(0 0 16px rgba(120,190,255,.18));
     }
     #ai-identity-role {
-      margin-top: 7px;
-      font-size: clamp(10px, 1.25vw, 14px);
-      color: rgba(255,255,255,.62);
-      letter-spacing: .17em;
+      margin-top: 5px;
+      font-size: clamp(9px, 1.1vw, 13px);
+      color: rgba(255,255,255,.5);
+      letter-spacing: .15em;
       text-transform: uppercase;
     }
     @keyframes identityGlow { from { background-position: 0% 50%; } to { background-position: 250% 50%; } }
@@ -473,7 +505,7 @@
     /* ============================================================
        HALDO LOGO
        ============================================================ */
-    .haldo-logo { width: 42px; height: 42px; object-fit: contain; object-position: center; filter: drop-shadow(0 0 8px rgba(117,220,255,.35)) drop-shadow(0 0 16px rgba(190,120,255,.16)); }
+    .haldo-logo { width: 42px; height: 42px; object-fit: contain; border-radius: 50%; }
 
     /* ============================================================
        HAUPT-DOCK
@@ -482,37 +514,37 @@
       position: absolute; z-index: 700; left: 50%; bottom: calc(14px + var(--safe-bottom)); transform: translateX(-50%);
       display: flex; align-items: center; justify-content: center; gap: 9px; padding: 8px; max-width: calc(100vw - 24px);
       border: 1px solid rgba(255,255,255,.12); border-radius: 24px;
-      background: rgba(3,6,17,.62); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      background: rgba(3,6,17,.62); backdrop-filter: blur(18px);
       box-shadow: 0 14px 42px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.07);
     }
     .dock-button {
       position: relative; width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center;
       border-radius: 16px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.045);
-      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+      transition: transform 180ms ease, background 180ms ease;
     }
-    .dock-button:hover, .dock-button:focus-visible { transform: translateY(-3px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.2); outline: none; }
+    .dock-button:hover { transform: translateY(-3px); background: rgba(255,255,255,.10); }
     .dock-button:active { transform: translateY(0) scale(.94); }
-    .dock-button img { width: 25px; height: 25px; object-fit: contain; }
+    .dock-button img { width: 25px; height: 25px; object-fit: contain; border-radius: 50%; }
     .dock-button.ai { width: 58px; height: 58px; margin: 0 3px; border-radius: 20px; background: radial-gradient(circle at 40% 30%, rgba(255,255,255,.15), rgba(103,159,255,.08) 45%, rgba(180,100,255,.06)); box-shadow: 0 0 24px rgba(117,190,255,.12); }
     .dock-button.ai img { width: 36px; height: 36px; }
 
     /* ============================================================
-       AI OVERLAY – MENSCHLICHER AVATAR MIT logo.png ALS GESICHT
+       AI CHAT OVERLAY – NUR AVATAR-BILD (logo.png)
        ============================================================ */
     .ai-overlay {
       position: fixed; z-index: 1600; inset: 0;
       display: flex; align-items: center; justify-content: center;
       padding: calc(16px + var(--safe-top)) calc(16px + var(--safe-right)) calc(16px + var(--safe-bottom)) calc(16px + var(--safe-left));
-      background: rgba(1,2,10,0.68); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      background: rgba(1,2,10,0.68); backdrop-filter: blur(12px);
       opacity: 0; visibility: hidden;
       transition: opacity 340ms ease, visibility 340ms ease;
     }
     .ai-overlay.open { opacity: 1; visibility: visible; }
     .ai-window {
-      width: 100%; max-width: 620px; max-height: min(88vh, 760px);
+      width: 100%; max-width: 600px; max-height: min(85vh, 720px);
       border: 1px solid rgba(255,255,255,0.08); border-radius: var(--cosmic-ui-radius);
-      background: rgba(5,9,28,0.82); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-      box-shadow: 0 32px 72px rgba(0,0,0,0.62), inset 0 1px 0 rgba(255,255,255,0.06);
+      background: rgba(5,9,28,0.85); backdrop-filter: blur(28px);
+      box-shadow: 0 32px 72px rgba(0,0,0,0.62);
       display: flex; flex-direction: column; overflow: hidden;
       transform: scale(0.96) translateY(12px);
       transition: transform 340ms cubic-bezier(0.16,1,0.3,1), opacity 340ms ease;
@@ -527,218 +559,51 @@
       flex-shrink: 0;
     }
     .ai-header .panel-brand { display: flex; align-items: center; gap: 12px; }
-    .ai-header .panel-brand .haldo-logo { width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; object-fit: cover; }
-    .ai-header .panel-brand h2 { margin: 0; font-size: 18px; font-weight: 700; }
-    .ai-header .panel-brand p { margin: 0; font-size: 12px; color: var(--haldo-text-muted); }
+    .ai-header .panel-brand .avatar-img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); }
+    .ai-header .panel-brand h2 { margin: 0; font-size: 17px; font-weight: 700; }
+    .ai-header .panel-brand p { margin: 0; font-size: 11px; color: var(--haldo-text-muted); }
     .ai-header-actions { display: flex; align-items: center; gap: 6px; }
     .panel-icon-button {
       width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 18px;
-      color: var(--haldo-text-muted); transition: background 180ms ease, color 180ms ease;
+      border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 17px;
+      color: var(--haldo-text-muted); transition: background 180ms ease;
       cursor: pointer;
     }
     .panel-icon-button:hover { background: rgba(255,255,255,0.08); color: var(--haldo-text); }
     .panel-icon-button.active { background: rgba(117,190,255,0.15); color: var(--haldo-blue); }
     .panel-close {
-      width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); font-size: 22px; line-height: 1;
-      color: rgba(255,255,255,0.5); transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+      width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); font-size: 20px;
+      color: rgba(255,255,255,0.5); transition: background 180ms ease;
     }
-    .panel-close:hover, .panel-close:focus-visible { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.16); transform: scale(1.04); }
-    .panel-close:active { transform: scale(0.92); }
-
-    /* MENSCHLICHER AVATAR – 100% menschlich, logo.png als Gesicht */
-    .ai-human-container {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 0;
-      min-height: 200px;
-    }
-    .ai-human {
-      position: relative;
-      width: 150px;
-      height: 210px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    .ai-human .head {
-      width: 75px;
-      height: 75px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 30%, #e8d5c4, #d4b8a0);
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 0 30px rgba(117,190,255,0.15), inset 0 -5px 15px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .ai-human .head .avatar-image {
-      width: 65px;
-      height: 65px;
-      object-fit: contain;
-      border-radius: 50%;
-      filter: drop-shadow(0 0 15px rgba(255,200,100,0.5));
-      animation: avatarPulse 3s ease-in-out infinite;
-      background: rgba(255,255,255,0.05);
-    }
-    @keyframes avatarPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-    .ai-human .head .eyes {
-      position: absolute;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 42px;
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-    .ai-human .head .eye {
-      width: 11px;
-      height: 13px;
-      background: #2d1b0e;
-      border-radius: 50%;
-      position: relative;
-      transition: all 0.2s ease;
-    }
-    .ai-human .head .eye::after {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 3px;
-      width: 5px;
-      height: 5px;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0.8;
-    }
-    .ai-human .head .mouth {
-      position: absolute;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 5px;
-      border-radius: 0 0 20px 20px;
-      background: #8b5e3c;
-      transition: all 0.2s ease;
-      pointer-events: none;
-    }
-    .ai-human .head .mouth.speaking {
-      height: 10px;
-      border-radius: 10px;
-      animation: mouthMove 0.3s ease-in-out infinite alternate;
-    }
-    @keyframes mouthMove {
-      0% { height: 4px; }
-      100% { height: 11px; }
-    }
-    .ai-human .body {
-      width: 85px;
-      height: 95px;
-      background: linear-gradient(180deg, #2a4a7a, #1a2a4a);
-      border-radius: 22px 22px 12px 12px;
-      margin-top: -12px;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .ai-human .body .logo-on-body {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 10px rgba(117,220,255,0.3));
-      animation: bodyLogoPulse 2s ease-in-out infinite;
-    }
-    @keyframes bodyLogoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-    .ai-human .arm {
-      position: absolute;
-      width: 18px;
-      height: 65px;
-      background: linear-gradient(180deg, #d4b8a0, #b89a82);
-      border-radius: 10px;
-      top: 45px;
-      transition: transform 0.4s ease;
-      transform-origin: top center;
-    }
-    .ai-human .arm.left {
-      left: -14px;
-      transform: rotate(15deg);
-    }
-    .ai-human .arm.right {
-      right: -14px;
-      transform: rotate(-15deg);
-    }
-    .ai-human .arm.moving-left {
-      animation: armMoveLeft 1s ease-in-out infinite;
-    }
-    .ai-human .arm.moving-right {
-      animation: armMoveRight 1s ease-in-out infinite;
-    }
-    @keyframes armMoveLeft {
-      0%,100% { transform: rotate(15deg); }
-      50% { transform: rotate(-22deg); }
-    }
-    @keyframes armMoveRight {
-      0%,100% { transform: rotate(-15deg); }
-      50% { transform: rotate(22deg); }
-    }
-    .ai-human .legs {
-      display: flex;
-      gap: 12px;
-      margin-top: -2px;
-    }
-    .ai-human .leg {
-      width: 20px;
-      height: 42px;
-      background: linear-gradient(180deg, #1a2a4a, #0a1a2a);
-      border-radius: 0 0 8px 8px;
-    }
+    .panel-close:hover { background: rgba(255,255,255,0.08); }
 
     .ai-presence {
-      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 10px 16px;
-      min-height: 190px;
+      padding: 16px 16px 10px 16px;
     }
-    .ai-presence-aura {
-      position: absolute;
-      inset: -10%;
+    .ai-presence .avatar-big {
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(117,190,255,0.08), transparent 60%);
-      filter: blur(20px);
-      transition: opacity 600ms ease;
+      object-fit: contain;
+      border: 2px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 30px rgba(117,190,255,0.1);
+      animation: avatarFloat 3s ease-in-out infinite;
+      background: rgba(255,255,255,0.03);
     }
-    .ai-presence-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(117,190,255,0.06);
-      animation: ringPulse 4s ease-in-out infinite;
-    }
-    .ai-presence-ring.ring-one { width: 130%; height: 130%; animation-delay: 0s; }
-    .ai-presence-ring.ring-two { width: 160%; height: 160%; animation-delay: 0.6s; }
-    .ai-presence-ring.ring-three { width: 190%; height: 190%; animation-delay: 1.2s; }
-    @keyframes ringPulse { 0%,100% { transform: scale(0.95); opacity: 0.3; } 50% { transform: scale(1.05); opacity: 0.6; } }
+    @keyframes avatarFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-4px) scale(1.02); } }
 
     .ai-expression {
       margin-top: 8px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--haldo-text-soft);
       text-align: center;
-      min-height: 24px;
-      z-index: 2;
+      min-height: 22px;
     }
     .ai-conversation {
       flex: 1;
@@ -746,7 +611,7 @@
       padding: 6px 18px 10px 18px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       max-height: 180px;
     }
     .ai-conversation .conv-message {
@@ -754,12 +619,12 @@
       gap: 10px;
       padding: 8px 12px;
       border-radius: 14px;
-      max-width: 82%;
-      font-size: 14px;
+      max-width: 85%;
+      font-size: 13px;
       line-height: 1.5;
       animation: msgIn 0.3s ease;
     }
-    @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .ai-conversation .conv-message.user {
       align-self: flex-end;
       background: rgba(117,190,255,0.12);
@@ -772,7 +637,7 @@
       border-bottom-left-radius: 4px;
       color: var(--haldo-text-soft);
     }
-    .ai-conversation .conv-message .conv-icon { font-size: 18px; flex-shrink: 0; }
+    .ai-conversation .conv-message .conv-icon { font-size: 16px; flex-shrink: 0; }
 
     .ai-input-form {
       display: flex; align-items: flex-end; gap: 8px;
@@ -780,46 +645,41 @@
       border-top: 1px solid rgba(255,255,255,0.04);
       flex-shrink: 0;
     }
-    .ai-tool-button {
-      width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 18px;
-      color: var(--haldo-text-muted); flex-shrink: 0; transition: background 180ms ease;
-      cursor: pointer;
-    }
-    .ai-tool-button:hover { background: rgba(255,255,255,0.08); }
     .ai-input-form textarea {
       flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px; padding: 8px 12px; font-size: 14px; color: var(--haldo-text);
-      resize: none; outline: 0; transition: border-color 180ms ease; font-family: inherit;
-      min-height: 40px; max-height: 120px;
+      border-radius: 12px; padding: 8px 12px; font-size: 13px; color: var(--haldo-text);
+      resize: none; outline: 0; font-family: inherit;
+      min-height: 38px; max-height: 110px;
     }
     .ai-input-form textarea:focus { border-color: rgba(117,190,255,0.3); }
     .ai-send-button {
-      width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 50%; border: 0; background: rgba(117,190,255,0.15); font-size: 20px;
-      color: #fff; flex-shrink: 0; transition: background 180ms ease, transform 180ms ease;
+      width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 0; background: rgba(117,190,255,0.15); font-size: 18px;
+      color: #fff; transition: background 180ms ease, transform 180ms ease;
     }
     .ai-send-button:hover { background: rgba(117,190,255,0.25); }
     .ai-send-button:active { transform: scale(0.92); }
+
     .ai-footer {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 18px 12px 18px; border-top: 1px solid rgba(255,255,255,0.04);
-      font-size: 11px; color: var(--haldo-text-muted);
+      padding: 6px 18px 10px 18px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      font-size: 10px; color: var(--haldo-text-muted);
     }
 
     /* ============================================================
-       CYBORG AVATAR – BEWEGBAR, gleicher menschlicher Avatar
+       CYBORG AVATAR – NUR BEWEGBARES BILD (logo.png)
        ============================================================ */
     #cyborg-avatar {
       position: fixed;
       bottom: 100px;
       right: 30px;
-      width: 140px;
-      height: 190px;
+      width: 80px;
+      height: 80px;
       z-index: 50;
       cursor: grab;
       touch-action: none;
-      border-radius: 20px;
+      border-radius: 50%;
       overflow: visible;
     }
     #cyborg-avatar.dragging { cursor: grabbing; }
@@ -828,70 +688,68 @@
       inset: 0;
       z-index: 10;
       cursor: pointer;
-      border-radius: 20px;
+      border-radius: 50%;
       background: transparent;
     }
-    @media(max-width:768px){ #cyborg-avatar { width: 110px; height: 150px; bottom: 70px; right: 10px; } }
-    @media(max-width:480px){ #cyborg-avatar { width: 85px; height: 115px; bottom: 50px; right: 5px; } }
+    @media(max-width:768px){ #cyborg-avatar { width: 60px; height: 60px; bottom: 70px; right: 10px; } }
+    @media(max-width:480px){ #cyborg-avatar { width: 50px; height: 50px; bottom: 50px; right: 5px; } }
 
     #cyborg-avatar .cyborg-bg {
       width: 100%;
       height: 100%;
-      border-radius: 20px;
-      background: rgba(5,8,15,0.7);
-      border: 1px solid rgba(74,158,255,0.2);
-      box-shadow: 0 0 40px rgba(74,158,255,0.15);
+      border-radius: 50%;
+      background: rgba(5,8,15,0.6);
+      border: 2px solid rgba(74,158,255,0.15);
+      box-shadow: 0 0 30px rgba(74,158,255,0.08);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
     }
     #cyborg-avatar .cyborg-bg img {
-      width: 75%;
-      height: 75%;
+      width: 85%;
+      height: 85%;
       object-fit: contain;
-      filter: drop-shadow(0 0 20px rgba(74,158,255,0.3));
-      animation: cyborgFloat 3s ease-in-out infinite;
       border-radius: 50%;
-      background: rgba(255,255,255,0.05);
+      animation: cyborgFloat 3s ease-in-out infinite;
     }
-    @keyframes cyborgFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.03); } }
+    @keyframes cyborgFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-4px) scale(1.03); } }
     #cyborg-avatar .speech-bubble {
       position: absolute;
-      top: -50px;
-      right: 10px;
+      top: -42px;
+      right: -10px;
       background: rgba(5,8,15,0.92);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(74,158,255,0.15);
-      border-radius: 16px;
-      padding: 8px 14px;
-      font-size: 12px;
+      border: 1px solid rgba(74,158,255,0.1);
+      border-radius: 14px;
+      padding: 6px 12px;
+      font-size: 11px;
       color: var(--haldo-text);
-      max-width: 200px;
+      max-width: 180px;
       white-space: nowrap;
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.3s ease;
       z-index: 20;
     }
     #cyborg-avatar .speech-bubble.active { opacity: 1; }
     #cyborg-avatar .speech-bubble::after {
       content: '';
       position: absolute;
-      bottom: -8px;
-      right: 20px;
+      bottom: -6px;
+      right: 16px;
       width: 0;
       height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 8px solid rgba(5,8,15,0.92);
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid rgba(5,8,15,0.92);
     }
 
     /* ============================================================
        TOAST
        ============================================================ */
-    #toast-container { position: fixed; z-index: 3000; top: calc(70px + var(--safe-top)); right: calc(16px + var(--safe-right)); display: flex; flex-direction: column; gap: 8px; max-width: 380px; pointer-events: none; }
+    #toast-container { position: fixed; z-index: 3000; top: calc(70px + var(--safe-top)); right: calc(16px + var(--safe-right)); display: flex; flex-direction: column; gap: 6px; max-width: 360px; pointer-events: none; }
     .toast {
-      padding: 10px 16px; border-radius: 14px; background: rgba(5,9,28,0.88); backdrop-filter: blur(16px);
+      padding: 10px 16px; border-radius: 12px; background: rgba(5,9,28,0.88); backdrop-filter: blur(16px);
       border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 12px 32px rgba(0,0,0,0.4);
       pointer-events: auto; animation: toastIn 300ms ease; font-size: 13px; display: flex; align-items: center; gap: 10px;
     }
@@ -904,22 +762,23 @@
     .toast .toast-message { color: var(--haldo-text-muted); font-size: 12px; }
 
     /* ============================================================
-       ARIA & RESPONSIVE
+       RESPONSIVE
        ============================================================ */
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
     @media (max-width: 800px) {
-      .ai-human { transform: scale(0.8); }
       .ai-conversation { max-height: 140px; }
       .ai-window { max-width: 96vw; }
+      .planet-label { font-size: 6px; bottom: -18px; }
     }
     @media (max-width: 500px) {
-      .ai-human { transform: scale(0.6); }
-      .ai-conversation { max-height: 100px; }
+      .ai-conversation { max-height: 110px; }
       .ai-window { max-width: 100vw; border-radius: 0; max-height: 100vh; }
       .system-pill { font-size: 10px; padding: 4px 10px; }
       .system-button { width: 36px; height: 36px; font-size: 14px; }
       .menu-logo-btn { width: 34px; height: 34px; }
+      .planet-label { font-size: 5px; bottom: -14px; }
+      .sun-orbital-text .text-content { font-size: 8px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
@@ -934,7 +793,7 @@
       <div id="boot-content">
         <img id="boot-logo" class="haldo-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
         <h1 id="boot-title">HalDo AI OS</h1>
-        <p id="boot-message">Phase 4 – Menschliche Avatare &amp; reales Planetensystem wird geladen.<br>HalDo AI und Cyborg erwachen als menschliche Begleiter.</p>
+        <p id="boot-message">Wissenschaftliches Planetensystem &amp; Avatar wird geladen.<br>HalDo AI und Cyborg erwachen.</p>
         <div id="boot-loader" aria-hidden="true"><div id="boot-loader-bar"></div></div>
       </div>
     </section>
@@ -945,16 +804,16 @@
       <div id="star-field" aria-hidden="true"></div>
       <div id="special-star-field" aria-hidden="true"></div>
 
-      <!-- System-Bar mit Menü oben rechts -->
+      <!-- System-Bar -->
       <header id="system-bar">
         <div class="system-bar-side">
-          <button id="app-menu-button" class="system-button" type="button" aria-label="Apps öffnen" title="Apps">☰</button>
-          <div id="system-status" class="system-pill" aria-live="polite">HalDo AI OS • Phase 4</div>
+          <button id="app-menu-button" class="system-button" type="button" aria-label="Apps" title="Apps">☰</button>
+          <div id="system-status" class="system-pill" aria-live="polite">HalDo AI OS</div>
         </div>
         <div class="system-bar-side">
           <button id="notification-button" class="system-button" type="button" aria-label="Benachrichtigungen" title="Benachrichtigungen">◌</button>
-          <button class="menu-logo-btn" id="menu-logo-btn" type="button" aria-label="Hauptmenü öffnen" title="Menü">
-            <img src="assets/logo/logo.png" alt="HalDo Menü" draggable="false">
+          <button class="menu-logo-btn" id="menu-logo-btn" type="button" aria-label="Menü" title="Menü">
+            <img src="assets/logo/logo.png" alt="Menü" draggable="false">
           </button>
         </div>
       </header>
@@ -965,55 +824,52 @@
         <div id="cosmic-title-subtitle">Cosmic World · Living Intelligence</div>
       </section>
 
-      <!-- Solar Stage – REALISTISCHES PLANETENSYSTEM -->
+      <!-- Solar Stage -->
       <section id="solar-stage" aria-label="HalDo AI OS Sonnensystem">
         <div id="solar-system">
 
-          <!-- 12 Orbits (wissenschaftlich korrekte Abstufung) -->
-          <div class="orbit" style="--orbit-size:22%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:30%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:38%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:46%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:54%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:62%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:70%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:78%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:86%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:94%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:102%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:110%;" aria-hidden="true"></div>
+          <!-- 12 Orbits (wissenschaftlich) -->
+          <div class="orbit" style="--orbit-size:20%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:28%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:36%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:44%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:52%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:60%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:68%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:76%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:84%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:92%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:100%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:108%;" aria-hidden="true"></div>
 
-          <!-- 1. Merkur – 0,387 AE, 3,2 Lichtminuten -->
-          <div class="planet-system" data-planet="mercury" style="--orbit-size:22%;--orbit-duration:17s;">
+          <!-- 1. Merkur – 0,387 AE -->
+          <div class="planet-system" style="--orbit-size:20%;--orbit-duration:15s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:12px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.5);">
+              <div class="planet" style="--planet-size:10px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.4);">
                 <span class="planet-label">Merkur • 0,387 AE</span>
               </div>
             </div>
           </div>
 
-          <!-- 2. Venus – 0,723 AE, 6,0 Lichtminuten -->
-          <div class="planet-system" data-planet="venus" style="--orbit-size:30%;--orbit-duration:23s;">
+          <!-- 2. Venus – 0,723 AE -->
+          <div class="planet-system" style="--orbit-size:28%;--orbit-duration:21s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:16px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.7);">
+              <div class="planet" style="--planet-size:14px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.6);">
                 <span class="planet-label">Venus • 0,723 AE</span>
               </div>
             </div>
           </div>
 
-          <!-- 3. ERDE – 1 AE, 8,3 Lichtminuten, mit Van-Allen-Gürteln und Mond -->
-          <div class="planet-system" data-planet="earth" style="--orbit-size:38%;--orbit-duration:31s;">
+          <!-- 3. ERDE – 1 AE + Van-Allen-Gürtel + Mond -->
+          <div class="planet-system" style="--orbit-size:36%;--orbit-duration:29s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:20px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.8);">
-                <!-- Van-Allen-Gürtel (optisch) -->
-                <div class="van-allen-belt inner"></div>
-                <div class="van-allen-belt outer"></div>
-                <!-- Mond -->
-                <span class="moon" style="background:#c8c8c8;box-shadow:0 0 10px rgba(200,200,200,0.6);"></span>
+              <div class="planet" style="--planet-size:18px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.7);">
+                <div class="van-allen inner"></div>
+                <div class="van-allen outer"></div>
+                <span class="moon" style="background:#c8c8c8;box-shadow:0 0 8px rgba(200,200,200,0.4);"></span>
                 <span class="planet-label">Erde • 1 AE</span>
-                <!-- Mond im Unterorbit -->
-                <div class="sub-orbit" style="--sub-orbit-size:45px;--sub-orbit-duration:5s;">
-                  <div class="sub-planet" style="--sub-planet-size:9px;--sub-planet-light:#e8e8e8;--sub-planet-main:#a0a0a0;--sub-planet-dark:#606060;--sub-planet-glow:rgba(200,200,200,.5);">
+                <div class="sub-orbit" style="--sub-orbit-size:42px;--sub-orbit-duration:4.5s;">
+                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#e8e8e8;--sub-planet-main:#a0a0a0;--sub-planet-dark:#606060;--sub-planet-glow:rgba(200,200,200,.4);">
                     <span class="sub-label">Mond</span>
                   </div>
                 </div>
@@ -1021,27 +877,27 @@
             </div>
           </div>
 
-          <!-- 4. Mars – 1,524 AE, 12,7 Lichtminuten -->
-          <div class="planet-system" data-planet="mars" style="--orbit-size:46%;--orbit-duration:39s;">
+          <!-- 4. Mars – 1,524 AE -->
+          <div class="planet-system" style="--orbit-size:44%;--orbit-duration:37s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:16px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.7);">
+              <div class="planet" style="--planet-size:14px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.6);">
                 <span class="planet-label">Mars • 1,524 AE</span>
               </div>
             </div>
           </div>
 
-          <!-- 5. Jupiter – 5,2 AE, 43 Lichtminuten (mit Monden Io, Europa) -->
-          <div class="planet-system" data-planet="jupiter" style="--orbit-size:54%;--orbit-duration:47s;">
+          <!-- 5. Jupiter – 5,2 AE + Io + Europa -->
+          <div class="planet-system" style="--orbit-size:52%;--orbit-duration:45s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:30px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.6);">
+              <div class="planet" style="--planet-size:28px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.5);">
                 <span class="planet-label">Jupiter • 5,2 AE</span>
-                <div class="sub-orbit" style="--sub-orbit-size:40px;--sub-orbit-duration:4s;">
-                  <div class="sub-planet" style="--sub-planet-size:9px;--sub-planet-light:#d4d4d4;--sub-planet-main:#8a8a8a;--sub-planet-dark:#4a4a4a;--sub-planet-glow:rgba(180,180,180,.4);">
+                <div class="sub-orbit" style="--sub-orbit-size:38px;--sub-orbit-duration:3.5s;">
+                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#d4d4d4;--sub-planet-main:#8a8a8a;--sub-planet-dark:#4a4a4a;--sub-planet-glow:rgba(180,180,180,.35);">
                     <span class="sub-label">Io</span>
                   </div>
                 </div>
-                <div class="sub-orbit" style="--sub-orbit-size:55px;--sub-orbit-duration:6s;">
-                  <div class="sub-planet" style="--sub-planet-size:10px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.4);">
+                <div class="sub-orbit" style="--sub-orbit-size:50px;--sub-orbit-duration:5s;">
+                  <div class="sub-planet" style="--sub-planet-size:9px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.35);">
                     <span class="sub-label">Europa</span>
                   </div>
                 </div>
@@ -1049,18 +905,18 @@
             </div>
           </div>
 
-          <!-- 6. Saturn – 9,5 AE (mit Ringen, Titan, Rhea) -->
-          <div class="planet-system" data-planet="saturn" style="--orbit-size:62%;--orbit-duration:56s;">
+          <!-- 6. Saturn – 9,5 AE + Ringe + Titan + Rhea -->
+          <div class="planet-system" style="--orbit-size:60%;--orbit-duration:54s;">
             <div class="planet-holder">
-              <div class="planet has-ring" style="--planet-size:26px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.6);">
+              <div class="planet has-ring" style="--planet-size:24px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.5);">
                 <span class="planet-label">Saturn • 9,5 AE</span>
-                <div class="sub-orbit" style="--sub-orbit-size:38px;--sub-orbit-duration:3.5s;">
-                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.4);">
+                <div class="sub-orbit" style="--sub-orbit-size:36px;--sub-orbit-duration:3s;">
+                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.35);">
                     <span class="sub-label">Titan</span>
                   </div>
                 </div>
-                <div class="sub-orbit" style="--sub-orbit-size:50px;--sub-orbit-duration:5.5s;">
-                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#d4e8f0;--sub-planet-main:#7a9ab0;--sub-planet-dark:#3a4a5a;--sub-planet-glow:rgba(140,180,220,.4);">
+                <div class="sub-orbit" style="--sub-orbit-size:48px;--sub-orbit-duration:4.5s;">
+                  <div class="sub-planet" style="--sub-planet-size:7px;--sub-planet-light:#d4e8f0;--sub-planet-main:#7a9ab0;--sub-planet-dark:#3a4a5a;--sub-planet-glow:rgba(140,180,220,.35);">
                     <span class="sub-label">Rhea</span>
                   </div>
                 </div>
@@ -1069,30 +925,30 @@
           </div>
 
           <!-- 7. Uranus – 19 AE -->
-          <div class="planet-system" data-planet="uranus" style="--orbit-size:70%;--orbit-duration:67s;">
+          <div class="planet-system" style="--orbit-size:68%;--orbit-duration:63s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:22px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.6);">
+              <div class="planet" style="--planet-size:20px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.5);">
                 <span class="planet-label">Uranus • 19 AE</span>
               </div>
             </div>
           </div>
 
           <!-- 8. Neptun – 30 AE -->
-          <div class="planet-system" data-planet="neptune" style="--orbit-size:78%;--orbit-duration:79s;">
+          <div class="planet-system" style="--orbit-size:76%;--orbit-duration:75s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:22px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.6);">
+              <div class="planet" style="--planet-size:20px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.5);">
                 <span class="planet-label">Neptun • 30 AE</span>
               </div>
             </div>
           </div>
 
-          <!-- 9. Pluto – 39 AE (Zwergplanet, Sekunde) -->
-          <div class="planet-system" data-planet="pluto" style="--orbit-size:86%;--orbit-duration:60s;">
+          <!-- 9. Pluto – 39 AE (Sekunde) -->
+          <div class="planet-system" style="--orbit-size:84%;--orbit-duration:60s;">
             <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:15px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.5);">
+              <div class="planet time-planet" style="--planet-size:13px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.4);">
                 <span class="planet-label">Pluto • 39 AE ⏱</span>
-                <div class="sub-orbit" style="--sub-orbit-size:32px;--sub-orbit-duration:3s;">
-                  <div class="sub-planet" style="--sub-planet-size:7px;--sub-planet-light:#d0d0e0;--sub-planet-main:#808090;--sub-planet-dark:#404050;--sub-planet-glow:rgba(180,180,220,.4);">
+                <div class="sub-orbit" style="--sub-orbit-size:30px;--sub-orbit-duration:2.5s;">
+                  <div class="sub-planet" style="--sub-planet-size:6px;--sub-planet-light:#d0d0e0;--sub-planet-main:#808090;--sub-planet-dark:#404050;--sub-planet-glow:rgba(180,180,220,.35);">
                     <span class="sub-label">Charon</span>
                   </div>
                 </div>
@@ -1100,28 +956,28 @@
             </div>
           </div>
 
-          <!-- 10. Ceres – 2,77 AE (Zwergplanet, Minute) -->
-          <div class="planet-system" data-planet="ceres" style="--orbit-size:94%;--orbit-duration:3600s;">
+          <!-- 10. Ceres – 2,77 AE (Minute) -->
+          <div class="planet-system" style="--orbit-size:92%;--orbit-duration:3600s;">
             <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:14px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.5);">
+              <div class="planet time-planet" style="--planet-size:13px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.4);">
                 <span class="planet-label">Ceres • 2,77 AE ⏱</span>
               </div>
             </div>
           </div>
 
-          <!-- 11. Eris – 67,7 AE (Zwergplanet, Stunde) -->
-          <div class="planet-system" data-planet="eris" style="--orbit-size:102%;--orbit-duration:43200s;">
+          <!-- 11. Eris – 67,7 AE (Stunde) -->
+          <div class="planet-system" style="--orbit-size:100%;--orbit-duration:43200s;">
             <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:16px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.5);">
+              <div class="planet time-planet" style="--planet-size:14px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.4);">
                 <span class="planet-label">Eris • 67,7 AE ⏱</span>
               </div>
             </div>
           </div>
 
-          <!-- 12. Haumea – 43 AE (Zwergplanet) -->
-          <div class="planet-system" data-planet="haumea" style="--orbit-size:110%;--orbit-duration:149s;">
+          <!-- 12. Haumea – 43 AE -->
+          <div class="planet-system" style="--orbit-size:108%;--orbit-duration:145s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:16px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.6);">
+              <div class="planet" style="--planet-size:14px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.5);">
                 <span class="planet-label">Haumea • 43 AE</span>
               </div>
             </div>
@@ -1134,9 +990,13 @@
             <span id="sun-corona"></span>
             <span id="sun-core">
               <div id="sun-stars-orbital" aria-hidden="true"></div>
+              <div id="sun-orbit-texts">
+                <div class="sun-orbital-text"><span class="text-content">✦ HalDo AI OS ✦</span></div>
+                <div class="sun-orbital-text"><span class="text-content">✦ A Halil Donma ✦</span></div>
+                <div class="sun-orbital-text"><span class="text-content">✦ Professioneller HalDo AI &amp; Cyborg ✦</span></div>
+              </div>
+              <div id="sun-text-overlay">✦ HalDo AI OS · A Halil Donma · Professioneller HalDo AI &amp; Cyborg ✦</div>
               <img id="sun-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
-              <div id="sun-text" class="main">HalDo AI OS</div>
-              <div id="sun-text" class="sub">A Halil Donma • Professioneller HalDo AI &amp; Cyborg</div>
               <span id="inner-sun-stars" aria-hidden="true"></span>
             </span>
           </button>
@@ -1165,21 +1025,21 @@
 
     </main>
 
-    <!-- CYBORG AVATAR – BEWEGBAR (logo.png als Gesicht) -->
+    <!-- CYBORG AVATAR – NUR BILD -->
     <div id="cyborg-avatar">
       <div class="cyborg-click-area" id="cyborg-click-area"></div>
       <div class="cyborg-bg">
         <img id="cyborg-image" src="assets/logo/logo.png" alt="HalDo Cyborg" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E👤%3C/text%3E%3C/svg%3E'">
       </div>
-      <div class="speech-bubble" id="cyborg-speech">👋 Hallo! Ich bin HalDo Cyborg.</div>
+      <div class="speech-bubble" id="cyborg-speech">Hallo! Ich bin HalDo Cyborg.</div>
     </div>
 
-    <!-- AI OVERLAY – MENSCHLICHER AVATAR -->
+    <!-- AI OVERLAY – NUR AVATAR-BILD -->
     <div id="ai-overlay" class="ai-overlay" aria-hidden="true">
       <section id="ai-window" class="ai-window" role="dialog" aria-modal="true" aria-labelledby="ai-window-title">
         <header class="ai-header">
           <div class="panel-brand">
-            <img class="haldo-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
+            <img class="avatar-img" src="assets/logo/logo.png" alt="HalDo AI" draggable="false">
             <div>
               <h2 id="ai-window-title">HalDo AI</h2>
               <p id="ai-state-label">Bereit</p>
@@ -1187,49 +1047,21 @@
           </div>
           <div class="ai-header-actions">
             <button id="ai-mic-button" class="panel-icon-button" type="button" aria-label="Spracheingabe" title="Spracheingabe">🎙️</button>
-            <button id="ai-voice-button" class="panel-icon-button" type="button" aria-label="Sprachausgabe ein oder aus" title="Sprachausgabe">🔊</button>
-            <button id="ai-close-button" class="panel-close" type="button" aria-label="HalDo AI schließen">×</button>
+            <button id="ai-voice-button" class="panel-icon-button" type="button" aria-label="Sprachausgabe ein/aus" title="Sprachausgabe">🔊</button>
+            <button id="ai-close-button" class="panel-close" type="button" aria-label="Schließen">×</button>
           </div>
         </header>
 
-        <div id="ai-presence" class="ai-presence" data-ai-state="idle">
-          <div class="ai-presence-aura"></div>
-          <div class="ai-presence-ring ring-one"></div>
-          <div class="ai-presence-ring ring-two"></div>
-          <div class="ai-presence-ring ring-three"></div>
-
-          <div class="ai-human-container">
-            <div class="ai-human" id="ai-human">
-              <div class="head">
-                <img class="avatar-image" id="ai-avatar-image" src="assets/logo/logo.png" alt="HalDo AI Avatar" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E👤%3C/text%3E%3C/svg%3E'">
-                <div class="eyes">
-                  <div class="eye" id="ai-eye-left"></div>
-                  <div class="eye" id="ai-eye-right"></div>
-                </div>
-                <div class="mouth" id="ai-mouth"></div>
-              </div>
-              <div class="body">
-                <img class="logo-on-body" src="assets/logo/logo.png" alt="HalDo">
-              </div>
-              <div class="arm left" id="ai-arm-left"></div>
-              <div class="arm right" id="ai-arm-right"></div>
-              <div class="legs">
-                <div class="leg"></div>
-                <div class="leg"></div>
-              </div>
-            </div>
-          </div>
-
+        <div class="ai-presence">
+          <img class="avatar-big" src="assets/logo/logo.png" alt="HalDo AI" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E👤%3C/text%3E%3C/svg%3E'">
           <div id="ai-expression" class="ai-expression">Ich bin bereit.</div>
         </div>
 
         <div id="ai-conversation" class="ai-conversation" aria-live="polite"></div>
 
         <form id="ai-input-form" class="ai-input-form" autocomplete="off">
-          <button id="ai-attachment-button" class="ai-tool-button" type="button" aria-label="Datei anhängen" title="Datei anhängen">＋</button>
-          <input id="ai-file-input" type="file" hidden multiple>
-          <textarea id="ai-input" rows="1" maxlength="10000" placeholder="Sprich mit HalDo AI …" aria-label="Nachricht an HalDo AI"></textarea>
-          <button id="ai-send-button" class="ai-send-button" type="submit" aria-label="Nachricht senden" title="Senden">➤</button>
+          <textarea id="ai-input" rows="1" maxlength="10000" placeholder="Nachricht an HalDo AI …" aria-label="Nachricht an HalDo AI"></textarea>
+          <button id="ai-send-button" class="ai-send-button" type="submit" aria-label="Senden" title="Senden">➤</button>
         </form>
 
         <footer class="ai-footer">
@@ -1247,7 +1079,7 @@
 
   <script>
     // ============================================================
-    // PHASE 4 – MENSCHLICHE AVATARE + REALISTISCHES PLANETENSYSTEM
+    // PHASE 4 – WISSENSCHAFTLICHES PLANETENSYSTEM + AVATAR
     // ============================================================
 
     (function() {
@@ -1261,12 +1093,11 @@
         version: '4.0.0',
         name: 'HalDo AI OS',
         build: '2026-09-08',
-        phase: 'Phase 4 – Menschliche Avatare + reales Planetensystem',
+        phase: 'Phase 4 – Wissenschaftliches Planetensystem',
         state: 'BOOTING',
         config: {
           cosmicWorld: true,
           cosmicEffects: true,
-          systemSounds: true,
           animations: true,
           aiEnabled: true,
           aiAppControl: true,
@@ -1277,9 +1108,6 @@
           voiceLanguage: 'de-DE',
           voiceRate: 1,
           voiceVolume: 1,
-          displayScale: 1,
-          notifications: true,
-          secureStorage: true,
           language: 'de',
           voiceGender: 'female',
         },
@@ -1314,7 +1142,7 @@
         init() {
           return new Promise((resolve) => {
             try {
-              const req = indexedDB.open('HalDoOS', 6);
+              const req = indexedDB.open('HalDoOS', 7);
               req.onupgradeneeded = (e) => {
                 const db = e.target.result;
                 if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
@@ -1381,27 +1209,14 @@
       };
 
       // ============================================================
-      // LANGUAGE LAYER – mit vielen Sprachen
+      // LANGUAGE
       // ============================================================
 
       const TRANSLATIONS = {
         de: {
-          'boot.message': 'Phase 4 – Menschliche Avatare &amp; reales Planetensystem wird geladen.',
+          'boot.message': 'Wissenschaftliches Planetensystem & Avatar wird geladen.',
           'cosmic.subtitle': 'Cosmic World · Living Intelligence',
-          'ai.role': 'Professioneller HalDo AI &amp; Cyborg',
-          'sun.subtitle': 'A Halil Donma • Professioneller HalDo AI &amp; Cyborg',
-          'planet.mercury': 'Merkur • 0,387 AE',
-          'planet.venus': 'Venus • 0,723 AE',
-          'planet.earth': 'Erde • 1 AE',
-          'planet.mars': 'Mars • 1,524 AE',
-          'planet.jupiter': 'Jupiter • 5,2 AE',
-          'planet.saturn': 'Saturn • 9,5 AE',
-          'planet.uranus': 'Uranus • 19 AE',
-          'planet.neptune': 'Neptun • 30 AE',
-          'planet.pluto': 'Pluto • 39 AE ⏱',
-          'planet.ceres': 'Ceres • 2,77 AE ⏱',
-          'planet.eris': 'Eris • 67,7 AE ⏱',
-          'planet.haumea': 'Haumea • 43 AE',
+          'ai.role': 'Professioneller HalDo AI & Cyborg',
           'ai.idle': 'Ich bin bereit.',
           'ai.listening': '👂 Ich höre zu …',
           'ai.thinking': '🧠 Ich denke nach …',
@@ -1413,59 +1228,20 @@
           'ai.sleep': '🌙 Gute Nacht …',
         },
         en: {
-          'boot.message': 'Phase 4 – Human Avatars &amp; real planetary system loading.',
+          'boot.message': 'Scientific planetary system & avatar loading.',
           'cosmic.subtitle': 'Cosmic World · Living Intelligence',
-          'ai.role': 'Professional HalDo AI &amp; Cyborg',
-          'sun.subtitle': 'A Halil Donma • Professional HalDo AI &amp; Cyborg',
-          'planet.mercury': 'Mercury • 0.387 AU',
-          'planet.venus': 'Venus • 0.723 AU',
-          'planet.earth': 'Earth • 1 AU',
-          'planet.mars': 'Mars • 1.524 AU',
-          'planet.jupiter': 'Jupiter • 5.2 AU',
-          'planet.saturn': 'Saturn • 9.5 AU',
-          'planet.uranus': 'Uranus • 19 AU',
-          'planet.neptune': 'Neptune • 30 AU',
-          'planet.pluto': 'Pluto • 39 AU ⏱',
-          'planet.ceres': 'Ceres • 2.77 AU ⏱',
-          'planet.eris': 'Eris • 67.7 AU ⏱',
-          'planet.haumea': 'Haumea • 43 AU',
+          'ai.role': 'Professional HalDo AI & Cyborg',
           'ai.idle': 'I am ready.',
           'ai.listening': '👂 I am listening …',
           'ai.thinking': '🧠 I am thinking …',
           'ai.speaking': '🗣️ I am speaking …',
         },
-        // Weitere Sprachen können hier ergänzt werden
+        // Weitere Sprachen als Fallback
       };
 
-      // Fallback für andere Sprachen
-      const fallbackLang = {
-        'boot.message': 'Phase 4 – Human Avatars & real planetary system loading.',
-        'cosmic.subtitle': 'Cosmic World · Living Intelligence',
-        'ai.role': 'Professional HalDo AI & Cyborg',
-        'sun.subtitle': 'A Halil Donma • Professional HalDo AI & Cyborg',
-        'ai.idle': 'I am ready.',
-        'ai.listening': '👂 I am listening …',
-        'ai.thinking': '🧠 I am thinking …',
-        'ai.speaking': '🗣️ I am speaking …',
-      };
       ['ku', 'ez', 'tr', 'ar', 'fr', 'es', 'ru', 'zh', 'nl', 'pl', 'pt', 'sv'].forEach(lang => {
         if (!TRANSLATIONS[lang]) {
-          TRANSLATIONS[lang] = { ...fallbackLang };
-          const enPlanets = {
-            'planet.mercury': 'Mercury • 0.387 AU',
-            'planet.venus': 'Venus • 0.723 AU',
-            'planet.earth': 'Earth • 1 AU',
-            'planet.mars': 'Mars • 1.524 AU',
-            'planet.jupiter': 'Jupiter • 5.2 AU',
-            'planet.saturn': 'Saturn • 9.5 AU',
-            'planet.uranus': 'Uranus • 19 AU',
-            'planet.neptune': 'Neptune • 30 AU',
-            'planet.pluto': 'Pluto • 39 AU ⏱',
-            'planet.ceres': 'Ceres • 2.77 AU ⏱',
-            'planet.eris': 'Eris • 67.7 AU ⏱',
-            'planet.haumea': 'Haumea • 43 AU',
-          };
-          Object.assign(TRANSLATIONS[lang], enPlanets);
+          TRANSLATIONS[lang] = { ...TRANSLATIONS.en };
         }
       });
 
@@ -1474,31 +1250,22 @@
       // ============================================================
 
       function setLanguage(lang) {
-        if (!TRANSLATIONS[lang]) {
-          console.warn('Sprache nicht unterstützt:', lang);
-          return;
-        }
+        if (!TRANSLATIONS[lang]) { console.warn('Sprache nicht unterstützt:', lang); return; }
         HALDO.config.language = lang;
         HALDO.translations = TRANSLATIONS[lang] || TRANSLATIONS.de;
         updateUITexts();
         HALDO.storage.set('settings', 'config', HALDO.config);
         HALDO.eventBus.emit('language:changed', lang);
-        // Voice-Sprache anpassen
-        if (HALDO.voice) {
-          const voiceMap = {
-            'de': 'de-DE', 'en': 'en-US', 'fr': 'fr-FR', 'es': 'es-ES',
-            'ru': 'ru-RU', 'zh': 'zh-CN', 'ar': 'ar-SA', 'tr': 'tr-TR',
-            'nl': 'nl-NL', 'pl': 'pl-PL', 'pt': 'pt-PT', 'sv': 'sv-SE',
-            'ku': 'tr-TR', 'ez': 'tr-TR',
-          };
-          HALDO.config.voiceLanguage = voiceMap[lang] || 'de-DE';
-        }
+        const voiceMap = {
+          'de': 'de-DE', 'en': 'en-US', 'fr': 'fr-FR', 'es': 'es-ES',
+          'ru': 'ru-RU', 'zh': 'zh-CN', 'ar': 'ar-SA', 'tr': 'tr-TR',
+          'nl': 'nl-NL', 'pl': 'pl-PL', 'pt': 'pt-PT', 'sv': 'sv-SE',
+        };
+        HALDO.config.voiceLanguage = voiceMap[lang] || 'de-DE';
       }
 
       function t(key, fallback = key) {
-        if (HALDO.translations && HALDO.translations[key]) {
-          return HALDO.translations[key];
-        }
+        if (HALDO.translations && HALDO.translations[key]) return HALDO.translations[key];
         return fallback;
       }
 
@@ -1508,7 +1275,7 @@
           el.innerHTML = t(key, key);
         });
         const bootMsg = document.getElementById('boot-message');
-        if (bootMsg) bootMsg.innerHTML = t('boot.message', 'Phase 4 – Menschliche Avatare & reales Planetensystem wird geladen.');
+        if (bootMsg) bootMsg.innerHTML = t('boot.message', 'Wissenschaftliches Planetensystem & Avatar wird geladen.');
         const expression = document.getElementById('ai-expression');
         if (expression && aiState !== 'speaking' && aiState !== 'listening' && aiState !== 'thinking') {
           expression.textContent = t('ai.idle', 'Ich bin bereit.');
@@ -1516,48 +1283,16 @@
       }
 
       // ============================================================
-      // TOAST – mit kontextabhängigen Emojis
+      // TOAST – OHNE AUTOMATISCHE EMOJIS
       // ============================================================
-
-      const emojiMap = {
-        'danke': '🙏',
-        'liebe': '❤️',
-        'ich liebe dich': '❤️',
-        'müde': '😴',
-        'traurig': '😢',
-        'hallo': '👋',
-        'hey': '👋',
-        'bruder': '💙',
-        'schwester': '💖',
-        'guten morgen': '🌅',
-        'gute nacht': '🌙',
-        'hilfe': '🆘',
-        'ja': '👍',
-        'nein': '👎',
-        'ok': '👌',
-        'super': '🌟',
-        'perfekt': '✨',
-        'bitte': '🤲',
-      };
-
-      function getEmojiForText(text) {
-        if (!text) return '📢';
-        const lower = text.toLowerCase();
-        for (const [key, emoji] of Object.entries(emojiMap)) {
-          if (lower.includes(key)) return emoji;
-        }
-        return '📢';
-      }
 
       function showToast(icon, title, message) {
         const container = document.getElementById('toast-container');
         if (!container) return;
-        const contextEmoji = getEmojiForText(title + ' ' + message);
-        const finalIcon = icon || contextEmoji || '📢';
         const toast = document.createElement('div');
         toast.className = 'toast';
         toast.innerHTML = `
-          <span class="toast-icon">${finalIcon}</span>
+          <span class="toast-icon">${icon || '📢'}</span>
           <div class="toast-body">
             <div class="toast-title">${title}</div>
             <div class="toast-message">${message}</div>
@@ -1580,7 +1315,7 @@
       }
 
       // ============================================================
-      // STERNE GENERIEREN (365 + 30)
+      // STERNE GENERIEREN
       // ============================================================
 
       function generateStars() {
@@ -1660,7 +1395,7 @@
       }
 
       // ============================================================
-      // AI AVATAR – MENSCHLICH
+      // AI AVATAR – NUR LOGO
       // ============================================================
 
       let aiState = 'idle';
@@ -1669,8 +1404,6 @@
 
       function setAIState(state) {
         aiState = state;
-        const presence = document.getElementById('ai-presence');
-        if (presence) presence.dataset.aiState = state;
         const label = document.getElementById('ai-state-label');
         if (label) {
           const states = {
@@ -1701,58 +1434,7 @@
           };
           expression.textContent = expressions[state] || 'Ich bin bereit.';
         }
-        animateAvatar(state);
-      }
-
-      function animateAvatar(state) {
-        const mouth = document.getElementById('ai-mouth');
-        const armLeft = document.getElementById('ai-arm-left');
-        const armRight = document.getElementById('ai-arm-right');
-        const eyeLeft = document.getElementById('ai-eye-left');
-        const eyeRight = document.getElementById('ai-eye-right');
-        const avatarImg = document.getElementById('ai-avatar-image');
-
-        switch(state) {
-          case 'speaking':
-            if (mouth) mouth.classList.add('speaking');
-            if (armLeft) armLeft.classList.add('moving-left');
-            if (armRight) armRight.classList.add('moving-right');
-            if (eyeLeft) eyeLeft.style.transform = 'scale(1.2)';
-            if (eyeRight) eyeRight.style.transform = 'scale(1.2)';
-            if (avatarImg) avatarImg.style.animation = 'avatarPulse 0.5s ease-in-out infinite alternate';
-            break;
-          case 'listening':
-            if (mouth) mouth.classList.remove('speaking');
-            if (armLeft) armLeft.classList.remove('moving-left');
-            if (armRight) armRight.classList.remove('moving-right');
-            if (eyeLeft) eyeLeft.style.transform = 'scale(0.8)';
-            if (eyeRight) eyeRight.style.transform = 'scale(0.8)';
-            if (avatarImg) avatarImg.style.animation = 'avatarPulse 0.8s ease-in-out infinite';
-            break;
-          case 'thinking':
-            if (mouth) mouth.classList.remove('speaking');
-            if (armLeft) armLeft.style.transform = 'rotate(-30deg)';
-            if (armRight) armRight.style.transform = 'rotate(30deg)';
-            if (eyeLeft) eyeLeft.style.transform = 'translateY(-2px)';
-            if (eyeRight) eyeRight.style.transform = 'translateY(-2px)';
-            if (avatarImg) avatarImg.style.animation = 'avatarPulse 1.5s ease-in-out infinite';
-            break;
-          case 'happy':
-            if (mouth) { mouth.classList.remove('speaking'); mouth.style.width = '24px'; mouth.style.height = '8px'; mouth.style.borderRadius = '50%'; }
-            if (armLeft) armLeft.style.transform = 'rotate(30deg)';
-            if (armRight) armRight.style.transform = 'rotate(-30deg)';
-            if (avatarImg) avatarImg.style.animation = 'avatarPulse 0.6s ease-in-out infinite';
-            break;
-          case 'idle':
-          default:
-            if (mouth) { mouth.classList.remove('speaking'); mouth.style.width = '20px'; mouth.style.height = '5px'; mouth.style.borderRadius = '0 0 20px 20px'; }
-            if (armLeft) { armLeft.classList.remove('moving-left'); armLeft.style.transform = 'rotate(15deg)'; }
-            if (armRight) { armRight.classList.remove('moving-right'); armRight.style.transform = 'rotate(-15deg)'; }
-            if (eyeLeft) eyeLeft.style.transform = '';
-            if (eyeRight) eyeRight.style.transform = '';
-            if (avatarImg) avatarImg.style.animation = 'avatarPulse 3s ease-in-out infinite';
-            break;
-        }
+        // Keine Körper-Animation mehr – nur das Bild bleibt
       }
 
       // ============================================================
@@ -1782,22 +1464,13 @@
               if (!preferred) preferred = voices.find(v => v.lang === lang);
               if (preferred) utterance.voice = preferred;
             } catch(e) {}
-            utterance.onend = () => {
-              isSpeaking = false;
-              if (aiState === 'speaking') setAIState('idle');
-            };
-            utterance.onerror = () => {
-              isSpeaking = false;
-              if (aiState === 'speaking') setAIState('idle');
-            };
+            utterance.onend = () => { isSpeaking = false; if (aiState === 'speaking') setAIState('idle'); };
+            utterance.onerror = () => { isSpeaking = false; if (aiState === 'speaking') setAIState('idle'); };
             window.speechSynthesis.speak(utterance);
           },
           listen: function() {
             return new Promise((resolve) => {
-              if (!('webkitSpeechRecognition' in window)) {
-                resolve(null);
-                return;
-              }
+              if (!('webkitSpeechRecognition' in window)) { resolve(null); return; }
               const recognition = new webkitSpeechRecognition();
               recognition.lang = HALDO.config.voiceLanguage || 'de-DE';
               recognition.continuous = false;
@@ -1805,26 +1478,18 @@
               setAIState('listening');
               isListening = true;
               recognition.start();
-              recognition.onresult = (e) => {
-                const text = e.results[0][0].transcript;
-                resolve(text);
-              };
+              recognition.onresult = (e) => { const text = e.results[0][0].transcript; resolve(text); };
               recognition.onerror = () => { resolve(null); };
-              recognition.onend = () => {
-                isListening = false;
-                if (aiState === 'listening') setAIState('idle');
-              };
+              recognition.onend = () => { isListening = false; if (aiState === 'listening') setAIState('idle'); };
             });
           }
         };
         window.speechSynthesis.getVoices();
-        window.speechSynthesis.onvoiceschanged = () => {
-          window.speechSynthesis.getVoices();
-        };
+        window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
       }
 
       // ============================================================
-      // AI LOGIC
+      // AI LOGIC – mit reduzierten Emojis, nur bei Bedarf
       // ============================================================
 
       function generateAIResponse(question) {
@@ -1833,57 +1498,38 @@
 
         const knowledge = {
           'was ist ki': 'Künstliche Intelligenz (KI) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst. Ich bin ein lebendiges Beispiel dafür.',
-          'wie geht es dir': 'Mir geht es großartig! Wie kann ich dir helfen?',
-          'wer bist du': 'Ich bin HalDo AI, dein intelligenter Assistent für die Cosmic World. Ich sehe, höre, spreche und helfe dir bei allem!',
-          'was ist haldo': 'HalDo AI OS ist ein professionelles Betriebssystem mit Cosmic World, lebendiger AI, Cyborg-Assistent und über 30 voll ausgestatteten Apps.',
-          'hallo': 'Hallo! Schön dich zu sehen. Wie kann ich dir heute helfen?',
-          'danke': 'Gern geschehen! Immer wieder gerne.',
-          'hilfe': 'Ich helfe dir gerne! Klicke auf die Sonne, öffne das App-Menü oder sprich einfach mit mir.',
-          'ich liebe dich': 'Das ist so lieb von dir! ❤️ Ich freue mich sehr!',
-          'ich bin müde': 'Dann mach es dir gemütlich. Soll ich dir helfen, dich zu entspannen? 🌙',
-          'ich bin traurig': 'Das tut mir leid zu hören. Möchtest du darüber sprechen? Ich bin für dich da. 🤗',
-          'bruder': 'Hallo Bruder! 💙 Schön dich zu sehen.',
-          'schwester': 'Hallo Schwester! 💖 Wie kann ich dir helfen?',
+          'wie geht es dir': 'Mir geht es großartig. Wie kann ich dir helfen?',
+          'wer bist du': 'Ich bin HalDo AI, dein intelligenter Assistent für die Cosmic World. Ich höre, spreche und helfe dir bei allem.',
+          'was ist haldo': 'HalDo AI OS ist ein professionelles Betriebssystem mit wissenschaftlichem Planetensystem, lebendiger AI und Cyborg-Assistent.',
+          'hallo': 'Hallo. Schön dich zu sehen. Wie kann ich dir heute helfen?',
+          'danke': 'Gern geschehen.',
+          'hilfe': 'Ich helfe dir gerne. Klicke auf die Sonne, öffne das App-Menü oder sprich einfach mit mir.',
         };
 
         for (const [key, value] of Object.entries(knowledge)) {
-          if (lower.includes(key)) {
-            response = value;
-            break;
-          }
+          if (lower.includes(key)) { response = value; break; }
         }
 
         if (!response) {
           const intents = {
-            'musik': 'music',
-            'video': 'video',
-            'gesundheit': 'health',
-            'navigation': 'navigation',
-            'kalender': 'calendar',
-            'email': 'email',
-            'fahrschule': 'driving',
-            'chat': 'chat',
-            'anruf': 'call',
-            'browser': 'browser',
-            'dateien': 'files',
-            'aufgaben': 'tasks',
-            'wetter': 'weather',
-            'einstellungen': 'systemcenter',
-            'sicherheit': 'security',
-            'updates': 'updates',
-            'verkehr': 'traffic',
+            'musik': 'music', 'video': 'video', 'gesundheit': 'health',
+            'navigation': 'navigation', 'kalender': 'calendar', 'email': 'email',
+            'fahrschule': 'driving', 'chat': 'chat', 'anruf': 'call',
+            'browser': 'browser', 'dateien': 'files', 'aufgaben': 'tasks',
+            'wetter': 'weather', 'einstellungen': 'systemcenter',
+            'sicherheit': 'security', 'updates': 'updates', 'verkehr': 'traffic',
           };
           for (const [keyword, appId] of Object.entries(intents)) {
             if (lower.includes(keyword)) {
-              response = `Ich öffne die App "${appId}" für dich. (Phase 4 – vorbereitet)`;
+              response = `Ich öffne die App "${appId}" für dich. (vorbereitet)`;
               break;
             }
           }
           if (!response) {
             const defaultResponses = [
-              'Das ist eine interessante Frage. Ich überlege gerade …',
-              'Gute Frage! Lass mich darüber nachdenken.',
-              'Das ist wirklich spannend. Erzähl mir mehr!',
+              'Das ist eine interessante Frage. Ich überlege gerade.',
+              'Gute Frage. Lass mich darüber nachdenken.',
+              'Das ist wirklich spannend. Erzähl mir mehr.',
               'Ich bin hier, um dir zu helfen. Was möchtest du wissen?',
             ];
             response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
@@ -1902,7 +1548,7 @@
         if (!container) return;
         const msg = document.createElement('div');
         msg.className = `conv-message ${sender}`;
-        const icon = sender === 'user' ? '🧑' : '🤖';
+        const icon = sender === 'user' ? '🧑' : '👤';
         msg.innerHTML = `<span class="conv-icon">${icon}</span><span>${text}</span>`;
         container.appendChild(msg);
         container.scrollTop = container.scrollHeight;
@@ -1943,9 +1589,7 @@
         const conversation = document.getElementById('ai-conversation');
         if (conversation) {
           conversation.innerHTML = '';
-          if (initialMessage) {
-            addMessage(initialMessage, 'ai');
-          }
+          if (initialMessage) { addMessage(initialMessage, 'ai'); }
         }
         setAIState('idle');
         document.getElementById('ai-input').focus();
@@ -1962,27 +1606,16 @@
       }
 
       async function toggleVoiceInput() {
-        if (!HALDO.voice) {
-          showToast('⚠️', 'Voice', 'Spracherkennung nicht verfügbar.');
-          return;
-        }
-        if (!HALDO.config.speechInput) {
-          showToast('⚠️', 'Voice', 'Spracheingabe deaktiviert.');
-          return;
-        }
+        if (!HALDO.voice) { showToast('⚠️', 'Voice', 'Spracherkennung nicht verfügbar.'); return; }
+        if (!HALDO.config.speechInput) { showToast('⚠️', 'Voice', 'Spracheingabe deaktiviert.'); return; }
         const micBtn = document.getElementById('ai-mic-button');
         if (micBtn) micBtn.classList.toggle('active');
-
         if (isListening) return;
         const text = await HALDO.voice.listen();
         if (micBtn) micBtn.classList.remove('active');
         if (text) {
           const input = document.getElementById('ai-input');
-          if (input) {
-            input.value = text;
-            processAIInput(text);
-            input.value = '';
-          }
+          if (input) { input.value = text; processAIInput(text); input.value = ''; }
         } else {
           showToast('🎤', 'Voice', 'Keine Eingabe erkannt.');
           setAIState('idle');
@@ -1990,7 +1623,7 @@
       }
 
       // ============================================================
-      // CYBORG FUNCTIONS
+      // CYBORG
       // ============================================================
 
       function showCyborgSpeech(text) {
@@ -1999,7 +1632,7 @@
         speech.textContent = text;
         speech.classList.add('active');
         clearTimeout(speech._timeout);
-        speech._timeout = setTimeout(() => speech.classList.remove('active'), 5000);
+        speech._timeout = setTimeout(() => speech.classList.remove('active'), 4000);
       }
 
       // ============================================================
@@ -2010,10 +1643,10 @@
         // Sonne -> AI
         document.getElementById('sun')?.addEventListener('click', () => {
           if (HALDO.config.aiEnabled) {
-            const greeting = t('ai.happy', '☀️ Hallo! Wie kann ich dir helfen?');
+            const greeting = t('ai.happy', '☀️ Hallo. Wie kann ich dir helfen?');
             openAI(greeting);
             if (HALDO.config.speechOutput && HALDO.voice) {
-              setTimeout(() => HALDO.voice.speak('Hallo! Willkommen bei HalDo AI OS.'), 500);
+              setTimeout(() => HALDO.voice.speak('Hallo. Willkommen bei HalDo AI OS.'), 500);
             }
           } else {
             showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
@@ -2023,9 +1656,9 @@
         // Dock AI
         document.getElementById('dock-ai')?.addEventListener('click', () => {
           if (HALDO.config.aiEnabled) {
-            openAI('👤 Hallo! Ich bin HalDo AI.');
+            openAI('👤 Hallo. Ich bin HalDo AI.');
             if (HALDO.config.speechOutput && HALDO.voice) {
-              setTimeout(() => HALDO.voice.speak('Hallo! Ich bin HalDo AI.'), 500);
+              setTimeout(() => HALDO.voice.speak('Hallo. Ich bin HalDo AI.'), 500);
             }
           } else {
             showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
@@ -2035,10 +1668,10 @@
         // Cyborg Click
         document.getElementById('cyborg-click-area')?.addEventListener('click', () => {
           if (HALDO.config.aiEnabled) {
-            openAI('👋 Hallo! Ich bin HalDo Cyborg.');
-            showCyborgSpeech('👋 Hallo! Ich bin HalDo Cyborg.');
+            openAI('👤 Hallo. Ich bin HalDo Cyborg.');
+            showCyborgSpeech('👤 Hallo. Ich bin HalDo Cyborg.');
             if (HALDO.config.speechOutput && HALDO.voice) {
-              setTimeout(() => HALDO.voice.speak('Hallo! Ich bin HalDo Cyborg.'), 500);
+              setTimeout(() => HALDO.voice.speak('Hallo. Ich bin HalDo Cyborg.'), 500);
             }
           } else {
             showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
@@ -2066,11 +1699,7 @@
           e.preventDefault();
           const input = document.getElementById('ai-input');
           const text = input.value.trim();
-          if (text) {
-            processAIInput(text);
-            input.value = '';
-            input.style.height = 'auto';
-          }
+          if (text) { processAIInput(text); input.value = ''; input.style.height = 'auto'; }
         });
         document.getElementById('ai-input')?.addEventListener('input', function() {
           this.style.height = 'auto';
@@ -2082,7 +1711,7 @@
           showToast('📋', 'Hauptmenü', 'Wird in Phase 6 implementiert.');
         });
 
-        // Dock Buttons (vorbereitet)
+        // Dock Buttons
         document.getElementById('dock-apps')?.addEventListener('click', () => showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.'));
         document.getElementById('dock-search')?.addEventListener('click', () => showToast('🔍', 'Suche', 'Wird in Phase 6 implementiert.'));
         document.getElementById('dock-notifications')?.addEventListener('click', () => showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.'));
@@ -2168,9 +1797,9 @@
           if ((e.ctrlKey || e.metaKey) && e.key === ' ') {
             e.preventDefault();
             if (HALDO.config.aiEnabled) {
-              openAI('👤 Hallo!');
+              openAI('👤 Hallo.');
               if (HALDO.config.speechOutput && HALDO.voice) {
-                setTimeout(() => HALDO.voice.speak('Hallo! Ich bin HalDo AI.'), 500);
+                setTimeout(() => HALDO.voice.speak('Hallo. Ich bin HalDo AI.'), 500);
               }
             }
           }
@@ -2184,7 +1813,7 @@
           }
         });
 
-        console.log('✅ Event-Listener für Phase 4 initialisiert.');
+        console.log('✅ Event-Listener initialisiert.');
       }
 
       // ============================================================
@@ -2199,17 +1828,13 @@
         await HALDO.storage.init();
 
         const savedConfig = await HALDO.storage.get('settings', 'config');
-        if (savedConfig) {
-          HALDO.config = { ...HALDO.config, ...savedConfig };
-        }
+        if (savedConfig) { HALDO.config = { ...HALDO.config, ...savedConfig }; }
 
         const lang = HALDO.config.language || 'de';
         setLanguage(lang);
 
         const savedMemory = await HALDO.storage.get('memory', 'conversation');
-        if (savedMemory && savedMemory.data) {
-          HALDO.memory = savedMemory.data;
-        }
+        if (savedMemory && savedMemory.data) { HALDO.memory = savedMemory.data; }
 
         let progress = 0;
         const steps = [
@@ -2240,7 +1865,7 @@
         if (cosmicWorld) cosmicWorld.classList.remove('is-transitioning');
 
         HALDO.state = 'READY';
-        updateSystemStatus('HalDo AI OS • Phase 4 • Avatare aktiv • Realistisches Planetensystem');
+        updateSystemStatus('HalDo AI OS • Phase 4 • Wissenschaftliches Planetensystem');
 
         initVoice();
         initEventListeners();
@@ -2248,22 +1873,21 @@
         document.getElementById('ai-memory-status').textContent = HALDO.config.memoryEnabled ? '🧠 Memory aktiv' : '🧠 Memory aus';
 
         setTimeout(() => {
-          const welcome = t('ai.happy', '👋 Hallo! Ich bin HalDo AI.');
-          showToast('🌌', 'HalDo AI OS Phase 4', 'Menschliche Avatare & reales Planetensystem sind bereit!');
+          const welcome = t('ai.happy', '👤 Hallo. Ich bin HalDo AI.');
+          showToast('🌌', 'HalDo AI OS Phase 4', 'Wissenschaftliches Planetensystem ist bereit.');
           if (HALDO.config.aiEnabled) {
             setTimeout(() => {
               openAI(welcome);
-              showCyborgSpeech('👋 Hallo! Ich bin HalDo Cyborg.');
+              showCyborgSpeech('👤 Hallo. Ich bin HalDo Cyborg.');
               if (HALDO.config.speechOutput && HALDO.voice) {
-                setTimeout(() => HALDO.voice.speak('Hallo! Ich bin HalDo AI.'), 500);
+                setTimeout(() => HALDO.voice.speak('Hallo. Ich bin HalDo AI.'), 500);
               }
             }, 600);
           }
         }, 800);
 
-        console.log('🚀 HalDo AI OS Phase 4 – Menschliche Avatare & reales Planetensystem gestartet.');
+        console.log('🚀 HalDo AI OS Phase 4 – Wissenschaftliches Planetensystem gestartet.');
         console.log('📦 Version:', HALDO.version);
-        console.log('🌐 Sprache:', HALDO.config.language);
 
         HALDO.eventBus.emit('boot:ready');
       }
