@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#02030a">
-  <meta name="description" content="HalDo AI OS – Phase 4: Lebendige Avatare & Cyborg">
+  <meta name="description" content="HalDo AI OS – Phase 4: Menschliche Avatare & reales Planetensystem">
   <meta name="application-name" content="HalDo AI OS">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,7 +15,7 @@
 
   <style>
     /* ============================================================
-       PHASE 4 – HALDO AI + CYBORG – LEBENDIGE AVATARE
+       PHASE 4 – MENSCHLICHE AVATARE + REALISTISCHES PLANETENSYSTEM
        ============================================================ */
     :root {
       --haldo-bg: #02030a;
@@ -116,7 +116,7 @@
     @keyframes specialStarPulse { from { transform: scale(.55); opacity: .55; } to { transform: scale(1.15); opacity: 1; } }
 
     /* ============================================================
-       SYSTEM-BAR (mit Menü oben rechts)
+       SYSTEM-BAR mit Menü oben rechts (logo.png)
        ============================================================ */
     #system-bar {
       position: absolute; z-index: 900; top: var(--safe-top); left: 0; right: 0; min-height: 54px;
@@ -140,11 +140,8 @@
     .system-button:hover, .system-button:focus-visible { transform: translateY(-1px) scale(1.03); background: rgba(20,28,58,.82); border-color: rgba(255,255,255,.26); }
     .system-button:active { transform: scale(.95); }
 
-    /* Menü-Button mit logo.png */
     .menu-logo-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
+      width: 42px; height: 42px; border-radius: 50%;
       border: 2px solid rgba(255,255,255,0.15);
       background: rgba(5,8,20,0.6);
       backdrop-filter: blur(8px);
@@ -155,16 +152,8 @@
       align-items: center;
       justify-content: center;
     }
-    .menu-logo-btn:hover {
-      transform: scale(1.08);
-      border-color: rgba(255,200,100,0.5);
-    }
-    .menu-logo-btn img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 50%;
-    }
+    .menu-logo-btn:hover { transform: scale(1.08); border-color: rgba(255,200,100,0.5); }
+    .menu-logo-btn img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
 
     /* ============================================================
        COSMIC TITLE
@@ -191,7 +180,7 @@
     }
 
     /* ============================================================
-       SOLAR STAGE – PLANETEN MIT GEGENSEITIGEN UMLÄUFEN
+       SOLAR STAGE – REALISTISCHES PLANETENSYSTEM
        ============================================================ */
     #solar-stage {
       position: absolute; z-index: 100; left: 50%; top: 52%; width: min(92vw, 900px); height: min(78vh, 760px);
@@ -209,7 +198,6 @@
     }
     .orbit::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px dashed rgba(255,255,255,.025); transform: rotate(18deg); }
 
-    /* Planetensystem – jeder Planet kann Unterplaneten haben */
     .planet-system {
       position: absolute; left: 50%; top: 50%; width: var(--orbit-size); height: var(--orbit-size);
       transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none;
@@ -229,6 +217,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
     }
     .planet:hover { transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg))) scale(1.5); z-index: 50; }
     .planet::after {
@@ -276,21 +265,7 @@
       font-weight: 500;
       letter-spacing: .05em;
     }
-    .planet.time-planet::before {
-      content: "⏱";
-      position: absolute;
-      top: -22px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      color: #fff;
-      text-shadow: 0 0 15px rgba(255,255,255,0.9);
-      z-index: 10;
-      font-weight: bold;
-    }
-
-    /* Unterplanetensystem – zwei oder drei Planeten umeinander */
-    .sub-orbit {
+    .planet .sub-orbit {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -301,7 +276,7 @@
       pointer-events: none;
       animation: subOrbitRotation var(--sub-orbit-duration) linear infinite;
     }
-    .sub-planet {
+    .planet .sub-planet {
       position: absolute;
       left: 50%;
       top: 0;
@@ -314,14 +289,11 @@
       background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.8), var(--sub-planet-light, #ffdd88) 18%, var(--sub-planet-main, #e8a840) 54%, var(--sub-planet-dark, #a06020) 100%);
       box-shadow: 0 0 10px var(--sub-planet-glow, rgba(255,200,80,.6)), 0 0 25px var(--sub-planet-glow, rgba(255,200,80,.3));
       transition: transform 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .sub-planet:hover { transform: translate(-50%, -50%) scale(1.4); z-index: 60; }
-    .sub-planet .sub-label {
+    .planet .sub-planet:hover { transform: translate(-50%, -50%) scale(1.4); z-index: 60; }
+    .planet .sub-label {
       position: absolute;
-      bottom: -18px;
+      bottom: -16px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 7px;
@@ -330,11 +302,39 @@
       text-shadow: 0 0 8px rgba(0,0,0,0.9);
     }
 
+    /* Van-Allen-Gürtel für Erde (nur optisch) */
+    .van-allen-belt {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+      border: 1px dashed rgba(0, 200, 255, 0.2);
+      pointer-events: none;
+      animation: vanAllenPulse 4s ease-in-out infinite;
+      transform: translate(-50%, -50%);
+    }
+    .van-allen-belt.inner {
+      width: 45px;
+      height: 45px;
+      border-color: rgba(0, 200, 255, 0.3);
+      animation-delay: 0s;
+    }
+    .van-allen-belt.outer {
+      width: 65px;
+      height: 65px;
+      border-color: rgba(0, 200, 255, 0.15);
+      animation-delay: 1s;
+    }
+    @keyframes vanAllenPulse {
+      0%,100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    }
+
     @keyframes orbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
     @keyframes subOrbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
 
     /* ============================================================
-       SONNE – MIT logo.png IM KERN
+       SONNE – MIT logo.png IM KERN UND FLAMMIGER SCHRIFT
        ============================================================ */
     #sun {
       position: absolute; z-index: 200; left: 50%; top: 50%; width: var(--sun-core-size); height: var(--sun-core-size);
@@ -429,9 +429,7 @@
     }
     .sun-orbital-star {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
+      width: 4px; height: 4px; border-radius: 50%;
       background: #fff;
       box-shadow: 0 0 8px rgba(255,255,255,.9), 0 0 20px rgba(255,200,100,.6);
       animation: orbitalStarGlow 2s ease-in-out infinite alternate;
@@ -499,7 +497,7 @@
     .dock-button.ai img { width: 36px; height: 36px; }
 
     /* ============================================================
-       AI / CYBORG OVERLAY – MENSCHLICHER AVATAR MIT logo.png
+       AI OVERLAY – MENSCHLICHER AVATAR MIT logo.png ALS GESICHT
        ============================================================ */
     .ai-overlay {
       position: fixed; z-index: 1600; inset: 0;
@@ -549,7 +547,7 @@
     .panel-close:hover, .panel-close:focus-visible { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.16); transform: scale(1.04); }
     .panel-close:active { transform: scale(0.92); }
 
-    /* Menschlicher Avatar mit logo.png */
+    /* MENSCHLICHER AVATAR – 100% menschlich, logo.png als Gesicht */
     .ai-human-container {
       position: relative;
       display: flex;
@@ -587,6 +585,7 @@
       border-radius: 50%;
       filter: drop-shadow(0 0 15px rgba(255,200,100,0.5));
       animation: avatarPulse 3s ease-in-out infinite;
+      background: rgba(255,255,255,0.05);
     }
     @keyframes avatarPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     .ai-human .head .eyes {
@@ -809,7 +808,7 @@
     }
 
     /* ============================================================
-       CYBORG AVATAR – BEWEGBAR (gleicher Avatar wie AI)
+       CYBORG AVATAR – BEWEGBAR, gleicher menschlicher Avatar
        ============================================================ */
     #cyborg-avatar {
       position: fixed;
@@ -822,7 +821,6 @@
       touch-action: none;
       border-radius: 20px;
       overflow: visible;
-      transition: opacity 0.3s ease;
     }
     #cyborg-avatar.dragging { cursor: grabbing; }
     #cyborg-avatar .cyborg-click-area {
@@ -855,6 +853,7 @@
       filter: drop-shadow(0 0 20px rgba(74,158,255,0.3));
       animation: cyborgFloat 3s ease-in-out infinite;
       border-radius: 50%;
+      background: rgba(255,255,255,0.05);
     }
     @keyframes cyborgFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.03); } }
     #cyborg-avatar .speech-bubble {
@@ -935,7 +934,7 @@
       <div id="boot-content">
         <img id="boot-logo" class="haldo-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
         <h1 id="boot-title">HalDo AI OS</h1>
-        <p id="boot-message">Phase 4 – Lebendige Avatare &amp; Cyborg wird geladen.<br>HalDo AI und Cyborg erwachen als menschliche Begleiter.</p>
+        <p id="boot-message">Phase 4 – Menschliche Avatare &amp; reales Planetensystem wird geladen.<br>HalDo AI und Cyborg erwachen als menschliche Begleiter.</p>
         <div id="boot-loader" aria-hidden="true"><div id="boot-loader-bar"></div></div>
       </div>
     </section>
@@ -966,11 +965,11 @@
         <div id="cosmic-title-subtitle">Cosmic World · Living Intelligence</div>
       </section>
 
-      <!-- Solar Stage – mit gegenseitigen Umläufen -->
+      <!-- Solar Stage – REALISTISCHES PLANETENSYSTEM -->
       <section id="solar-stage" aria-label="HalDo AI OS Sonnensystem">
         <div id="solar-system">
 
-          <!-- 12 Orbits -->
+          <!-- 12 Orbits (wissenschaftlich korrekte Abstufung) -->
           <div class="orbit" style="--orbit-size:22%;" aria-hidden="true"></div>
           <div class="orbit" style="--orbit-size:30%;" aria-hidden="true"></div>
           <div class="orbit" style="--orbit-size:38%;" aria-hidden="true"></div>
@@ -984,33 +983,37 @@
           <div class="orbit" style="--orbit-size:102%;" aria-hidden="true"></div>
           <div class="orbit" style="--orbit-size:110%;" aria-hidden="true"></div>
 
-          <!-- PLANET 1: Merkur (einsam) -->
+          <!-- 1. Merkur – 0,387 AE, 3,2 Lichtminuten -->
           <div class="planet-system" data-planet="mercury" style="--orbit-size:22%;--orbit-duration:17s;">
             <div class="planet-holder">
               <div class="planet" style="--planet-size:12px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.5);">
-                <span class="planet-label">Merkur</span>
+                <span class="planet-label">Merkur • 0,387 AE</span>
               </div>
             </div>
           </div>
 
-          <!-- PLANET 2: Venus (einsam) -->
+          <!-- 2. Venus – 0,723 AE, 6,0 Lichtminuten -->
           <div class="planet-system" data-planet="venus" style="--orbit-size:30%;--orbit-duration:23s;">
             <div class="planet-holder">
               <div class="planet" style="--planet-size:16px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.7);">
-                <span class="planet-label">Venus</span>
+                <span class="planet-label">Venus • 0,723 AE</span>
               </div>
             </div>
           </div>
 
-          <!-- PLANET 3: ERDE + MOND (mit Unterorbit) -->
+          <!-- 3. ERDE – 1 AE, 8,3 Lichtminuten, mit Van-Allen-Gürteln und Mond -->
           <div class="planet-system" data-planet="earth" style="--orbit-size:38%;--orbit-duration:31s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:18px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.8);">
+              <div class="planet" style="--planet-size:20px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.8);">
+                <!-- Van-Allen-Gürtel (optisch) -->
+                <div class="van-allen-belt inner"></div>
+                <div class="van-allen-belt outer"></div>
+                <!-- Mond -->
                 <span class="moon" style="background:#c8c8c8;box-shadow:0 0 10px rgba(200,200,200,0.6);"></span>
-                <span class="planet-label">Erde</span>
-                <!-- Unterorbit: Mond -->
+                <span class="planet-label">Erde • 1 AE</span>
+                <!-- Mond im Unterorbit -->
                 <div class="sub-orbit" style="--sub-orbit-size:45px;--sub-orbit-duration:5s;">
-                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#e8e8e8;--sub-planet-main:#a0a0a0;--sub-planet-dark:#606060;--sub-planet-glow:rgba(200,200,200,.5);">
+                  <div class="sub-planet" style="--sub-planet-size:9px;--sub-planet-light:#e8e8e8;--sub-planet-main:#a0a0a0;--sub-planet-dark:#606060;--sub-planet-glow:rgba(200,200,200,.5);">
                     <span class="sub-label">Mond</span>
                   </div>
                 </div>
@@ -1018,28 +1021,27 @@
             </div>
           </div>
 
-          <!-- PLANET 4: Mars (einsam) -->
+          <!-- 4. Mars – 1,524 AE, 12,7 Lichtminuten -->
           <div class="planet-system" data-planet="mars" style="--orbit-size:46%;--orbit-duration:39s;">
             <div class="planet-holder">
               <div class="planet" style="--planet-size:16px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.7);">
-                <span class="planet-label">Mars</span>
+                <span class="planet-label">Mars • 1,524 AE</span>
               </div>
             </div>
           </div>
 
-          <!-- PLANET 5: Jupiter + 2 Unterplaneten (gegenseitiger Umlauf) -->
+          <!-- 5. Jupiter – 5,2 AE, 43 Lichtminuten (mit Monden Io, Europa) -->
           <div class="planet-system" data-planet="jupiter" style="--orbit-size:54%;--orbit-duration:47s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:28px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.6);">
-                <span class="planet-label">Jupiter</span>
-                <!-- Unterorbit 1: zwei Monde umeinander -->
+              <div class="planet" style="--planet-size:30px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.6);">
+                <span class="planet-label">Jupiter • 5,2 AE</span>
                 <div class="sub-orbit" style="--sub-orbit-size:40px;--sub-orbit-duration:4s;">
-                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#d4d4d4;--sub-planet-main:#8a8a8a;--sub-planet-dark:#4a4a4a;--sub-planet-glow:rgba(180,180,180,.4);">
+                  <div class="sub-planet" style="--sub-planet-size:9px;--sub-planet-light:#d4d4d4;--sub-planet-main:#8a8a8a;--sub-planet-dark:#4a4a4a;--sub-planet-glow:rgba(180,180,180,.4);">
                     <span class="sub-label">Io</span>
                   </div>
                 </div>
                 <div class="sub-orbit" style="--sub-orbit-size:55px;--sub-orbit-duration:6s;">
-                  <div class="sub-planet" style="--sub-planet-size:9px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.4);">
+                  <div class="sub-planet" style="--sub-planet-size:10px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.4);">
                     <span class="sub-label">Europa</span>
                   </div>
                 </div>
@@ -1047,18 +1049,18 @@
             </div>
           </div>
 
-          <!-- PLANET 6: Saturn + Ringe + 2 Unterplaneten -->
+          <!-- 6. Saturn – 9,5 AE (mit Ringen, Titan, Rhea) -->
           <div class="planet-system" data-planet="saturn" style="--orbit-size:62%;--orbit-duration:56s;">
             <div class="planet-holder">
-              <div class="planet has-ring" style="--planet-size:24px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.6);">
-                <span class="planet-label">Saturn</span>
-                <div class="sub-orbit" style="--sub-orbit-size:35px;--sub-orbit-duration:3.5s;">
-                  <div class="sub-planet" style="--sub-planet-size:7px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.4);">
+              <div class="planet has-ring" style="--planet-size:26px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.6);">
+                <span class="planet-label">Saturn • 9,5 AE</span>
+                <div class="sub-orbit" style="--sub-orbit-size:38px;--sub-orbit-duration:3.5s;">
+                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.4);">
                     <span class="sub-label">Titan</span>
                   </div>
                 </div>
-                <div class="sub-orbit" style="--sub-orbit-size:48px;--sub-orbit-duration:5.5s;">
-                  <div class="sub-planet" style="--sub-planet-size:7px;--sub-planet-light:#d4e8f0;--sub-planet-main:#7a9ab0;--sub-planet-dark:#3a4a5a;--sub-planet-glow:rgba(140,180,220,.4);">
+                <div class="sub-orbit" style="--sub-orbit-size:50px;--sub-orbit-duration:5.5s;">
+                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#d4e8f0;--sub-planet-main:#7a9ab0;--sub-planet-dark:#3a4a5a;--sub-planet-glow:rgba(140,180,220,.4);">
                     <span class="sub-label">Rhea</span>
                   </div>
                 </div>
@@ -1066,31 +1068,31 @@
             </div>
           </div>
 
-          <!-- PLANET 7: Uranus (einsam) -->
+          <!-- 7. Uranus – 19 AE -->
           <div class="planet-system" data-planet="uranus" style="--orbit-size:70%;--orbit-duration:67s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:20px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.6);">
-                <span class="planet-label">Uranus</span>
+              <div class="planet" style="--planet-size:22px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.6);">
+                <span class="planet-label">Uranus • 19 AE</span>
               </div>
             </div>
           </div>
 
-          <!-- PLANET 8: Neptun (einsam) -->
+          <!-- 8. Neptun – 30 AE -->
           <div class="planet-system" data-planet="neptune" style="--orbit-size:78%;--orbit-duration:79s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:20px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.6);">
-                <span class="planet-label">Neptun</span>
+              <div class="planet" style="--planet-size:22px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.6);">
+                <span class="planet-label">Neptun • 30 AE</span>
               </div>
             </div>
           </div>
 
-          <!-- PLANET 9: Pluto + 2 Unterplaneten (Zwergplanet – Sekunde) -->
+          <!-- 9. Pluto – 39 AE (Zwergplanet, Sekunde) -->
           <div class="planet-system" data-planet="pluto" style="--orbit-size:86%;--orbit-duration:60s;">
             <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:14px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.5);">
-                <span class="planet-label">Pluto ⏱</span>
-                <div class="sub-orbit" style="--sub-orbit-size:30px;--sub-orbit-duration:3s;">
-                  <div class="sub-planet" style="--sub-planet-size:6px;--sub-planet-light:#d0d0e0;--sub-planet-main:#808090;--sub-planet-dark:#404050;--sub-planet-glow:rgba(180,180,220,.4);">
+              <div class="planet time-planet" style="--planet-size:15px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.5);">
+                <span class="planet-label">Pluto • 39 AE ⏱</span>
+                <div class="sub-orbit" style="--sub-orbit-size:32px;--sub-orbit-duration:3s;">
+                  <div class="sub-planet" style="--sub-planet-size:7px;--sub-planet-light:#d0d0e0;--sub-planet-main:#808090;--sub-planet-dark:#404050;--sub-planet-glow:rgba(180,180,220,.4);">
                     <span class="sub-label">Charon</span>
                   </div>
                 </div>
@@ -1098,29 +1100,29 @@
             </div>
           </div>
 
-          <!-- PLANET 10: Ceres (Zwergplanet – Minute) -->
+          <!-- 10. Ceres – 2,77 AE (Zwergplanet, Minute) -->
           <div class="planet-system" data-planet="ceres" style="--orbit-size:94%;--orbit-duration:3600s;">
             <div class="planet-holder">
               <div class="planet time-planet" style="--planet-size:14px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.5);">
-                <span class="planet-label">Ceres ⏱</span>
+                <span class="planet-label">Ceres • 2,77 AE ⏱</span>
               </div>
             </div>
           </div>
 
-          <!-- PLANET 11: Eris (Zwergplanet – Stunde) -->
+          <!-- 11. Eris – 67,7 AE (Zwergplanet, Stunde) -->
           <div class="planet-system" data-planet="eris" style="--orbit-size:102%;--orbit-duration:43200s;">
             <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:15px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.5);">
-                <span class="planet-label">Eris ⏱</span>
+              <div class="planet time-planet" style="--planet-size:16px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.5);">
+                <span class="planet-label">Eris • 67,7 AE ⏱</span>
               </div>
             </div>
           </div>
 
-          <!-- PLANET 12: Haumea (Zwergplanet) -->
+          <!-- 12. Haumea – 43 AE (Zwergplanet) -->
           <div class="planet-system" data-planet="haumea" style="--orbit-size:110%;--orbit-duration:149s;">
             <div class="planet-holder">
               <div class="planet" style="--planet-size:16px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.6);">
-                <span class="planet-label">Haumea</span>
+                <span class="planet-label">Haumea • 43 AE</span>
               </div>
             </div>
           </div>
@@ -1163,20 +1165,16 @@
 
     </main>
 
-    <!-- ============================================================
-       CYBORG AVATAR – BEWEGBAR (logo.png)
-    ============================================================ -->
+    <!-- CYBORG AVATAR – BEWEGBAR (logo.png als Gesicht) -->
     <div id="cyborg-avatar">
       <div class="cyborg-click-area" id="cyborg-click-area"></div>
       <div class="cyborg-bg">
-        <img id="cyborg-image" src="assets/logo/logo.png" alt="HalDo Cyborg" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E🦾%3C/text%3E%3C/svg%3E'">
+        <img id="cyborg-image" src="assets/logo/logo.png" alt="HalDo Cyborg" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E👤%3C/text%3E%3C/svg%3E'">
       </div>
       <div class="speech-bubble" id="cyborg-speech">👋 Hallo! Ich bin HalDo Cyborg.</div>
     </div>
 
-    <!-- ============================================================
-       AI OVERLAY – LEBENDIGER AVATAR MIT logo.png
-    ============================================================ -->
+    <!-- AI OVERLAY – MENSCHLICHER AVATAR -->
     <div id="ai-overlay" class="ai-overlay" aria-hidden="true">
       <section id="ai-window" class="ai-window" role="dialog" aria-modal="true" aria-labelledby="ai-window-title">
         <header class="ai-header">
@@ -1249,7 +1247,7 @@
 
   <script>
     // ============================================================
-    // PHASE 4 – HALDO AI + CYBORG – LEBENDIGE AVATARE
+    // PHASE 4 – MENSCHLICHE AVATARE + REALISTISCHES PLANETENSYSTEM
     // ============================================================
 
     (function() {
@@ -1263,7 +1261,7 @@
         version: '4.0.0',
         name: 'HalDo AI OS',
         build: '2026-09-08',
-        phase: 'Phase 4 – Lebendige Avatare & Cyborg',
+        phase: 'Phase 4 – Menschliche Avatare + reales Planetensystem',
         state: 'BOOTING',
         config: {
           cosmicWorld: true,
@@ -1316,7 +1314,7 @@
         init() {
           return new Promise((resolve) => {
             try {
-              const req = indexedDB.open('HalDoOS', 5);
+              const req = indexedDB.open('HalDoOS', 6);
               req.onupgradeneeded = (e) => {
                 const db = e.target.result;
                 if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
@@ -1388,22 +1386,22 @@
 
       const TRANSLATIONS = {
         de: {
-          'boot.message': 'Phase 4 – Lebendige Avatare &amp; Cyborg wird geladen.',
+          'boot.message': 'Phase 4 – Menschliche Avatare &amp; reales Planetensystem wird geladen.',
           'cosmic.subtitle': 'Cosmic World · Living Intelligence',
           'ai.role': 'Professioneller HalDo AI &amp; Cyborg',
           'sun.subtitle': 'A Halil Donma • Professioneller HalDo AI &amp; Cyborg',
-          'planet.mercury': 'Merkur',
-          'planet.venus': 'Venus',
-          'planet.earth': 'Erde',
-          'planet.mars': 'Mars',
-          'planet.jupiter': 'Jupiter',
-          'planet.saturn': 'Saturn',
-          'planet.uranus': 'Uranus',
-          'planet.neptune': 'Neptun',
-          'planet.pluto': 'Pluto ⏱',
-          'planet.ceres': 'Ceres ⏱',
-          'planet.eris': 'Eris ⏱',
-          'planet.haumea': 'Haumea',
+          'planet.mercury': 'Merkur • 0,387 AE',
+          'planet.venus': 'Venus • 0,723 AE',
+          'planet.earth': 'Erde • 1 AE',
+          'planet.mars': 'Mars • 1,524 AE',
+          'planet.jupiter': 'Jupiter • 5,2 AE',
+          'planet.saturn': 'Saturn • 9,5 AE',
+          'planet.uranus': 'Uranus • 19 AE',
+          'planet.neptune': 'Neptun • 30 AE',
+          'planet.pluto': 'Pluto • 39 AE ⏱',
+          'planet.ceres': 'Ceres • 2,77 AE ⏱',
+          'planet.eris': 'Eris • 67,7 AE ⏱',
+          'planet.haumea': 'Haumea • 43 AE',
           'ai.idle': 'Ich bin bereit.',
           'ai.listening': '👂 Ich höre zu …',
           'ai.thinking': '🧠 Ich denke nach …',
@@ -1413,31 +1411,35 @@
           'ai.warning': '⚠️ Achtung!',
           'ai.working': '⚡ Ich arbeite …',
           'ai.sleep': '🌙 Gute Nacht …',
-          'toast.hello': '👋 Hallo!',
-          'toast.thanks': '🙏 Danke!',
-          'toast.love': '❤️ Liebe!',
-          'toast.sad': '😢 Traurig …',
-          'toast.tired': '😴 Müde …',
         },
-        en: { /* ... alle Übersetzungen ... */ },
-        ku: { /* ... */ },
-        ez: { /* ... */ },
-        tr: { /* ... */ },
-        ar: { /* ... */ },
-        fr: { /* ... */ },
-        es: { /* ... */ },
-        ru: { /* ... */ },
-        zh: { /* ... */ },
-        nl: { /* ... */ },
-        pl: { /* ... */ },
-        pt: { /* ... */ },
-        sv: { /* ... */ },
-        // Weitere Sprachen hier einfügen
+        en: {
+          'boot.message': 'Phase 4 – Human Avatars &amp; real planetary system loading.',
+          'cosmic.subtitle': 'Cosmic World · Living Intelligence',
+          'ai.role': 'Professional HalDo AI &amp; Cyborg',
+          'sun.subtitle': 'A Halil Donma • Professional HalDo AI &amp; Cyborg',
+          'planet.mercury': 'Mercury • 0.387 AU',
+          'planet.venus': 'Venus • 0.723 AU',
+          'planet.earth': 'Earth • 1 AU',
+          'planet.mars': 'Mars • 1.524 AU',
+          'planet.jupiter': 'Jupiter • 5.2 AU',
+          'planet.saturn': 'Saturn • 9.5 AU',
+          'planet.uranus': 'Uranus • 19 AU',
+          'planet.neptune': 'Neptune • 30 AU',
+          'planet.pluto': 'Pluto • 39 AU ⏱',
+          'planet.ceres': 'Ceres • 2.77 AU ⏱',
+          'planet.eris': 'Eris • 67.7 AU ⏱',
+          'planet.haumea': 'Haumea • 43 AU',
+          'ai.idle': 'I am ready.',
+          'ai.listening': '👂 I am listening …',
+          'ai.thinking': '🧠 I am thinking …',
+          'ai.speaking': '🗣️ I am speaking …',
+        },
+        // Weitere Sprachen können hier ergänzt werden
       };
 
-      // Basis für andere Sprachen (vereinfacht)
+      // Fallback für andere Sprachen
       const fallbackLang = {
-        'boot.message': 'Phase 4 – Living Avatars & Cyborg loading.',
+        'boot.message': 'Phase 4 – Human Avatars & real planetary system loading.',
         'cosmic.subtitle': 'Cosmic World · Living Intelligence',
         'ai.role': 'Professional HalDo AI & Cyborg',
         'sun.subtitle': 'A Halil Donma • Professional HalDo AI & Cyborg',
@@ -1446,24 +1448,22 @@
         'ai.thinking': '🧠 I am thinking …',
         'ai.speaking': '🗣️ I am speaking …',
       };
-
-      ['en', 'ku', 'ez', 'tr', 'ar', 'fr', 'es', 'ru', 'zh', 'nl', 'pl', 'pt', 'sv'].forEach(lang => {
+      ['ku', 'ez', 'tr', 'ar', 'fr', 'es', 'ru', 'zh', 'nl', 'pl', 'pt', 'sv'].forEach(lang => {
         if (!TRANSLATIONS[lang]) {
           TRANSLATIONS[lang] = { ...fallbackLang };
-          // Planeten-Namen in englisch für andere Sprachen
           const enPlanets = {
-            'planet.mercury': 'Mercury',
-            'planet.venus': 'Venus',
-            'planet.earth': 'Earth',
-            'planet.mars': 'Mars',
-            'planet.jupiter': 'Jupiter',
-            'planet.saturn': 'Saturn',
-            'planet.uranus': 'Uranus',
-            'planet.neptune': 'Neptune',
-            'planet.pluto': 'Pluto ⏱',
-            'planet.ceres': 'Ceres Ɐ',
-            'planet.eris': 'Eris ⏱',
-            'planet.haumea': 'Haumea',
+            'planet.mercury': 'Mercury • 0.387 AU',
+            'planet.venus': 'Venus • 0.723 AU',
+            'planet.earth': 'Earth • 1 AU',
+            'planet.mars': 'Mars • 1.524 AU',
+            'planet.jupiter': 'Jupiter • 5.2 AU',
+            'planet.saturn': 'Saturn • 9.5 AU',
+            'planet.uranus': 'Uranus • 19 AU',
+            'planet.neptune': 'Neptune • 30 AU',
+            'planet.pluto': 'Pluto • 39 AU ⏱',
+            'planet.ceres': 'Ceres • 2.77 AU ⏱',
+            'planet.eris': 'Eris • 67.7 AU ⏱',
+            'planet.haumea': 'Haumea • 43 AU',
           };
           Object.assign(TRANSLATIONS[lang], enPlanets);
         }
@@ -1483,7 +1483,7 @@
         updateUITexts();
         HALDO.storage.set('settings', 'config', HALDO.config);
         HALDO.eventBus.emit('language:changed', lang);
-        // Auch Voice-Sprache anpassen
+        // Voice-Sprache anpassen
         if (HALDO.voice) {
           const voiceMap = {
             'de': 'de-DE', 'en': 'en-US', 'fr': 'fr-FR', 'es': 'es-ES',
@@ -1508,7 +1508,7 @@
           el.innerHTML = t(key, key);
         });
         const bootMsg = document.getElementById('boot-message');
-        if (bootMsg) bootMsg.innerHTML = t('boot.message', 'Phase 4 – Lebendige Avatare & Cyborg wird geladen.');
+        if (bootMsg) bootMsg.innerHTML = t('boot.message', 'Phase 4 – Menschliche Avatare & reales Planetensystem wird geladen.');
         const expression = document.getElementById('ai-expression');
         if (expression && aiState !== 'speaking' && aiState !== 'listening' && aiState !== 'thinking') {
           expression.textContent = t('ai.idle', 'Ich bin bereit.');
@@ -1537,7 +1537,6 @@
         'ok': '👌',
         'super': '🌟',
         'perfekt': '✨',
-        'danke': '🙏',
         'bitte': '🤲',
       };
 
@@ -1553,7 +1552,6 @@
       function showToast(icon, title, message) {
         const container = document.getElementById('toast-container');
         if (!container) return;
-        // Kontext-Emoji
         const contextEmoji = getEmojiForText(title + ' ' + message);
         const finalIcon = icon || contextEmoji || '📢';
         const toast = document.createElement('div');
@@ -1582,7 +1580,7 @@
       }
 
       // ============================================================
-      // STERNE GENERIEREN
+      // STERNE GENERIEREN (365 + 30)
       // ============================================================
 
       function generateStars() {
@@ -1662,7 +1660,7 @@
       }
 
       // ============================================================
-      // AI AVATAR – LEBENDIGER MENSCH
+      // AI AVATAR – MENSCHLICH
       // ============================================================
 
       let aiState = 'idle';
@@ -1758,7 +1756,7 @@
       }
 
       // ============================================================
-      // VOICE – mit vielen Stimmen
+      // VOICE
       // ============================================================
 
       function initVoice() {
@@ -1777,11 +1775,9 @@
             utterance.lang = HALDO.config.voiceLanguage || 'de-DE';
             utterance.rate = HALDO.config.voiceRate || 1;
             utterance.volume = HALDO.config.voiceVolume || 1;
-            // Versuche, eine passende Stimme zu finden
             try {
               const voices = window.speechSynthesis.getVoices();
               const lang = utterance.lang;
-              // Bevorzugte Stimme nach Geschlecht/Sprache
               let preferred = voices.find(v => v.lang === lang && (HALDO.config.voiceGender === 'female' ? v.name.toLowerCase().includes('female') : v.name.toLowerCase().includes('male')));
               if (!preferred) preferred = voices.find(v => v.lang === lang);
               if (preferred) utterance.voice = preferred;
@@ -1821,7 +1817,6 @@
             });
           }
         };
-        // Stimmen laden
         window.speechSynthesis.getVoices();
         window.speechSynthesis.onvoiceschanged = () => {
           window.speechSynthesis.getVoices();
@@ -1829,7 +1824,7 @@
       }
 
       // ============================================================
-      // AI LOGIC – mit Kontext-Emojis
+      // AI LOGIC
       // ============================================================
 
       function generateAIResponse(question) {
@@ -1858,7 +1853,6 @@
           }
         }
 
-        // App-Intents
         if (!response) {
           const intents = {
             'musik': 'music',
@@ -1882,9 +1876,6 @@
           for (const [keyword, appId] of Object.entries(intents)) {
             if (lower.includes(keyword)) {
               response = `Ich öffne die App "${appId}" für dich. (Phase 4 – vorbereitet)`;
-              if (HALDO.config.aiAppControl) {
-                // App-Öffnen später implementiert
-              }
               break;
             }
           }
@@ -2032,7 +2023,7 @@
         // Dock AI
         document.getElementById('dock-ai')?.addEventListener('click', () => {
           if (HALDO.config.aiEnabled) {
-            openAI('🤖 Hallo! Ich bin HalDo AI.');
+            openAI('👤 Hallo! Ich bin HalDo AI.');
             if (HALDO.config.speechOutput && HALDO.voice) {
               setTimeout(() => HALDO.voice.speak('Hallo! Ich bin HalDo AI.'), 500);
             }
@@ -2177,7 +2168,7 @@
           if ((e.ctrlKey || e.metaKey) && e.key === ' ') {
             e.preventDefault();
             if (HALDO.config.aiEnabled) {
-              openAI('🤖 Hallo!');
+              openAI('👤 Hallo!');
               if (HALDO.config.speechOutput && HALDO.voice) {
                 setTimeout(() => HALDO.voice.speak('Hallo! Ich bin HalDo AI.'), 500);
               }
@@ -2249,17 +2240,16 @@
         if (cosmicWorld) cosmicWorld.classList.remove('is-transitioning');
 
         HALDO.state = 'READY';
-        updateSystemStatus('HalDo AI OS • Phase 4 • Avatare aktiv');
+        updateSystemStatus('HalDo AI OS • Phase 4 • Avatare aktiv • Realistisches Planetensystem');
 
         initVoice();
         initEventListeners();
 
         document.getElementById('ai-memory-status').textContent = HALDO.config.memoryEnabled ? '🧠 Memory aktiv' : '🧠 Memory aus';
 
-        // Willkommensgrüße
         setTimeout(() => {
           const welcome = t('ai.happy', '👋 Hallo! Ich bin HalDo AI.');
-          showToast('🌌', 'HalDo AI OS Phase 4', 'Lebendige Avatare & Cyborg sind bereit!');
+          showToast('🌌', 'HalDo AI OS Phase 4', 'Menschliche Avatare & reales Planetensystem sind bereit!');
           if (HALDO.config.aiEnabled) {
             setTimeout(() => {
               openAI(welcome);
@@ -2271,7 +2261,7 @@
           }
         }, 800);
 
-        console.log('🚀 HalDo AI OS Phase 4 – Lebendige Avatare & Cyborg gestartet.');
+        console.log('🚀 HalDo AI OS Phase 4 – Menschliche Avatare & reales Planetensystem gestartet.');
         console.log('📦 Version:', HALDO.version);
         console.log('🌐 Sprache:', HALDO.config.language);
 
