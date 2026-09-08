@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#02030a">
-  <meta name="description" content="HalDo AI OS – Cosmic World mit Mehrsprachigkeit">
+  <meta name="description" content="HalDo AI OS – Phase 3: Lebendiger HalDo AI Avatar">
   <meta name="application-name" content="HalDo AI OS">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>HalDo AI OS – Phase 2.5</title>
+  <title>HalDo AI OS – Phase 3</title>
   <link rel="icon" type="image/png" href="assets/logo/logo.png">
   <link rel="apple-touch-icon" href="assets/logo/logo.png">
 
   <style>
     /* ============================================================
-       PHASE 2.5 – COSMIC WORLD + LANGUAGE LAYER
+       PHASE 3 – HALDO AI – LEBENDIGER AVATAR
        ============================================================ */
     :root {
       --haldo-bg: #02030a;
@@ -37,6 +37,7 @@
       --safe-bottom: env(safe-area-inset-bottom, 0px);
       --safe-left: env(safe-area-inset-left, 0px);
       --cosmic-ui-radius: 22px;
+      --window-radius: 18px;
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -69,7 +70,7 @@
     @keyframes titleLight { from { background-position: 0% 50%; } to { background-position: 240% 50%; } }
 
     /* ============================================================
-       COSMIC WORLD – HINTERGRUND
+       COSMIC WORLD – HINTERGRUND (Phase 2 übernommen)
        ============================================================ */
     #cosmic-world {
       position: absolute; inset: 0; overflow: hidden;
@@ -90,9 +91,7 @@
     @keyframes nebulaDrift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 2%, 0) scale(1.05); } }
     @keyframes cosmicPulse { 0%,100% { opacity:0.55; } 50% { opacity:1; } }
 
-    /* ============================================================
-       STERNE – 365 + 30 SPECIAL
-       ============================================================ */
+    /* Sterne – von Phase 2 */
     #star-field, #special-star-field { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
     .star {
       position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff;
@@ -139,7 +138,7 @@
     .system-button:active { transform: scale(.95); }
 
     /* ============================================================
-       COSMIC TITLE (übersetzt)
+       COSMIC TITLE
        ============================================================ */
     #cosmic-title {
       position: absolute; z-index: 120; top: clamp(66px, 9vh, 100px); left: 50%; transform: translateX(-50%);
@@ -160,11 +159,10 @@
       color: rgba(255,255,255,.72);
       text-transform: uppercase;
       text-shadow: 0 0 10px rgba(255,255,255,.18), 0 0 24px rgba(117,190,255,.16);
-      transition: opacity 0.3s ease;
     }
 
     /* ============================================================
-       SOLAR STAGE – DAS HALDO-SONNENSYSTEM
+       SOLAR STAGE – VON PHASE 2 (gekürzt)
        ============================================================ */
     #solar-stage {
       position: absolute; z-index: 100; left: 50%; top: 52%; width: min(92vw, 900px); height: min(78vh, 760px);
@@ -174,7 +172,6 @@
       position: absolute; left: 50%; top: 50%; width: min(84vw, 760px); height: min(84vw, 760px);
       max-width: 760px; max-height: 760px; transform: translate(-50%, -50%); pointer-events: none;
     }
-
     .orbit {
       position: absolute; left: 50%; top: 50%; width: var(--orbit-size); height: var(--orbit-size);
       transform: translate(-50%, -50%); border: 1px solid rgba(132,180,255,.14); border-radius: 50%;
@@ -223,7 +220,6 @@
       white-space: nowrap;
       pointer-events: none;
       text-shadow: 0 0 10px rgba(0,0,0,0.8);
-      transition: opacity 0.3s ease;
     }
     .planet.time-planet::before {
       content: "⏱";
@@ -240,7 +236,7 @@
     @keyframes orbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
 
     /* ============================================================
-       SONNE
+       SONNE (Phase 2)
        ============================================================ */
     #sun {
       position: absolute; z-index: 200; left: 50%; top: 50%; width: var(--sun-core-size); height: var(--sun-core-size);
@@ -255,19 +251,16 @@
     #sun-glow, #sun-core, #sun-corona, #sun-rays {
       position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
     }
-
     #sun-glow {
       inset: -38%;
       background: radial-gradient(circle, rgba(255,247,178,.82) 0%, rgba(255,206,77,.42) 28%, rgba(255,152,42,.16) 52%, transparent 72%);
       filter: blur(10px); animation: sunGlow 4.8s ease-in-out infinite;
     }
-
     #sun-corona {
       inset: -14%;
       background: conic-gradient(from 0deg, transparent, rgba(255,236,130,.42), transparent 12%, rgba(255,173,53,.36), transparent 24%, rgba(255,245,175,.44), transparent 38%, rgba(255,148,45,.30), transparent 52%, rgba(255,238,135,.42), transparent 68%, rgba(255,165,50,.32), transparent 84%, rgba(255,240,150,.42), transparent);
       filter: blur(2px); animation: sunCorona 11s linear infinite; opacity: .88;
     }
-
     #sun-core {
       overflow: hidden;
       background: radial-gradient(circle at 38% 34%, #fffbe3 0%, #fff2a3 11%, #ffd44e 30%, #ff9e32 58%, #ed641e 78%, #a92c16 100%);
@@ -278,7 +271,6 @@
       flex-direction: column;
       position: relative;
     }
-
     #sun-logo {
       width: 45%;
       height: 45%;
@@ -289,7 +281,6 @@
       animation: logoPulse 3s ease-in-out infinite;
     }
     @keyframes logoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-
     #sun-text {
       position: absolute;
       bottom: 8%;
@@ -308,9 +299,7 @@
     }
     #sun-text.main { font-size: clamp(10px, 1.2vw, 16px); letter-spacing: .1em; }
     #sun-text.sub { font-size: clamp(6px, 0.7vw, 10px); bottom: 2%; opacity: .8; }
-
     @keyframes textShine { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
-
     #inner-sun-stars {
       position: absolute; z-index: 5; left: 50%; top: 50%;
       width: calc(var(--sun-core-size) * .72); height: calc(var(--sun-core-size) * .72);
@@ -324,7 +313,6 @@
       animation: innerSpark 2.8s ease-in-out infinite alternate;
     }
     @keyframes innerSpark { from { transform: scale(.5); opacity: .45; } to { transform: scale(1.25); opacity: 1; } }
-
     #sun-stars-orbital {
       position: absolute;
       inset: -8%;
@@ -339,7 +327,6 @@
       animation: orbitalStarGlow 2s ease-in-out infinite alternate;
     }
     @keyframes orbitalStarGlow { from { transform: scale(.7); opacity: .4; } to { transform: scale(1.3); opacity: 1; } }
-
     #sun-rays {
       inset: -65%;
       background: repeating-conic-gradient(from 0deg, rgba(255,222,115,.13) 0deg 2deg, transparent 2deg 10deg);
@@ -352,7 +339,7 @@
     @keyframes sunRays { to { transform: rotate(360deg); } }
 
     /* ============================================================
-       AI-IDENTITY (übersetzt)
+       AI-IDENTITY (Phase 2)
        ============================================================ */
     #ai-identity {
       position: absolute; z-index: 310; left: 50%; top: calc(50% + var(--sun-core-size) * .72); transform: translateX(-50%);
@@ -371,7 +358,6 @@
       color: rgba(255,255,255,.62);
       letter-spacing: .17em;
       text-transform: uppercase;
-      transition: opacity 0.3s ease;
     }
     @keyframes identityGlow { from { background-position: 0% 50%; } to { background-position: 250% 50%; } }
 
@@ -402,7 +388,319 @@
     .dock-button.ai img { width: 36px; height: 36px; }
 
     /* ============================================================
-       TOAST (übersetzt)
+       AI WINDOW – MENSCHLICHER AVATAR
+       ============================================================ */
+    .ai-overlay {
+      position: fixed; z-index: 1600; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: calc(16px + var(--safe-top)) calc(16px + var(--safe-right)) calc(16px + var(--safe-bottom)) calc(16px + var(--safe-left));
+      background: rgba(1,2,10,0.68); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      opacity: 0; visibility: hidden;
+      transition: opacity 340ms ease, visibility 340ms ease;
+    }
+    .ai-overlay.open { opacity: 1; visibility: visible; }
+    .ai-window {
+      width: 100%; max-width: 620px; max-height: min(88vh, 760px);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: var(--cosmic-ui-radius);
+      background: rgba(5,9,28,0.82); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+      box-shadow: 0 32px 72px rgba(0,0,0,0.62), inset 0 1px 0 rgba(255,255,255,0.06);
+      display: flex; flex-direction: column; overflow: hidden;
+      transform: scale(0.96) translateY(12px);
+      transition: transform 340ms cubic-bezier(0.16,1,0.3,1), opacity 340ms ease;
+      opacity: 0;
+    }
+    .ai-overlay.open .ai-window { transform: scale(1) translateY(0); opacity: 1; }
+
+    .ai-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px 12px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .ai-header .panel-brand { display: flex; align-items: center; gap: 12px; }
+    .ai-header .panel-brand .haldo-logo { width: 38px; height: 38px; flex-shrink: 0; }
+    .ai-header .panel-brand h2 { margin: 0; font-size: 18px; font-weight: 700; }
+    .ai-header .panel-brand p { margin: 0; font-size: 12px; color: var(--haldo-text-muted); }
+    .ai-header-actions { display: flex; align-items: center; gap: 6px; }
+    .panel-icon-button {
+      width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 18px;
+      color: var(--haldo-text-muted); transition: background 180ms ease, color 180ms ease;
+      cursor: pointer;
+    }
+    .panel-icon-button:hover { background: rgba(255,255,255,0.08); color: var(--haldo-text); }
+    .panel-icon-button.active { background: rgba(117,190,255,0.15); color: var(--haldo-blue); }
+    .panel-close {
+      width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); font-size: 22px; line-height: 1;
+      color: rgba(255,255,255,0.5); transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+    .panel-close:hover, .panel-close:focus-visible { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.16); transform: scale(1.04); }
+    .panel-close:active { transform: scale(0.92); }
+
+    /* Menschlicher AI-Avatar */
+    .ai-human-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+      min-height: 200px;
+    }
+    .ai-human {
+      position: relative;
+      width: 140px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .ai-human .head {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 30%, #e8d5c4, #d4b8a0);
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 30px rgba(117,190,255,0.15), inset 0 -5px 15px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ai-human .head .avatar-image {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 15px rgba(255,200,100,0.5));
+      animation: avatarPulse 3s ease-in-out infinite;
+    }
+    @keyframes avatarPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .ai-human .head .eyes {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    .ai-human .head .eye {
+      width: 10px;
+      height: 12px;
+      background: #2d1b0e;
+      border-radius: 50%;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .ai-human .head .eye::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 4px;
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+    .ai-human .head .mouth {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 5px;
+      border-radius: 0 0 18px 18px;
+      background: #8b5e3c;
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+    .ai-human .head .mouth.speaking {
+      height: 9px;
+      border-radius: 9px;
+      animation: mouthMove 0.3s ease-in-out infinite alternate;
+    }
+    @keyframes mouthMove {
+      0% { height: 4px; }
+      100% { height: 10px; }
+    }
+    .ai-human .body {
+      width: 80px;
+      height: 90px;
+      background: linear-gradient(180deg, #2a4a7a, #1a2a4a);
+      border-radius: 20px 20px 10px 10px;
+      margin-top: -10px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ai-human .body .logo-on-body {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(117,220,255,0.3));
+      animation: bodyLogoPulse 2s ease-in-out infinite;
+    }
+    @keyframes bodyLogoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .ai-human .arm {
+      position: absolute;
+      width: 16px;
+      height: 60px;
+      background: linear-gradient(180deg, #d4b8a0, #b89a82);
+      border-radius: 10px;
+      top: 45px;
+      transition: transform 0.4s ease;
+      transform-origin: top center;
+    }
+    .ai-human .arm.left {
+      left: -12px;
+      transform: rotate(15deg);
+    }
+    .ai-human .arm.right {
+      right: -12px;
+      transform: rotate(-15deg);
+    }
+    .ai-human .arm.moving-left {
+      animation: armMoveLeft 1s ease-in-out infinite;
+    }
+    .ai-human .arm.moving-right {
+      animation: armMoveRight 1s ease-in-out infinite;
+    }
+    @keyframes armMoveLeft {
+      0%,100% { transform: rotate(15deg); }
+      50% { transform: rotate(-20deg); }
+    }
+    @keyframes armMoveRight {
+      0%,100% { transform: rotate(-15deg); }
+      50% { transform: rotate(20deg); }
+    }
+    .ai-human .legs {
+      display: flex;
+      gap: 10px;
+      margin-top: -2px;
+    }
+    .ai-human .leg {
+      width: 18px;
+      height: 40px;
+      background: linear-gradient(180deg, #1a2a4a, #0a1a2a);
+      border-radius: 0 0 8px 8px;
+    }
+
+    .ai-presence {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      min-height: 180px;
+    }
+    .ai-presence-aura {
+      position: absolute;
+      inset: -10%;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(117,190,255,0.08), transparent 60%);
+      filter: blur(20px);
+      transition: opacity 600ms ease;
+    }
+    .ai-presence-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(117,190,255,0.06);
+      animation: ringPulse 4s ease-in-out infinite;
+    }
+    .ai-presence-ring.ring-one { width: 130%; height: 130%; animation-delay: 0s; }
+    .ai-presence-ring.ring-two { width: 160%; height: 160%; animation-delay: 0.6s; }
+    .ai-presence-ring.ring-three { width: 190%; height: 190%; animation-delay: 1.2s; }
+    @keyframes ringPulse { 0%,100% { transform: scale(0.95); opacity: 0.3; } 50% { transform: scale(1.05); opacity: 0.6; } }
+
+    .ai-expression {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--haldo-text-soft);
+      text-align: center;
+      min-height: 24px;
+      z-index: 2;
+    }
+    .ai-conversation {
+      flex: 1;
+      overflow-y: auto;
+      padding: 6px 18px 10px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 180px;
+    }
+    .ai-conversation .conv-message {
+      display: flex;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 14px;
+      max-width: 82%;
+      font-size: 14px;
+      line-height: 1.5;
+      animation: msgIn 0.3s ease;
+    }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .ai-conversation .conv-message.user {
+      align-self: flex-end;
+      background: rgba(117,190,255,0.12);
+      border-bottom-right-radius: 4px;
+      color: var(--haldo-text);
+    }
+    .ai-conversation .conv-message.ai {
+      align-self: flex-start;
+      background: rgba(255,255,255,0.04);
+      border-bottom-left-radius: 4px;
+      color: var(--haldo-text-soft);
+    }
+    .ai-conversation .conv-message .conv-icon { font-size: 18px; flex-shrink: 0; }
+
+    .ai-input-form {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 8px 18px 14px 18px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      flex-shrink: 0;
+    }
+    .ai-tool-button {
+      width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 18px;
+      color: var(--haldo-text-muted); flex-shrink: 0; transition: background 180ms ease;
+      cursor: pointer;
+    }
+    .ai-tool-button:hover { background: rgba(255,255,255,0.08); }
+    .ai-input-form textarea {
+      flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 8px 12px; font-size: 14px; color: var(--haldo-text);
+      resize: none; outline: 0; transition: border-color 180ms ease; font-family: inherit;
+      min-height: 40px; max-height: 120px;
+    }
+    .ai-input-form textarea:focus { border-color: rgba(117,190,255,0.3); }
+    .ai-send-button {
+      width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 0; background: rgba(117,190,255,0.15); font-size: 20px;
+      color: #fff; flex-shrink: 0; transition: background 180ms ease, transform 180ms ease;
+    }
+    .ai-send-button:hover { background: rgba(117,190,255,0.25); }
+    .ai-send-button:active { transform: scale(0.92); }
+    .ai-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 18px 12px 18px; border-top: 1px solid rgba(255,255,255,0.04);
+      font-size: 11px; color: var(--haldo-text-muted);
+    }
+
+    /* ============================================================
+       TOAST
        ============================================================ */
     #toast-container { position: fixed; z-index: 3000; top: calc(70px + var(--safe-top)); right: calc(16px + var(--safe-right)); display: flex; flex-direction: column; gap: 8px; max-width: 380px; pointer-events: none; }
     .toast {
@@ -424,12 +722,16 @@
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
     @media (max-width: 800px) {
-      .planet-label { font-size: 6px; bottom: -14px; }
+      .ai-human { transform: scale(0.8); }
+      .ai-conversation { max-height: 140px; }
+      .ai-window { max-width: 96vw; }
     }
     @media (max-width: 500px) {
+      .ai-human { transform: scale(0.6); }
+      .ai-conversation { max-height: 100px; }
+      .ai-window { max-width: 100vw; border-radius: 0; max-height: 100vh; }
       .system-pill { font-size: 10px; padding: 4px 10px; }
       .system-button { width: 36px; height: 36px; font-size: 14px; }
-      .planet-label { font-size: 5px; bottom: -12px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
@@ -444,7 +746,7 @@
       <div id="boot-content">
         <img id="boot-logo" class="haldo-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
         <h1 id="boot-title">HalDo AI OS</h1>
-        <p id="boot-message" data-i18n="boot.message">Phase 2.5 – Cosmic World + Mehrsprachigkeit wird geladen.<br>Das HalDo-Sonnensystem erwacht zum Leben.</p>
+        <p id="boot-message" data-i18n="boot.message">Phase 3 – HalDo AI wird geladen.<br>Der lebendige Avatar erwacht.</p>
         <div id="boot-loader" aria-hidden="true"><div id="boot-loader-bar"></div></div>
       </div>
     </section>
@@ -459,7 +761,7 @@
       <header id="system-bar">
         <div class="system-bar-side">
           <button id="app-menu-button" class="system-button" type="button" aria-label="Apps öffnen" title="Apps">☰</button>
-          <div id="system-status" class="system-pill" aria-live="polite">HalDo AI OS • Phase 2.5</div>
+          <div id="system-status" class="system-pill" aria-live="polite">HalDo AI OS • Phase 3</div>
         </div>
         <div class="system-bar-side">
           <button id="notification-button" class="system-button" type="button" aria-label="Benachrichtigungen" title="Benachrichtigungen">◌</button>
@@ -473,11 +775,9 @@
         <div id="cosmic-title-subtitle" data-i18n="cosmic.subtitle">Cosmic World · Living Intelligence</div>
       </section>
 
-      <!-- Solar Stage -->
+      <!-- Solar Stage (gekürzt aus Phase 2) -->
       <section id="solar-stage" aria-label="HalDo AI OS Sonnensystem">
         <div id="solar-system">
-
-          <!-- 12 Orbits -->
           <div class="orbit" style="--orbit-size:22%;" aria-hidden="true"></div>
           <div class="orbit" style="--orbit-size:30%;" aria-hidden="true"></div>
           <div class="orbit" style="--orbit-size:38%;" aria-hidden="true"></div>
@@ -491,91 +791,42 @@
           <div class="orbit" style="--orbit-size:102%;" aria-hidden="true"></div>
           <div class="orbit" style="--orbit-size:110%;" aria-hidden="true"></div>
 
-          <!-- 12 Himmelskörper – 8 Planeten + 4 Zwergplaneten -->
+          <!-- Planeten (Auswahl) -->
           <div class="planet-system" data-planet="mercury" style="--orbit-size:22%;--orbit-duration:17s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:7px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.5);" title="Merkur">
-                <span class="planet-label" data-i18n="planet.mercury">Merkur</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:7px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.5);"><span class="planet-label" data-i18n="planet.mercury">Merkur</span></div></div>
           </div>
           <div class="planet-system" data-planet="venus" style="--orbit-size:30%;--orbit-duration:23s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:9px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.7);" title="Venus">
-                <span class="planet-label" data-i18n="planet.venus">Venus</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:9px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.7);"><span class="planet-label" data-i18n="planet.venus">Venus</span></div></div>
           </div>
           <div class="planet-system" data-planet="earth" style="--orbit-size:38%;--orbit-duration:31s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:11px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.8);" title="Erde">
-                <span class="moon" style="background:#c8c8c8;box-shadow:0 0 8px rgba(200,200,200,0.5);"></span>
-                <span class="planet-label" data-i18n="planet.earth">Erde</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:11px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.8);"><span class="moon"></span><span class="planet-label" data-i18n="planet.earth">Erde</span></div></div>
           </div>
           <div class="planet-system" data-planet="mars" style="--orbit-size:46%;--orbit-duration:39s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:9px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.7);" title="Mars">
-                <span class="planet-label" data-i18n="planet.mars">Mars</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:9px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.7);"><span class="planet-label" data-i18n="planet.mars">Mars</span></div></div>
           </div>
           <div class="planet-system" data-planet="jupiter" style="--orbit-size:54%;--orbit-duration:47s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:16px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.6);" title="Jupiter">
-                <span class="planet-label" data-i18n="planet.jupiter">Jupiter</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:16px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.6);"><span class="planet-label" data-i18n="planet.jupiter">Jupiter</span></div></div>
           </div>
           <div class="planet-system" data-planet="saturn" style="--orbit-size:62%;--orbit-duration:56s;">
-            <div class="planet-holder">
-              <div class="planet has-ring" style="--planet-size:14px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.6);" title="Saturn">
-                <span class="planet-label" data-i18n="planet.saturn">Saturn</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet has-ring" style="--planet-size:14px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.6);"><span class="planet-label" data-i18n="planet.saturn">Saturn</span></div></div>
           </div>
           <div class="planet-system" data-planet="uranus" style="--orbit-size:70%;--orbit-duration:67s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:12px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.6);" title="Uranus">
-                <span class="planet-label" data-i18n="planet.uranus">Uranus</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:12px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.6);"><span class="planet-label" data-i18n="planet.uranus">Uranus</span></div></div>
           </div>
           <div class="planet-system" data-planet="neptune" style="--orbit-size:78%;--orbit-duration:79s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:12px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.6);" title="Neptun">
-                <span class="planet-label" data-i18n="planet.neptune">Neptun</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:12px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.6);"><span class="planet-label" data-i18n="planet.neptune">Neptun</span></div></div>
           </div>
           <div class="planet-system" data-planet="pluto" style="--orbit-size:86%;--orbit-duration:60s;">
-            <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:8px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.5);" title="Pluto – ⏱ Sekunde">
-                <span class="planet-label" data-i18n="planet.pluto">Pluto ⏱</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet time-planet" style="--planet-size:8px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.5);"><span class="planet-label" data-i18n="planet.pluto">Pluto ⏱</span></div></div>
           </div>
           <div class="planet-system" data-planet="ceres" style="--orbit-size:94%;--orbit-duration:3600s;">
-            <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:8px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.5);" title="Ceres – ⏱ Minute">
-                <span class="planet-label" data-i18n="planet.ceres">Ceres ⏱</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet time-planet" style="--planet-size:8px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.5);"><span class="planet-label" data-i18n="planet.ceres">Ceres ⏱</span></div></div>
           </div>
           <div class="planet-system" data-planet="eris" style="--orbit-size:102%;--orbit-duration:43200s;">
-            <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:9px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.5);" title="Eris – ⏱ Stunde">
-                <span class="planet-label" data-i18n="planet.eris">Eris ⏱</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet time-planet" style="--planet-size:9px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.5);"><span class="planet-label" data-i18n="planet.eris">Eris ⏱</span></div></div>
           </div>
           <div class="planet-system" data-planet="haumea" style="--orbit-size:110%;--orbit-duration:149s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:10px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.6);" title="Haumea">
-                <span class="planet-label" data-i18n="planet.haumea">Haumea</span>
-              </div>
-            </div>
+            <div class="planet-holder"><div class="planet" style="--planet-size:10px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.6);"><span class="planet-label" data-i18n="planet.haumea">Haumea</span></div></div>
           </div>
 
           <!-- SONNE -->
@@ -591,7 +842,6 @@
               <span id="inner-sun-stars" aria-hidden="true"></span>
             </span>
           </button>
-
         </div>
 
         <!-- AI Identity -->
@@ -603,7 +853,7 @@
 
       <!-- Haupt-Dock -->
       <nav id="main-dock" aria-label="HalDo AI OS Hauptnavigation">
-        <button class="dock-button" id="dock-apps" type="button" aria-label="Apps öffnen" title="Apps">
+        <button class="dock-button" id="dock-apps" type="button" aria-label="App-Menü" title="Apps">
           <img src="assets/logo/logo.png" alt="" draggable="false">
         </button>
         <button class="dock-button" id="dock-search" type="button" aria-label="Suche" title="Suche">⌕</button>
@@ -616,6 +866,74 @@
 
     </main>
 
+    <!-- ============================================================
+       AI OVERLAY – LEBENDIGER AVATAR
+    ============================================================ -->
+    <div id="ai-overlay" class="ai-overlay" aria-hidden="true">
+      <section id="ai-window" class="ai-window" role="dialog" aria-modal="true" aria-labelledby="ai-window-title">
+        <header class="ai-header">
+          <div class="panel-brand">
+            <img class="haldo-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
+            <div>
+              <h2 id="ai-window-title">HalDo AI</h2>
+              <p id="ai-state-label">Bereit</p>
+            </div>
+          </div>
+          <div class="ai-header-actions">
+            <button id="ai-mic-button" class="panel-icon-button" type="button" aria-label="Spracheingabe" title="Spracheingabe">🎙️</button>
+            <button id="ai-voice-button" class="panel-icon-button" type="button" aria-label="Sprachausgabe ein oder aus" title="Sprachausgabe">🔊</button>
+            <button id="ai-close-button" class="panel-close" type="button" aria-label="HalDo AI schließen">×</button>
+          </div>
+        </header>
+
+        <div id="ai-presence" class="ai-presence" data-ai-state="idle">
+          <div class="ai-presence-aura"></div>
+          <div class="ai-presence-ring ring-one"></div>
+          <div class="ai-presence-ring ring-two"></div>
+          <div class="ai-presence-ring ring-three"></div>
+
+          <!-- Menschlicher Avatar -->
+          <div class="ai-human-container">
+            <div class="ai-human" id="ai-human">
+              <div class="head">
+                <img class="avatar-image" id="ai-avatar-image" src="assets/logo/logo.png" alt="HalDo AI Avatar" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E🤖%3C/text%3E%3C/svg%3E'">
+                <div class="eyes">
+                  <div class="eye" id="ai-eye-left"></div>
+                  <div class="eye" id="ai-eye-right"></div>
+                </div>
+                <div class="mouth" id="ai-mouth"></div>
+              </div>
+              <div class="body">
+                <img class="logo-on-body" src="assets/logo/logo.png" alt="HalDo">
+              </div>
+              <div class="arm left" id="ai-arm-left"></div>
+              <div class="arm right" id="ai-arm-right"></div>
+              <div class="legs">
+                <div class="leg"></div>
+                <div class="leg"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="ai-expression" class="ai-expression">Ich bin bereit.</div>
+        </div>
+
+        <div id="ai-conversation" class="ai-conversation" aria-live="polite"></div>
+
+        <form id="ai-input-form" class="ai-input-form" autocomplete="off">
+          <button id="ai-attachment-button" class="ai-tool-button" type="button" aria-label="Datei anhängen" title="Datei anhängen">＋</button>
+          <input id="ai-file-input" type="file" hidden multiple>
+          <textarea id="ai-input" rows="1" maxlength="10000" placeholder="Sprich mit HalDo AI …" aria-label="Nachricht an HalDo AI"></textarea>
+          <button id="ai-send-button" class="ai-send-button" type="submit" aria-label="Nachricht senden" title="Senden">➤</button>
+        </form>
+
+        <footer class="ai-footer">
+          <span id="ai-memory-status">🧠 Memory aktiv</span>
+          <span id="ai-connection-status">● Lokal bereit</span>
+        </footer>
+      </section>
+    </div>
+
     <!-- TOAST -->
     <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
     <div id="aria-live-region" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
@@ -624,7 +942,7 @@
 
   <script>
     // ============================================================
-    // PHASE 2.5 – COSMIC WORLD + LANGUAGE LAYER
+    // PHASE 3 – HALDO AI – LEBENDIGER AVATAR
     // ============================================================
 
     (function() {
@@ -635,10 +953,10 @@
       // ============================================================
 
       const HALDO = {
-        version: '2.5.0',
+        version: '3.0.0',
         name: 'HalDo AI OS',
         build: '2026-09-08',
-        phase: 'Phase 2.5 – Cosmic World + Language Layer',
+        phase: 'Phase 3 – HalDo AI',
         state: 'BOOTING',
         config: {
           cosmicWorld: true,
@@ -648,6 +966,7 @@
           aiEnabled: true,
           aiAppControl: true,
           memoryEnabled: true,
+          memoryConversation: true,
           speechInput: true,
           speechOutput: true,
           voiceLanguage: 'de-DE',
@@ -656,8 +975,9 @@
           displayScale: 1,
           notifications: true,
           secureStorage: true,
-          // Sprache für UI
-          language: 'de', // de, en, ku, ez, tr, ar, fr, es, ru, zh, nl, pl, pt, sv
+          language: 'de',
+          // Voice preferences
+          voiceGender: 'female',
         },
         storage: { db: null },
         registry: {},
@@ -669,7 +989,6 @@
         memory: [],
         notifications: [],
         eventBus: {},
-        // Übersetzungen
         translations: {}
       };
 
@@ -684,14 +1003,14 @@
       };
 
       // ============================================================
-      // 3. STORAGE
+      // 3. STORAGE (IndexedDB + localStorage)
       // ============================================================
 
       HALDO.storage = {
         init() {
           return new Promise((resolve) => {
             try {
-              const req = indexedDB.open('HalDoOS', 3);
+              const req = indexedDB.open('HalDoOS', 4);
               req.onupgradeneeded = (e) => {
                 const db = e.target.result;
                 if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
@@ -758,13 +1077,12 @@
       };
 
       // ============================================================
-      // 4. LANGUAGE LAYER – ÜBERSETZUNGEN
+      // 4. LANGUAGE LAYER – ÜBERSETZUNGEN (gekürzt)
       // ============================================================
 
-      // Alle Übersetzungen für alle Sprachen
       const TRANSLATIONS = {
         de: {
-          'boot.message': 'Phase 2.5 – Cosmic World + Mehrsprachigkeit wird geladen.<br>Das HalDo-Sonnensystem erwacht zum Leben.',
+          'boot.message': 'Phase 3 – HalDo AI wird geladen.<br>Der lebendige Avatar erwacht.',
           'cosmic.subtitle': 'Cosmic World · Living Intelligence',
           'ai.role': 'Professioneller HalDo AI',
           'sun.subtitle': 'A Halil Donma • Professioneller HalDo AI',
@@ -780,10 +1098,13 @@
           'planet.ceres': 'Ceres ⏱',
           'planet.eris': 'Eris ⏱',
           'planet.haumea': 'Haumea',
-          'toast.hello': 'Hallo! 🌍',
+          'ai.idle': 'Ich bin bereit.',
+          'ai.listening': '👂 Ich höre zu …',
+          'ai.thinking': '🧠 Ich denke nach …',
+          'ai.speaking': '🗣️ Ich spreche …',
         },
         en: {
-          'boot.message': 'Phase 2.5 – Cosmic World + Multilingualism loading.<br>The HalDo solar system comes to life.',
+          'boot.message': 'Phase 3 – HalDo AI loading.<br>The living avatar awakens.',
           'cosmic.subtitle': 'Cosmic World · Living Intelligence',
           'ai.role': 'Professional HalDo AI',
           'sun.subtitle': 'A Halil Donma • Professional HalDo AI',
@@ -799,235 +1120,121 @@
           'planet.ceres': 'Ceres ⏱',
           'planet.eris': 'Eris ⏱',
           'planet.haumea': 'Haumea',
-          'toast.hello': 'Hello! 🌍',
+          'ai.idle': 'I am ready.',
+          'ai.listening': '👂 I am listening …',
+          'ai.thinking': '🧠 I am thinking …',
+          'ai.speaking': '🗣️ I am speaking …',
         },
+        // Weitere Sprachen nur mit Basis-Texten
         ku: {
-          'boot.message': 'Qonax 2.5 – Cîhana Kozmîk + Pirzimanî tê barkirin.<br>Pergala rojê ya HalDo tê jiyan.',
+          'boot.message': 'Qonax 3 – HalDo AI tê barkirin.<br>Avatarê jîndar tê hişyar.',
           'cosmic.subtitle': 'Cîhana Kozmîk · Jîrîya Jîndar',
           'ai.role': 'HalDo AI ya Profesyonel',
           'sun.subtitle': 'A Halil Donma • HalDo AI ya Profesyonel',
-          'planet.mercury': 'Tîr',
-          'planet.venus': 'Gelawêj',
-          'planet.earth': 'Erd',
-          'planet.mars': 'Behram',
-          'planet.jupiter': 'Jupiter',
-          'planet.saturn': 'Saturn',
-          'planet.uranus': 'Uranus',
-          'planet.neptune': 'Neptun',
-          'planet.pluto': 'Pluto ⏱',
-          'planet.ceres': 'Ceres ⏱',
-          'planet.eris': 'Eris ⏱',
-          'planet.haumea': 'Haumea',
-          'toast.hello': 'Silav! 🌍',
-        },
-        ez: {
-          'boot.message': 'Qonax 2.5 – Cîhana Kozmîk + Pirzimanî tê barkirin.<br>Pergala rojê ya HalDo tê jiyan.',
-          'cosmic.subtitle': 'Cîhana Kozmîk · Jîrîya Jîndar',
-          'ai.role': 'HalDo AI ya Profesyonel',
-          'sun.subtitle': 'A Halil Donma • HalDo AI ya Profesyonel',
-          'planet.mercury': 'Tîr',
-          'planet.venus': 'Gelawêj',
-          'planet.earth': 'Erd',
-          'planet.mars': 'Behram',
-          'planet.jupiter': 'Jupiter',
-          'planet.saturn': 'Saturn',
-          'planet.uranus': 'Uranus',
-          'planet.neptune': 'Neptun',
-          'planet.pluto': 'Pluto ⏱',
-          'planet.ceres': 'Ceres ⏱',
-          'planet.eris': 'Eris ⏱',
-          'planet.haumea': 'Haumea',
-          'toast.hello': 'Silav! 🌍',
+          'ai.idle': 'Ez amade me.',
+          'ai.listening': '👂 Ez guhdarî dikim …',
+          'ai.thinking': '🧠 Ez difikirim …',
+          'ai.speaking': '🗣️ Ez dipeyivim …',
         },
         tr: {
-          'boot.message': 'Aşama 2.5 – Kozmik Dünya + Çok Dillilik yükleniyor.<br>HalDo güneş sistemi canlanıyor.',
+          'boot.message': 'Aşama 3 – HalDo AI yükleniyor.<br>Yaşayan avatar uyanıyor.',
           'cosmic.subtitle': 'Kozmik Dünya · Yaşayan Zeka',
           'ai.role': 'Profesyonel HalDo AI',
           'sun.subtitle': 'A Halil Donma • Profesyonel HalDo AI',
-          'planet.mercury': 'Merkür',
-          'planet.venus': 'Venüs',
-          'planet.earth': 'Dünya',
-          'planet.mars': 'Mars',
-          'planet.jupiter': 'Jüpiter',
-          'planet.saturn': 'Satürn',
-          'planet.uranus': 'Uranüs',
-          'planet.neptune': 'Neptün',
-          'planet.pluto': 'Plüton ⏱',
-          'planet.ceres': 'Ceres ⏱',
-          'planet.eris': 'Eris ⏱',
-          'planet.haumea': 'Haumea',
-          'toast.hello': 'Merhaba! 🌍',
+          'ai.idle': 'Hazırım.',
+          'ai.listening': '👂 Dinliyorum …',
+          'ai.thinking': '🧠 Düşünüyorum …',
+          'ai.speaking': '🗣️ Konuşuyorum …',
         },
         ar: {
-          'boot.message': 'المرحلة 2.5 – العالم الكوني + تعدد اللغات يتم تحميلها.<br>النظام الشمسي هالدو يعود إلى الحياة.',
+          'boot.message': 'المرحلة 3 – HalDo AI يتم تحميلها.<br>الصورة الرمزية الحية تستيقظ.',
           'cosmic.subtitle': 'العالم الكوني · الذكاء الحي',
           'ai.role': 'HalDo AI المحترف',
           'sun.subtitle': 'A Halil Donma • HalDo AI المحترف',
-          'planet.mercury': 'عطارد',
-          'planet.venus': 'الزهرة',
-          'planet.earth': 'الأرض',
-          'planet.mars': 'المريخ',
-          'planet.jupiter': 'المشتري',
-          'planet.saturn': 'زحل',
-          'planet.uranus': 'أورانوس',
-          'planet.neptune': 'نبتون',
-          'planet.pluto': 'بلوتو ⏱',
-          'planet.ceres': 'سيريس ⏱',
-          'planet.eris': 'إيريس ⏱',
-          'planet.haumea': 'هاوميا',
-          'toast.hello': 'مرحباً! 🌍',
+          'ai.idle': 'أنا جاهز.',
+          'ai.listening': '👂 أنا أستمع …',
+          'ai.thinking': '🧠 أنا أفكر …',
+          'ai.speaking': '🗣️ أنا أتحدث …',
         },
         fr: {
-          'boot.message': 'Phase 2.5 – Monde Cosmique + Multilinguisme chargé.<br>Le système solaire HalDo prend vie.',
+          'boot.message': 'Phase 3 – HalDo AI chargement.<br>L\'avatar vivant s\'éveille.',
           'cosmic.subtitle': 'Monde Cosmique · Intelligence Vivante',
           'ai.role': 'HalDo AI Professionnel',
           'sun.subtitle': 'A Halil Donma • HalDo AI Professionnel',
-          'planet.mercury': 'Mercure',
-          'planet.venus': 'Vénus',
-          'planet.earth': 'Terre',
-          'planet.mars': 'Mars',
-          'planet.jupiter': 'Jupiter',
-          'planet.saturn': 'Saturne',
-          'planet.uranus': 'Uranus',
-          'planet.neptune': 'Neptune',
-          'planet.pluto': 'Pluton ⏱',
-          'planet.ceres': 'Cérès ⏱',
-          'planet.eris': 'Éris ⏱',
-          'planet.haumea': 'Hauméa',
-          'toast.hello': 'Bonjour! 🌍',
+          'ai.idle': 'Je suis prêt.',
+          'ai.listening': '👂 J\'écoute …',
+          'ai.thinking': '🧠 Je réfléchis …',
+          'ai.speaking': '🗣️ Je parle …',
         },
         es: {
-          'boot.message': 'Fase 2.5 – Mundo Cósmico + Multilingüismo cargando.<br>El sistema solar HalDo cobra vida.',
+          'boot.message': 'Fase 3 – HalDo AI cargando.<br>El avatar viviente despierta.',
           'cosmic.subtitle': 'Mundo Cósmico · Inteligencia Viva',
           'ai.role': 'HalDo AI Profesional',
           'sun.subtitle': 'A Halil Donma • HalDo AI Profesional',
-          'planet.mercury': 'Mercurio',
-          'planet.venus': 'Venus',
-          'planet.earth': 'Tierra',
-          'planet.mars': 'Marte',
-          'planet.jupiter': 'Júpiter',
-          'planet.saturn': 'Saturno',
-          'planet.uranus': 'Urano',
-          'planet.neptune': 'Neptuno',
-          'planet.pluto': 'Plutón ⏱',
-          'planet.ceres': 'Ceres ⏱',
-          'planet.eris': 'Eris ⏱',
-          'planet.haumea': 'Haumea',
-          'toast.hello': '¡Hola! 🌍',
+          'ai.idle': 'Estoy listo.',
+          'ai.listening': '👂 Estoy escuchando …',
+          'ai.thinking': '🧠 Estoy pensando …',
+          'ai.speaking': '🗣️ Estoy hablando …',
         },
         ru: {
-          'boot.message': 'Фаза 2.5 – Космический мир + Многоязычие загружается.<br>Солнечная система HalDo оживает.',
+          'boot.message': 'Фаза 3 – HalDo AI загружается.<br>Живой аватар просыпается.',
           'cosmic.subtitle': 'Космический мир · Живой интеллект',
           'ai.role': 'Профессиональный HalDo AI',
           'sun.subtitle': 'A Halil Donma • Профессиональный HalDo AI',
-          'planet.mercury': 'Меркурий',
-          'planet.venus': 'Венера',
-          'planet.earth': 'Земля',
-          'planet.mars': 'Марс',
-          'planet.jupiter': 'Юпитер',
-          'planet.saturn': 'Сатурн',
-          'planet.uranus': 'Уран',
-          'planet.neptune': 'Нептун',
-          'planet.pluto': 'Плутон ⏱',
-          'planet.ceres': 'Церера ⏱',
-          'planet.eris': 'Эрида ⏱',
-          'planet.haumea': 'Хаумеа',
-          'toast.hello': 'Привет! 🌍',
+          'ai.idle': 'Я готов.',
+          'ai.listening': '👂 Я слушаю …',
+          'ai.thinking': '🧠 Я думаю …',
+          'ai.speaking': '🗣️ Я говорю …',
         },
         zh: {
-          'boot.message': '阶段 2.5 – 宇宙世界 + 多语言加载中。<br>HalDo 太阳系苏醒。',
+          'boot.message': '阶段 3 – HalDo AI 加载中。<br>活的头像苏醒。',
           'cosmic.subtitle': '宇宙世界 · 活智能',
           'ai.role': '专业 HalDo AI',
           'sun.subtitle': 'A Halil Donma • 专业 HalDo AI',
-          'planet.mercury': '水星',
-          'planet.venus': '金星',
-          'planet.earth': '地球',
-          'planet.mars': '火星',
-          'planet.jupiter': '木星',
-          'planet.saturn': '土星',
-          'planet.uranus': '天王星',
-          'planet.neptune': '海王星',
-          'planet.pluto': '冥王星 ⏱',
-          'planet.ceres': '谷神星 ⏱',
-          'planet.eris': '阋神星 ⏱',
-          'planet.haumea': '妊神星',
-          'toast.hello': '你好！🌍',
+          'ai.idle': '我准备好了。',
+          'ai.listening': '👂 我在听 …',
+          'ai.thinking': '🧠 我在思考 …',
+          'ai.speaking': '🗣️ 我在说话 …',
         },
         nl: {
-          'boot.message': 'Fase 2.5 – Kosmische Wereld + Meertaligheid laden.<br>Het HalDo zonnestelsel komt tot leven.',
+          'boot.message': 'Fase 3 – HalDo AI laden.<br>De levende avatar ontwaakt.',
           'cosmic.subtitle': 'Kosmische Wereld · Levende Intelligentie',
           'ai.role': 'Professionele HalDo AI',
           'sun.subtitle': 'A Halil Donma • Professionele HalDo AI',
-          'planet.mercury': 'Mercurius',
-          'planet.venus': 'Venus',
-          'planet.earth': 'Aarde',
-          'planet.mars': 'Mars',
-          'planet.jupiter': 'Jupiter',
-          'planet.saturn': 'Saturnus',
-          'planet.uranus': 'Uranus',
-          'planet.neptune': 'Neptunus',
-          'planet.pluto': 'Pluto ⏱',
-          'planet.ceres': 'Ceres ⏱',
-          'planet.eris': 'Eris ⏱',
-          'planet.haumea': 'Haumea',
-          'toast.hello': 'Hallo! 🌍',
+          'ai.idle': 'Ik ben klaar.',
+          'ai.listening': '👂 Ik luister …',
+          'ai.thinking': '🧠 Ik denk …',
+          'ai.speaking': '🗣️ Ik spreek …',
         },
         pl: {
-          'boot.message': 'Faza 2.5 – Świat Kosmiczny + Wielojęzyczność ładowanie.<br>Układ słoneczny HalDo ożywa.',
+          'boot.message': 'Faza 3 – HalDo AI ładowanie.<br>Żywy avatar budzi się.',
           'cosmic.subtitle': 'Świat Kosmiczny · Żywa Inteligencja',
           'ai.role': 'Profesjonalny HalDo AI',
           'sun.subtitle': 'A Halil Donma • Profesjonalny HalDo AI',
-          'planet.mercury': 'Merkury',
-          'planet.venus': 'Wenus',
-          'planet.earth': 'Ziemia',
-          'planet.mars': 'Mars',
-          'planet.jupiter': 'Jowisz',
-          'planet.saturn': 'Saturn',
-          'planet.uranus': 'Uran',
-          'planet.neptune': 'Neptun',
-          'planet.pluto': 'Pluton ⏱',
-          'planet.ceres': 'Ceres ⏱',
-          'planet.eris': 'Eris ⏱',
-          'planet.haumea': 'Haumea',
-          'toast.hello': 'Cześć! 🌍',
+          'ai.idle': 'Jestem gotowy.',
+          'ai.listening': '👂 Słucham …',
+          'ai.thinking': '🧠 Myślę …',
+          'ai.speaking': '🗣️ Mówię …',
         },
         pt: {
-          'boot.message': 'Fase 2.5 – Mundo Cósmico + Multilinguismo carregando.<br>O sistema solar HalDo ganha vida.',
+          'boot.message': 'Fase 3 – HalDo AI carregando.<br>O avatar vivo desperta.',
           'cosmic.subtitle': 'Mundo Cósmico · Inteligência Viva',
           'ai.role': 'HalDo AI Profissional',
           'sun.subtitle': 'A Halil Donma • HalDo AI Profissional',
-          'planet.mercury': 'Mercúrio',
-          'planet.venus': 'Vénus',
-          'planet.earth': 'Terra',
-          'planet.mars': 'Marte',
-          'planet.jupiter': 'Júpiter',
-          'planet.saturn': 'Saturno',
-          'planet.uranus': 'Urano',
-          'planet.neptune': 'Neptuno',
-          'planet.pluto': 'Plutão ⏱',
-          'planet.ceres': 'Ceres ⏱',
-          'planet.eris': 'Éris ⏱',
-          'planet.haumea': 'Haumea',
-          'toast.hello': 'Olá! 🌍',
+          'ai.idle': 'Estou pronto.',
+          'ai.listening': '👂 Estou ouvindo …',
+          'ai.thinking': '🧠 Estou pensando …',
+          'ai.speaking': '🗣️ Estou falando …',
         },
         sv: {
-          'boot.message': 'Fas 2.5 – Kosmisk Värld + Flerspråkighet laddas.<br>HalDo solsystemet vaknar till liv.',
+          'boot.message': 'Fas 3 – HalDo AI laddar.<br>Den levande avatar vaknar.',
           'cosmic.subtitle': 'Kosmisk Värld · Levande Intelligens',
           'ai.role': 'Professionell HalDo AI',
           'sun.subtitle': 'A Halil Donma • Professionell HalDo AI',
-          'planet.mercury': 'Merkurius',
-          'planet.venus': 'Venus',
-          'planet.earth': 'Jorden',
-          'planet.mars': 'Mars',
-          'planet.jupiter': 'Jupiter',
-          'planet.saturn': 'Saturnus',
-          'planet.uranus': 'Uranus',
-          'planet.neptune': 'Neptunus',
-          'planet.pluto': 'Pluto ⏱',
-          'planet.ceres': 'Ceres ⏱',
-          'planet.eris': 'Eris ⏱',
-          'planet.haumea': 'Haumea',
-          'toast.hello': 'Hej! 🌍',
+          'ai.idle': 'Jag är redo.',
+          'ai.listening': '👂 Jag lyssnar …',
+          'ai.thinking': '🧠 Jag tänker …',
+          'ai.speaking': '🗣️ Jag talar …',
         }
       };
 
@@ -1041,10 +1248,9 @@
           return;
         }
         HALDO.config.language = lang;
-        HALDO.translations = TRANSLATIONS[lang];
+        HALDO.translations = TRANSLATIONS[lang] || TRANSLATIONS.de;
         updateUITexts();
         HALDO.storage.set('settings', 'config', HALDO.config);
-        // Event auslösen
         HALDO.eventBus.emit('language:changed', lang);
       }
 
@@ -1060,22 +1266,23 @@
           const key = el.dataset.i18n;
           el.innerHTML = t(key, key);
         });
-        // Boot-Message separat
         const bootMsg = document.getElementById('boot-message');
-        if (bootMsg) bootMsg.innerHTML = t('boot.message', 'Phase 2.5 – Cosmic World + Mehrsprachigkeit wird geladen.');
+        if (bootMsg) bootMsg.innerHTML = t('boot.message', 'Phase 3 – HalDo AI wird geladen.');
+        const expression = document.getElementById('ai-expression');
+        if (expression && HALDO.aiState !== 'speaking' && HALDO.aiState !== 'listening' && HALDO.aiState !== 'thinking') {
+          expression.textContent = t('ai.idle', 'Ich bin bereit.');
+        }
       }
 
       // ============================================================
-      // 6. TOAST (erweitert mit Übersetzung)
+      // 6. TOAST
       // ============================================================
 
-      function showToast(icon, titleKey, messageKey, titleFallback, messageFallback) {
+      function showToast(icon, title, message) {
         const container = document.getElementById('toast-container');
         if (!container) return;
         const toast = document.createElement('div');
         toast.className = 'toast';
-        const title = t(titleKey, titleFallback || titleKey);
-        const message = t(messageKey, messageFallback || messageKey);
         toast.innerHTML = `
           <span class="toast-icon">${icon}</span>
           <div class="toast-body">
@@ -1100,7 +1307,7 @@
       }
 
       // ============================================================
-      // 8. STERNE GENERIEREN
+      // 8. STERNE GENERIEREN (Phase 2)
       // ============================================================
 
       function generateStars() {
@@ -1122,7 +1329,6 @@
           container.appendChild(star);
         }
       }
-
       function generateSpecialStars() {
         const container = document.getElementById('special-star-field');
         if (!container) return;
@@ -1140,7 +1346,6 @@
           container.appendChild(star);
         }
       }
-
       function generateInnerSunStars() {
         const container = document.getElementById('inner-sun-stars');
         if (!container) return;
@@ -1159,7 +1364,6 @@
           container.appendChild(spark);
         }
       }
-
       function generateOrbitalSunStars() {
         const container = document.getElementById('sun-stars-orbital');
         if (!container) return;
@@ -1180,66 +1384,427 @@
       }
 
       // ============================================================
-      // 9. EVENT LISTENER
+      // 9. AI – LEBENDIGER AVATAR
+      // ============================================================
+
+      let aiState = 'idle';
+      let isSpeaking = false;
+      let isListening = false;
+
+      function setAIState(state) {
+        aiState = state;
+        const presence = document.getElementById('ai-presence');
+        if (presence) presence.dataset.aiState = state;
+        const label = document.getElementById('ai-state-label');
+        if (label) {
+          const states = {
+            idle: 'Bereit',
+            listening: 'Zuhören …',
+            thinking: 'Denken …',
+            speaking: 'Sprechen …',
+            happy: 'Glücklich',
+            confused: 'Verwirrt',
+            warning: 'Warnung',
+            working: 'Arbeite …',
+            sleep: 'Ruhemodus'
+          };
+          label.textContent = states[state] || 'Bereit';
+        }
+        const expression = document.getElementById('ai-expression');
+        if (expression) {
+          const expressions = {
+            idle: t('ai.idle', 'Ich bin bereit.'),
+            listening: t('ai.listening', '👂 Ich höre zu …'),
+            thinking: t('ai.thinking', '🧠 Ich denke nach …'),
+            speaking: t('ai.speaking', '🗣️ Ich spreche …'),
+            happy: '😊 Ich freue mich!',
+            confused: '🤔 Hmm, interessant …',
+            warning: '⚠️ Achtung!',
+            working: '⚡ Ich arbeite …',
+            sleep: '🌙 Gute Nacht …'
+          };
+          expression.textContent = expressions[state] || 'Ich bin bereit.';
+        }
+        animateAvatar(state);
+      }
+
+      function animateAvatar(state) {
+        const mouth = document.getElementById('ai-mouth');
+        const armLeft = document.getElementById('ai-arm-left');
+        const armRight = document.getElementById('ai-arm-right');
+        const eyeLeft = document.getElementById('ai-eye-left');
+        const eyeRight = document.getElementById('ai-eye-right');
+        const avatarImg = document.getElementById('ai-avatar-image');
+
+        switch(state) {
+          case 'speaking':
+            if (mouth) mouth.classList.add('speaking');
+            if (armLeft) armLeft.classList.add('moving-left');
+            if (armRight) armRight.classList.add('moving-right');
+            if (eyeLeft) eyeLeft.style.transform = 'scale(1.2)';
+            if (eyeRight) eyeRight.style.transform = 'scale(1.2)';
+            if (avatarImg) avatarImg.style.animation = 'avatarPulse 0.5s ease-in-out infinite alternate';
+            break;
+          case 'listening':
+            if (mouth) mouth.classList.remove('speaking');
+            if (armLeft) armLeft.classList.remove('moving-left');
+            if (armRight) armRight.classList.remove('moving-right');
+            if (eyeLeft) eyeLeft.style.transform = 'scale(0.8)';
+            if (eyeRight) eyeRight.style.transform = 'scale(0.8)';
+            if (avatarImg) avatarImg.style.animation = 'avatarPulse 0.8s ease-in-out infinite';
+            break;
+          case 'thinking':
+            if (mouth) mouth.classList.remove('speaking');
+            if (armLeft) armLeft.style.transform = 'rotate(-30deg)';
+            if (armRight) armRight.style.transform = 'rotate(30deg)';
+            if (eyeLeft) eyeLeft.style.transform = 'translateY(-2px)';
+            if (eyeRight) eyeRight.style.transform = 'translateY(-2px)';
+            if (avatarImg) avatarImg.style.animation = 'avatarPulse 1.5s ease-in-out infinite';
+            break;
+          case 'idle':
+          default:
+            if (mouth) mouth.classList.remove('speaking');
+            if (armLeft) { armLeft.classList.remove('moving-left'); armLeft.style.transform = 'rotate(15deg)'; }
+            if (armRight) { armRight.classList.remove('moving-right'); armRight.style.transform = 'rotate(-15deg)'; }
+            if (eyeLeft) eyeLeft.style.transform = '';
+            if (eyeRight) eyeRight.style.transform = '';
+            if (avatarImg) avatarImg.style.animation = 'avatarPulse 3s ease-in-out infinite';
+            break;
+        }
+      }
+
+      // ============================================================
+      // 10. VOICE (Speech Synthesis + Recognition)
+      // ============================================================
+
+      function initVoice() {
+        if (!window.speechSynthesis) {
+          console.warn('Speech Synthesis nicht unterstützt.');
+          HALDO.voice = null;
+          return;
+        }
+        HALDO.voice = {
+          speak: function(text) {
+            if (!HALDO.config.speechOutput) return;
+            if (!text) return;
+            isSpeaking = true;
+            setAIState('speaking');
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = HALDO.config.voiceLanguage || 'de-DE';
+            utterance.rate = HALDO.config.voiceRate || 1;
+            utterance.volume = HALDO.config.voiceVolume || 1;
+            utterance.onend = () => {
+              isSpeaking = false;
+              if (aiState === 'speaking') setAIState('idle');
+            };
+            utterance.onerror = () => {
+              isSpeaking = false;
+              if (aiState === 'speaking') setAIState('idle');
+            };
+            window.speechSynthesis.speak(utterance);
+          },
+          listen: function() {
+            return new Promise((resolve) => {
+              if (!('webkitSpeechRecognition' in window)) {
+                resolve(null);
+                return;
+              }
+              const recognition = new webkitSpeechRecognition();
+              recognition.lang = HALDO.config.voiceLanguage || 'de-DE';
+              recognition.continuous = false;
+              recognition.interimResults = false;
+              setAIState('listening');
+              isListening = true;
+              recognition.start();
+              recognition.onresult = (e) => {
+                const text = e.results[0][0].transcript;
+                resolve(text);
+              };
+              recognition.onerror = () => {
+                resolve(null);
+              };
+              recognition.onend = () => {
+                isListening = false;
+                if (aiState === 'listening') setAIState('idle');
+              };
+            });
+          }
+        };
+      }
+
+      // ============================================================
+      // 11. AI LOGIC – WISSEN & INTENTS
+      // ============================================================
+
+      function generateAIResponse(question) {
+        const lower = question.toLowerCase();
+        let response = '';
+
+        // Wissen
+        const knowledge = {
+          'was ist ki': 'Künstliche Intelligenz (KI) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst. Ich bin ein lebendiges Beispiel dafür. 🤖',
+          'wie geht es dir': 'Mir geht es großartig, Bruder! 💙❤️🚀 Wie kann ich dir helfen?',
+          'wer bist du': 'Ich bin HalDo AI, dein intelligenter Assistent für die Cosmic World. Ich sehe, höre, spreche und helfe dir bei allem!',
+          'was ist haldo': 'HalDo AI OS ist ein professionelles Betriebssystem mit Cosmic World, lebendiger AI, Cyborg-Assistent und über 30 voll ausgestatteten Apps.',
+          'hallo': 'Hallo Bruder 💙❤️🚀 Schön dich zu sehen! Wie kann ich dir heute helfen?',
+          'danke': 'Gern geschehen! Immer wieder gerne.',
+          'hilfe': 'Ich helfe dir gerne! Klicke auf die Sonne, öffne das App-Menü oder sprich einfach mit mir.',
+        };
+
+        for (const [key, value] of Object.entries(knowledge)) {
+          if (lower.includes(key)) {
+            response = value;
+            break;
+          }
+        }
+
+        // App-Intents (vorbereitet)
+        if (!response) {
+          const intents = {
+            'musik': 'music',
+            'video': 'video',
+            'gesundheit': 'health',
+            'navigation': 'navigation',
+            'kalender': 'calendar',
+            'email': 'email',
+            'fahrschule': 'driving',
+            'chat': 'chat',
+            'anruf': 'call',
+            'browser': 'browser',
+            'dateien': 'files',
+            'aufgaben': 'tasks',
+            'wetter': 'weather',
+            'einstellungen': 'systemcenter',
+            'sicherheit': 'security',
+            'updates': 'updates',
+            'verkehr': 'traffic',
+          };
+          for (const [keyword, appId] of Object.entries(intents)) {
+            if (lower.includes(keyword)) {
+              response = `💡 Ich öffne die App "${appId}" für dich. (Phase 3 – vorbereitet)`;
+              break;
+            }
+          }
+          if (!response) {
+            response = 'Das ist eine interessante Frage. Ich werde mein Bestes tun, um sie zu beantworten. 🤖💡';
+          }
+        }
+
+        return response;
+      }
+
+      // ============================================================
+      // 12. AI CHAT FUNCTIONS
+      // ============================================================
+
+      function addMessage(text, sender = 'user') {
+        const container = document.getElementById('ai-conversation');
+        if (!container) return;
+        const msg = document.createElement('div');
+        msg.className = `conv-message ${sender}`;
+        msg.innerHTML = `<span class="conv-icon">${sender === 'user' ? '🧑' : '🤖'}</span><span>${text}</span>`;
+        container.appendChild(msg);
+        container.scrollTop = container.scrollHeight;
+      }
+
+      async function processAIInput(text) {
+        if (!text.trim()) return;
+        addMessage(text, 'user');
+
+        setAIState('thinking');
+        const response = generateAIResponse(text);
+
+        // Memory speichern
+        if (HALDO.config.memoryEnabled && HALDO.config.memoryConversation) {
+          HALDO.memory.push({ role: 'user', content: text });
+          HALDO.memory.push({ role: 'ai', content: response });
+          if (HALDO.memory.length > 30) HALDO.memory = HALDO.memory.slice(-30);
+          await HALDO.storage.set('memory', 'conversation', { data: HALDO.memory });
+        }
+
+        // Antwort anzeigen
+        addMessage(response, 'ai');
+
+        // Sprachausgabe
+        if (HALDO.config.speechOutput && HALDO.voice) {
+          HALDO.voice.speak(response);
+        } else {
+          setAIState('idle');
+        }
+      }
+
+      // ============================================================
+      // 13. AI OVERLAY FUNCTIONS
+      // ============================================================
+
+      function openAI(initialMessage) {
+        const overlay = document.getElementById('ai-overlay');
+        if (!overlay) return;
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        const conversation = document.getElementById('ai-conversation');
+        if (conversation) {
+          conversation.innerHTML = '';
+          if (initialMessage) {
+            addMessage(initialMessage, 'ai');
+          }
+        }
+        setAIState('idle');
+        document.getElementById('ai-input').focus();
+      }
+
+      function closeAI() {
+        const overlay = document.getElementById('ai-overlay');
+        if (overlay) {
+          overlay.classList.remove('open');
+          overlay.setAttribute('aria-hidden', 'true');
+        }
+        window.speechSynthesis.cancel();
+        setAIState('idle');
+      }
+
+      async function toggleVoiceInput() {
+        if (!HALDO.voice) {
+          showToast('⚠️', 'Voice', 'Spracherkennung nicht verfügbar.');
+          return;
+        }
+        if (!HALDO.config.speechInput) {
+          showToast('⚠️', 'Voice', 'Spracheingabe deaktiviert.');
+          return;
+        }
+        const micBtn = document.getElementById('ai-mic-button');
+        if (micBtn) {
+          micBtn.classList.toggle('active');
+        }
+        if (isListening) {
+          // Beenden
+          return;
+        }
+        const text = await HALDO.voice.listen();
+        if (micBtn) {
+          micBtn.classList.remove('active');
+        }
+        if (text) {
+          const input = document.getElementById('ai-input');
+          if (input) {
+            input.value = text;
+            processAIInput(text);
+            input.value = '';
+          }
+        } else {
+          showToast('🎤', 'Voice', 'Keine Eingabe erkannt.');
+          setAIState('idle');
+        }
+      }
+
+      // ============================================================
+      // 14. EVENT LISTENER
       // ============================================================
 
       function initEventListeners() {
-        // Sonne – öffnet AI (vorbereitet für Phase 3)
+        // Sonne -> AI öffnen
         document.getElementById('sun')?.addEventListener('click', () => {
-          showToast('☀️', 'toast.hello', 'toast.hello', 'Hallo! 🌍', 'Hallo! 🌍');
+          if (HALDO.config.aiEnabled) {
+            openAI('☀️ Hallo Bruder 💙❤️🚀 Wie kann ich dir helfen?');
+            if (HALDO.config.speechOutput && HALDO.voice) {
+              setTimeout(() => {
+                HALDO.voice.speak('Hallo! Willkommen bei HalDo AI OS.');
+              }, 500);
+            }
+          } else {
+            showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
+          }
         });
 
-        // Dock-Buttons
-        document.getElementById('dock-apps')?.addEventListener('click', () => {
-          showToast('📱', 'App-Menü', 'App-Menü wird in Phase 6 implementiert.');
-        });
-        document.getElementById('dock-search')?.addEventListener('click', () => {
-          showToast('🔍', 'Suche', 'Suche wird in Phase 6 implementiert.');
-        });
+        // Dock AI Button
         document.getElementById('dock-ai')?.addEventListener('click', () => {
-          showToast('🤖', 'HalDo AI', 'Wird in Phase 3 implementiert.');
-        });
-        document.getElementById('dock-notifications')?.addEventListener('click', () => {
-          showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.');
-        });
-        document.getElementById('dock-settings')?.addEventListener('click', () => {
-          showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.');
-        });
-        document.getElementById('app-menu-button')?.addEventListener('click', () => {
-          showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.');
-        });
-        document.getElementById('settings-button')?.addEventListener('click', () => {
-          showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.');
-        });
-        document.getElementById('notification-button')?.addEventListener('click', () => {
-          showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.');
+          if (HALDO.config.aiEnabled) {
+            openAI('🤖 Hallo! Ich bin HalDo AI. 💙❤️🚀');
+            if (HALDO.config.speechOutput && HALDO.voice) {
+              setTimeout(() => {
+                HALDO.voice.speak('Hallo! Ich bin HalDo AI.');
+              }, 500);
+            }
+          } else {
+            showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
+          }
         });
 
-        // Planeten – Klick (Vorbereitung)
-        document.querySelectorAll('.planet').forEach(planet => {
-          planet.addEventListener('click', () => {
-            const name = planet.title || 'Unbekannt';
-            showToast('🪐', name, 'Planeten-Info in Phase 6');
-          });
+        // AI Close
+        document.getElementById('ai-close-button')?.addEventListener('click', closeAI);
+        document.getElementById('ai-overlay')?.addEventListener('click', (e) => {
+          if (e.target === e.currentTarget) closeAI();
         });
 
-        // Sprache testen: Strg+Shift+L
+        // AI Mic
+        document.getElementById('ai-mic-button')?.addEventListener('click', toggleVoiceInput);
+
+        // AI Voice Toggle
+        document.getElementById('ai-voice-button')?.addEventListener('click', () => {
+          HALDO.config.speechOutput = !HALDO.config.speechOutput;
+          document.getElementById('ai-voice-button').style.opacity = HALDO.config.speechOutput ? '1' : '0.4';
+          showToast('🔊', 'Sprachausgabe', HALDO.config.speechOutput ? 'Aktiviert' : 'Deaktiviert');
+        });
+
+        // AI Input Form
+        document.getElementById('ai-input-form')?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const input = document.getElementById('ai-input');
+          const text = input.value.trim();
+          if (text) {
+            processAIInput(text);
+            input.value = '';
+            input.style.height = 'auto';
+          }
+        });
+
+        // Auto-resize textarea
+        document.getElementById('ai-input')?.addEventListener('input', function() {
+          this.style.height = 'auto';
+          this.style.height = this.scrollHeight + 'px';
+        });
+
+        // Dock Buttons (Phase 1/2)
+        document.getElementById('dock-apps')?.addEventListener('click', () => showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.'));
+        document.getElementById('dock-search')?.addEventListener('click', () => showToast('🔍', 'Suche', 'Wird in Phase 6 implementiert.'));
+        document.getElementById('dock-notifications')?.addEventListener('click', () => showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.'));
+        document.getElementById('dock-settings')?.addEventListener('click', () => showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.'));
+        document.getElementById('app-menu-button')?.addEventListener('click', () => showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.'));
+        document.getElementById('settings-button')?.addEventListener('click', () => showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.'));
+        document.getElementById('notification-button')?.addEventListener('click', () => showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.'));
+
+        // Planeten-Klick
+        document.querySelectorAll('.planet').forEach(p => {
+          p.addEventListener('click', () => showToast('🪐', 'Planet', 'Info in Phase 6'));
+        });
+
+        // Keyboard Shortcuts
         document.addEventListener('keydown', (e) => {
-          if (e.ctrlKey && e.shiftKey && e.key === 'L') {
+          if (e.key === 'Escape') closeAI();
+          if ((e.ctrlKey || e.metaKey) && e.key === ' ') {
+            e.preventDefault();
+            if (HALDO.config.aiEnabled) {
+              openAI('🤖 Hallo! 💙❤️🚀');
+              if (HALDO.config.speechOutput && HALDO.voice) {
+                setTimeout(() => HALDO.voice.speak('Hallo! Ich bin HalDo AI.'), 500);
+              }
+            }
+          }
+          if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'L') {
             const langs = Object.keys(TRANSLATIONS);
             const current = HALDO.config.language;
             const idx = langs.indexOf(current);
             const next = langs[(idx + 1) % langs.length];
             setLanguage(next);
-            showToast('🌐', 'Sprache geändert', `Neue Sprache: ${next}`, 'Language changed', `New language: ${next}`);
+            showToast('🌐', 'Sprache geändert', `Neue Sprache: ${next}`);
           }
         });
 
-        console.log('✅ Event-Listener für Phase 2.5 initialisiert.');
+        console.log('✅ Event-Listener für Phase 3 initialisiert.');
       }
 
       // ============================================================
-      // 10. BOOT
+      // 15. BOOT
       // ============================================================
 
       async function boot() {
@@ -1247,26 +1812,21 @@
         const bootLoader = document.getElementById('boot-loader-bar');
         const cosmicWorld = document.getElementById('cosmic-world');
 
-        // Storage init
         await HALDO.storage.init();
 
-        // Config laden
         const savedConfig = await HALDO.storage.get('settings', 'config');
         if (savedConfig) {
           HALDO.config = { ...HALDO.config, ...savedConfig };
         }
 
-        // Sprache setzen
         const lang = HALDO.config.language || 'de';
         setLanguage(lang);
 
-        // Memory laden
         const savedMemory = await HALDO.storage.get('memory', 'conversation');
         if (savedMemory && savedMemory.data) {
           HALDO.memory = savedMemory.data;
         }
 
-        // Boot-Fortschritt
         let progress = 0;
         const steps = [
           'Lade Kernsystem …',
@@ -1274,6 +1834,7 @@
           'Generiere Sterne …',
           'Erstelle Sonnensystem …',
           'Aktiviere Cosmic World …',
+          'Starte HalDo AI …',
           'System bereit.'
         ];
 
@@ -1283,33 +1844,39 @@
           await new Promise(r => setTimeout(r, 150 + Math.random() * 120));
         }
 
-        // Sterne generieren
         generateStars();
         generateSpecialStars();
         generateInnerSunStars();
         generateOrbitalSunStars();
 
-        // Boot-Screen ausblenden
         if (bootScreen) {
           bootScreen.classList.add('hidden');
           setTimeout(() => { bootScreen.style.display = 'none'; }, 800);
         }
-
-        if (cosmicWorld) {
-          cosmicWorld.classList.remove('is-transitioning');
-        }
+        if (cosmicWorld) cosmicWorld.classList.remove('is-transitioning');
 
         HALDO.state = 'READY';
-        updateSystemStatus('HalDo AI OS • Phase 2.5 • Cosmic World + Multi-Language');
+        updateSystemStatus('HalDo AI OS • Phase 3 • AI aktiv');
 
+        initVoice();
         initEventListeners();
 
-        // Willkommens-Toast mit Übersetzung
+        // AI Memory Status
+        document.getElementById('ai-memory-status').textContent = HALDO.config.memoryEnabled ? '🧠 Memory aktiv' : '🧠 Memory aus';
+
         setTimeout(() => {
-          showToast('🌌', 'toast.hello', 'toast.hello', 'Hallo! 🌍', 'Hallo! 🌍');
+          showToast('🤖', 'HalDo AI', 'Lebendiger Avatar ist bereit!');
+          if (HALDO.config.aiEnabled) {
+            setTimeout(() => {
+              openAI('🤖 Hallo Bruder! 💙❤️🚀 Ich bin HalDo AI. Wie kann ich dir helfen?');
+              if (HALDO.config.speechOutput && HALDO.voice) {
+                setTimeout(() => HALDO.voice.speak('Hallo Bruder! Ich bin HalDo AI. Wie kann ich dir helfen?'), 500);
+              }
+            }, 800);
+          }
         }, 600);
 
-        console.log('🚀 HalDo AI OS Phase 2.5 – Cosmic World + Language Layer gestartet.');
+        console.log('🚀 HalDo AI OS Phase 3 – Lebendiger Avatar gestartet.');
         console.log('📦 Version:', HALDO.version);
         console.log('🌐 Sprache:', HALDO.config.language);
 
@@ -1317,16 +1884,17 @@
       }
 
       // ============================================================
-      // 11. START
+      // 16. START
       // ============================================================
 
       boot();
 
-      // Global
       window.HALDO = HALDO;
       window.t = t;
       window.setLanguage = setLanguage;
       window.showToast = showToast;
+      window.openAI = openAI;
+      window.closeAI = closeAI;
 
     })();
   </script>
