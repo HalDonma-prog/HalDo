@@ -23,7 +23,7 @@
         /* Die Planeten-Ebene (läuft über der Erde) */
         #universe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
 
-        /* Der fotorealistische Cyborg */
+        /* Der fotorealistische Cyborg (steht im Vordergrund) */
         #cyborg {
             position: absolute;
             bottom: 0;
@@ -68,17 +68,19 @@
         #btn-files { background: #ff00ff; }
         #btn-sun { background: #ffaa00; }
         #btn-update { background: #ffff00; }
+        
+        #dev-log { position: absolute; bottom: 10px; right: 20px; color: #00ff00; font-family: monospace; font-size: 12px; z-index: 20; text-shadow: 0 0 5px #00ff00; }
     </style>
 </head>
 <body>
 
-<!-- Hintergrundbild: Erde mit Mond (Ändere src, falls dein Bild anders heißt) -->
+<!-- Hintergrundbild: Erde mit Mond -->
 <img id="earth-bg" src="earth.png" alt="Erde" onerror="this.style.display='none'">
 
 <!-- Die laufenden Planeten -->
 <canvas id="universe"></canvas>
 
-<!-- Vordergrundbild: Cyborg und Frau (Ändere src, falls dein Bild anders heißt) -->
+<!-- Vordergrundbild: Cyborg und Frau -->
 <img id="cyborg" src="cyborg.png" alt="HalDo Cyborg" onerror="this.style.display='none'">
 
 <!-- Statusleiste -->
@@ -94,7 +96,10 @@
 <!-- Chat Fenster -->
 <div id="chat-window" class="os-window">
     <div id="header">💬 HalDo AI Chat <div><button class="control-btn" id="btn-x" onclick="close('chat-window')">X</button><button class="control-btn" id="btn-min" onclick="minimize('chat-window')">–</button></div></div>
-    <div id="chat-body">Willkommen Bruder. Dein fotorealistisches OS läuft!</div>
+    <div id="chat-body">
+        <img src="logo.png" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #00aaff; margin-right: 10px;"> 
+        Willkommen Bruder. Dein fotorealistisches OS läuft!
+    </div>
     <input id="chat-input" type="text" placeholder="Sag was... " onkeydown="if(event.key==='Enter') sendMessage()">
 </div>
 
@@ -118,6 +123,12 @@
         <p>Die Sonne strahlt im Zentrum des Systems.</p>
         <button onclick="alert('Energie freigesetzt!')" style="background: #ffaa00; color: black; border: none; padding: 10px; cursor: pointer;">Energie</button>
     </div>
+</div>
+
+<div id="dev-log">
+    > HALDO CORE GELADEN<br>
+    > 12 PLANETEN VERBUNDEN<br>
+    > SYSTEM BEREIT
 </div>
 
 <script>
