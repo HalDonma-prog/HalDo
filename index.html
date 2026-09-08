@@ -2,154 +2,265 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>HalDo AI OS - Architect Version</title>
+    <title>HalDo AI OS - Ultimate System</title>
     <style>
-        /* 1. SYSTEM-KERN: Display ohne weiße Fehler */
-        body { margin: 0; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
+        /* Professioneller Kosmos-Hintergrund */
+        body { margin: 0; overflow: hidden; background: radial-gradient(circle at center, #0a0f2e 0%, #000000 100%); font-family: 'Segoe UI', sans-serif; color: white; }
         
-        /* 2. RENDER-EBENE: Sterne, Galaxie, Sonne */
-        #deep-space-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        /* Das 3D-Universum (Canvas) */
+        #universe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         
-        /* 3. OS-EBENE: Das Interface (Glassmorphism) */
-        #os-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
-        .window { 
-            position: absolute; 
-            background: rgba(0, 0, 20, 0.7); 
-            backdrop-filter: blur(15px); 
-            border: 1px solid #00aaff; 
-            border-radius: 16px; 
-            pointer-events: auto; 
-            box-shadow: 0 0 30px rgba(0, 170, 255, 0.3);
-        }
+        /* Der Cyborg */
+        #cyborg-container { position: absolute; bottom: 20px; left: 30px; z-index: 100; }
+        #cyborg-img { width: 250px; height: auto; filter: drop-shadow(0 0 20px #00aaff); animation: breathe 4s infinite; }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+        /* Die OS-Oberfläche (Glassmorphism) */
+        .os-window { position: absolute; background: rgba(10, 20, 40, 0.75); backdrop-filter: blur(12px); border: 1px solid #00aaff; border-radius: 12px; box-shadow: 0 0 30px rgba(0, 170, 255, 0.4); z-index: 50; }
         
-        /* Chat und Dateien */
-        #chat-window { bottom: 20px; right: 20px; width: 400px; height: 350px; padding: 10px; }
-        #file-manager-window { top: 20px; left: 20px; width: 300px; height: 400px; padding: 15px; }
-        
-        /* Kontroll-Panel (Die korrigierten Punkte) */
-        #status-bar { position: fixed; top: 20px; right: 50%; transform: translateX(50%); z-index: 20; background: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 30px; display: flex; gap: 15px; border: 1px solid #00aaff; }
-        .system-dot { width: 15px; height: 15px; border-radius: 50%; }
-        #dot-red { background: #ff0000; cursor: pointer; }
-        #dot-green { background: #00ff00; cursor: pointer; }
-        #dot-blue { background: #00aaff; cursor: pointer; }
-        
-        /* Entwickler-Ansicht: Daten und Updates */
-        #dev-log { position: fixed; bottom: 20px; left: 20px; z-index: 30; color: #00aaff; font-family: monospace; font-size: 12px; text-align: left; text-shadow: 0 0 10px #00aaff; }
+        #chat-window { bottom: 30px; right: 30px; width: 400px; height: 350px; }
+        #chat-header { background: rgba(0, 50, 100, 0.8); padding: 10px; border-radius: 12px 12px 0 0; border-bottom: 1px solid #00aaff; font-weight: bold; }
+        #chat-body { padding: 15px; height: 200px; overflow-y: auto; }
+        #chat-input { width: 90%; margin: 10px; padding: 10px; background: rgba(0,0,0,0.6); border: 1px solid #00aaff; border-radius: 6px; color: white; }
+
+        /* Dateien & System Fenster */
+        #file-window { top: 20px; left: 20px; width: 300px; padding: 15px; }
+        #update-window { top: 20px; right: 20px; width: 300px; padding: 15px; }
+
+        /* Statusleiste Oben mit den Farben */
+        #status-bar { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; gap: 10px; background: rgba(0,0,0,0.8); padding: 8px 15px; border-radius: 30px; border: 1px solid #00aaff; }
+        .dot { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 1px solid white; }
+        #btn-close { background: #ff0000; }
+        #btn-mic { background: #00ff00; }
+        #btn-spk { background: #00aaff; }
+        #btn-update { background: #ffaa00; }
+        #btn-info { background: #ff00ff; }
+        #btn-settings { background: #ffff00; }
+
+        /* Dev Log für System-Updates */
+        #dev-log { position: absolute; bottom: 30px; left: 300px; color: #00ff00; font-family: monospace; font-size: 12px; z-index: 100; text-shadow: 0 0 5px #00ff00; }
     </style>
 </head>
 <body>
 
-<!-- Ebene 2: Das Universum (Hier laufen Planeten und Sterne) -->
-<canvas id="deep-space-canvas"></canvas>
+<!-- Ebene 1: Das Universum (Sonne, Sterne, Planeten) -->
+<canvas id="universe"></canvas>
 
-<!-- Ebene 3: Das Design System -->
-<div id="os-layer">
-    <div id="chat-window" class="window">
-        <h3 style="color:#00aaff;">HalDo AI Chat</h3>
-        <textarea id="chat-log" style="background:transparent; color:#fff; border:none; width:100%; height:200px;"></textarea>
-        <input id="chat-input" placeholder="Bruder, gib mir deine Befehle..." style="width:90%; padding:10px; background:#111; color:#fff; border-radius:8px;">
-        <br>
-        <button onclick="haldoSpeak()" style="background:#00aaff; color:#fff;">🔊 Stimme</button>
-        <button onclick="haldoListen()" style="background:#00ff00; color:#000;">🎙️ Mikrofon</button>
-    </div>
-    
-    <div id="file-manager-window" class="window">
-        <h3 style="color:#00aaff;">🗂️ Daten, Dateien & Updates</h3>
-        <p>📁 Kernel: <span style="color:#00ff00;">Online</span></p>
-        <p>📁 Datenbank: <span style="color:#00ff00;">Verbunden</span></p>
-        <p>📁 Software: <span style="color:#ffaa00;">v2.4.1</span></p>
-        <button onclick="updateSystem()" style="background:#ffaa00; padding:8px;">Update ausführen</button>
-    </div>
+<!-- Ebene 2: Der Cyborg -->
+<div id="cyborg-container">
+    <img id="cyborg-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Android_robot_%28no_shadow%29.svg/1024px-Android_robot_%28no_shadow%29.svg.png" alt="HalDo Cyborg">
 </div>
 
-<!-- Ebene 1: Die Statusleiste mit den Punkten -->
+<!-- Ebene 3: Die Statusleiste (Farbpunkte) -->
 <div id="status-bar">
-    <div class="system-dot" id="dot-red" onclick="closeApp()" title="X - Schließen"></div>
-    <div class="system-dot" id="dot-green" onclick="activateMic()" title="🎙️ Mikrofon"></div>
-    <div class="system-dot" id="dot-blue" onclick="activateSpeaker()" title="🔊 Lautsprecher"></div>
+    <div class="dot" id="btn-close" onclick="closeApps()" title="Fenster schließen"></div>
+    <div class="dot" id="btn-mic" onclick="activateMic()" title="Mikrofon"></div>
+    <div class="dot" id="btn-spk" onclick="activateSpeaker()" title="Lautsprecher"></div>
+    <div class="dot" id="btn-update" onclick="checkUpdates()" title="Update"></div>
+    <div class="dot" id="btn-info" onclick="showInfo()" title="Info"></div>
+    <div class="dot" id="btn-settings" onclick="showSettings()" title="Einstellungen"></div>
 </div>
 
-<!-- Ebene 4: Der Live-Log für System-Updates -->
+<!-- Ebene 4: Die Fenster -->
+<div id="chat-window" class="os-window">
+    <div id="chat-header">💬 HalDo AI Chat</div>
+    <div id="chat-body">Willkommen im HalDo AI OS, Bruder. Das komplette System ist online.</div>
+    <input id="chat-input" type="text" placeholder="Befehle an HalDo..." onkeydown="if(event.key==='Enter') sendMessage()">
+</div>
+
+<div id="file-window" class="os-window">
+    <h3 style="color:#00aaff;">🗂️ Dateien & Apps</h3>
+    <p>📁 Dokumente</p>
+    <p>🎵 Musik</p>
+    <p>🎬 Videos</p>
+    <p>🖼️ Bilder</p>
+    <p>⚙️ System-Ordner</p>
+</div>
+
+<div id="update-window" class="os-window">
+    <h3 style="color:#ffaa00;">⬆️ Software & Updates</h3>
+    <p>Version: <span id="version">2.4.1</span></p>
+    <p>Status: <span style="color:#00ff00;">Stabil</span></p>
+    <button onclick="checkUpdates()" style="background:#ffaa00; border:none; padding:8px; color:white; border-radius:5px; cursor:pointer;">Nach Updates suchen</button>
+</div>
+
+<!-- System Log -->
 <div id="dev-log">
-    ▍[System]: Kernel geladen<br>
-    ▍[System]: Cosmische Engine (Planeten & Sonne) bereit<br>
-    ▍[HalDo]: Warte auf Befehle, Bruder...
+    > Kernel geladen...<br>
+    > 12 Planeten verbunden...<br>
+    > Audio-Engine bereit...<br>
+    > Warte auf Befehle, Bruder.
 </div>
 
 <script>
-    // [KERNEL] - Funktionen für die Oberfläche
-    function updateLog(msg) {
-        const log = document.getElementById('dev-log');
-        log.innerHTML += '<br>▍[System]: ' + msg;
-    }
-
-    function closeApp() {
+    // [Funktionen: UI & Audio]
+    function closeApps() {
         document.getElementById('chat-window').style.display = 'none';
-        updateLog('Chatfenster geschlossen.');
+        document.getElementById('file-window').style.display = 'none';
+        document.getElementById('update-window').style.display = 'none';
     }
-
-    // [UI] - Die gestellten Anforderungen für Mikrofon & Lautsprecher
     function activateSpeaker() {
-        const say = new SpeechSynthesisUtterance('Systeme sind bereit, Bruder.');
-        say.lang = 'de-DE';
-        window.speechSynthesis.speak(say);
+        const msg = new SpeechSynthesisUtterance('Systeme sind bereit. Planeten kreisen korrekt.');
+        msg.lang = 'de-DE';
+        window.speechSynthesis.speak(msg);
     }
-
     function activateMic() {
-        updateLog('Mikrofon wird gestartet...');
+        updateLog('Mikrofon aktiviert...');
         const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.lang = 'de-DE';
         recognition.start();
-        recognition.onresult = (event) => {
-            document.getElementById('chat-input').value = event.results[0][0].transcript;
-            updateLog('Sprache erkannt: ' + event.results[0][0].transcript);
+        recognition.onresult = (e) => {
+            document.getElementById('chat-input').value = e.results[0][0].transcript;
+            sendMessage(e.results[0][0].transcript);
         };
     }
-
-    function haldoListen() { activateMic(); }
-    function haldoSpeak() { activateSpeaker(); }
-
-    function updateSystem() {
-        updateLog('Sucht nach Updates... (Version 2.4.1)');
-        setTimeout(() => { updateLog('Update abgeschlossen. System stabil.'); }, 2000);
+    function checkUpdates() {
+        updateLog('Suche nach Updates...');
+        setTimeout(() => { document.getElementById('version').innerText = '2.5.0'; updateLog('Update erfolgreich auf Version 2.5.0!'); }, 1500);
+    }
+    function showInfo() { alert("HalDo AI OS\nKernel: 3.14\nStatus: Online"); }
+    function showSettings() { alert("Einstellungen: Dunkelmodus: Aktiv, Mikrofon: Bereit, Hintergrund: Deep Space"); }
+    function updateLog(msg) {
+        const log = document.getElementById('dev-log');
+        log.innerHTML += '<br>> ' + msg;
+    }
+    function sendMessage(text = null) {
+        const input = document.getElementById('chat-input');
+        const message = text || input.value;
+        if (!message) return;
+        const body = document.getElementById('chat-body');
+        body.innerHTML += '<br><b>Bruder:</b> ' + message;
+        input.value = "";
+        setTimeout(() => { body.innerHTML += '<br><b>HalDo:</b> Befehl verstanden!'; }, 1000);
     }
 
-    // [UNIVERSUM] - Die neue 3D-Engine (Sterne, Planeten, Galaxie)
-    const canvas = document.getElementById('deep-space-canvas');
+    // [Das komplette 3D-Universum]
+    const canvas = document.getElementById('universe');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    // Sterne
     let stars = [];
-    for (let i = 0; i < 500; i++) {
-        stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 2, alpha: Math.random() });
+    for (let i = 0; i < 1200; i++) {
+        stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.5, a: Math.random() });
     }
 
+    // Sonne
+    const sun = { x: canvas.width / 2, y: canvas.height / 2 };
+
+    // 12 Planeten mit echten Farben und Bahnen (Physikalisch)
+    const planets = [
+        { name: "Merkur", r: 15, size: 6, color: "#b0b0b0", speed: 0.02, offset: 0 },
+        { name: "Venus", r: 25, size: 10, color: "#FFD700", speed: 0.018, offset: 1.5 },
+        { name: "Erde", r: 40, size: 12, color: "#4B90C2", speed: 0.016, offset: 2.8 },
+        { name: "Mars", r: 55, size: 9, color: "#C1440E", speed: 0.014, offset: 4.0 },
+        { name: "Jupiter", r: 75, size: 25, color: "#D8CA9D", speed: 0.012, offset: 5.2 },
+        { name: "Saturn", r: 100, size: 22, color: "#EEDC82", speed: 0.01, offset: 6.4, ring: true },
+        { name: "Uranus", r: 130, size: 14, color: "#00FFFF", speed: 0.008, offset: 7.6 },
+        { name: "Neptun", r: 160, size: 14, color: "#4169E1", speed: 0.007, offset: 8.8 },
+        { name: "Pluto", r: 190, size: 5, color: "#F5F5DC", speed: 0.006, offset: 10.0 },
+        { name: "Ceres", r: 220, size: 5, color: "#8A2BE2", speed: 0.005, offset: 11.2 },
+        { name: "Eris", r: 250, size: 4, color: "#FFFFFF", speed: 0.004, offset: 12.4 },
+        { name: "Haumea", r: 280, size: 6, color: "#FFB6C1", speed: 0.003, offset: 13.6 }
+    ];
+
+    // Zeit-Orbs (Sekunde, Minute, Stunde)
+    const orbs = [
+        { radius: 35, speed: 0.1, color: "#00ff00" }, // Sekunde (schnell)
+        { radius: 45, speed: 0.016, color: "#00aaff" }, // Minute
+        { radius: 55, speed: 0.002, color: "#ffaa00" } // Stunde
+    ];
+
     function drawUniverse() {
-        // Hintergrund dunkelblau (kein weiß!)
-        ctx.fillStyle = '#050a15';
+        // Tiefblauer Hintergrund (kein Weiß!)
+        ctx.fillStyle = '#0a0a20';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Sterne
+        // Sterne zeichnen
         stars.forEach(s => {
             ctx.beginPath();
             ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 255, 255, ' + s.alpha + ')';
+            ctx.fillStyle = `rgba(255,255,255,${s.a})`;
             ctx.fill();
         });
 
-        // Die strahlende Sonne mit Partikeln
-        ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2, 120, 0, Math.PI * 2);
-        const gradient = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, 200);
-        gradient.addColorStop(0, '#fff');
-        gradient.addColorStop(0.5, '#ff9900');
+        // Strahlende Sonne zeichnen (mit Corona)
+        for (let i = 0; i < 20; i++) {
+            let angle = (Math.PI * 2 / 20) * i + Date.now() * 0.0005;
+            ctx.beginPath();
+            ctx.moveTo(sun.x, sun.y);
+            ctx.lineTo(sun.x + Math.cos(angle) * 200, sun.y + Math.sin(angle) * 200);
+            ctx.strokeStyle = 'rgba(255, 150, 0, 0.3)';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+        }
+        let gradient = ctx.createRadialGradient(sun.x, sun.y, 0, sun.x, sun.y, 150);
+        gradient.addColorStop(0, '#ffffff');
+        gradient.addColorStop(0.4, '#ff9900');
         gradient.addColorStop(1, '#ff0000');
+        ctx.beginPath();
+        ctx.arc(sun.x, sun.y, 120, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
 
+        // Planeten zeichnen (Physikalische Umlaufbahn von links nach rechts)
+        const t = Date.now();
+        planets.forEach(p => {
+            // Winkel basierend auf Zeit
+            let angle = (t * 0.0001 * p.speed) + p.offset;
+            let x = sun.x + Math.cos(angle) * p.r * 3.5;
+            let y = sun.y + Math.sin(angle) * p.r * 1.5;
+            
+            // Orbit-Bahn zeichnen
+            ctx.beginPath();
+            ctx.ellipse(sun.x, sun.y, p.r * 3.5, p.r * 1.5, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(0, 170, 255, 0.15)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            // Planetenkörper
+            ctx.beginPath();
+            ctx.arc(x, y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.shadowColor = p.color;
+            ctx.shadowBlur = 15;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            
+            // Saturnring
+            if (p.ring) {
+                ctx.beginPath();
+                ctx.ellipse(x, y, p.size * 2, p.size * 0.5, 0.3, 0, Math.PI * 2);
+                ctx.strokeStyle = '#EEDC82';
+                ctx.lineWidth = 4;
+                ctx.stroke();
+            }
+        });
+
+        // Zeit-Orbs zeichnen
+        orbs.forEach(orb => {
+            let angle = Date.now() * orb.speed;
+            let x = sun.x + Math.cos(angle) * orb.radius * 3;
+            let y = sun.y + Math.sin(angle) * orb.radius * 1.2;
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = orb.color;
+            ctx.shadowColor = orb.color;
+            ctx.shadowBlur = 20;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        });
+
         requestAnimationFrame(drawUniverse);
     }
+
+    // Canvas bei Fenstergröße anpassen
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
     drawUniverse();
 </script>
 </body>
