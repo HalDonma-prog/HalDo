@@ -2,33 +2,61 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>HalDo AI OS - Ultimate System</title>
+    <title>HalDo AI OS - Ultimate Final Edition</title>
     <style>
-        body { margin: 0; overflow: hidden; background: radial-gradient(circle at center, #0a0f2e 0%, #000 100%); font-family: 'Segoe UI', sans-serif; color: #fff; }
+        body { margin: 0; overflow: hidden; background-color: #020208; font-family: 'Segoe UI', sans-serif; color: white; }
         
-        /* Lebendiges Universum */
-        #universe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        
-        /* Der futuristische Cyborg (UI Charakter) */
-        #cyborg-container { position: absolute; bottom: 20px; left: 20px; z-index: 100; pointer-events: none; }
-        #cyborg { font-size: 120px; filter: drop-shadow(0 0 25px #00aaff); animation: float 4s infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        /* 1. Dein Erde-Bild als Hintergrund */
+        #earth-bg {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110vw;
+            height: 110vh;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.7);
+            animation: slowZoom 60s infinite linear;
+        }
+        @keyframes slowZoom { 0% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(1.1); } }
 
-        /* Professionelle, verschiebbare Fenster (Glassmorphism) */
+        /* 2. Die leuchtenden Planeten und Sterne (Canvas) */
+        #universe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+
+        /* 3. Dein Cyborg-Bild im Vordergrund */
+        #cyborg {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 95vh;
+            z-index: 5;
+            filter: drop-shadow(0 0 40px rgba(0, 170, 255, 0.8));
+            pointer-events: none;
+        }
+
+        /* 4. Das Logo im Chat */
+        #logo-chat {
+            width: 40px; height: 40px; border-radius: 50%; 
+            border: 2px solid #00aaff; 
+            margin-right: 10px; 
+            vertical-align: middle;
+        }
+
+        /* 5. Verschiebbare, professionelle Fenster */
         .os-window {
             position: absolute;
-            background: rgba(0, 15, 40, 0.7);
+            background: rgba(0, 15, 40, 0.75);
             backdrop-filter: blur(10px);
             border: 2px solid #00aaff;
             border-radius: 12px;
-            box-shadow: 0 0 30px rgba(0,170,255,0.4);
+            box-shadow: 0 0 30px rgba(0,170,255,0.5);
             z-index: 10;
             cursor: grab;
             user-select: none;
         }
         .os-window:active { cursor: grabbing; }
 
-        #chat-window { bottom: 30px; right: 30px; width: 380px; height: 320px; }
+        #chat-window { bottom: 30px; left: 30px; width: 380px; height: 320px; }
         #file-window { top: 20px; left: 20px; width: 300px; }
         #sun-window { top: 20px; right: 20px; width: 300px; display: none; }
 
@@ -38,8 +66,8 @@
         #btn-min { background: #ffaa00; }
         #chat-body { padding: 15px; height: 170px; overflow-y: auto; font-size: 15px; }
         input { width: 90%; margin: 10px; padding: 10px; background: rgba(0,0,0,0.8); border: 1px solid #00aaff; border-radius: 8px; color: white; }
-        
-        /* Statusleiste */
+
+        /* 6. Statusleiste */
         #status-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; gap: 10px; background: rgba(0, 10, 30, 0.9); padding: 10px 15px; border-radius: 30px; border: 1px solid #00aaff; }
         .dot { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
         #btn-close { background: #ff0000; }
@@ -48,17 +76,20 @@
         #btn-files { background: #ff00ff; }
         #btn-sun { background: #ffaa00; }
         #btn-update { background: #ffff00; }
+        
+        #dev-log { position: absolute; bottom: 10px; right: 20px; color: #00ff00; font-family: monospace; font-size: 12px; z-index: 20; text-shadow: 0 0 5px #00ff00; }
     </style>
 </head>
 <body>
 
-<!-- Das lebendige Universum -->
+<!-- Hintergrund: Deine Erde -->
+<img id="earth-bg" src="earth.png" alt="Erde" onerror="this.style.display='none'">
+
+<!-- Leuchtende Planeten & Sterne -->
 <canvas id="universe"></canvas>
 
-<!-- Der Cyborg -->
-<div id="cyborg-container">
-    <div id="cyborg">🤖</div>
-</div>
+<!-- Vordergrund: Dein Cyborg -->
+<img id="cyborg" src="cyborg.png" alt="HalDo Cyborg" onerror="this.style.display='none'">
 
 <!-- Statusleiste -->
 <div id="status-bar">
@@ -73,7 +104,10 @@
 <!-- Chat Fenster -->
 <div id="chat-window" class="os-window">
     <div id="header">💬 HalDo AI Chat <div><button class="control-btn" id="btn-x" onclick="close('chat-window')">X</button><button class="control-btn" id="btn-min" onclick="minimize('chat-window')">–</button></div></div>
-    <div id="chat-body">Willkommen Bruder. Das komplette kosmische System ist aktiv!</div>
+    <div id="chat-body">
+        <img id="logo-chat" src="logo.png" onerror="this.style.display='none'"> 
+        Willkommen Bruder. Das komplette kosmische HalDo OS läuft!
+    </div>
     <input id="chat-input" type="text" placeholder="Sag was... " onkeydown="if(event.key==='Enter') sendMessage()">
 </div>
 
@@ -94,9 +128,15 @@
     <div id="header">☀️ Sonnenkern <div><button class="control-btn" id="btn-x" onclick="close('sun-window')">X</button></div></div>
     <div style="padding: 20px; text-align: center;">
         <h2 style="color: #ffaa00; text-shadow: 0 0 20px #ffaa00;">ENERGIE AKTIV</h2>
-        <p>Die Sonne strahlt im Zentrum des Systems.</p>
+        <p>Die Sonne strahlt im Zentrum.</p>
         <button onclick="alert('Energie freigesetzt!')" style="background: #ffaa00; color: black; border: none; padding: 10px; cursor: pointer;">Energie</button>
     </div>
+</div>
+
+<div id="dev-log">
+    > HALDO CORE GELADEN<br>
+    > 12 PLANETEN VERBUNDEN<br>
+    > SYSTEM BEREIT
 </div>
 
 <script>
@@ -139,21 +179,14 @@
     }
     function checkUpdate() { alert("System ist auf dem neuesten Stand!"); }
 
-    // Das komplette Universum
+    // Das Universum (Sonne, 12 Planeten)
     const canvas = document.getElementById('universe');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Sterne
-    let stars = [];
-    for (let i = 0; i < 800; i++) {
-        stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.5, a: Math.random() });
-    }
-
     const sun = { x: canvas.width / 2, y: canvas.height / 2 };
-    
-    // 12 Planeten
+
     const planets = [
         { r: 30, size: 6, color: "#b0b0b0", speed: 0.0005, offset: 0 },
         { r: 55, size: 10, color: "#FFD700", speed: 0.0004, offset: 1.5 },
@@ -171,23 +204,14 @@
 
     let t = 0;
     function drawUniverse() {
-        ctx.fillStyle = '#020208';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Sterne
-        stars.forEach(s => {
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255,255,255,${s.a})`;
-            ctx.fill();
-        });
-
-        // Sonne (strahlend, pulsierend)
+        // Sonne
         let glow = 1 + Math.sin(t * 0.05) * 0.1;
         let gradient = ctx.createRadialGradient(sun.x, sun.y, 0, sun.x, sun.y, 180 * glow);
         gradient.addColorStop(0, '#ffffff');
         gradient.addColorStop(0.4, '#ffaa00');
-        gradient.addColorStop(1, '#ff3300');
+        gradient.addColorStop(1, 'rgba(255, 51, 0, 0)');
         ctx.beginPath();
         ctx.arc(sun.x, sun.y, 120 * glow, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
@@ -201,7 +225,7 @@
 
             ctx.beginPath();
             ctx.ellipse(sun.x, sun.y, p.r, p.r * 0.8, 0, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(0,170,255,0.3)';
+            ctx.strokeStyle = 'rgba(0,170,255,0.4)';
             ctx.lineWidth = 1;
             ctx.stroke();
 
