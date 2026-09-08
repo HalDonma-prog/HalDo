@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#02030a">
-  <meta name="description" content="HalDo AI OS – Professionelles Betriebssystem mit Cosmic World und Living HalDo AI">
+  <meta name="description" content="HalDo AI OS – Phase 2: Cosmic World">
   <meta name="application-name" content="HalDo AI OS">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>HalDo AI OS – Phase 1</title>
+  <title>HalDo AI OS – Phase 2</title>
   <link rel="icon" type="image/png" href="assets/logo/logo.png">
   <link rel="apple-touch-icon" href="assets/logo/logo.png">
 
   <style>
     /* ============================================================
-       PHASE 1 – KERN & GRUNDSTRUKTUR
+       PHASE 2 – COSMIC WORLD
        ============================================================ */
     :root {
       --haldo-bg: #02030a;
@@ -27,6 +27,11 @@
       --haldo-border: rgba(255, 255, 255, 0.14);
       --haldo-blue: #72a9ff;
       --haldo-cyan: #76eaff;
+      --haldo-violet: #b68cff;
+      --haldo-gold: #ffd76a;
+      --haldo-orange: #ff9b55;
+      --haldo-green: #75e7a4;
+      --sun-core-size: clamp(130px, 18vw, 260px);
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-right: env(safe-area-inset-right, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -44,7 +49,7 @@
     #haldo-os { position: fixed; inset: 0; width: 100%; height: 100%; overflow: hidden; background: #02030a; }
 
     /* ============================================================
-       BOOT-SCREEN
+       BOOT-SCREEN (von Phase 1)
        ============================================================ */
     #boot-screen {
       position: absolute; z-index: 2000; inset: 0; display: flex; align-items: center; justify-content: center;
@@ -62,6 +67,51 @@
     @keyframes bootLogoFloat { 0%,100% { transform: translateY(0) scale(.98); } 50% { transform: translateY(-8px) scale(1.03); } }
     @keyframes bootLoader { from { transform: translateX(-130%); } to { transform: translateX(390%); } }
     @keyframes titleLight { from { background-position: 0% 50%; } to { background-position: 240% 50%; } }
+
+    /* ============================================================
+       COSMIC WORLD – HINTERGRUND
+       ============================================================ */
+    #cosmic-world {
+      position: absolute; inset: 0; overflow: hidden;
+      background: radial-gradient(ellipse at center, rgba(33,42,105,0.34) 0%, rgba(9,13,39,0.48) 30%, rgba(2,3,12,0.88) 68%, #000107 100%);
+      transition: opacity 700ms ease, transform 1000ms cubic-bezier(.2,.75,.2,1), filter 700ms ease;
+    }
+    #cosmic-world.is-transitioning { opacity: 0; transform: scale(1.08); filter: brightness(1.8) blur(3px); }
+    #cosmic-world::before, #cosmic-world::after { content: ""; position: absolute; inset: -20%; pointer-events: none; }
+    #cosmic-world::before {
+      background: radial-gradient(ellipse at 25% 35%, rgba(94,76,196,0.16), transparent 30%), radial-gradient(ellipse at 72% 25%, rgba(40,137,255,0.13), transparent 28%), radial-gradient(ellipse at 58% 80%, rgba(198,75,177,0.10), transparent 32%);
+      filter: blur(45px);
+      animation: nebulaDrift 28s ease-in-out infinite alternate;
+    }
+    #cosmic-world::after {
+      background: radial-gradient(circle at 50% 50%, transparent 0 23%, rgba(117,169,255,0.045) 30%, transparent 48%);
+      animation: cosmicPulse 9s ease-in-out infinite;
+    }
+    @keyframes nebulaDrift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 2%, 0) scale(1.05); } }
+    @keyframes cosmicPulse { 0%,100% { opacity:0.55; } 50% { opacity:1; } }
+
+    /* ============================================================
+       STERNE – 365 + 30 SPECIAL
+       ============================================================ */
+    #star-field, #special-star-field { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .star {
+      position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff;
+      box-shadow: 0 0 4px rgba(255,255,255,.85), 0 0 10px rgba(140,190,255,.45);
+      opacity: .65;
+      animation: starTwinkle var(--twinkle-duration, 4s) ease-in-out var(--twinkle-delay, 0s) infinite alternate;
+    }
+    .star.large { width: 3px; height: 3px; box-shadow: 0 0 5px rgba(255,255,255,.95), 0 0 14px rgba(117,190,255,.7); }
+    .star.soft { filter: blur(.25px); opacity: .4; }
+    @keyframes starTwinkle { from { transform: scale(.72); opacity: .3; } to { transform: scale(1.35); opacity: 1; } }
+    .special-star {
+      position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #fff;
+      box-shadow: 0 0 7px rgba(255,255,255,1), 0 0 18px rgba(117,200,255,.9), 0 0 34px rgba(170,120,255,.5);
+      animation: specialStarPulse var(--special-duration, 3.4s) ease-in-out var(--special-delay, 0s) infinite alternate;
+    }
+    .special-star::before, .special-star::after { content: ""; position: absolute; left: 50%; top: 50%; background: rgba(255,255,255,.7); transform: translate(-50%, -50%); }
+    .special-star::before { width: 28px; height: 1px; }
+    .special-star::after { width: 1px; height: 28px; }
+    @keyframes specialStarPulse { from { transform: scale(.55); opacity: .55; } to { transform: scale(1.15); opacity: 1; } }
 
     /* ============================================================
        SYSTEM-BAR
@@ -89,6 +139,234 @@
     .system-button:active { transform: scale(.95); }
 
     /* ============================================================
+       COSMIC TITLE
+       ============================================================ */
+    #cosmic-title {
+      position: absolute; z-index: 120; top: clamp(66px, 9vh, 100px); left: 50%; transform: translateX(-50%);
+      width: min(94vw, 900px); text-align: center; pointer-events: none;
+    }
+    #cosmic-title-main {
+      margin: 0; font-size: clamp(25px, 4vw, 58px); line-height: 1; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+      background: linear-gradient(90deg, #fff4b0 0%, #ffd76a 18%, #fff 34%, #7beaff 53%, #c092ff 72%, #ff9bdc 88%, #ffe58a 100%);
+      background-size: 240% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+      filter: drop-shadow(0 0 8px rgba(255,215,106,.38)) drop-shadow(0 0 22px rgba(117,190,255,.2));
+      animation: titleLight 9s linear infinite;
+    }
+    #cosmic-title-subtitle { margin-top: 9px; font-size: clamp(11px, 1.4vw, 16px); font-weight: 500; letter-spacing: .24em; color: rgba(255,255,255,.72); text-transform: uppercase; text-shadow: 0 0 10px rgba(255,255,255,.18), 0 0 24px rgba(117,190,255,.16); }
+
+    /* ============================================================
+       SOLAR STAGE – DAS HALDO-SONNENSYSTEM
+       ============================================================ */
+    #solar-stage {
+      position: absolute; z-index: 100; left: 50%; top: 52%; width: min(92vw, 900px); height: min(78vh, 760px);
+      transform: translate(-50%, -50%); pointer-events: none;
+    }
+    #solar-system {
+      position: absolute; left: 50%; top: 50%; width: min(84vw, 760px); height: min(84vw, 760px);
+      max-width: 760px; max-height: 760px; transform: translate(-50%, -50%); pointer-events: none;
+    }
+
+    /* Orbits */
+    .orbit {
+      position: absolute; left: 50%; top: 50%; width: var(--orbit-size); height: var(--orbit-size);
+      transform: translate(-50%, -50%); border: 1px solid rgba(132,180,255,.14); border-radius: 50%;
+      pointer-events: none; box-shadow: 0 0 14px rgba(100,150,255,.035), inset 0 0 14px rgba(100,150,255,.025);
+    }
+    .orbit::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px dashed rgba(255,255,255,.025); transform: rotate(18deg); }
+
+    /* 12 Himmelskörper – 8 Planeten + 4 Zwergplaneten */
+    .planet-system {
+      position: absolute; left: 50%; top: 50%; width: var(--orbit-size); height: var(--orbit-size);
+      transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none;
+      animation: orbitRotation var(--orbit-duration) linear infinite;
+    }
+    .planet-holder { position: absolute; left: 50%; top: 0; width: 1px; height: 50%; transform-origin: bottom center; }
+    .planet {
+      position: absolute; left: 50%; top: 0; width: var(--planet-size, 12px); height: var(--planet-size, 12px);
+      transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg)));
+      border-radius: 50%; pointer-events: auto; cursor: pointer;
+      background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.8), var(--planet-light, #8fd5ff) 18%, var(--planet-main, #4070c8) 54%, var(--planet-dark, #172454) 100%);
+      box-shadow: 0 0 7px var(--planet-glow, rgba(110,180,255,.75)), 0 0 18px var(--planet-glow, rgba(110,180,255,.35));
+      transition: transform 0.3s ease;
+    }
+    .planet:hover { transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg))) scale(1.4); z-index: 50; }
+    .planet::after { content: ""; position: absolute; inset: 15%; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); opacity: .55; }
+    .planet.has-ring::before {
+      content: ""; position: absolute; left: 50%; top: 50%; width: 180%; height: 55%;
+      transform: translate(-50%, -50%) rotate(-18deg);
+      border: 2px solid rgba(225,220,255,.44); border-left-color: rgba(255,255,255,.12); border-right-color: rgba(255,255,255,.18); border-radius: 50%;
+      box-shadow: 0 0 15px rgba(200,180,255,0.2);
+    }
+    .planet .moon {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #ccc;
+      box-shadow: 0 0 6px rgba(200,200,200,0.5);
+      top: -8px;
+      right: -8px;
+    }
+    .planet-label {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8px;
+      color: rgba(255,255,255,0.5);
+      white-space: nowrap;
+      pointer-events: none;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+    /* Zeit-Planeten mit ⏱-Markierung */
+    .planet.time-planet::before {
+      content: "⏱";
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: #fff;
+      text-shadow: 0 0 15px rgba(255,255,255,0.9);
+      z-index: 10;
+      font-weight: bold;
+    }
+    @keyframes orbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    /* ============================================================
+       SONNE – ULTIMATIVE MAXIMUM EDITION
+       ============================================================ */
+    #sun {
+      position: absolute; z-index: 200; left: 50%; top: 50%; width: var(--sun-core-size); height: var(--sun-core-size);
+      transform: translate(-50%, -50%); border-radius: 50%; pointer-events: auto; cursor: pointer; border: 0; padding: 0;
+      background: transparent;
+      filter: drop-shadow(0 0 18px rgba(255,198,75,.8)) drop-shadow(0 0 45px rgba(255,164,45,.5)) drop-shadow(0 0 90px rgba(255,120,30,.24));
+      transition: transform 350ms cubic-bezier(.2,.8,.2,1), filter 350ms ease;
+    }
+    #sun:hover, #sun:focus-visible { transform: translate(-50%, -50%) scale(1.045); filter: drop-shadow(0 0 22px rgba(255,220,100,.95)) drop-shadow(0 0 55px rgba(255,170,45,.72)) drop-shadow(0 0 110px rgba(255,120,30,.34)); outline: none; }
+    #sun:active { transform: translate(-50%, -50%) scale(.97); }
+
+    #sun-glow, #sun-core, #sun-corona, #sun-rays {
+      position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+    }
+
+    #sun-glow {
+      inset: -38%;
+      background: radial-gradient(circle, rgba(255,247,178,.82) 0%, rgba(255,206,77,.42) 28%, rgba(255,152,42,.16) 52%, transparent 72%);
+      filter: blur(10px); animation: sunGlow 4.8s ease-in-out infinite;
+    }
+
+    #sun-corona {
+      inset: -14%;
+      background: conic-gradient(from 0deg, transparent, rgba(255,236,130,.42), transparent 12%, rgba(255,173,53,.36), transparent 24%, rgba(255,245,175,.44), transparent 38%, rgba(255,148,45,.30), transparent 52%, rgba(255,238,135,.42), transparent 68%, rgba(255,165,50,.32), transparent 84%, rgba(255,240,150,.42), transparent);
+      filter: blur(2px); animation: sunCorona 11s linear infinite; opacity: .88;
+    }
+
+    #sun-core {
+      overflow: hidden;
+      background: radial-gradient(circle at 38% 34%, #fffbe3 0%, #fff2a3 11%, #ffd44e 30%, #ff9e32 58%, #ed641e 78%, #a92c16 100%);
+      box-shadow: inset -16px -20px 32px rgba(133,32,10,.28), inset 18px 12px 28px rgba(255,255,255,.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+    }
+
+    #sun-logo {
+      width: 45%;
+      height: 45%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(255,200,100,.8)) drop-shadow(0 0 30px rgba(255,200,100,.4));
+      z-index: 10;
+      pointer-events: none;
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+    @keyframes logoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+    #sun-text {
+      position: absolute;
+      bottom: 8%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(255,200,100,.9), 0 0 40px rgba(255,200,100,.4);
+      background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShine 3s linear infinite;
+    }
+    #sun-text.main { font-size: clamp(10px, 1.2vw, 16px); letter-spacing: .1em; }
+    #sun-text.sub { font-size: clamp(6px, 0.7vw, 10px); bottom: 2%; opacity: .8; }
+
+    @keyframes textShine { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+
+    #inner-sun-stars {
+      position: absolute; z-index: 5; left: 50%; top: 50%;
+      width: calc(var(--sun-core-size) * .72); height: calc(var(--sun-core-size) * .72);
+      transform: translate(-50%, -50%); pointer-events: none; border-radius: 50%; overflow: hidden;
+    }
+    .inner-spark {
+      position: absolute;
+      width: 3px; height: 3px; border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 5px #fff, 0 0 12px rgba(255,240,150,.9);
+      animation: innerSpark 2.8s ease-in-out infinite alternate;
+    }
+    @keyframes innerSpark { from { transform: scale(.5); opacity: .45; } to { transform: scale(1.25); opacity: 1; } }
+
+    #sun-stars-orbital {
+      position: absolute;
+      inset: -8%;
+      pointer-events: none;
+      z-index: 150;
+    }
+    .sun-orbital-star {
+      position: absolute;
+      width: 4px; height: 4px; border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(255,255,255,.9), 0 0 20px rgba(255,200,100,.6);
+      animation: orbitalStarGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes orbitalStarGlow { from { transform: scale(.7); opacity: .4; } to { transform: scale(1.3); opacity: 1; } }
+
+    #sun-rays {
+      inset: -65%;
+      background: repeating-conic-gradient(from 0deg, rgba(255,222,115,.13) 0deg 2deg, transparent 2deg 10deg);
+      mask-image: radial-gradient(circle, black 0 29%, transparent 58%);
+      -webkit-mask-image: radial-gradient(circle, black 0 29%, transparent 58%);
+      animation: sunRays 25s linear infinite; opacity: .85;
+    }
+    @keyframes sunGlow { 0%,100% { transform: scale(.96); opacity: .76; } 50% { transform: scale(1.08); opacity: 1; } }
+    @keyframes sunCorona { to { transform: rotate(360deg); } }
+    @keyframes sunRays { to { transform: rotate(360deg); } }
+
+    /* ============================================================
+       AI-IDENTITY UNTERHALB DER SONNE
+       ============================================================ */
+    #ai-identity {
+      position: absolute; z-index: 310; left: 50%; top: calc(50% + var(--sun-core-size) * .72); transform: translateX(-50%);
+      width: min(90vw, 620px); text-align: center; pointer-events: none;
+    }
+    #ai-identity-name {
+      margin: 0; font-size: clamp(16px, 2vw, 26px); font-weight: 700; letter-spacing: .055em;
+      background: linear-gradient(90deg, #fff, #ffd873, #fff, #8beeff, #fff, #c89cff);
+      background-size: 250% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: identityGlow 8s linear infinite;
+      filter: drop-shadow(0 0 9px rgba(255,210,100,.24)) drop-shadow(0 0 16px rgba(120,190,255,.18));
+    }
+    #ai-identity-role { margin-top: 7px; font-size: clamp(10px, 1.25vw, 14px); color: rgba(255,255,255,.62); letter-spacing: .17em; text-transform: uppercase; }
+    @keyframes identityGlow { from { background-position: 0% 50%; } to { background-position: 250% 50%; } }
+
+    /* ============================================================
+       HALDO LOGO
+       ============================================================ */
+    .haldo-logo { width: 42px; height: 42px; object-fit: contain; object-position: center; filter: drop-shadow(0 0 8px rgba(117,220,255,.35)) drop-shadow(0 0 16px rgba(190,120,255,.16)); }
+
+    /* ============================================================
        HAUPT-DOCK
        ============================================================ */
     #main-dock {
@@ -106,42 +384,8 @@
     .dock-button:hover, .dock-button:focus-visible { transform: translateY(-3px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.2); outline: none; }
     .dock-button:active { transform: translateY(0) scale(.94); }
     .dock-button img { width: 25px; height: 25px; object-fit: contain; }
-
-    /* ============================================================
-       COSMIC WORLD – PLACEHOLDER (wird in Phase 2 erweitert)
-       ============================================================ */
-    #cosmic-world {
-      position: absolute; inset: 0; overflow: hidden;
-      background: radial-gradient(ellipse at center, rgba(33,42,105,0.34) 0%, rgba(9,13,39,0.48) 30%, rgba(2,3,12,0.88) 68%, #000107 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #cosmic-placeholder {
-      text-align: center;
-      color: var(--haldo-text-muted);
-    }
-    #cosmic-placeholder h1 {
-      font-size: clamp(32px, 6vw, 72px);
-      font-weight: 800;
-      margin: 0;
-      background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textShine 3s linear infinite;
-    }
-    #cosmic-placeholder p {
-      font-size: clamp(14px, 1.8vw, 24px);
-      opacity: 0.5;
-      margin-top: 8px;
-    }
-    @keyframes textShine { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
-
-    /* ============================================================
-       HALDO LOGO
-       ============================================================ */
-    .haldo-logo { width: 42px; height: 42px; object-fit: contain; object-position: center; filter: drop-shadow(0 0 8px rgba(117,220,255,.35)) drop-shadow(0 0 16px rgba(190,120,255,.16)); }
+    .dock-button.ai { width: 58px; height: 58px; margin: 0 3px; border-radius: 20px; background: radial-gradient(circle at 40% 30%, rgba(255,255,255,.15), rgba(103,159,255,.08) 45%, rgba(180,100,255,.06)); box-shadow: 0 0 24px rgba(117,190,255,.12); }
+    .dock-button.ai img { width: 36px; height: 36px; }
 
     /* ============================================================
        TOAST
@@ -161,16 +405,17 @@
     .toast .toast-message { color: var(--haldo-text-muted); font-size: 12px; }
 
     /* ============================================================
-       ARIA
+       ARIA & RESPONSIVE
        ============================================================ */
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-    /* ============================================================
-       RESPONSIVE
-       ============================================================ */
+    @media (max-width: 800px) {
+      .planet-label { font-size: 6px; bottom: -14px; }
+    }
     @media (max-width: 500px) {
       .system-pill { font-size: 10px; padding: 4px 10px; }
       .system-button { width: 36px; height: 36px; font-size: 14px; }
+      .planet-label { font-size: 5px; bottom: -12px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
@@ -187,21 +432,24 @@
       <div id="boot-content">
         <img id="boot-logo" class="haldo-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
         <h1 id="boot-title">HalDo AI OS</h1>
-        <p id="boot-message">Phase 1 – Kern & Grundstruktur wird geladen.<br>Die Basis für dein professionelles Betriebssystem.</p>
+        <p id="boot-message">Phase 2 – Cosmic World wird geladen.<br>Das HalDo-Sonnensystem erwacht zum Leben.</p>
         <div id="boot-loader" aria-hidden="true"><div id="boot-loader-bar"></div></div>
       </div>
     </section>
 
     <!-- ============================================================
-       COSMIC WORLD – Phase 1: Platzhalter
+       COSMIC WORLD
     ============================================================ -->
     <main id="cosmic-world" aria-label="HalDo AI OS Cosmic World">
+
+      <div id="star-field" aria-hidden="true"></div>
+      <div id="special-star-field" aria-hidden="true"></div>
 
       <!-- System-Bar -->
       <header id="system-bar">
         <div class="system-bar-side">
           <button id="app-menu-button" class="system-button" type="button" aria-label="Apps öffnen" title="Apps">☰</button>
-          <div id="system-status" class="system-pill" aria-live="polite">HalDo AI OS • Phase 1</div>
+          <div id="system-status" class="system-pill" aria-live="polite">HalDo AI OS • Phase 2</div>
         </div>
         <div class="system-bar-side">
           <button id="notification-button" class="system-button" type="button" aria-label="Benachrichtigungen" title="Benachrichtigungen">◌</button>
@@ -209,11 +457,151 @@
         </div>
       </header>
 
-      <!-- Platzhalter für Cosmic World -->
-      <div id="cosmic-placeholder">
-        <h1>🌌 HalDo AI OS</h1>
-        <p>Phase 1 – Kern &amp; Grundstruktur<br><span style="font-size:0.7em;opacity:0.6;">Cosmic World, Apps &amp; AI folgen in den nächsten Phasen</span></p>
-      </div>
+      <!-- Cosmic Title -->
+      <section id="cosmic-title" aria-label="HalDo AI OS">
+        <h1 id="cosmic-title-main">HalDo AI OS</h1>
+        <div id="cosmic-title-subtitle">Cosmic World · Living Intelligence</div>
+      </section>
+
+      <!-- Solar Stage -->
+      <section id="solar-stage" aria-label="HalDo AI OS Sonnensystem">
+        <div id="solar-system">
+
+          <!-- 12 Orbits -->
+          <div class="orbit" style="--orbit-size:22%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:30%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:38%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:46%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:54%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:62%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:70%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:78%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:86%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:94%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:102%;" aria-hidden="true"></div>
+          <div class="orbit" style="--orbit-size:110%;" aria-hidden="true"></div>
+
+          <!-- 12 Himmelskörper – 8 Planeten + 4 Zwergplaneten -->
+          <!-- 1. Merkur – grau, klein, schnell -->
+          <div class="planet-system" data-planet="mercury" style="--orbit-size:22%;--orbit-duration:17s;">
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:7px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.5);" title="Merkur">
+                <span class="planet-label">Merkur</span>
+              </div>
+            </div>
+          </div>
+          <!-- 2. Venus – gelb-orange, glühend -->
+          <div class="planet-system" data-planet="venus" style="--orbit-size:30%;--orbit-duration:23s;">
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:9px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.7);" title="Venus">
+                <span class="planet-label">Venus</span>
+              </div>
+            </div>
+          </div>
+          <!-- 3. ERDE – blau-grün, mit Mond -->
+          <div class="planet-system" data-planet="earth" style="--orbit-size:38%;--orbit-duration:31s;">
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:11px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.8);" title="Erde">
+                <span class="moon" style="background:#c8c8c8;box-shadow:0 0 8px rgba(200,200,200,0.5);"></span>
+                <span class="planet-label">Erde</span>
+              </div>
+            </div>
+          </div>
+          <!-- 4. Mars – rot -->
+          <div class="planet-system" data-planet="mars" style="--orbit-size:46%;--orbit-duration:39s;">
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:9px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.7);" title="Mars">
+                <span class="planet-label">Mars</span>
+              </div>
+            </div>
+          </div>
+          <!-- 5. Jupiter – orange-braun mit Streifen -->
+          <div class="planet-system" data-planet="jupiter" style="--orbit-size:54%;--orbit-duration:47s;">
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:16px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.6);" title="Jupiter">
+                <span class="planet-label">Jupiter</span>
+              </div>
+            </div>
+          </div>
+          <!-- 6. Saturn – gelb mit Ringen -->
+          <div class="planet-system" data-planet="saturn" style="--orbit-size:62%;--orbit-duration:56s;">
+            <div class="planet-holder">
+              <div class="planet has-ring" style="--planet-size:14px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.6);" title="Saturn">
+                <span class="planet-label">Saturn</span>
+              </div>
+            </div>
+          </div>
+          <!-- 7. Uranus – türkis, liegend -->
+          <div class="planet-system" data-planet="uranus" style="--orbit-size:70%;--orbit-duration:67s;">
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:12px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.6);" title="Uranus">
+                <span class="planet-label">Uranus</span>
+              </div>
+            </div>
+          </div>
+          <!-- 8. Neptun – tiefblau -->
+          <div class="planet-system" data-planet="neptune" style="--orbit-size:78%;--orbit-duration:79s;">
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:12px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.6);" title="Neptun">
+                <span class="planet-label">Neptun</span>
+              </div>
+            </div>
+          </div>
+          <!-- 9. Pluto – eisig (Zwergplanet – Sekunde) -->
+          <div class="planet-system" data-planet="pluto" style="--orbit-size:86%;--orbit-duration:60s;">
+            <div class="planet-holder">
+              <div class="planet time-planet" style="--planet-size:8px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.5);" title="Pluto – Zwergplanet ⏱ Sekunde">
+                <span class="planet-label">Pluto ⏱</span>
+              </div>
+            </div>
+          </div>
+          <!-- 10. Ceres – grau (Zwergplanet – Minute) -->
+          <div class="planet-system" data-planet="ceres" style="--orbit-size:94%;--orbit-duration:3600s;">
+            <div class="planet-holder">
+              <div class="planet time-planet" style="--planet-size:8px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.5);" title="Ceres – Zwergplanet ⏱ Minute">
+                <span class="planet-label">Ceres ⏱</span>
+              </div>
+            </div>
+          </div>
+          <!-- 11. Eris – weiß (Zwergplanet – Stunde) -->
+          <div class="planet-system" data-planet="eris" style="--orbit-size:102%;--orbit-duration:43200s;">
+            <div class="planet-holder">
+              <div class="planet time-planet" style="--planet-size:9px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.5);" title="Eris – Zwergplanet ⏱ Stunde">
+                <span class="planet-label">Eris ⏱</span>
+              </div>
+            </div>
+          </div>
+          <!-- 12. Haumea – grün-blau, länglich (Zwergplanet) -->
+          <div class="planet-system" data-planet="haumea" style="--orbit-size:110%;--orbit-duration:149s;">
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:10px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.6);" title="Haumea">
+                <span class="planet-label">Haumea</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SONNE -->
+          <button id="sun" type="button" aria-label="HalDo AI öffnen" title="HalDo AI öffnen">
+            <span id="sun-glow"></span>
+            <span id="sun-rays"></span>
+            <span id="sun-corona"></span>
+            <span id="sun-core">
+              <div id="sun-stars-orbital" aria-hidden="true"></div>
+              <img id="sun-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
+              <div id="sun-text" class="main">HalDo AI OS</div>
+              <div id="sun-text" class="sub">A Halil Donma • Professioneller HalDo AI</div>
+              <span id="inner-sun-stars" aria-hidden="true"></span>
+            </span>
+          </button>
+
+        </div>
+
+        <!-- AI Identity -->
+        <section id="ai-identity" aria-label="HalDo AI Identität">
+          <h2 id="ai-identity-name">A Halil Donma</h2>
+          <div id="ai-identity-role">Professioneller HalDo AI</div>
+        </section>
+      </section>
 
       <!-- Haupt-Dock -->
       <nav id="main-dock" aria-label="HalDo AI OS Hauptnavigation">
@@ -221,7 +609,7 @@
           <img src="assets/logo/logo.png" alt="" draggable="false">
         </button>
         <button class="dock-button" id="dock-search" type="button" aria-label="Suche" title="Suche">⌕</button>
-        <button class="dock-button" id="dock-ai" type="button" aria-label="HalDo AI öffnen" title="HalDo AI">
+        <button class="dock-button ai" id="dock-ai" type="button" aria-label="HalDo AI öffnen" title="HalDo AI">
           <img src="assets/logo/logo.png" alt="HalDo AI" draggable="false">
         </button>
         <button class="dock-button" id="dock-notifications" type="button" aria-label="Benachrichtigungen" title="Benachrichtigungen">◌</button>
@@ -242,21 +630,21 @@
 
   <script>
     // ============================================================
-    // PHASE 1 – KERN & GRUNDSTRUKTUR
+    // PHASE 2 – COSMIC WORLD
     // ============================================================
 
     (function() {
       'use strict';
 
       // ============================================================
-      // 1. KERNEL & KONFIGURATION
+      // 1. KERNEL & KONFIGURATION (von Phase 1 erweitert)
       // ============================================================
 
       const HALDO = {
-        version: '1.0.0',
+        version: '2.0.0',
         name: 'HalDo AI OS',
         build: '2026-09-08',
-        phase: 'Phase 1 – Kern & Grundstruktur',
+        phase: 'Phase 2 – Cosmic World',
         state: 'BOOTING',
         config: {
           cosmicWorld: true,
@@ -298,14 +686,14 @@
       };
 
       // ============================================================
-      // 3. STORAGE (IndexedDB + localStorage Fallback)
+      // 3. STORAGE (von Phase 1)
       // ============================================================
 
       HALDO.storage = {
         init() {
           return new Promise((resolve) => {
             try {
-              const req = indexedDB.open('HalDoOS', 1);
+              const req = indexedDB.open('HalDoOS', 2);
               req.onupgradeneeded = (e) => {
                 const db = e.target.result;
                 if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
@@ -372,7 +760,7 @@
       };
 
       // ============================================================
-      // 4. TOAST SYSTEM
+      // 4. TOAST
       // ============================================================
 
       function showToast(icon, title, message) {
@@ -404,7 +792,134 @@
       }
 
       // ============================================================
-      // 6. BOOT
+      // 6. STERNE GENERIEREN
+      // ============================================================
+
+      function generateStars() {
+        const container = document.getElementById('star-field');
+        if (!container) return;
+        container.innerHTML = '';
+        const count = 365;
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          if (i % 5 === 0) star.classList.add('large');
+          if (i % 7 === 0) star.classList.add('soft');
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          star.style.left = x + '%';
+          star.style.top = y + '%';
+          star.style.setProperty('--twinkle-duration', (3 + Math.random() * 4) + 's');
+          star.style.setProperty('--twinkle-delay', (Math.random() * 4) + 's');
+          container.appendChild(star);
+        }
+      }
+
+      function generateSpecialStars() {
+        const container = document.getElementById('special-star-field');
+        if (!container) return;
+        container.innerHTML = '';
+        const count = 30;
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('div');
+          star.className = 'special-star';
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          star.style.left = x + '%';
+          star.style.top = y + '%';
+          star.style.setProperty('--special-duration', (2.5 + Math.random() * 2.5) + 's');
+          star.style.setProperty('--special-delay', (Math.random() * 3) + 's');
+          container.appendChild(star);
+        }
+      }
+
+      function generateInnerSunStars() {
+        const container = document.getElementById('inner-sun-stars');
+        if (!container) return;
+        container.innerHTML = '';
+        const count = 24;
+        for (let i = 0; i < count; i++) {
+          const spark = document.createElement('div');
+          spark.className = 'inner-spark';
+          const angle = Math.random() * 2 * Math.PI;
+          const radius = 30 + Math.random() * 60;
+          const x = 50 + (radius * Math.cos(angle));
+          const y = 50 + (radius * Math.sin(angle));
+          spark.style.left = x + '%';
+          spark.style.top = y + '%';
+          spark.style.animationDelay = (Math.random() * 2) + 's';
+          container.appendChild(spark);
+        }
+      }
+
+      function generateOrbitalSunStars() {
+        const container = document.getElementById('sun-stars-orbital');
+        if (!container) return;
+        container.innerHTML = '';
+        const count = 30;
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('div');
+          star.className = 'sun-orbital-star';
+          const angle = (i / count) * 2 * Math.PI;
+          const radius = 45 + Math.random() * 10;
+          const x = 50 + radius * Math.cos(angle);
+          const y = 50 + radius * Math.sin(angle);
+          star.style.left = x + '%';
+          star.style.top = y + '%';
+          star.style.animationDelay = (i * 0.1) + 's';
+          container.appendChild(star);
+        }
+      }
+
+      // ============================================================
+      // 7. EVENT LISTENER
+      // ============================================================
+
+      function initEventListeners() {
+        // Sonne – öffnet AI (vorbereitet für Phase 3)
+        document.getElementById('sun')?.addEventListener('click', () => {
+          showToast('☀️', 'HalDo AI', 'Die Sonne wurde geklickt! HalDo AI wird in Phase 3 aktiviert.');
+        });
+
+        // Dock-Buttons
+        document.getElementById('dock-apps')?.addEventListener('click', () => {
+          showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.');
+        });
+        document.getElementById('dock-search')?.addEventListener('click', () => {
+          showToast('🔍', 'Suche', 'Wird in Phase 6 implementiert.');
+        });
+        document.getElementById('dock-ai')?.addEventListener('click', () => {
+          showToast('🤖', 'HalDo AI', 'Wird in Phase 3 implementiert.');
+        });
+        document.getElementById('dock-notifications')?.addEventListener('click', () => {
+          showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.');
+        });
+        document.getElementById('dock-settings')?.addEventListener('click', () => {
+          showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.');
+        });
+        document.getElementById('app-menu-button')?.addEventListener('click', () => {
+          showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.');
+        });
+        document.getElementById('settings-button')?.addEventListener('click', () => {
+          showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.');
+        });
+        document.getElementById('notification-button')?.addEventListener('click', () => {
+          showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.');
+        });
+
+        // Planeten – Klick (Vorbereitung für spätere Interaktion)
+        document.querySelectorAll('.planet').forEach(planet => {
+          planet.addEventListener('click', () => {
+            const name = planet.title || 'Unbekannter Himmelskörper';
+            showToast('🪐', name, 'Planeten-Informationen werden in Phase 6 implementiert.');
+          });
+        });
+
+        console.log('✅ Event-Listener für Phase 2 initialisiert.');
+      }
+
+      // ============================================================
+      // 8. BOOT
       // ============================================================
 
       async function boot() {
@@ -432,8 +947,9 @@
         const steps = [
           'Lade Kernsystem …',
           'Verbinde Speicher …',
-          'Aktiviere Sicherheit …',
-          'Starte Oberfläche …',
+          'Generiere Sterne …',
+          'Erstelle Sonnensystem …',
+          'Aktiviere Cosmic World …',
           'System bereit.'
         ];
 
@@ -443,68 +959,43 @@
           await new Promise(r => setTimeout(r, 150 + Math.random() * 120));
         }
 
+        // Sterne generieren
+        generateStars();
+        generateSpecialStars();
+        generateInnerSunStars();
+        generateOrbitalSunStars();
+
         // Boot-Screen ausblenden
         if (bootScreen) {
           bootScreen.classList.add('hidden');
           setTimeout(() => { bootScreen.style.display = 'none'; }, 800);
         }
 
+        if (cosmicWorld) {
+          cosmicWorld.classList.remove('is-transitioning');
+        }
+
         // System-Status aktualisieren
         HALDO.state = 'READY';
-        updateSystemStatus('HalDo AI OS • Phase 1 • Bereit');
-
-        // Willkommens-Toast
-        setTimeout(() => {
-          showToast('🚀', 'HalDo AI OS Phase 1', 'Kern & Grundstruktur erfolgreich geladen.');
-        }, 600);
-
-        console.log('🚀 HalDo AI OS Phase 1 – Kern & Grundstruktur gestartet.');
-        console.log('📦 Version:', HALDO.version);
-        console.log('📌 Status:', HALDO.state);
-        console.log('💾 Storage:', HALDO.storage.db ? 'IndexedDB' : 'localStorage (Fallback)');
+        updateSystemStatus('HalDo AI OS • Phase 2 • Cosmic World aktiv');
 
         // Event-Listener initialisieren
         initEventListeners();
+
+        // Willkommens-Toast
+        setTimeout(() => {
+          showToast('🌌', 'HalDo AI OS Phase 2', 'Cosmic World erfolgreich geladen! ☀️🪐');
+        }, 600);
+
+        console.log('🚀 HalDo AI OS Phase 2 – Cosmic World gestartet.');
+        console.log('📦 Version:', HALDO.version);
+        console.log('📌 Status:', HALDO.state);
 
         HALDO.eventBus.emit('boot:ready');
       }
 
       // ============================================================
-      // 7. EVENT LISTENER
-      // ============================================================
-
-      function initEventListeners() {
-        // Dock-Buttons (vorbereitet)
-        document.getElementById('dock-apps')?.addEventListener('click', () => {
-          showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.');
-        });
-        document.getElementById('dock-search')?.addEventListener('click', () => {
-          showToast('🔍', 'Suche', 'Wird in Phase 6 implementiert.');
-        });
-        document.getElementById('dock-ai')?.addEventListener('click', () => {
-          showToast('🤖', 'HalDo AI', 'Wird in Phase 3 implementiert.');
-        });
-        document.getElementById('dock-notifications')?.addEventListener('click', () => {
-          showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.');
-        });
-        document.getElementById('dock-settings')?.addEventListener('click', () => {
-          showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.');
-        });
-        document.getElementById('app-menu-button')?.addEventListener('click', () => {
-          showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.');
-        });
-        document.getElementById('settings-button')?.addEventListener('click', () => {
-          showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.');
-        });
-        document.getElementById('notification-button')?.addEventListener('click', () => {
-          showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.');
-        });
-
-        console.log('✅ Event-Listener für Phase 1 initialisiert.');
-      }
-
-      // ============================================================
-      // 8. START
+      // 9. START
       // ============================================================
 
       boot();
