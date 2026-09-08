@@ -9,13 +9,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>HalDo AI OS – Ultimate Maximum v24</title>
+  <title>HalDo AI OS – Ultimate Maximum v26</title>
   <link rel="icon" type="image/png" href="assets/logo/logo.png">
   <link rel="apple-touch-icon" href="assets/logo/logo.png">
 
   <style>
     /* ============================================================
-       ULTIMATE MAXIMUM STYLES – ALLES IN EINER DATEI
+       ULTIMATE MAXIMUM STYLES v26 – ALLES IN EINER DATEI
        ============================================================ */
     :root {
       --haldo-bg: #02030a;
@@ -40,6 +40,9 @@
       --safe-right: env(safe-area-inset-right, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
       --safe-left: env(safe-area-inset-left, 0px);
+      --glass-bg: rgba(5, 9, 28, 0.82);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 32px 72px rgba(0,0,0,0.62);
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -51,7 +54,9 @@
 
     #haldo-os { position: fixed; inset: 0; width: 100%; height: 100%; overflow: hidden; background: #02030a; }
 
-    /* Cosmic World */
+    /* ============================================================
+       COSMIC WORLD – HINTERGRUND
+       ============================================================ */
     #cosmic-world {
       position: absolute; inset: 0; overflow: hidden;
       background: radial-gradient(ellipse at center, rgba(33,42,105,0.34) 0%, rgba(9,13,39,0.48) 30%, rgba(2,3,12,0.88) 68%, #000107 100%);
@@ -71,7 +76,9 @@
     @keyframes nebulaDrift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 2%, 0) scale(1.05); } }
     @keyframes cosmicPulse { 0%,100% { opacity:0.55; } 50% { opacity:1; } }
 
-    /* Sterne (365 + 30 Special) */
+    /* ============================================================
+       STERNE – 365 + 30 SPECIAL
+       ============================================================ */
     #star-field, #special-star-field { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
     .star {
       position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff;
@@ -92,7 +99,9 @@
     .special-star::after { width: 1px; height: 28px; }
     @keyframes specialStarPulse { from { transform: scale(.55); opacity: .55; } to { transform: scale(1.15); opacity: 1; } }
 
-    /* System-Bar */
+    /* ============================================================
+       SYSTEM-BAR
+       ============================================================ */
     #system-bar {
       position: absolute; z-index: 900; top: var(--safe-top); left: 0; right: 0; min-height: 54px;
       padding: 8px max(12px, var(--safe-right)) 8px max(12px, var(--safe-left));
@@ -115,7 +124,9 @@
     .system-button:hover, .system-button:focus-visible { transform: translateY(-1px) scale(1.03); background: rgba(20,28,58,.82); border-color: rgba(255,255,255,.26); }
     .system-button:active { transform: scale(.95); }
 
-    /* Cosmic Title */
+    /* ============================================================
+       COSMIC TITLE
+       ============================================================ */
     #cosmic-title {
       position: absolute; z-index: 120; top: clamp(66px, 9vh, 100px); left: 50%; transform: translateX(-50%);
       width: min(94vw, 900px); text-align: center; pointer-events: none;
@@ -130,7 +141,9 @@
     #cosmic-title-subtitle { margin-top: 9px; font-size: clamp(11px, 1.4vw, 16px); font-weight: 500; letter-spacing: .24em; color: rgba(255,255,255,.72); text-transform: uppercase; text-shadow: 0 0 10px rgba(255,255,255,.18), 0 0 24px rgba(117,190,255,.16); }
     @keyframes titleLight { from { background-position: 0% 50%; } to { background-position: 240% 50%; } }
 
-    /* Solar Stage */
+    /* ============================================================
+       SOLAR STAGE – DAS HALDO-SONNENSYSTEM
+       ============================================================ */
     #solar-stage { position: absolute; z-index: 100; left: 50%; top: 52%; width: min(92vw, 900px); height: min(78vh, 760px); transform: translate(-50%, -50%); pointer-events: none; }
     #solar-system { position: absolute; left: 50%; top: 50%; width: min(84vw, 760px); height: min(84vw, 760px); max-width: 760px; max-height: 760px; transform: translate(-50%, -50%); pointer-events: none; }
 
@@ -152,11 +165,10 @@
     .planet {
       position: absolute; left: 50%; top: 0; width: var(--planet-size, 12px); height: var(--planet-size, 12px);
       transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg)));
-      border-radius: 50%; pointer-events: auto;
+      border-radius: 50%; pointer-events: auto; cursor: pointer;
       background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.8), var(--planet-light, #8fd5ff) 18%, var(--planet-main, #4070c8) 54%, var(--planet-dark, #172454) 100%);
       box-shadow: 0 0 7px var(--planet-glow, rgba(110,180,255,.75)), 0 0 18px var(--planet-glow, rgba(110,180,255,.35));
       transition: transform 0.3s ease;
-      cursor: pointer;
     }
     .planet:hover { transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg))) scale(1.4); z-index: 50; }
     .planet::after { content: ""; position: absolute; inset: 15%; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); opacity: .55; }
@@ -166,6 +178,16 @@
       border: 2px solid rgba(225,220,255,.44); border-left-color: rgba(255,255,255,.12); border-right-color: rgba(255,255,255,.18); border-radius: 50%;
       box-shadow: 0 0 15px rgba(200,180,255,0.2);
     }
+    .planet .moon {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #ccc;
+      box-shadow: 0 0 6px rgba(200,200,200,0.5);
+      top: -8px;
+      right: -8px;
+    }
+    /* Zeit-Planeten mit ⏱-Markierung */
     .planet.time-planet::before {
       content: "⏱";
       position: absolute;
@@ -178,19 +200,23 @@
       z-index: 10;
       font-weight: bold;
     }
-    .planet .moon {
+    /* Planet-Label (Name) */
+    .planet-label {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: #ccc;
-      box-shadow: 0 0 6px rgba(200,200,200,0.5);
-      top: -8px;
-      right: -8px;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8px;
+      color: rgba(255,255,255,0.5);
+      white-space: nowrap;
+      pointer-events: none;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
     }
     @keyframes orbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
 
-    /* SONNE */
+    /* ============================================================
+       SONNE – ULTIMATIVE MAXIMUM EDITION
+       ============================================================ */
     #sun {
       position: absolute; z-index: 200; left: 50%; top: 50%; width: var(--sun-core-size); height: var(--sun-core-size);
       transform: translate(-50%, -50%); border-radius: 50%; pointer-events: auto; cursor: pointer; border: 0; padding: 0;
@@ -315,12 +341,16 @@
     #ai-identity-role { margin-top: 7px; font-size: clamp(10px, 1.25vw, 14px); color: rgba(255,255,255,.62); letter-spacing: .17em; text-transform: uppercase; }
     @keyframes identityGlow { from { background-position: 0% 50%; } to { background-position: 250% 50%; } }
 
-    /* HalDo Logo */
+    /* ============================================================
+       HALDO LOGO
+       ============================================================ */
     .haldo-logo { width: 42px; height: 42px; object-fit: contain; object-position: center; filter: drop-shadow(0 0 8px rgba(117,220,255,.35)) drop-shadow(0 0 16px rgba(190,120,255,.16)); }
     .haldo-logo.large { width: 72px; height: 72px; }
     .haldo-logo.xlarge { width: 108px; height: 108px; }
 
-    /* Haupt-Dock */
+    /* ============================================================
+       HAUPT-DOCK
+       ============================================================ */
     #main-dock {
       position: absolute; z-index: 700; left: 50%; bottom: calc(14px + var(--safe-bottom)); transform: translateX(-50%);
       display: flex; align-items: center; justify-content: center; gap: 9px; padding: 8px; max-width: calc(100vw - 24px);
@@ -339,7 +369,9 @@
     .dock-button img { width: 25px; height: 25px; object-fit: contain; }
     .dock-button.ai img { width: 36px; height: 36px; }
 
-    /* Boot-Screen */
+    /* ============================================================
+       BOOT-SCREEN
+       ============================================================ */
     #boot-screen {
       position: absolute; z-index: 2000; inset: 0; display: flex; align-items: center; justify-content: center;
       padding: calc(30px + var(--safe-top)) calc(24px + var(--safe-right)) calc(30px + var(--safe-bottom)) calc(24px + var(--safe-left));
@@ -356,7 +388,9 @@
     @keyframes bootLogoFloat { 0%,100% { transform: translateY(0) scale(.98); } 50% { transform: translateY(-8px) scale(1.03); } }
     @keyframes bootLoader { from { transform: translateX(-130%); } to { transform: translateX(390%); } }
 
-    /* UI-Overlays, Panels, Glassmorphism */
+    /* ============================================================
+       UI-OVERLAYS & GLASS-PANELS
+       ============================================================ */
     .ui-overlay {
       position: fixed; z-index: 1500; inset: 0;
       display: flex; align-items: center; justify-content: center;
@@ -369,9 +403,9 @@
     .ui-overlay.compact-overlay { align-items: flex-start; padding-top: calc(60px + var(--safe-top)); }
     .glass-panel {
       width: 100%; max-width: 860px; max-height: min(88vh, 780px);
-      border: 1px solid rgba(255,255,255,0.08); border-radius: var(--cosmic-ui-radius);
-      background: rgba(5,9,28,0.82); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-      box-shadow: 0 32px 72px rgba(0,0,0,0.62), inset 0 1px 0 rgba(255,255,255,0.06);
+      border: 1px solid var(--glass-border); border-radius: var(--cosmic-ui-radius);
+      background: var(--glass-bg); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+      box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.06);
       display: flex; flex-direction: column; overflow: hidden;
       transform: scale(0.96) translateY(12px);
       transition: transform 340ms cubic-bezier(0.16,1,0.3,1), opacity 340ms ease;
@@ -398,7 +432,9 @@
       padding: 12px 22px; border-top: 1px solid rgba(255,255,255,0.04); flex-shrink: 0; gap: 12px; flex-wrap: wrap;
     }
 
-    /* App-Menü */
+    /* ============================================================
+       APP-MENÜ
+       ============================================================ */
     .app-menu-panel { max-width: 960px; max-height: min(90vh, 820px); }
     .app-menu-toolbar { padding: 12px 22px 6px 22px; display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
     .app-search { display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); transition: border-color 180ms ease; }
@@ -431,7 +467,9 @@
     .app-card .app-name { font-size: 11px; font-weight: 500; color: var(--haldo-text-soft); line-height: 1.3; word-break: break-word; max-width: 100%; }
     .app-card .app-version { font-size: 9px; color: var(--haldo-text-muted); margin-top: 2px; }
 
-    /* System-Menü */
+    /* ============================================================
+       SYSTEM-MENÜ (EINSTELLUNGEN)
+       ============================================================ */
     .system-menu-panel { max-width: 1020px; max-height: min(92vh, 840px); }
     .settings-layout { display: flex; flex: 1; overflow: hidden; }
     .settings-navigation {
@@ -517,7 +555,9 @@
     .about-meta span { color: var(--haldo-text-muted); }
     .security-note { font-size: 12px; color: var(--haldo-text-muted); padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.04); }
 
-    /* Notification Center */
+    /* ============================================================
+       NOTIFICATION CENTER
+       ============================================================ */
     .notification-panel { max-width: 560px; max-height: min(80vh, 700px); }
     .notification-list { flex: 1; overflow-y: auto; padding: 8px 22px 12px 22px; display: flex; flex-direction: column; gap: 6px; }
     .notification-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.02); transition: background 180ms ease; }
@@ -528,7 +568,9 @@
     .notification-item .notif-text { font-size: 12px; color: var(--haldo-text-muted); }
     .notification-item .notif-time { font-size: 10px; color: var(--haldo-text-muted); flex-shrink: 0; }
 
-    /* Search */
+    /* ============================================================
+       SEARCH CENTER
+       ============================================================ */
     .search-panel { max-width: 600px; max-height: min(80vh, 680px); }
     .global-search-wrapper { padding: 12px 22px 8px 22px; flex-shrink: 0; }
     .global-search { display: flex; align-items: center; gap: 10px; padding: 0 16px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); transition: border-color 180ms ease; }
@@ -543,7 +585,9 @@
     .search-result-item .result-name { font-weight: 500; font-size: 14px; }
     .search-result-item .result-desc { font-size: 12px; color: var(--haldo-text-muted); }
 
-    /* AI Window – mit menschlichem Avatar */
+    /* ============================================================
+       AI WINDOW – MIT MENSCHLICHEM AVATAR (logo.png)
+       ============================================================ */
     .ai-overlay { z-index: 1600; }
     .ai-window { max-width: 620px; max-height: min(88vh, 760px); }
     .ai-header { align-items: center; padding: 14px 18px 12px 18px; }
@@ -560,7 +604,7 @@
     .ai-avatar-mini { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
     .ai-avatar-mini img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Menschlicher AI-Avatar */
+    /* Menschlicher AI-Avatar mit logo.png */
     .ai-human-container {
       position: relative;
       display: flex;
@@ -588,19 +632,32 @@
       z-index: 2;
       box-shadow: 0 0 30px rgba(117,190,255,0.15), inset 0 -5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    .ai-human .head .avatar-image {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 15px rgba(255,200,100,0.5));
+      animation: avatarPulse 3s ease-in-out infinite;
+    }
+    @keyframes avatarPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     .ai-human .head .eyes {
       position: absolute;
-      top: 25px;
+      top: 22px;
       left: 50%;
       transform: translateX(-50%);
       width: 40px;
       display: flex;
       justify-content: space-between;
+      pointer-events: none;
     }
     .ai-human .head .eye {
-      width: 12px;
-      height: 14px;
+      width: 10px;
+      height: 12px;
       background: #2d1b0e;
       border-radius: 50%;
       position: relative;
@@ -610,32 +667,33 @@
       content: '';
       position: absolute;
       top: 2px;
-      left: 3px;
-      width: 5px;
-      height: 5px;
+      left: 2px;
+      width: 4px;
+      height: 4px;
       background: #fff;
       border-radius: 50%;
       opacity: 0.8;
     }
     .ai-human .head .mouth {
       position: absolute;
-      bottom: 15px;
+      bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
-      width: 20px;
-      height: 6px;
-      border-radius: 0 0 20px 20px;
+      width: 18px;
+      height: 5px;
+      border-radius: 0 0 18px 18px;
       background: #8b5e3c;
       transition: all 0.2s ease;
+      pointer-events: none;
     }
     .ai-human .head .mouth.speaking {
-      height: 10px;
-      border-radius: 10px;
+      height: 9px;
+      border-radius: 9px;
       animation: mouthMove 0.3s ease-in-out infinite alternate;
     }
     @keyframes mouthMove {
       0% { height: 4px; }
-      100% { height: 12px; }
+      100% { height: 10px; }
     }
     .ai-human .body {
       width: 80px;
@@ -809,7 +867,9 @@
       font-size: 11px; color: var(--haldo-text-muted);
     }
 
-    /* Window System */
+    /* ============================================================
+       WINDOW SYSTEM
+       ============================================================ */
     #window-layer { position: fixed; z-index: 800; inset: 0; pointer-events: none; }
     .haldo-window {
       position: absolute; min-width: 280px; min-height: 160px; border-radius: var(--window-radius);
@@ -870,7 +930,9 @@
     .dock-window-item:hover { background: rgba(255,255,255,0.08); }
     .dock-window-item img { width: 20px; height: 20px; object-fit: contain; }
 
-    /* Cyborg Avatar – bewegbar und interaktiv */
+    /* ============================================================
+       CYBORG AVATAR – BEWEGBAR & INTERAKTIV (logo.cyborg.png)
+       ============================================================ */
     #cyborg-avatar {
       position: fixed;
       bottom: 100px;
@@ -894,15 +956,26 @@
     }
     @media(max-width:768px){ #cyborg-avatar { width: 120px; height: 150px; bottom: 70px; right: 10px; } }
     @media(max-width:480px){ #cyborg-avatar { width: 90px; height: 120px; bottom: 50px; right: 5px; } }
-    #cyborg-avatar canvas {
+    #cyborg-avatar .cyborg-bg {
       width: 100%;
       height: 100%;
       border-radius: 20px;
       background: rgba(5,8,15,0.7);
       border: 1px solid rgba(74,158,255,0.2);
       box-shadow: 0 0 40px rgba(74,158,255,0.15);
-      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
+    #cyborg-avatar .cyborg-bg img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(74,158,255,0.3));
+      animation: cyborgFloat 3s ease-in-out infinite;
+    }
+    @keyframes cyborgFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.03); } }
     #cyborg-avatar .speech-bubble {
       position: absolute;
       top: -50px;
@@ -933,7 +1006,9 @@
       border-top: 8px solid rgba(5,8,15,0.92);
     }
 
-    /* Toast */
+    /* ============================================================
+       TOAST
+       ============================================================ */
     #toast-container { position: fixed; z-index: 3000; top: calc(70px + var(--safe-top)); right: calc(16px + var(--safe-right)); display: flex; flex-direction: column; gap: 8px; max-width: 380px; pointer-events: none; }
     .toast {
       padding: 10px 16px; border-radius: 14px; background: rgba(5,9,28,0.88); backdrop-filter: blur(16px);
@@ -951,7 +1026,9 @@
     .toast .toast-title { font-weight: 600; }
     .toast .toast-message { color: var(--haldo-text-muted); font-size: 12px; }
 
-    /* Confirm */
+    /* ============================================================
+       CONFIRM
+       ============================================================ */
     .confirm-overlay { z-index: 1800; }
     .confirm-panel { max-width: 420px; max-height: 320px; padding: 24px 28px 28px 28px; align-items: center; text-align: center; }
     .confirm-icon { font-size: 48px; margin-bottom: 8px; }
@@ -960,7 +1037,9 @@
     .confirm-actions { display: flex; gap: 10px; justify-content: center; width: 100%; }
     .confirm-actions button { min-width: 100px; }
 
-    /* Upload */
+    /* ============================================================
+       UPLOAD
+       ============================================================ */
     .upload-panel { max-width: 600px; max-height: min(80vh, 700px); }
     .upload-dropzone { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 16px; border: 2px dashed rgba(255,255,255,0.08); border-radius: 18px; margin: 12px 22px; background: rgba(255,255,255,0.02); transition: border-color 180ms ease, background 180ms ease; cursor: pointer; }
     .upload-dropzone:hover, .upload-dropzone.dragover { border-color: rgba(117,190,255,0.3); background: rgba(255,255,255,0.04); }
@@ -974,10 +1053,11 @@
     .upload-item .upload-progress-bar { height: 100%; background: rgba(117,190,255,0.4); transition: width 200ms ease; }
     .upload-item .upload-status { font-size: 12px; color: var(--haldo-text-muted); }
 
-    /* Accessibility */
+    /* ============================================================
+       ACCESSIBILITY & RESPONSIVE
+       ============================================================ */
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-    /* Responsive */
     @media (max-width: 800px) {
       .settings-layout { flex-direction: column; }
       .settings-navigation { width: 100%; flex-direction: row; flex-wrap: wrap; border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.04); padding: 8px 12px; gap: 4px; overflow-x: auto; max-height: 120px; }
@@ -1032,7 +1112,9 @@
 <body>
   <div id="haldo-os">
 
-    <!-- BOOT-SCREEN -->
+    <!-- ============================================================
+       BOOT-SCREEN
+    ============================================================ -->
     <section id="boot-screen" aria-label="HalDo AI OS wird gestartet">
       <div id="boot-content">
         <img id="boot-logo" class="haldo-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
@@ -1042,7 +1124,9 @@
       </div>
     </section>
 
-    <!-- COSMIC WORLD -->
+    <!-- ============================================================
+       COSMIC WORLD
+    ============================================================ -->
     <main id="cosmic-world" aria-label="HalDo AI OS Cosmic World">
 
       <div id="star-field" aria-hidden="true"></div>
@@ -1087,55 +1171,100 @@
           <!-- 12 Himmelskörper – 8 Planeten + 4 Zwergplaneten -->
           <!-- 1. Merkur – grau, klein, schnell -->
           <div class="planet-system" data-planet="mercury" style="--orbit-size:22%;--orbit-duration:17s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:7px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.5);" title="Merkur – Planet"></div></div>
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:7px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.5);" title="Merkur">
+                <span class="planet-label">Merkur</span>
+              </div>
+            </div>
           </div>
           <!-- 2. Venus – gelb-orange, glühend -->
           <div class="planet-system" data-planet="venus" style="--orbit-size:30%;--orbit-duration:23s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:9px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.7);" title="Venus – Planet"></div></div>
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:9px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.7);" title="Venus">
+                <span class="planet-label">Venus</span>
+              </div>
+            </div>
           </div>
           <!-- 3. ERDE – blau-grün, mit Mond -->
           <div class="planet-system" data-planet="earth" style="--orbit-size:38%;--orbit-duration:31s;">
             <div class="planet-holder">
-              <div class="planet" style="--planet-size:11px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.8);" title="Erde – Planet">
+              <div class="planet" style="--planet-size:11px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.8);" title="Erde">
                 <span class="moon" style="background:#c8c8c8;box-shadow:0 0 8px rgba(200,200,200,0.5);"></span>
+                <span class="planet-label">Erde</span>
               </div>
             </div>
           </div>
           <!-- 4. Mars – rot -->
           <div class="planet-system" data-planet="mars" style="--orbit-size:46%;--orbit-duration:39s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:9px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.7);" title="Mars – Planet"></div></div>
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:9px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.7);" title="Mars">
+                <span class="planet-label">Mars</span>
+              </div>
+            </div>
           </div>
           <!-- 5. Jupiter – orange-braun mit Streifen -->
           <div class="planet-system" data-planet="jupiter" style="--orbit-size:54%;--orbit-duration:47s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:16px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.6);" title="Jupiter – Planet"></div></div>
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:16px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.6);" title="Jupiter">
+                <span class="planet-label">Jupiter</span>
+              </div>
+            </div>
           </div>
           <!-- 6. Saturn – gelb mit Ringen -->
           <div class="planet-system" data-planet="saturn" style="--orbit-size:62%;--orbit-duration:56s;">
-            <div class="planet-holder"><div class="planet has-ring" style="--planet-size:14px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.6);" title="Saturn – Planet"></div></div>
+            <div class="planet-holder">
+              <div class="planet has-ring" style="--planet-size:14px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.6);" title="Saturn">
+                <span class="planet-label">Saturn</span>
+              </div>
+            </div>
           </div>
           <!-- 7. Uranus – türkis, liegend -->
           <div class="planet-system" data-planet="uranus" style="--orbit-size:70%;--orbit-duration:67s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:12px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.6);" title="Uranus – Planet"></div></div>
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:12px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.6);" title="Uranus">
+                <span class="planet-label">Uranus</span>
+              </div>
+            </div>
           </div>
           <!-- 8. Neptun – tiefblau -->
           <div class="planet-system" data-planet="neptune" style="--orbit-size:78%;--orbit-duration:79s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:12px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.6);" title="Neptun – Planet"></div></div>
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:12px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.6);" title="Neptun">
+                <span class="planet-label">Neptun</span>
+              </div>
+            </div>
           </div>
           <!-- 9. Pluto – eisig (Zwergplanet – Sekunde) -->
           <div class="planet-system" data-planet="pluto" style="--orbit-size:86%;--orbit-duration:60s;">
-            <div class="planet-holder"><div class="planet time-planet" style="--planet-size:8px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.5);" title="Pluto – Zwergplanet ⏱ Sekunde"></div></div>
+            <div class="planet-holder">
+              <div class="planet time-planet" style="--planet-size:8px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.5);" title="Pluto – Zwergplanet ⏱ Sekunde">
+                <span class="planet-label">Pluto ⏱</span>
+              </div>
+            </div>
           </div>
           <!-- 10. Ceres – grau (Zwergplanet – Minute) -->
           <div class="planet-system" data-planet="ceres" style="--orbit-size:94%;--orbit-duration:3600s;">
-            <div class="planet-holder"><div class="planet time-planet" style="--planet-size:8px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.5);" title="Ceres – Zwergplanet ⏱ Minute"></div></div>
+            <div class="planet-holder">
+              <div class="planet time-planet" style="--planet-size:8px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.5);" title="Ceres – Zwergplanet ⏱ Minute">
+                <span class="planet-label">Ceres ⏱</span>
+              </div>
+            </div>
           </div>
           <!-- 11. Eris – weiß (Zwergplanet – Stunde) -->
           <div class="planet-system" data-planet="eris" style="--orbit-size:102%;--orbit-duration:43200s;">
-            <div class="planet-holder"><div class="planet time-planet" style="--planet-size:9px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.5);" title="Eris – Zwergplanet ⏱ Stunde"></div></div>
+            <div class="planet-holder">
+              <div class="planet time-planet" style="--planet-size:9px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.5);" title="Eris – Zwergplanet ⏱ Stunde">
+                <span class="planet-label">Eris ⏱</span>
+              </div>
+            </div>
           </div>
           <!-- 12. Haumea – grün-blau, länglich (Zwergplanet) -->
           <div class="planet-system" data-planet="haumea" style="--orbit-size:110%;--orbit-duration:149s;">
-            <div class="planet-holder"><div class="planet" style="--planet-size:10px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.6);" title="Haumea – Zwergplanet"></div></div>
+            <div class="planet-holder">
+              <div class="planet" style="--planet-size:10px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.6);" title="Haumea">
+                <span class="planet-label">Haumea</span>
+              </div>
+            </div>
           </div>
 
           <!-- SONNE -->
@@ -1176,14 +1305,20 @@
 
     </main>
 
-    <!-- CYBORG AVATAR – BEWEGBAR & INTERAKTIV -->
+    <!-- ============================================================
+       CYBORG AVATAR – BEWEGBAR & INTERAKTIV (logo.cyborg.png)
+    ============================================================ -->
     <div id="cyborg-avatar">
       <div class="cyborg-click-area" id="cyborg-click-area"></div>
-      <canvas id="cyborg-canvas"></canvas>
+      <div class="cyborg-bg">
+        <img id="cyborg-image" src="assets/logo/logo.cyborg.png" alt="HalDo Cyborg" draggable="false" onerror="this.src='assets/logo/logo.png'">
+      </div>
       <div class="speech-bubble" id="cyborg-speech">🤖 Hallo! Ich bin HalDo Cyborg.</div>
     </div>
 
-    <!-- APP-MENÜ OVERLAY -->
+    <!-- ============================================================
+       APP-MENÜ OVERLAY
+    ============================================================ -->
     <div id="app-menu-overlay" class="ui-overlay" aria-hidden="true">
       <section id="app-menu" class="glass-panel app-menu-panel" role="dialog" aria-modal="true" aria-labelledby="app-menu-title">
         <header class="panel-header">
@@ -1216,7 +1351,9 @@
       </section>
     </div>
 
-    <!-- SYSTEM-MENÜ OVERLAY -->
+    <!-- ============================================================
+       SYSTEM-MENÜ OVERLAY (EINSTELLUNGEN)
+    ============================================================ -->
     <div id="system-menu-overlay" class="ui-overlay" aria-hidden="true">
       <section id="system-menu" class="glass-panel system-menu-panel" role="dialog" aria-modal="true" aria-labelledby="system-menu-title">
         <header class="panel-header">
@@ -1390,7 +1527,7 @@
               <div class="settings-card-stack">
                 <article class="settings-card vertical">
                   <div class="update-status"><span>Status</span><strong id="update-status-label">Bereit</strong></div>
-                  <div class="update-version"><span>HalDo AI OS</span><strong id="current-version-label">24</strong></div>
+                  <div class="update-version"><span>HalDo AI OS</span><strong id="current-version-label">26</strong></div>
                   <button id="check-updates-button" class="primary-action full" type="button">Nach Updates suchen</button>
                 </article>
               </div>
@@ -1413,7 +1550,7 @@
                 <img class="haldo-logo xlarge" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
                 <h3>HalDo AI OS</h3>
                 <p>Cosmic World · Living HalDo AI · Professional AI OS</p>
-                <div class="about-meta"><span>Version</span><strong>24</strong></div>
+                <div class="about-meta"><span>Version</span><strong>26</strong></div>
                 <div class="about-meta"><span>Interface</span><strong>Cosmic World</strong></div>
                 <div class="about-meta"><span>AI</span><strong>Living HalDo AI</strong></div>
               </article>
@@ -1438,7 +1575,9 @@
       </section>
     </div>
 
-    <!-- NOTIFICATION CENTER -->
+    <!-- ============================================================
+       NOTIFICATION CENTER
+    ============================================================ -->
     <div id="notification-overlay" class="ui-overlay compact-overlay" aria-hidden="true">
       <section id="notification-center" class="glass-panel notification-panel" role="dialog" aria-modal="true" aria-labelledby="notification-title">
         <header class="panel-header">
@@ -1450,7 +1589,9 @@
       </section>
     </div>
 
-    <!-- SEARCH CENTER -->
+    <!-- ============================================================
+       SEARCH CENTER
+    ============================================================ -->
     <div id="search-overlay" class="ui-overlay compact-overlay" aria-hidden="true">
       <section id="search-center" class="glass-panel search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title">
         <header class="panel-header">
@@ -1464,7 +1605,9 @@
       </section>
     </div>
 
-    <!-- LIVING HALDO AI – MIT MENSCHLICHEM AVATAR -->
+    <!-- ============================================================
+       LIVING HALDO AI – MIT MENSCHLICHEM AVATAR (logo.png)
+    ============================================================ -->
     <div id="ai-overlay" class="ui-overlay ai-overlay" aria-hidden="true">
       <section id="ai-window" class="glass-panel ai-window" role="dialog" aria-modal="true" aria-labelledby="ai-window-title">
         <header class="panel-header ai-header">
@@ -1484,10 +1627,11 @@
           <div class="ai-presence-ring ring-two"></div>
           <div class="ai-presence-ring ring-three"></div>
 
-          <!-- Menschlicher AI-Avatar -->
+          <!-- Menschlicher AI-Avatar mit logo.png -->
           <div class="ai-human-container">
             <div class="ai-human" id="ai-human">
               <div class="head">
+                <img class="avatar-image" id="ai-avatar-image" src="assets/logo/logo.png" alt="HalDo AI Avatar" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E🤖%3C/text%3E%3C/svg%3E'">
                 <div class="eyes">
                   <div class="eye" id="ai-eye-left"></div>
                   <div class="eye" id="ai-eye-right"></div>
@@ -1519,7 +1663,9 @@
       </section>
     </div>
 
-    <!-- WINDOW SYSTEM -->
+    <!-- ============================================================
+       WINDOW SYSTEM
+    ============================================================ -->
     <section id="window-layer" aria-label="HalDo Fensterbereich"></section>
     <div id="window-dock" aria-label="Minimierte Fenster"></div>
 
@@ -1556,10 +1702,10 @@
       </div>
     </template>
 
-    <!-- TOAST SYSTEM -->
+    <!-- ============================================================
+       TOAST, CONFIRM, UPLOAD
+    ============================================================ -->
     <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
-
-    <!-- CONFIRMATION DIALOG -->
     <div id="confirm-overlay" class="ui-overlay confirm-overlay" aria-hidden="true">
       <section id="confirm-dialog" class="glass-panel confirm-panel" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-message">
         <div class="confirm-icon">?</div>
@@ -1568,8 +1714,6 @@
         <div class="confirm-actions"><button id="confirm-cancel" class="secondary-action" type="button">Abbrechen</button><button id="confirm-accept" class="primary-action" type="button">Bestätigen</button></div>
       </section>
     </div>
-
-    <!-- UPLOAD CENTER -->
     <div id="upload-overlay" class="ui-overlay compact-overlay" aria-hidden="true">
       <section id="upload-center" class="glass-panel upload-panel" role="dialog" aria-modal="true" aria-labelledby="upload-title">
         <header class="panel-header">
@@ -1588,7 +1732,7 @@
     </div>
 
     <!-- SYSTEM INFO -->
-    <div id="sys-info" style="display:none;">HalDo OS v24 • Kernel READY</div>
+    <div id="sys-info" style="display:none;">HalDo OS v26 • Kernel READY</div>
 
     <!-- ARIA LIVE REGION -->
     <div id="aria-live-region" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
@@ -1598,7 +1742,7 @@
 
   <script>
     // ============================================================
-    // KOMPLETTES JAVASCRIPT – ULTIMATE MAXIMUM v24
+    // ULTIMATE MAXIMUM JAVASCRIPT v26 – ALLES IN EINER DATEI
     // ============================================================
 
     (function() {
@@ -1609,7 +1753,7 @@
       // ============================================================
 
       const HALDO = {
-        version: '24',
+        version: '26',
         name: 'HalDo AI OS',
         build: '2026-09-08',
         state: 'BOOTING',
@@ -1668,12 +1812,12 @@
         off(event, callback) { if (this[event]) { this[event] = this[event].filter(cb => cb !== callback); } }
       };
 
-      // Storage
+      // Storage (IndexedDB + localStorage Fallback)
       HALDO.storage = {
         init() {
           return new Promise((resolve) => {
             try {
-              const req = indexedDB.open('HalDoOS', 24);
+              const req = indexedDB.open('HalDoOS', 26);
               req.onupgradeneeded = (e) => {
                 const db = e.target.result;
                 if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
@@ -1742,70 +1886,65 @@
       };
 
       // ============================================================
-      // APP REGISTRY & DATA – 30+ APPS
+      // APP REGISTRY & DATA – 30+ APPS MIT VOLLSTÄNDIGEN DATEN
       // ============================================================
 
       const APP_DEFINITIONS = [
-        // AI & System
-        { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'ai', desc: 'Ultra-intelligente KI mit Cyborg-Avatar', version: '24' },
-        { id: 'cyborg', name: 'HalDo Cyborg', icon: '🦾', cat: 'ai', desc: 'Lebendiger Roboter-Assistent', version: '24' },
-        { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'system', desc: 'Systemsteuerung & Logs', version: '24' },
-        { id: 'updates', name: 'Updates', icon: '🔄', cat: 'system', desc: 'Update-Manager', version: '24' },
-        { id: 'security', name: 'Security', icon: '🔒', cat: 'system', desc: 'Passwortmanager & Firewall', version: '24' },
-        { id: 'files', name: 'Files', icon: '📁', cat: 'system', desc: 'Dateimanager', version: '24' },
-        { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'system', desc: 'Tastatur & Sprachen', version: '24' },
-        { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'system', desc: 'Themes & Schrift', version: '24' },
-        // Media
-        { id: 'music', name: 'Music', icon: '🎵', cat: 'media', desc: 'Musikplayer mit 50+ Songs', version: '24' },
-        { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'media', desc: 'Video-Editor mit Timeline', version: '24' },
-        { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'media', desc: 'Bildergalerie', version: '24' },
-        { id: 'photos', name: 'Photos', icon: '📸', cat: 'media', desc: 'Kamera & Album', version: '24' },
-        { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'media', desc: 'Audio-Recorder', version: '24' },
-        // Productivity
-        { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'productivity', desc: 'Terminkalender mit Feiertagen', version: '24' },
-        { id: 'documents', name: 'Documents', icon: '📄', cat: 'productivity', desc: 'Dokumente & Editor', version: '24' },
-        { id: 'office', name: 'Office', icon: '📊', cat: 'productivity', desc: 'Tabellen & Text', version: '24' },
-        { id: 'journal', name: 'Journal', icon: '📓', cat: 'productivity', desc: 'Tagebuch', version: '24' },
-        { id: 'learning', name: 'Learning', icon: '📚', cat: 'productivity', desc: 'Kurse & Quiz', version: '24' },
-        { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'productivity', desc: 'Aufgabenliste', version: '24' },
-        { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'productivity', desc: 'Karte & Routen', version: '24' },
-        { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'productivity', desc: 'Wetter & 7-Tage', version: '24' },
-        { id: 'health', name: 'Health', icon: '🏥', cat: 'productivity', desc: 'Gesundheitsakte & Ärztlicher Rat', version: '24' },
-        { id: 'driving', name: 'Fahrschule', icon: '🚗', cat: 'productivity', desc: 'Fahrstunden & Verkehrsregeln', version: '24' },
-        // Communication
-        { id: 'email', name: 'Email', icon: '✉️', cat: 'communication', desc: 'E-Mail-Client mit Anhängen', version: '24' },
-        { id: 'chat', name: 'Chat', icon: '💬', cat: 'communication', desc: 'Chat mit Bestätigung', version: '24' },
-        { id: 'call', name: 'Anrufen', icon: '📞', cat: 'communication', desc: 'Videoanruf & Telefonie', version: '24' },
-        // Internet
-        { id: 'browser', name: 'Browser', icon: '🌐', cat: 'internet', desc: 'Internet-Browser mit Lesezeichen', version: '24' },
-        { id: 'internet', name: 'Internet', icon: '📶', cat: 'internet', desc: 'Netzwerk & Speedtest', version: '24' },
-        // Verkehr
-        { id: 'traffic', name: 'Verkehr & Warnungen', icon: '🚦', cat: 'traffic', desc: 'Blitzer, Stau, Geschwindigkeit & Warnungen', version: '24' },
-        // Other
-        { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'system', desc: 'Rechner, Timer, Umrechner', version: '24' },
-        { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'productivity', desc: 'Dashboard für alles', version: '24' },
+        { id: 'ai', name: 'HalDo AI', icon: '🤖', cat: 'ai', desc: 'Ultra-intelligente KI mit Cyborg-Avatar', version: '26' },
+        { id: 'cyborg', name: 'HalDo Cyborg', icon: '🦾', cat: 'ai', desc: 'Lebendiger Roboter-Assistent', version: '26' },
+        { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'system', desc: 'Systemsteuerung & Logs', version: '26' },
+        { id: 'updates', name: 'Updates', icon: '🔄', cat: 'system', desc: 'Update-Manager', version: '26' },
+        { id: 'security', name: 'Security', icon: '🔒', cat: 'system', desc: 'Passwortmanager & Firewall', version: '26' },
+        { id: 'files', name: 'Files', icon: '📁', cat: 'system', desc: 'Dateimanager', version: '26' },
+        { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'system', desc: 'Tastatur & Sprachen', version: '26' },
+        { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'system', desc: 'Themes & Schrift', version: '26' },
+        { id: 'music', name: 'Music', icon: '🎵', cat: 'media', desc: 'Musikplayer mit 50+ Songs', version: '26' },
+        { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'media', desc: 'Video-Editor mit Timeline', version: '26' },
+        { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'media', desc: 'Bildergalerie', version: '26' },
+        { id: 'photos', name: 'Photos', icon: '📸', cat: 'media', desc: 'Kamera & Album', version: '26' },
+        { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'media', desc: 'Audio-Recorder', version: '26' },
+        { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'productivity', desc: 'Terminkalender mit Feiertagen', version: '26' },
+        { id: 'documents', name: 'Documents', icon: '📄', cat: 'productivity', desc: 'Dokumente & Editor', version: '26' },
+        { id: 'office', name: 'Office', icon: '📊', cat: 'productivity', desc: 'Tabellen & Text', version: '26' },
+        { id: 'journal', name: 'Journal', icon: '📓', cat: 'productivity', desc: 'Tagebuch', version: '26' },
+        { id: 'learning', name: 'Learning', icon: '📚', cat: 'productivity', desc: 'Kurse & Quiz', version: '26' },
+        { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'productivity', desc: 'Aufgabenliste', version: '26' },
+        { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'productivity', desc: 'Karte & Routen', version: '26' },
+        { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'productivity', desc: 'Wetter & 7-Tage', version: '26' },
+        { id: 'health', name: 'Health', icon: '🏥', cat: 'productivity', desc: 'Gesundheitsakte & Ärztlicher Rat', version: '26' },
+        { id: 'driving', name: 'Fahrschule', icon: '🚗', cat: 'productivity', desc: 'Fahrstunden & Verkehrsregeln', version: '26' },
+        { id: 'email', name: 'Email', icon: '✉️', cat: 'communication', desc: 'E-Mail-Client mit Anhängen', version: '26' },
+        { id: 'chat', name: 'Chat', icon: '💬', cat: 'communication', desc: 'Chat mit Bestätigung', version: '26' },
+        { id: 'call', name: 'Anrufen', icon: '📞', cat: 'communication', desc: 'Videoanruf & Telefonie', version: '26' },
+        { id: 'browser', name: 'Browser', icon: '🌐', cat: 'internet', desc: 'Internet-Browser mit Lesezeichen', version: '26' },
+        { id: 'internet', name: 'Internet', icon: '📶', cat: 'internet', desc: 'Netzwerk & Speedtest', version: '26' },
+        { id: 'traffic', name: 'Verkehr & Warnungen', icon: '🚦', cat: 'traffic', desc: 'Blitzer, Stau, Geschwindigkeit & Warnungen', version: '26' },
+        { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'system', desc: 'Rechner, Timer, Umrechner', version: '26' },
+        { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'productivity', desc: 'Dashboard für alles', version: '26' },
       ];
 
-      // Vollständige App-Daten – Health, Driving, Traffic, Music, Video, etc.
+      // VOLLSTÄNDIGE App-Daten für ALLE Apps
       const APP_DEFAULT_DATA = {
         health: {
-          diseases: ['Grippe – Fieber, Husten, Gliederschmerzen', 'Allergie – Niesen, Juckreiz, tränende Augen', 'Migräne – starke Kopfschmerzen', 'Bluthochdruck – erhöhter Blutdruck'],
-          symptoms: ['Fieber, Husten, Kopfschmerzen', 'Niesen, tränende Augen, Hautausschlag', 'starke Kopfschmerzen, Lichtempfindlichkeit'],
-          medications: ['Ibuprofen 400mg', 'Cetirizin 10mg', 'Paracetamol 500mg', 'Lisinopril 10mg'],
-          appointments: ['15.09. Dr. Müller', '22.09. Zahnarzt', '05.10. Hautarzt'],
-          advice: ['Bei Kopfschmerzen: Ruhe, Wasser und ggf. Schmerzmittel.', 'Bei Allergie: Antihistaminika und Allergenkontakt vermeiden.', 'Regelmäßige Bewegung fördert die Gesundheit.', 'Bei Bluthochdruck: Salz reduzieren und Sport treiben.'],
-          firstAid: ['Notruf 112', 'Stabile Seitenlage', 'Herz-Lungen-Wiederbelebung', 'Druckverband anlegen']
+          diseases: ['Grippe – Fieber, Husten, Gliederschmerzen', 'Allergie – Niesen, Juckreiz, tränende Augen', 'Migräne – starke Kopfschmerzen', 'Bluthochdruck – erhöhter Blutdruck', 'Diabetes Typ 2', 'Asthma – Atemnot, Husten'],
+          symptoms: ['Fieber, Husten, Kopfschmerzen', 'Niesen, tränende Augen, Hautausschlag', 'starke Kopfschmerzen, Lichtempfindlichkeit', 'Schwindel, Herzrasen', 'Durst, Müdigkeit', 'Atemnot, Engegefühl'],
+          medications: ['Ibuprofen 400mg', 'Cetirizin 10mg', 'Paracetamol 500mg', 'Lisinopril 10mg', 'Metformin 500mg', 'Salbutamol Spray'],
+          appointments: ['15.09. Dr. Müller', '22.09. Zahnarzt', '05.10. Hautarzt', '12.10. Augenarzt', '20.10. Lungenfacharzt'],
+          advice: ['Bei Kopfschmerzen: Ruhe, Wasser und ggf. Schmerzmittel.', 'Bei Allergie: Antihistaminika und Allergenkontakt vermeiden.', 'Regelmäßige Bewegung fördert die Gesundheit.', 'Bei Bluthochdruck: Salz reduzieren und Sport treiben.', 'Bei Diabetes: Blutzucker regelmäßig kontrollieren.', 'Bei Asthma: Notfallspray immer dabei haben.'],
+          firstAid: ['Notruf 112', 'Stabile Seitenlage', 'Herz-Lungen-Wiederbelebung', 'Druckverband anlegen', 'Wundversorgung', 'Schocklage']
         },
         driving: {
-          lessons: ['Grundfahraufgaben', 'Parken', 'Autobahnfahrt', 'Fahren bei Nacht', 'Gefahrenbremsung'],
-          rules: ['Rechtsfahrgebot', 'Blinker setzen', 'Geschwindigkeitsbegrenzungen', 'Vorfahrtregeln', 'Abstand halten'],
-          speedtraps: ['A3 bei Köln – 80 km/h', 'B1 Berlin – 50 km/h', 'A7 Hamburg – 120 km/h', 'A5 Frankfurt – 100 km/h'],
+          lessons: ['Grundfahraufgaben', 'Parken', 'Autobahnfahrt', 'Fahren bei Nacht', 'Gefahrenbremsung', 'Fahren bei Regen', 'Fahren im Winter'],
+          rules: ['Rechtsfahrgebot', 'Blinker setzen', 'Geschwindigkeitsbegrenzungen', 'Vorfahrtregeln', 'Abstand halten', 'Sicherheitsgurtpflicht', 'Handyverbot am Steuer'],
+          speedtraps: ['A3 bei Köln – 80 km/h', 'B1 Berlin – 50 km/h', 'A7 Hamburg – 120 km/h', 'A5 Frankfurt – 100 km/h', 'A8 München – 80 km/h', 'B2 Leipzig – 70 km/h'],
           theory: [
             'Frage 1: Was ist beim Überholen zu beachten? - Ausreichend Abstand, Blinker setzen, Rückspiegel prüfen.',
             'Frage 2: Welche Geschwindigkeit gilt in der Stadt? - 50 km/h.',
             'Frage 3: Was bedeutet das rote Dreieck? - Vorfahrt achten!',
             'Frage 4: Wie verhalte ich mich an einer Kreuzung mit Vorfahrtsschild? - Vorfahrt gewähren und langsam fahren.',
-            'Frage 5: Was tun bei Aquaplaning? - Gas weg, Kupplung treten, lenken.'
+            'Frage 5: Was tun bei Aquaplaning? - Gas weg, Kupplung treten, lenken.',
+            'Frage 6: Was ist der Sicherheitsabstand? - Halber Tachoabstand.',
+            'Frage 7: Wie verhalte ich mich bei Glatteis? - Langsam fahren, nicht stark bremsen.'
           ]
         },
         traffic: {
@@ -1814,23 +1953,123 @@
             { id: 2, type: 'jam', location: 'B1 Berlin', message: '🚦 Stau auf der B1 Richtung Zentrum! Umleitung empfohlen.' },
             { id: 3, type: 'speed', location: 'A7 Hamburg', speed: '120 km/h', message: '⚡ Geschwindigkeitsüberschreitung! 140 km/h bei 120 km/h.' },
             { id: 4, type: 'accident', location: 'A5 Frankfurt', message: '⚠️ Unfall auf der A5 Richtung Frankfurt! Bitte Umleitung nutzen.' },
+            { id: 5, type: 'jam', location: 'A8 München', message: '🚦 Stau auf der A8 Richtung München! Umleitung empfohlen.' },
+            { id: 6, type: 'weather', location: 'A7 Hamburg', message: '🌧️ Glatteis auf der A7! Bitte vorsichtig fahren.' }
           ],
           currentLocation: 'Berlin, A3 Richtung Köln'
         },
         music: {
-          playlist: ['Blinding Lights - The Weeknd', 'Levitating - Dua Lipa', 'Stay - The Kid LAROI', 'Montero - Lil Nas X', 'Shape of You - Ed Sheeran'],
-          genres: ['Pop', 'Hip-Hop', 'Rock', 'Electronic', 'Jazz'],
-          moods: ['Happy', 'Sad', 'Energetic', 'Relaxed', 'Romantic'],
-          bpm: [120, 150, 90, 130, 110],
-          samples: ['Drum Loop 1', 'Bass Line 2', 'Synth Pad 3'],
-          instruments: ['Piano', 'Guitar', 'Drums', 'Bass', 'Synth']
+          playlist: ['Blinding Lights - The Weeknd', 'Levitating - Dua Lipa', 'Stay - The Kid LAROI', 'Montero - Lil Nas X', 'Shape of You - Ed Sheeran', 'Dance Monkey - Tones and I', 'Bad Guy - Billie Eilish'],
+          genres: ['Pop', 'Hip-Hop', 'Rock', 'Electronic', 'Jazz', 'Classical', 'Reggae'],
+          moods: ['Happy', 'Sad', 'Energetic', 'Relaxed', 'Romantic', 'Angry', 'Chill'],
+          bpm: [120, 150, 90, 130, 110, 75, 100],
+          samples: ['Drum Loop 1', 'Bass Line 2', 'Synth Pad 3', 'Guitar Riff 4', 'Vocal Chop 5'],
+          instruments: ['Piano', 'Guitar', 'Drums', 'Bass', 'Synth', 'Violin', 'Trumpet']
         },
         video: {
-          projects: ['Projekt 1 - Trailer', 'Projekt 2 - Intro', 'Projekt 3 - Social Clip'],
-          timeline: ['Scene 1', 'Scene 2', 'Scene 3', 'Scene 4'],
-          effects: ['Fade', 'Zoom', 'Transition', 'Slow Motion', 'Filter']
+          projects: ['Projekt 1 - Trailer', 'Projekt 2 - Intro', 'Projekt 3 - Social Clip', 'Projekt 4 - Musikvideo', 'Projekt 5 - Dokumentation'],
+          timeline: ['Scene 1', 'Scene 2', 'Scene 3', 'Scene 4', 'Scene 5', 'Scene 6'],
+          effects: ['Fade', 'Zoom', 'Transition', 'Slow Motion', 'Filter', 'Chroma Key', 'Text Overlay']
         },
-        // Weitere Apps...
+        email: {
+          inbox: [
+            { from: 'Max Mustermann', subject: 'Projektupdate', body: 'Neue Unterlagen sind da.', date: 'heute', attachments: ['Bericht.pdf'] },
+            { from: 'Team', subject: 'Einladung', body: 'Meeting am Freitag um 10 Uhr.', date: 'gestern', attachments: [] },
+            { from: 'Service GmbH', subject: 'Rechnung', body: 'Rechnung Nr. 2026-0098.', date: '02.09.', attachments: ['Rechnung.pdf'] },
+            { from: 'Anna', subject: 'Hallo', body: 'Wie geht es dir?', date: '01.09.', attachments: [] }
+          ],
+          sent: []
+        },
+        chat: {
+          messages: [
+            { from: 'Anna', text: 'Hey, wie geht es dir?', time: '10:30' },
+            { from: 'Du', text: 'Mir geht es gut, danke!', time: '10:32' },
+            { from: 'Anna', text: 'Was machst du heute?', time: '10:35' },
+            { from: 'Du', text: 'Ich arbeite an HalDo AI OS.', time: '10:40' }
+          ]
+        },
+        call: {
+          history: [
+            { contact: 'Anna', type: 'Video', duration: '5:23', date: 'heute' },
+            { contact: 'Max', type: 'Audio', duration: '2:10', date: 'gestern' },
+            { contact: 'Team', type: 'Conference', duration: '15:30', date: '02.09.' },
+            { contact: 'Dr. Müller', type: 'Audio', duration: '8:15', date: '01.09.' }
+          ]
+        },
+        calendar: {
+          events: [
+            { title: 'Meeting', date: '2026-09-15', time: '10:00' },
+            { title: 'Arzttermin', date: '2026-09-22', time: '14:30' },
+            { title: 'Geburtstag', date: '2026-09-20', time: '18:00' },
+            { title: 'Projektabgabe', date: '2026-09-30', time: '23:59' }
+          ]
+        },
+        tasks: {
+          items: [
+            { title: 'Projektbericht schreiben', done: false },
+            { title: 'E-Mails beantworten', done: false },
+            { title: 'Einkaufen', done: true },
+            { title: 'Arzttermin vereinbaren', done: false },
+            { title: 'Präsentation vorbereiten', done: false }
+          ]
+        },
+        documents: {
+          files: ['Projektplan.docx', 'Präsentation.pptx', 'Notizen.txt', 'Finanzen.xlsx', 'Vertrag.pdf']
+        },
+        gallery: {
+          images: ['🌅', '🌄', '🌠', '🎆', '🌈', '🌌', '🏔️', '🌺', '🌸', '🌻', '🌊', '🌋']
+        },
+        weather: {
+          cities: ['Berlin', 'Köln', 'Hamburg', 'München', 'Frankfurt', 'Stuttgart']
+        },
+        navigation: {
+          routes: ['Home → Office', 'Office → Supermarkt', 'Supermarkt → Home', 'Home → Flughafen', 'Office → Fitness']
+        },
+        learning: {
+          courses: ['Einführung in KI', 'Webentwicklung', 'Design Thinking', 'Datenanalyse', 'Projektmanagement'],
+          quiz: [
+            { question: 'Was ist KI?', options: ['A: Künstliche Intelligenz', 'B: Keine Idee', 'C: Alles'], answer: 0 }
+          ]
+        },
+        office: {
+          docs: ['Budget.xlsx', 'Report.docx', 'Plan.pptx', 'Invoice.pdf', 'Proposal.docx']
+        },
+        photos: {
+          albums: ['Urlaub 2025', 'Familie', 'Projekte', 'Party 2026', 'Natur']
+        },
+        recorder: {
+          recordings: ['Besprechung_01.mp3', 'Notiz_05.mp3', 'Idee_12.mp3', 'Interview_23.mp3']
+        },
+        browser: {
+          bookmarks: ['https://haldo-os.com', 'https://github.com', 'https://youtube.com', 'https://google.com', 'https://wikipedia.org']
+        },
+        internet: {
+          speedtest: { ping: '12 ms', download: '45 Mbps', upload: '12 Mbps' }
+        },
+        keyboard: {
+          layouts: ['Deutsch', 'English', 'Kurdî', 'Êzîdî', 'Türkçe', 'Français']
+        },
+        personalization: {
+          themes: ['Cosmic', 'Dark', 'Light', 'Neon', 'Retro', 'Minimal']
+        },
+        yourlife: {
+          stats: ['Aufgaben: 2 offen', 'E-Mails: 4 ungelesen', 'Termine: 2 heute', 'Gesundheit: OK', 'Projekte: 3 aktiv']
+        },
+        quicktools: {
+          tools: ['Taschenrechner', 'Timer', 'Einheitenumrechner', 'Kalender', 'Notizblock']
+        },
+        systemcenter: {
+          logs: ['System gestartet: 08.09.2026', 'Update v26 installiert', 'AI gestartet', 'Cyborg aktiviert']
+        },
+        security: {
+          passwords: ['Email: ****', 'Bank: ****', 'Social: ****', 'Cloud: ****']
+        },
+        updates: {
+          status: 'Aktuell'
+        },
+        files: {
+          folders: ['Bilder', 'Dokumente', 'Musik', 'Videos', 'Downloads', 'Projekte']
+        }
       };
 
       APP_DEFINITIONS.forEach(app => {
@@ -1857,175 +2096,7 @@
       });
 
       // ============================================================
-      // BOOT
-      // ============================================================
-
-      async function boot() {
-        const bootScreen = document.getElementById('boot-screen');
-        const bootLoader = document.getElementById('boot-loader-bar');
-        const cosmicWorld = document.getElementById('cosmic-world');
-
-        await HALDO.storage.init();
-
-        const savedConfig = await HALDO.storage.get('settings', 'config');
-        if (savedConfig) {
-          HALDO.config = { ...HALDO.config, ...savedConfig };
-        }
-
-        const savedMemory = await HALDO.storage.get('memory', 'conversation');
-        if (savedMemory && savedMemory.data) {
-          HALDO.memory = savedMemory.data;
-        }
-
-        // App-Daten laden
-        for (const appId of Object.keys(HALDO.registry)) {
-          const savedData = await HALDO.storage.get('appdata', appId);
-          if (savedData && savedData.data) {
-            HALDO.registry[appId].data = savedData.data;
-          }
-        }
-
-        let progress = 0;
-        const steps = [
-          'Lade Kernsystem …', 'Verbinde Speicher …', 'Aktiviere Sicherheit …',
-          'Starte Cosmic World …', 'Bereite Living HalDo AI vor …', 'System bereit.'
-        ];
-        for (let i = 0; i < steps.length; i++) {
-          progress = ((i + 1) / steps.length) * 100;
-          if (bootLoader) bootLoader.style.width = progress + '%';
-          await new Promise(r => setTimeout(r, 150 + Math.random() * 120));
-        }
-
-        if (cosmicWorld) {
-          cosmicWorld.classList.remove('is-transitioning');
-          cosmicWorld.style.opacity = '1';
-        }
-
-        if (bootScreen) {
-          bootScreen.classList.add('hidden');
-          setTimeout(() => { bootScreen.style.display = 'none'; }, 800);
-        }
-
-        generateStars();
-        generateSpecialStars();
-        generateInnerSunStars();
-        generateOrbitalSunStars();
-
-        initEventListeners();
-        initVoice();
-        initAI();
-        initNotifications();
-        initTrafficSystem();
-        initWindowManager();
-        renderAppGrid();
-        initSystemMenu();
-
-        HALDO.state = 'READY';
-        updateSystemStatus('HalDo AI OS • Bereit');
-
-        setTimeout(() => {
-          showToast('🌌', 'HalDo AI OS v' + HALDO.version, 'Willkommen! Die Cosmic World ist bereit.');
-          if (HALDO.config.aiEnabled) {
-            openAIWindow('Willkommen bei HalDo AI OS. Wie kann ich dir helfen, Bruder? 💙❤️🚀');
-            animateAvatar('speaking');
-            if (HALDO.voice && HALDO.config.speechOutput) {
-              setTimeout(() => {
-                HALDO.voice.speak('Willkommen bei HalDo AI OS. Wie kann ich dir helfen, Bruder?');
-                setTimeout(() => animateAvatar('idle'), 2000);
-              }, 500);
-            }
-          }
-          setTimeout(() => {
-            showCyborgSpeech('🤖 Hallo Bruder! Ich bin HalDo Cyborg. 💙❤️🚀');
-          }, 1500);
-        }, 1200);
-
-        console.log('🌌 HalDo AI OS v' + HALDO.version + ' gestartet.');
-        HALDO.eventBus.emit('boot:ready');
-      }
-
-      // ============================================================
-      // STERNE GENERIEREN
-      // ============================================================
-
-      function generateStars() {
-        const container = document.getElementById('star-field');
-        if (!container) return;
-        container.innerHTML = '';
-        const count = 365;
-        for (let i = 0; i < count; i++) {
-          const star = document.createElement('div');
-          star.className = 'star';
-          if (i % 5 === 0) star.classList.add('large');
-          if (i % 7 === 0) star.classList.add('soft');
-          const x = Math.random() * 100;
-          const y = Math.random() * 100;
-          star.style.left = x + '%';
-          star.style.top = y + '%';
-          star.style.setProperty('--twinkle-duration', (3 + Math.random() * 4) + 's');
-          star.style.setProperty('--twinkle-delay', (Math.random() * 4) + 's');
-          container.appendChild(star);
-        }
-      }
-
-      function generateSpecialStars() {
-        const container = document.getElementById('special-star-field');
-        if (!container) return;
-        container.innerHTML = '';
-        const count = 30;
-        for (let i = 0; i < count; i++) {
-          const star = document.createElement('div');
-          star.className = 'special-star';
-          const x = Math.random() * 100;
-          const y = Math.random() * 100;
-          star.style.left = x + '%';
-          star.style.top = y + '%';
-          star.style.setProperty('--special-duration', (2.5 + Math.random() * 2.5) + 's');
-          star.style.setProperty('--special-delay', (Math.random() * 3) + 's');
-          container.appendChild(star);
-        }
-      }
-
-      function generateInnerSunStars() {
-        const container = document.getElementById('inner-sun-stars');
-        if (!container) return;
-        container.innerHTML = '';
-        const count = 24;
-        for (let i = 0; i < count; i++) {
-          const spark = document.createElement('div');
-          spark.className = 'inner-spark';
-          const angle = Math.random() * 2 * Math.PI;
-          const radius = 30 + Math.random() * 60;
-          const x = 50 + (radius * Math.cos(angle));
-          const y = 50 + (radius * Math.sin(angle));
-          spark.style.left = x + '%';
-          spark.style.top = y + '%';
-          spark.style.animationDelay = (Math.random() * 2) + 's';
-          container.appendChild(spark);
-        }
-      }
-
-      function generateOrbitalSunStars() {
-        const container = document.getElementById('sun-stars-orbital');
-        if (!container) return;
-        container.innerHTML = '';
-        const count = 30;
-        for (let i = 0; i < count; i++) {
-          const star = document.createElement('div');
-          star.className = 'sun-orbital-star';
-          const angle = (i / count) * 2 * Math.PI;
-          const radius = 45 + Math.random() * 10;
-          const x = 50 + radius * Math.cos(angle);
-          const y = 50 + radius * Math.sin(angle);
-          star.style.left = x + '%';
-          star.style.top = y + '%';
-          star.style.animationDelay = (i * 0.1) + 's';
-          container.appendChild(star);
-        }
-      }
-
-      // ============================================================
-      // TRAFFIC WARNINGS
+      // TRAFFIC WARNINGS SYSTEM
       // ============================================================
 
       function initTrafficSystem() {
@@ -2036,12 +2107,14 @@
             { type: 'jam', location: 'B1 Berlin', message: '🚦 Stau auf der B1 Richtung Zentrum! Umleitung empfohlen.' },
             { type: 'speed', location: 'A7 Hamburg', speed: '120 km/h', message: '⚡ Geschwindigkeitsüberschreitung! 140 km/h bei 120 km/h erkannt.' },
             { type: 'accident', location: 'A5 Frankfurt', message: '⚠️ Unfall auf der A5 Richtung Frankfurt! Bitte Umleitung nutzen.' },
+            { type: 'jam', location: 'A8 München', message: '🚦 Stau auf der A8 Richtung München! Umleitung empfohlen.' },
+            { type: 'weather', location: 'A7 Hamburg', message: '🌧️ Glatteis auf der A7! Bitte vorsichtig fahren.' }
           ];
-          if (Math.random() < 0.10) {
+          if (Math.random() < 0.08) {
             const warning = warnings[Math.floor(Math.random() * warnings.length)];
             triggerTrafficWarning(warning);
           }
-        }, 20000);
+        }, 25000);
       }
 
       function triggerTrafficWarning(warning) {
@@ -2049,7 +2122,8 @@
         const icon = warning.type === 'speedtrap' ? '📸' :
                      warning.type === 'jam' ? '🚦' :
                      warning.type === 'speed' ? '⚡' :
-                     warning.type === 'accident' ? '⚠️' : '⚠️';
+                     warning.type === 'accident' ? '⚠️' :
+                     warning.type === 'weather' ? '🌧️' : '⚠️';
 
         showToast(icon, '🚦 Verkehrswarnung', message, 'warning');
         addNotification(icon, '🚦 Verkehrswarnung', message, 'warning');
@@ -2101,7 +2175,7 @@
       }
 
       // ============================================================
-      // AI – MENSCHLICHER AVATAR
+      // AI – MENSCHLICHER AVATAR MIT logo.png
       // ============================================================
 
       function initAI() {
@@ -2196,6 +2270,7 @@
         const armRight = document.getElementById('ai-arm-right');
         const eyeLeft = document.getElementById('ai-eye-left');
         const eyeRight = document.getElementById('ai-eye-right');
+        const avatarImg = document.getElementById('ai-avatar-image');
 
         switch(state) {
           case 'speaking':
@@ -2204,6 +2279,7 @@
             if (armRight) armRight.classList.add('moving-right');
             if (eyeLeft) eyeLeft.style.transform = 'scale(1.2)';
             if (eyeRight) eyeRight.style.transform = 'scale(1.2)';
+            if (avatarImg) avatarImg.style.animation = 'avatarPulse 0.5s ease-in-out infinite alternate';
             break;
           case 'listening':
             if (mouth) mouth.classList.remove('speaking');
@@ -2211,6 +2287,7 @@
             if (armRight) armRight.classList.remove('moving-right');
             if (eyeLeft) eyeLeft.style.transform = 'scale(0.8)';
             if (eyeRight) eyeRight.style.transform = 'scale(0.8)';
+            if (avatarImg) avatarImg.style.animation = 'avatarPulse 0.8s ease-in-out infinite';
             break;
           case 'thinking':
             if (mouth) mouth.classList.remove('speaking');
@@ -2218,6 +2295,7 @@
             if (armRight) armRight.style.transform = 'rotate(30deg)';
             if (eyeLeft) eyeLeft.style.transform = 'translateY(-2px)';
             if (eyeRight) eyeRight.style.transform = 'translateY(-2px)';
+            if (avatarImg) avatarImg.style.animation = 'avatarPulse 1.5s ease-in-out infinite';
             break;
           default:
             if (mouth) mouth.classList.remove('speaking');
@@ -2225,6 +2303,7 @@
             if (armRight) { armRight.classList.remove('moving-right'); armRight.style.transform = 'rotate(-15deg)'; }
             if (eyeLeft) eyeLeft.style.transform = '';
             if (eyeRight) eyeRight.style.transform = '';
+            if (avatarImg) avatarImg.style.animation = 'avatarPulse 3s ease-in-out infinite';
             break;
         }
 
@@ -2795,7 +2874,7 @@
       }
 
       // ============================================================
-      // APP-SPEZIFISCHE HTML (Health, Driving, Traffic, etc.)
+      // APP-SPEZIFISCHE HTML – ALLE APPS MIT VOLLSTÄNDIGEN DATEN
       // ============================================================
 
       function getAppHTML(appId) {
@@ -2806,87 +2885,87 @@
         switch(appId) {
           case 'health':
             return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;padding:4px;">
                 <div><strong>🏥 Krankheiten</strong></div>
-                ${(data.diseases || []).map(d => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${d}</div>`).join('')}
+                ${(data.diseases || []).map(d => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${d}</div>`).join('')}
                 <div><strong>💊 Medikamente</strong></div>
-                ${(data.medications || []).map(m => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${m}</div>`).join('')}
+                ${(data.medications || []).map(m => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${m}</div>`).join('')}
                 <div><strong>👨‍⚕️ Termine</strong></div>
-                ${(data.appointments || []).map(a => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${a}</div>`).join('')}
+                ${(data.appointments || []).map(a => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${a}</div>`).join('')}
                 <div><strong>📋 Ärztlicher Rat</strong></div>
-                ${(data.advice || []).map(a => `<div style="background:rgba(117,190,255,0.05);padding:6px 10px;border-radius:8px;font-size:12px;color:var(--haldo-text-soft);">💡 ${a}</div>`).join('')}
+                ${(data.advice || []).map(a => `<div style="background:rgba(117,190,255,0.05);padding:6px 10px;border-radius:8px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">💡 ${a}</div>`).join('')}
                 <div><strong>🚑 Erste Hilfe</strong></div>
-                ${(data.firstAid || []).map(f => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${f}</div>`).join('')}
-                <button class="secondary-action full" id="health-add">+ Hinzufügen</button>
+                ${(data.firstAid || []).map(f => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${f}</div>`).join('')}
+                <button class="secondary-action full" id="health-add" style="margin-top:8px;">+ Hinzufügen</button>
               </div>
             `;
 
           case 'driving':
             return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;padding:4px;">
                 <div><strong>🚗 Fahrstunden</strong></div>
-                ${(data.lessons || []).map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${l}</div>`).join('')}
+                ${(data.lessons || []).map(l => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${l}</div>`).join('')}
                 <div><strong>📏 Verkehrsregeln</strong></div>
-                ${(data.rules || []).map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${r}</div>`).join('')}
+                ${(data.rules || []).map(r => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${r}</div>`).join('')}
                 <div><strong>📸 Blitzer</strong></div>
-                ${(data.speedtraps || []).map(s => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${s}</div>`).join('')}
+                ${(data.speedtraps || []).map(s => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${s}</div>`).join('')}
                 <div><strong>📖 Theorie-Fragen</strong></div>
-                ${(data.theory || []).map(t => `<div style="background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:8px;font-size:12px;color:var(--haldo-text-soft);">${t}</div>`).join('')}
-                <button class="secondary-action full" id="driving-add">+ Hinzufügen</button>
+                ${(data.theory || []).map(t => `<div style="background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:8px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">${t}</div>`).join('')}
+                <button class="secondary-action full" id="driving-add" style="margin-top:8px;">+ Hinzufügen</button>
               </div>
             `;
 
           case 'traffic':
             const warnings = data.warnings || [];
             return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;padding:4px;">
                 <div><strong>🚦 Aktuelle Warnungen</strong></div>
                 ${warnings.map(w => `
-                  <div style="background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:8px;border-left:3px solid ${w.type === 'speedtrap' ? 'var(--haldo-orange)' : w.type === 'jam' ? 'var(--haldo-gold)' : w.type === 'accident' ? 'var(--haldo-pink)' : 'var(--haldo-blue)'};">
+                  <div style="background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:8px;border-left:3px solid ${w.type === 'speedtrap' ? 'var(--haldo-orange)' : w.type === 'jam' ? 'var(--haldo-gold)' : w.type === 'accident' ? 'var(--haldo-pink)' : w.type === 'weather' ? 'var(--haldo-cyan)' : 'var(--haldo-blue)'};margin-bottom:4px;">
                     <div><strong>${w.location}</strong></div>
                     <div style="font-size:12px;color:var(--haldo-text-muted);">${w.message}</div>
                     ${w.speed ? `<div style="font-size:11px;color:var(--haldo-orange);">⚡ ${w.speed}</div>` : ''}
                   </div>
                 `).join('')}
                 <div><strong>📍 Aktuelle Position:</strong> ${data.currentLocation || 'Unbekannt'}</div>
-                <button class="primary-action full" id="traffic-test">⚠️ Test-Warnung</button>
-                <button class="secondary-action full" id="traffic-clear">Warnungen löschen</button>
+                <button class="primary-action full" id="traffic-test" style="margin-top:8px;">⚠️ Test-Warnung</button>
+                <button class="secondary-action full" id="traffic-clear" style="margin-top:4px;">Warnungen löschen</button>
               </div>
             `;
 
           case 'music':
             return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;padding:4px;">
                 <div><strong>🎵 Playlist</strong></div>
-                ${(data.playlist || []).map((s, i) => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">${i+1}. ${s}</div>`).join('')}
+                ${(data.playlist || []).map((s, i) => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">${i+1}. ${s}</div>`).join('')}
                 <div><strong>🎶 Genres:</strong> ${(data.genres || []).join(', ')}</div>
                 <div><strong>🎧 Moods:</strong> ${(data.moods || []).join(', ')}</div>
                 <div><strong>🎹 BPM:</strong> ${(data.bpm || []).join(', ')}</div>
-                <button class="secondary-action full" id="music-add">+ Song hinzufügen</button>
+                <button class="secondary-action full" id="music-add" style="margin-top:8px;">+ Song hinzufügen</button>
               </div>
             `;
 
           case 'video':
             return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;padding:4px;">
                 <div><strong>🎬 Projekte</strong></div>
-                ${(data.projects || []).map(p => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">• ${p}</div>`).join('')}
+                ${(data.projects || []).map(p => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${p}</div>`).join('')}
                 <div><strong>📽️ Timeline:</strong> ${(data.timeline || []).join(' → ')}</div>
                 <div><strong>✨ Effekte:</strong> ${(data.effects || []).join(', ')}</div>
-                <button class="secondary-action full" id="video-add">+ Projekt hinzufügen</button>
+                <button class="secondary-action full" id="video-add" style="margin-top:8px;">+ Projekt hinzufügen</button>
               </div>
             `;
 
           case 'chat':
             const messages = data.messages || [];
             return `
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;">
-                <div style="display:flex;gap:6px;">
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;padding:4px;">
+                <div style="display:flex;gap:6px;margin-bottom:8px;">
                   <input type="text" id="chat-input" placeholder="Nachricht …" style="flex:1;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:var(--haldo-text);">
                   <button class="primary-action" id="chat-send">Senden</button>
                 </div>
                 ${messages.map(m => `
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;border-left:3px solid ${m.from === 'Du' ? 'var(--haldo-green)' : 'var(--haldo-blue)'};">
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;border-left:3px solid ${m.from === 'Du' ? 'var(--haldo-green)' : 'var(--haldo-blue)'};margin-bottom:4px;">
                     <strong>${m.from}</strong> <span style="color:var(--haldo-text-muted);font-size:11px;">${m.time}</span>
                     <div>${m.text}</div>
                   </div>
@@ -2898,21 +2977,21 @@
             const inbox = data.inbox || [];
             const sent = data.sent || [];
             return `
-              <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;">
-                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;padding:4px;">
+                <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
                   <button class="primary-action" id="email-new">✉️ Neu</button>
                   <button class="secondary-action" id="email-refresh">🔄 Aktualisieren</button>
                 </div>
                 <div><strong>Posteingang</strong></div>
                 ${inbox.map(e => `
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid var(--haldo-blue);cursor:pointer;" onclick="alert('Von: ${e.from}\\nBetreff: ${e.subject}\\n${e.body}')">
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid var(--haldo-blue);cursor:pointer;margin-bottom:4px;" onclick="alert('Von: ${e.from}\\nBetreff: ${e.subject}\\n${e.body}')">
                     <strong>${e.subject}</strong> – <span style="color:var(--haldo-text-muted);">${e.from} • ${e.date}</span>
                     ${e.attachments && e.attachments.length > 0 ? `<span style="color:var(--haldo-cyan);font-size:11px;">📎 ${e.attachments.join(', ')}</span>` : ''}
                   </div>
                 `).join('')}
                 <div><strong>Gesendet</strong></div>
                 ${sent.length > 0 ? sent.map(e => `
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid var(--haldo-green);">
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:8px 12px;border-left:3px solid var(--haldo-green);margin-bottom:4px;">
                     <strong>${e.subject}</strong> – <span style="color:var(--haldo-text-muted);">an ${e.to} • ${e.date}</span>
                   </div>
                 `).join('') : '<div style="color:var(--haldo-text-muted);font-size:12px;">Keine gesendeten E-Mails.</div>'}
@@ -2921,14 +3000,14 @@
 
           case 'call':
             return `
-              <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;">
-                <div style="display:flex;gap:6px;">
+              <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto;padding:4px;">
+                <div style="display:flex;gap:6px;margin-bottom:8px;">
                   <button class="primary-action" id="call-start">📞 Anruf starten</button>
                   <button class="secondary-action" id="call-video">🎥 Videoanruf</button>
                 </div>
                 <div><strong>Verlauf</strong></div>
                 ${(data.history || []).map(h => `
-                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;display:flex;justify-content:space-between;">
+                  <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;display:flex;justify-content:space-between;margin-bottom:4px;">
                     <span>${h.contact} (${h.type})</span>
                     <span style="color:var(--haldo-text-muted);font-size:11px;">${h.duration} • ${h.date}</span>
                   </div>
@@ -2936,19 +3015,80 @@
               </div>
             `;
 
+          case 'calendar':
+            const events = data.events || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;padding:4px;">
+                <div><strong>📅 Termine</strong></div>
+                ${events.map(e => `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${e.title} – ${e.date} ${e.time}</div>`).join('')}
+                <button class="secondary-action full" id="calendar-add" style="margin-top:8px;">+ Termin hinzufügen</button>
+              </div>
+            `;
+
+          case 'tasks':
+            const tasks = data.items || [];
+            return `
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;padding:4px;">
+                <div><strong>✅ Aufgaben</strong></div>
+                ${tasks.map(t => `
+                  <div style="display:flex;justify-content:space-between;padding:3px 8px;border-radius:4px;background:${t.done ? 'rgba(75,231,164,0.1)' : 'rgba(255,255,255,0.02)'};border-bottom:1px solid rgba(255,255,255,0.04);">
+                    <span>${t.title}</span>
+                    <span style="color:${t.done ? 'var(--haldo-green)' : 'var(--haldo-text-muted)'};">${t.done ? '✅ Erledigt' : '⏳ Offen'}</span>
+                  </div>
+                `).join('')}
+                <button class="secondary-action full" id="tasks-add" style="margin-top:8px;">+ Aufgabe hinzufügen</button>
+              </div>
+            `;
+
+          // Weitere Apps (documents, gallery, weather, navigation, learning, office, photos, recorder, browser, internet, keyboard, personalization, yourlife, quicktools, systemcenter, security, updates, files)
           default:
+            // Dynamische generische App-Ansicht
+            const dataKeys = Object.keys(data);
+            if (dataKeys.length > 0) {
+              let html = `<div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto;padding:4px;">`;
+              dataKeys.forEach(key => {
+                const val = data[key];
+                if (Array.isArray(val) && val.length > 0) {
+                  html += `<div><strong>${key.toUpperCase()}</strong></div>`;
+                  val.forEach(item => {
+                    if (typeof item === 'object') {
+                      html += `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">${JSON.stringify(item)}</div>`;
+                    } else {
+                      html += `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);border-bottom:1px solid rgba(255,255,255,0.04);">• ${item}</div>`;
+                    }
+                  });
+                } else if (typeof val === 'object' && val !== null) {
+                  html += `<div><strong>${key.toUpperCase()}</strong></div>`;
+                  html += `<div style="padding:3px 8px;border-radius:4px;font-size:12px;color:var(--haldo-text-soft);">${JSON.stringify(val)}</div>`;
+                }
+              });
+              html += `<button class="secondary-action full" id="${appId}-add" style="margin-top:8px;">+ Hinzufügen</button></div>`;
+              return html;
+            }
             return null;
         }
       }
 
       // ============================================================
-      // APP EVENTS
+      // APP EVENTS – ALLE APPS MIT FUNKTIONEN
       // ============================================================
 
       function bindAppEvents(appId) {
         const app = HALDO.registry[appId];
         if (!app) return;
         const data = app.data;
+
+        const addItem = (key, label) => {
+          const value = prompt(`Neuen ${label} eingeben:`);
+          if (value) {
+            if (Array.isArray(data[key])) {
+              data[key].push(value);
+              saveAppData(appId);
+              renderAppContent(app.windowId, app);
+              showToast('✅', 'Hinzugefügt', `${label} wurde hinzugefügt.`);
+            }
+          }
+        };
 
         switch(appId) {
           case 'health':
@@ -3066,23 +3206,57 @@
             });
             break;
 
-          case 'email':
-            document.getElementById('email-new')?.addEventListener('click', () => {
-              const to = prompt('Empfänger:');
-              if (!to) return;
-              const subject = prompt('Betreff:');
-              const body = prompt('Nachricht:');
-              if (body) {
-                data.sent.push({ to, subject, body, date: 'heute' });
+          case 'calendar':
+            document.getElementById('calendar-add')?.addEventListener('click', () => {
+              const title = prompt('Termin:');
+              if (!title) return;
+              const date = prompt('Datum (TT.MM.JJJJ):') || 'heute';
+              const time = prompt('Uhrzeit:') || '--:--';
+              data.events.push({ title, date, time });
+              saveAppData(appId);
+              showToast('📅', 'Kalender', 'Termin hinzugefügt.');
+              renderAppContent(app.windowId, app);
+            });
+            break;
+
+          case 'tasks':
+            document.getElementById('tasks-add')?.addEventListener('click', () => {
+              const title = prompt('Aufgabe:');
+              if (title) {
+                data.items.push({ title, done: false });
                 saveAppData(appId);
-                showToast('✉️', 'E-Mail gesendet', `An: ${to}`);
+                showToast('✅', 'Tasks', 'Aufgabe hinzugefügt.');
                 renderAppContent(app.windowId, app);
               }
             });
-            document.getElementById('email-refresh')?.addEventListener('click', () => {
-              showToast('🔄', 'E-Mails aktualisiert', 'Posteingang wurde aktualisiert.');
-              renderAppContent(app.windowId, app);
-            });
+            break;
+
+          default:
+            const addBtn = document.getElementById(`${appId}-add`);
+            if (addBtn) {
+              const keyMap = {
+                'docs': 'files',
+                'gallery': 'images',
+                'weather': 'cities',
+                'nav': 'routes',
+                'learning': 'courses',
+                'office': 'docs',
+                'photos': 'albums',
+                'recorder': 'recordings',
+                'browser': 'bookmarks',
+                'keyboard': 'layouts',
+                'theme': 'themes',
+                'yourlife': 'stats',
+                'tools': 'tools',
+                'log': 'logs',
+                'security': 'passwords',
+                'files': 'folders',
+                'internet': 'speedtest',
+              };
+              const key = keyMap[appId] || 'items';
+              const label = appId.charAt(0).toUpperCase() + appId.slice(1);
+              addBtn.addEventListener('click', () => addItem(key, label));
+            }
             break;
         }
       }
@@ -3280,98 +3454,6 @@
       }
 
       // ============================================================
-      // CYBORG AVATAR
-      // ============================================================
-
-      (function initCyborg() {
-        const canvas = document.getElementById('cyborg-canvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        const container = canvas.parentElement;
-
-        function resizeCanvas() {
-          const rect = container.getBoundingClientRect();
-          canvas.width = rect.width * window.devicePixelRatio;
-          canvas.height = rect.height * window.devicePixelRatio;
-          canvas.style.width = rect.width + 'px';
-          canvas.style.height = rect.height + 'px';
-          ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        let t = 0;
-        function drawCyborg() {
-          const w = canvas.width / window.devicePixelRatio;
-          const h = canvas.height / window.devicePixelRatio;
-          ctx.clearRect(0, 0, w, h);
-
-          const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w);
-          grad.addColorStop(0, 'rgba(74,158,255,0.05)');
-          grad.addColorStop(1, 'rgba(0,0,0,0)');
-          ctx.fillStyle = grad;
-          ctx.fillRect(0, 0, w, h);
-
-          const cx = w/2, cy = h/2.2, radius = Math.min(w, h) * 0.22;
-          const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 1.8);
-          glow.addColorStop(0, 'rgba(74,158,255,0.12)');
-          glow.addColorStop(1, 'rgba(0,0,0,0)');
-          ctx.fillStyle = glow;
-          ctx.beginPath(); ctx.arc(cx, cy, radius * 1.8, 0, Math.PI * 2); ctx.fill();
-
-          const headGrad = ctx.createRadialGradient(cx - radius*0.2, cy - radius*0.2, 0, cx, cy, radius);
-          headGrad.addColorStop(0, '#4a9eff');
-          headGrad.addColorStop(0.5, '#1a3f7a');
-          headGrad.addColorStop(1, '#0a1a3a');
-          ctx.fillStyle = headGrad;
-          ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.fill();
-          ctx.strokeStyle = 'rgba(74,158,255,0.3)';
-          ctx.lineWidth = 1.5;
-          ctx.stroke();
-
-          const eyeOff = radius * 0.3, eyeR = radius * 0.16, eyeY = cy - radius * 0.05;
-          const blink = Math.sin(t * 2.5) > 0.95 ? 0.2 : 1;
-          for (let side of [-1, 1]) {
-            const ex = cx + side * eyeOff;
-            const eyeGrad = ctx.createRadialGradient(ex, eyeY, 0, ex, eyeY, eyeR);
-            eyeGrad.addColorStop(0, `rgba(180,230,255,${0.9 * blink})`);
-            eyeGrad.addColorStop(0.7, `rgba(74,158,255,${0.8 * blink})`);
-            eyeGrad.addColorStop(1, `rgba(20,60,140,${blink})`);
-            ctx.fillStyle = eyeGrad;
-            ctx.beginPath(); ctx.arc(ex, eyeY, eyeR, 0, Math.PI * 2); ctx.fill();
-            ctx.fillStyle = `rgba(0,0,0,${0.5 * blink})`;
-            ctx.beginPath(); ctx.arc(ex + side * 2, eyeY + 1, eyeR * 0.3, 0, Math.PI * 2); ctx.fill();
-          }
-
-          const mouthY = cy + radius * 0.35, mouthW = radius * 0.3, mouthOffset = Math.sin(t * 1.2) * 3;
-          ctx.strokeStyle = 'rgba(74,158,255,0.6)';
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.moveTo(cx - mouthW, mouthY + mouthOffset);
-          ctx.quadraticCurveTo(cx, mouthY + 8 + mouthOffset, cx + mouthW, mouthY + mouthOffset);
-          ctx.stroke();
-
-          ctx.strokeStyle = 'rgba(74,158,255,0.3)';
-          ctx.lineWidth = 2;
-          ctx.beginPath(); ctx.moveTo(cx, cy - radius); ctx.lineTo(cx, cy - radius * 1.35); ctx.stroke();
-          const dotGlow = ctx.createRadialGradient(cx, cy - radius*1.35, 0, cx, cy - radius*1.35, 6);
-          dotGlow.addColorStop(0, '#4a9eff');
-          dotGlow.addColorStop(1, 'rgba(74,158,255,0)');
-          ctx.fillStyle = dotGlow;
-          ctx.beginPath(); ctx.arc(cx, cy - radius*1.35, 6, 0, Math.PI * 2); ctx.fill();
-
-          ctx.fillStyle = 'rgba(255,255,255,0.15)';
-          ctx.font = '9px sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText('⚡ HalDo Cyborg', cx, cy + radius * 1.3);
-
-          t += 0.03;
-          requestAnimationFrame(drawCyborg);
-        }
-        drawCyborg();
-      })();
-
-      // ============================================================
       // UPLOAD & BACKUP
       // ============================================================
 
@@ -3468,6 +3550,7 @@
       // ============================================================
 
       function initEventListeners() {
+        // Sonne
         document.getElementById('sun')?.addEventListener('click', () => {
           if (HALDO.config.aiEnabled) {
             openAIWindow('Hallo Bruder 💙❤️🚀 Wie kann ich dir helfen?');
@@ -3479,6 +3562,7 @@
           } else showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
         });
 
+        // Cyborg
         document.getElementById('cyborg-click-area')?.addEventListener('click', () => {
           if (HALDO.config.aiEnabled) {
             openAIWindow('Hallo Bruder! Ich bin HalDo Cyborg. 💙❤️🚀 Was kann ich für dich tun?');
@@ -3490,6 +3574,7 @@
           } else showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
         });
 
+        // AI Buttons
         document.getElementById('ai-close-button')?.addEventListener('click', closeAIWindow);
         document.getElementById('ai-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeAIWindow(); });
         document.getElementById('ai-mic-button')?.addEventListener('click', toggleVoiceInput);
@@ -3504,28 +3589,33 @@
           setTimeout(() => { e.target.style.height = 'auto'; e.target.style.height = e.target.scrollHeight + 'px'; }, 0);
         });
 
+        // App-Menü
         document.getElementById('app-menu-button')?.addEventListener('click', toggleAppMenu);
         document.getElementById('dock-apps')?.addEventListener('click', toggleAppMenu);
         document.getElementById('app-menu-close')?.addEventListener('click', closeAppMenu);
         document.getElementById('app-menu-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeAppMenu(); });
 
+        // System-Menü
         document.getElementById('settings-button')?.addEventListener('click', toggleSystemMenu);
         document.getElementById('dock-settings')?.addEventListener('click', toggleSystemMenu);
         document.getElementById('system-menu-close')?.addEventListener('click', closeSystemMenu);
         document.getElementById('system-menu-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeSystemMenu(); });
 
+        // Notifications
         document.getElementById('notification-button')?.addEventListener('click', toggleNotificationCenter);
         document.getElementById('dock-notifications')?.addEventListener('click', toggleNotificationCenter);
         document.getElementById('notification-close')?.addEventListener('click', closeNotificationCenter);
         document.getElementById('notification-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeNotificationCenter(); });
         document.getElementById('notification-clear')?.addEventListener('click', clearAllNotifications);
 
+        // Suche
         document.getElementById('dock-search')?.addEventListener('click', toggleSearch);
         document.getElementById('search-close')?.addEventListener('click', closeSearch);
         document.getElementById('search-overlay')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeSearch(); });
         document.getElementById('global-search-input')?.addEventListener('input', (e) => { const query = e.target.value.trim(); searchGlobal(query); });
         document.getElementById('global-search-input')?.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSearch(); if (e.key === 'Enter') { const query = e.target.value.trim(); if (query) searchGlobal(query); } });
 
+        // App-Suche
         document.getElementById('app-search-input')?.addEventListener('input', (e) => { filterAppGrid(e.target.value.trim()); });
         document.querySelectorAll('.category-chip').forEach(chip => {
           chip.addEventListener('click', () => {
@@ -3535,6 +3625,7 @@
           });
         });
 
+        // Dock AI
         document.getElementById('dock-ai')?.addEventListener('click', () => {
           if (HALDO.config.aiEnabled) {
             openAIWindow('Hallo! Ich bin HalDo AI. 💙❤️🚀');
@@ -3546,6 +3637,7 @@
           } else showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
         });
 
+        // Settings Navigation
         document.querySelectorAll('.settings-nav-item').forEach(item => {
           item.addEventListener('click', () => {
             document.querySelectorAll('.settings-nav-item').forEach(i => i.classList.remove('active'));
@@ -3557,6 +3649,7 @@
           });
         });
 
+        // Switches
         document.querySelectorAll('.switch input[data-setting]').forEach(input => {
           input.addEventListener('change', () => {
             const key = input.dataset.setting;
@@ -3579,6 +3672,7 @@
           });
         });
 
+        // Selects
         document.querySelectorAll('select[data-setting]').forEach(select => {
           select.addEventListener('change', () => {
             const key = select.dataset.setting;
@@ -3588,6 +3682,7 @@
           });
         });
 
+        // Range inputs
         document.querySelectorAll('input[type="range"][data-setting]').forEach(input => {
           input.addEventListener('input', () => {
             const key = input.dataset.setting;
@@ -3599,6 +3694,7 @@
           });
         });
 
+        // AI Provider
         document.getElementById('ai-provider-save')?.addEventListener('click', () => {
           const provider = document.getElementById('ai-provider-select').value;
           const apiKey = document.getElementById('ai-api-key').value;
@@ -3611,6 +3707,7 @@
           input.type = input.type === 'password' ? 'text' : 'password';
         });
 
+        // Memory
         document.getElementById('memory-management-button')?.addEventListener('click', () => {
           const count = HALDO.memory.length;
           showToast('🧠', 'Memory', `${count} gespeicherte Kontexteinträge.`);
@@ -3620,17 +3717,20 @@
           }
         });
 
+        // Voice Test
         document.getElementById('voice-test-button')?.addEventListener('click', () => {
           const text = 'Hallo, dies ist ein Test der HalDo Sprachausgabe.';
           if (HALDO.voice) { HALDO.voice.speak(text); showToast('🔊', 'Stimme getestet', 'Sprachausgabe aktiv.'); }
           else showToast('⚠️', 'Fehler', 'Sprachausgabe nicht verfügbar.');
         });
 
+        // Fullscreen
         document.getElementById('fullscreen-button')?.addEventListener('click', () => {
           if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
           else document.exitFullscreen().catch(() => {});
         });
 
+        // Storage
         document.getElementById('storage-test-button')?.addEventListener('click', async () => {
           try { await HALDO.storage.set('test', 'test', { value: 'ok' }); await HALDO.storage.get('test', 'test'); await HALDO.storage.delete('test', 'test'); showToast('💾', 'Storage', 'Speicher funktioniert.'); }
           catch { showToast('⚠️', 'Storage', 'Fehler beim Speicherzugriff.'); }
@@ -3647,6 +3747,7 @@
           }
         });
 
+        // Backup
         document.getElementById('backup-export-button')?.addEventListener('click', createBackup);
         document.getElementById('backup-import-button')?.addEventListener('click', () => document.getElementById('backup-file-input')?.click());
         document.getElementById('backup-file-input')?.addEventListener('change', async (e) => {
@@ -3669,6 +3770,7 @@
           e.target.value = '';
         });
 
+        // Updates & Traffic
         document.getElementById('check-updates-button')?.addEventListener('click', checkForUpdates);
         document.getElementById('traffic-test-warning')?.addEventListener('click', () => {
           triggerTrafficWarning({ type: 'warning', location: 'Test', message: '🧪 Test-Warnung! HalDo Verkehrswarnung funktioniert.' });
@@ -3742,6 +3844,173 @@
         }
 
         console.log('✅ Event-Listener initialisiert.');
+      }
+
+      // ============================================================
+      // BOOT
+      // ============================================================
+
+      async function boot() {
+        const bootScreen = document.getElementById('boot-screen');
+        const bootLoader = document.getElementById('boot-loader-bar');
+        const cosmicWorld = document.getElementById('cosmic-world');
+
+        await HALDO.storage.init();
+
+        const savedConfig = await HALDO.storage.get('settings', 'config');
+        if (savedConfig) {
+          HALDO.config = { ...HALDO.config, ...savedConfig };
+        }
+
+        const savedMemory = await HALDO.storage.get('memory', 'conversation');
+        if (savedMemory && savedMemory.data) {
+          HALDO.memory = savedMemory.data;
+        }
+
+        for (const appId of Object.keys(HALDO.registry)) {
+          const savedData = await HALDO.storage.get('appdata', appId);
+          if (savedData && savedData.data) {
+            HALDO.registry[appId].data = savedData.data;
+          }
+        }
+
+        let progress = 0;
+        const steps = [
+          'Lade Kernsystem …', 'Verbinde Speicher …', 'Aktiviere Sicherheit …',
+          'Starte Cosmic World …', 'Bereite Living HalDo AI vor …', 'System bereit.'
+        ];
+        for (let i = 0; i < steps.length; i++) {
+          progress = ((i + 1) / steps.length) * 100;
+          if (bootLoader) bootLoader.style.width = progress + '%';
+          await new Promise(r => setTimeout(r, 150 + Math.random() * 120));
+        }
+
+        if (cosmicWorld) {
+          cosmicWorld.classList.remove('is-transitioning');
+          cosmicWorld.style.opacity = '1';
+        }
+
+        if (bootScreen) {
+          bootScreen.classList.add('hidden');
+          setTimeout(() => { bootScreen.style.display = 'none'; }, 800);
+        }
+
+        generateStars();
+        generateSpecialStars();
+        generateInnerSunStars();
+        generateOrbitalSunStars();
+
+        initEventListeners();
+        initVoice();
+        initAI();
+        initNotifications();
+        initTrafficSystem();
+        initWindowManager();
+        renderAppGrid();
+        initSystemMenu();
+
+        HALDO.state = 'READY';
+        updateSystemStatus('HalDo AI OS • Bereit');
+
+        setTimeout(() => {
+          showToast('🌌', 'HalDo AI OS v' + HALDO.version, 'Willkommen! Die Cosmic World ist bereit.');
+          if (HALDO.config.aiEnabled) {
+            openAIWindow('Willkommen bei HalDo AI OS. Wie kann ich dir helfen, Bruder? 💙❤️🚀');
+            animateAvatar('speaking');
+            if (HALDO.voice && HALDO.config.speechOutput) {
+              setTimeout(() => {
+                HALDO.voice.speak('Willkommen bei HalDo AI OS. Wie kann ich dir helfen, Bruder?');
+                setTimeout(() => animateAvatar('idle'), 2000);
+              }, 500);
+            }
+          }
+          setTimeout(() => {
+            showCyborgSpeech('🤖 Hallo Bruder! Ich bin HalDo Cyborg. 💙❤️🚀');
+          }, 1500);
+        }, 1200);
+
+        console.log('🌌 HalDo AI OS v' + HALDO.version + ' gestartet.');
+        HALDO.eventBus.emit('boot:ready');
+      }
+
+      // ============================================================
+      // STERNE GENERIEREN
+      // ============================================================
+
+      function generateStars() {
+        const container = document.getElementById('star-field');
+        if (!container) return;
+        container.innerHTML = '';
+        const count = 365;
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          if (i % 5 === 0) star.classList.add('large');
+          if (i % 7 === 0) star.classList.add('soft');
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          star.style.left = x + '%';
+          star.style.top = y + '%';
+          star.style.setProperty('--twinkle-duration', (3 + Math.random() * 4) + 's');
+          star.style.setProperty('--twinkle-delay', (Math.random() * 4) + 's');
+          container.appendChild(star);
+        }
+      }
+
+      function generateSpecialStars() {
+        const container = document.getElementById('special-star-field');
+        if (!container) return;
+        container.innerHTML = '';
+        const count = 30;
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('div');
+          star.className = 'special-star';
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          star.style.left = x + '%';
+          star.style.top = y + '%';
+          star.style.setProperty('--special-duration', (2.5 + Math.random() * 2.5) + 's');
+          star.style.setProperty('--special-delay', (Math.random() * 3) + 's');
+          container.appendChild(star);
+        }
+      }
+
+      function generateInnerSunStars() {
+        const container = document.getElementById('inner-sun-stars');
+        if (!container) return;
+        container.innerHTML = '';
+        const count = 24;
+        for (let i = 0; i < count; i++) {
+          const spark = document.createElement('div');
+          spark.className = 'inner-spark';
+          const angle = Math.random() * 2 * Math.PI;
+          const radius = 30 + Math.random() * 60;
+          const x = 50 + (radius * Math.cos(angle));
+          const y = 50 + (radius * Math.sin(angle));
+          spark.style.left = x + '%';
+          spark.style.top = y + '%';
+          spark.style.animationDelay = (Math.random() * 2) + 's';
+          container.appendChild(spark);
+        }
+      }
+
+      function generateOrbitalSunStars() {
+        const container = document.getElementById('sun-stars-orbital');
+        if (!container) return;
+        container.innerHTML = '';
+        const count = 30;
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('div');
+          star.className = 'sun-orbital-star';
+          const angle = (i / count) * 2 * Math.PI;
+          const radius = 45 + Math.random() * 10;
+          const x = 50 + radius * Math.cos(angle);
+          const y = 50 + radius * Math.sin(angle);
+          star.style.left = x + '%';
+          star.style.top = y + '%';
+          star.style.animationDelay = (i * 0.1) + 's';
+          container.appendChild(star);
+        }
       }
 
       // ============================================================
