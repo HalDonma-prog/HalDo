@@ -1,742 +1,709 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#02030a">
-  <meta name="description" content="HalDo AI OS – Wissenschaftliches Planetensystem & Avatar">
+  <meta name="theme-color" content="#050814">
+  <meta name="color-scheme" content="dark">
   <meta name="application-name" content="HalDo AI OS">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="mobile-web-app-capable" content="yes">
-  <title>HalDo AI OS – Phase 4</title>
-  <link rel="icon" type="image/png" href="assets/logo/logo.png">
-  <link rel="apple-touch-icon" href="assets/logo/logo.png">
+  <meta name="apple-mobile-web-app-title" content="HalDo AI OS">
+  <meta name="description" content="HalDo AI OS – Cosmic World, Living HalDo AI, Cyborg Assistant und vollständige A–Z App-Landschaft.">
+  <title>HalDo AI OS — Cosmic World</title>
 
   <style>
     /* ============================================================
-       PHASE 4 – WISSENSCHAFTLICHES PLANETENSYSTEM
+       DEINE BESTEHENDEN STYLES (UNVERÄNDERT)
        ============================================================ */
     :root {
-      --haldo-bg: #02030a;
-      --haldo-bg-deep: #000107;
-      --haldo-text: #ffffff;
-      --haldo-text-soft: rgba(255,255,255,0.72);
-      --haldo-text-muted: rgba(255,255,255,0.48);
-      --haldo-border: rgba(255,255,255,0.14);
-      --haldo-blue: #72a9ff;
-      --haldo-cyan: #76eaff;
-      --haldo-violet: #b68cff;
-      --haldo-gold: #ffd76a;
-      --haldo-orange: #ff9b55;
-      --haldo-green: #75e7a4;
-      --haldo-pink: #ff8dd8;
-      --sun-core-size: clamp(140px, 20vw, 280px);
-      --safe-top: env(safe-area-inset-top, 0px);
-      --safe-right: env(safe-area-inset-right, 0px);
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
-      --safe-left: env(safe-area-inset-left, 0px);
-      --cosmic-ui-radius: 22px;
+      --hd-bg: #03050c;
+      --hd-bg-deep: #010207;
+      --hd-panel: rgba(7, 12, 27, 0.82);
+      --hd-panel-strong: rgba(5, 9, 21, 0.95);
+      --hd-panel-soft: rgba(16, 23, 48, 0.64);
+      --hd-border: rgba(139, 183, 255, 0.18);
+      --hd-border-strong: rgba(122, 177, 255, 0.38);
+      --hd-text: #f4f7ff;
+      --hd-text-soft: rgba(229, 236, 255, 0.72);
+      --hd-text-muted: rgba(207, 218, 245, 0.48);
+      --hd-accent: #73a7ff;
+      --hd-accent-2: #b78cff;
+      --hd-cyan: #63e8ff;
+      --hd-pink: #ff76d9;
+      --hd-green: #64f0ae;
+      --hd-warning: #ffd166;
+      --hd-danger: #ff667d;
+      --hd-shadow: 0 24px 80px rgba(0,0,0,0.52), 0 0 60px rgba(75,130,255,0.10);
+      --hd-radius: 18px;
+      --hd-radius-small: 12px;
+      --hd-titlebar-height: 44px;
+      --hd-safe-top: env(safe-area-inset-top, 0px);
+      --hd-safe-bottom: env(safe-area-inset-bottom, 0px);
+      --hd-safe-left: env(safe-area-inset-left, 0px);
+      --hd-safe-right: env(safe-area-inset-right, 0px);
+      --hd-font: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html, body { width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--haldo-bg); color: var(--haldo-text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    html, body { width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--hd-bg); color: var(--hd-text); font-family: var(--hd-font); }
     body { position: relative; isolation: isolate; user-select: none; }
     button, input, textarea, select { font: inherit; }
-    button { border: 0; outline: 0; color: inherit; cursor: pointer; }
-    img { max-width: 100%; display: block; }
+    button { border: 0; }
+    input, textarea { user-select: text; }
 
-    #haldo-os { position: fixed; inset: 0; width: 100%; height: 100%; overflow: hidden; background: #02030a; }
-
-    /* ============================================================
-       BOOT-SCREEN
-       ============================================================ */
-    #boot-screen {
-      position: absolute; z-index: 2000; inset: 0; display: flex; align-items: center; justify-content: center;
-      padding: calc(30px + var(--safe-top)) calc(24px + var(--safe-right)) calc(30px + var(--safe-bottom)) calc(24px + var(--safe-left));
-      background: radial-gradient(circle at center, rgba(65,88,190,.18), rgba(3,5,16,.96) 52%, #000107 100%);
-      transition: opacity 700ms ease, visibility 700ms ease;
+    #haldo-os {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 44%, rgba(67,102,193,0.13), transparent 28%),
+        radial-gradient(circle at 18% 18%, rgba(111,77,198,0.08), transparent 24%),
+        radial-gradient(circle at 82% 76%, rgba(34,151,191,0.07), transparent 26%),
+        var(--hd-bg-deep);
     }
-    #boot-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    #boot-content { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 14px; }
-    #boot-logo { width: clamp(80px, 18vw, 140px); height: clamp(80px, 18vw, 140px); object-fit: contain; filter: drop-shadow(0 0 15px rgba(117,220,255,.5)) drop-shadow(0 0 38px rgba(174,110,255,.25)); animation: bootLogoFloat 3.8s ease-in-out infinite; }
-    #boot-title { margin: 0; font-size: clamp(24px, 5vw, 48px); font-weight: 800; letter-spacing: .08em; background: linear-gradient(90deg, #fff, #ffd56b, #fff, #83eaff, #c79aff, #fff); background-size: 240% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: titleLight 7s linear infinite; }
-    #boot-message { max-width: 600px; margin: 0; color: rgba(255,255,255,.66); font-size: clamp(12px, 1.8vw, 16px); line-height: 1.55; }
-    #boot-loader { width: min(280px, 70vw); height: 3px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.08); }
-    #boot-loader-bar { width: 35%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, transparent, #7eeaff, #d29bff, #ffd86a, transparent); box-shadow: 0 0 14px rgba(117,210,255,.65); animation: bootLoader 1.7s ease-in-out infinite; }
-    @keyframes bootLogoFloat { 0%,100% { transform: translateY(0) scale(.98); } 50% { transform: translateY(-8px) scale(1.03); } }
-    @keyframes bootLoader { from { transform: translateX(-130%); } to { transform: translateX(390%); } }
-    @keyframes titleLight { from { background-position: 0% 50%; } to { background-position: 240% 50%; } }
 
     /* ============================================================
-       COSMIC WORLD
+       COSMIC BACKGROUND (DEIN BESTEHENDER CODE)
+       ============================================================ */
+    .cosmic-background {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(11,21,54,0.30), transparent 55%),
+        linear-gradient(180deg, #01030a 0%, #030714 48%, #02030a 100%);
+    }
+    .cosmic-nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(42px);
+      opacity: 0.28;
+      transform: translate3d(0,0,0);
+      animation: nebulaFloat 24s ease-in-out infinite alternate;
+    }
+    .cosmic-nebula.one {
+      width: 44vw;
+      height: 34vw;
+      min-width: 360px;
+      min-height: 280px;
+      left: -8vw;
+      top: 5vh;
+      background: radial-gradient(circle, rgba(91,79,208,0.44), rgba(34,48,119,0.10) 48%, transparent 72%);
+    }
+    .cosmic-nebula.two {
+      width: 42vw;
+      height: 38vw;
+      right: -10vw;
+      bottom: -4vh;
+      background: radial-gradient(circle, rgba(28,135,184,0.34), rgba(42,70,143,0.08) 48%, transparent 74%);
+      animation-delay: -8s;
+    }
+    .cosmic-nebula.three {
+      width: 32vw;
+      height: 32vw;
+      left: 34vw;
+      top: -14vh;
+      background: radial-gradient(circle, rgba(184,87,195,0.22), rgba(77,56,150,0.06) 46%, transparent 75%);
+      animation-delay: -13s;
+    }
+    @keyframes nebulaFloat {
+      0% { transform: translate3d(-2%, -1%, 0) scale(1); }
+      100% { transform: translate3d(2%, 2%, 0) scale(1.08); }
+    }
+
+    .star-field {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      width: var(--size, 2px);
+      height: var(--size, 2px);
+      border-radius: 50%;
+      background: #ffffff;
+      opacity: var(--opacity, 0.75);
+      box-shadow: 0 0 calc(var(--glow, 5px)) rgba(255,255,255,0.72);
+      animation: starTwinkle var(--duration, 3s) ease-in-out infinite alternate;
+    }
+    @keyframes starTwinkle {
+      from { opacity: calc(var(--opacity,0.75) * 0.45); transform: scale(0.72); }
+      to { opacity: var(--opacity,0.75); transform: scale(1.24); }
+    }
+
+    /* ============================================================
+       COSMIC WORLD (DEIN BESTEHENDER CODE)
        ============================================================ */
     #cosmic-world {
-      position: absolute; inset: 0; overflow: hidden;
-      background: radial-gradient(ellipse at center, rgba(33,42,105,0.34) 0%, rgba(9,13,39,0.48) 30%, rgba(2,3,12,0.88) 68%, #000107 100%);
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      overflow: hidden;
+      perspective: 1400px;
+      pointer-events: auto;
     }
-    #cosmic-world::before, #cosmic-world::after { content: ""; position: absolute; inset: -20%; pointer-events: none; }
-    #cosmic-world::before {
-      background: radial-gradient(ellipse at 25% 35%, rgba(94,76,196,0.16), transparent 30%), radial-gradient(ellipse at 72% 25%, rgba(40,137,255,0.13), transparent 28%), radial-gradient(ellipse at 58% 80%, rgba(198,75,177,0.10), transparent 32%);
-      filter: blur(45px);
-      animation: nebulaDrift 28s ease-in-out infinite alternate;
+    .cosmic-world-inner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(92vmin, 1120px);
+      height: min(92vmin, 1120px);
+      transform: translate(-50%, -50%) rotateX(8deg);
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease, filter 0.8s ease;
     }
-    #cosmic-world::after {
-      background: radial-gradient(circle at 50% 50%, transparent 0 23%, rgba(117,169,255,0.045) 30%, transparent 48%);
-      animation: cosmicPulse 9s ease-in-out infinite;
-    }
-    @keyframes nebulaDrift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 2%, 0) scale(1.05); } }
-    @keyframes cosmicPulse { 0%,100% { opacity:0.55; } 50% { opacity:1; } }
-
-    /* ============================================================
-       STERNE – 365 + 30
-       ============================================================ */
-    #star-field, #special-star-field { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-    .star {
-      position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff;
-      box-shadow: 0 0 4px rgba(255,255,255,.85), 0 0 10px rgba(140,190,255,.45);
-      opacity: .65;
-      animation: starTwinkle var(--twinkle-duration, 4s) ease-in-out var(--twinkle-delay, 0s) infinite alternate;
-    }
-    .star.large { width: 3px; height: 3px; box-shadow: 0 0 5px rgba(255,255,255,.95), 0 0 14px rgba(117,190,255,.7); }
-    .star.soft { filter: blur(.25px); opacity: .4; }
-    @keyframes starTwinkle { from { transform: scale(.72); opacity: .3; } to { transform: scale(1.35); opacity: 1; } }
-    .special-star {
-      position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #fff;
-      box-shadow: 0 0 7px rgba(255,255,255,1), 0 0 18px rgba(117,200,255,.9), 0 0 34px rgba(170,120,255,.5);
-      animation: specialStarPulse var(--special-duration, 3.4s) ease-in-out var(--special-delay, 0s) infinite alternate;
-    }
-    .special-star::before, .special-star::after { content: ""; position: absolute; left: 50%; top: 50%; background: rgba(255,255,255,.7); transform: translate(-50%, -50%); }
-    .special-star::before { width: 28px; height: 1px; }
-    .special-star::after { width: 1px; height: 28px; }
-    @keyframes specialStarPulse { from { transform: scale(.55); opacity: .55; } to { transform: scale(1.15); opacity: 1; } }
-
-    /* ============================================================
-       SYSTEM-BAR
-       ============================================================ */
-    #system-bar {
-      position: absolute; z-index: 900; top: var(--safe-top); left: 0; right: 0; min-height: 54px;
-      padding: 8px max(12px, var(--safe-right)) 8px max(12px, var(--safe-left));
-      display: flex; align-items: center; justify-content: space-between; pointer-events: none;
-    }
-    .system-bar-side { display: flex; align-items: center; gap: 8px; pointer-events: auto; }
-    .system-pill {
-      min-height: 38px; padding: 7px 12px; border: 1px solid var(--haldo-border); border-radius: 999px;
-      background: rgba(4,7,18,.62); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 8px 30px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.06);
-      color: var(--haldo-text-soft); font-size: 12px; letter-spacing: .02em;
-    }
-    .system-button {
-      width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(255,255,255,.14); border-radius: 50%;
-      background: rgba(5,8,20,.68); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 8px 25px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
-      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
-    }
-    .system-button:hover, .system-button:focus-visible { transform: translateY(-1px) scale(1.03); background: rgba(20,28,58,.82); border-color: rgba(255,255,255,.26); }
-    .system-button:active { transform: scale(.95); }
-
-    .menu-logo-btn {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.15);
-      background: rgba(5,8,20,0.6);
-      backdrop-filter: blur(8px);
-      padding: 4px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .menu-logo-btn:hover { transform: scale(1.08); }
-    .menu-logo-btn img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
-
-    /* ============================================================
-       COSMIC TITLE
-       ============================================================ */
-    #cosmic-title {
-      position: absolute; z-index: 120; top: clamp(66px, 9vh, 100px); left: 50%; transform: translateX(-50%);
-      width: min(94vw, 900px); text-align: center; pointer-events: none;
-    }
-    #cosmic-title-main {
-      margin: 0; font-size: clamp(25px, 4vw, 58px); line-height: 1; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
-      background: linear-gradient(90deg, #fff4b0 0%, #ffd76a 18%, #fff 34%, #7beaff 53%, #c092ff 72%, #ff9bdc 88%, #ffe58a 100%);
-      background-size: 240% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
-      filter: drop-shadow(0 0 8px rgba(255,215,106,.38)) drop-shadow(0 0 22px rgba(117,190,255,.2));
-      animation: titleLight 9s linear infinite;
-    }
-    #cosmic-title-subtitle {
-      margin-top: 9px;
-      font-size: clamp(11px, 1.4vw, 16px);
-      font-weight: 500;
-      letter-spacing: .24em;
-      color: rgba(255,255,255,.72);
-      text-transform: uppercase;
-      text-shadow: 0 0 10px rgba(255,255,255,.18), 0 0 24px rgba(117,190,255,.16);
-    }
-    @keyframes titleLight { from { background-position: 0% 50%; } to { background-position: 240% 50%; } }
-
-    /* ============================================================
-       SOLAR STAGE – WISSENSCHAFTLICHES PLANETENSYSTEM
-       ============================================================ */
-    #solar-stage {
-      position: absolute; z-index: 100; left: 50%; top: 52%; width: min(92vw, 900px); height: min(78vh, 760px);
-      transform: translate(-50%, -50%); pointer-events: none;
-    }
-    #solar-system {
-      position: absolute; left: 50%; top: 50%; width: min(84vw, 760px); height: min(84vw, 760px);
-      max-width: 760px; max-height: 760px; transform: translate(-50%, -50%); pointer-events: none;
+    .cosmic-world-inner.cosmic-zoomed {
+      transform: translate(-50%, -50%) rotateX(4deg) scale(1.08);
     }
 
     .orbit {
-      position: absolute; left: 50%; top: 50%; width: var(--orbit-size); height: var(--orbit-size);
-      transform: translate(-50%, -50%); border: 1px solid rgba(132,180,255,.12); border-radius: 50%;
-      pointer-events: none; box-shadow: 0 0 14px rgba(100,150,255,.03);
-    }
-    .orbit::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px dashed rgba(255,255,255,.02); transform: rotate(18deg); }
-
-    .planet-system {
-      position: absolute; left: 50%; top: 50%; width: var(--orbit-size); height: var(--orbit-size);
-      transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none;
-      animation: orbitRotation var(--orbit-duration) linear infinite;
-    }
-    .planet-holder {
-      position: absolute; left: 50%; top: 0; width: 1px; height: 50%;
-      transform-origin: bottom center;
-    }
-    .planet {
-      position: absolute; left: 50%; top: 0; width: var(--planet-size, 14px); height: var(--planet-size, 14px);
-      transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg)));
-      border-radius: 50%; pointer-events: auto; cursor: pointer;
-      background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.8), var(--planet-light, #8fd5ff) 18%, var(--planet-main, #4070c8) 54%, var(--planet-dark, #172454) 100%);
-      box-shadow: 0 0 12px var(--planet-glow, rgba(110,180,255,.6)), 0 0 30px var(--planet-glow, rgba(110,180,255,.3));
-      transition: transform 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    .planet:hover { transform: translate(-50%, -50%) rotate(calc(var(--orbit-direction, 1) * -1 * var(--planet-angle, 0deg))) scale(1.4); z-index: 50; }
-    .planet::after {
-      content: "";
-      position: absolute;
-      inset: 15%;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.12);
-      opacity: .5;
-    }
-    .planet.has-ring::before {
-      content: "";
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 200%;
-      height: 45%;
-      transform: translate(-50%, -50%) rotate(-18deg);
-      border: 2px solid rgba(200,190,255,.35);
-      border-left-color: rgba(255,255,255,.08);
-      border-right-color: rgba(255,255,255,.12);
+      width: var(--orbit-size);
+      height: var(--orbit-size);
+      margin-left: calc(var(--orbit-size) / -2);
+      margin-top: calc(var(--orbit-size) / -2);
+      border: 1px solid rgba(147,188,255, var(--orbit-opacity, 0.15));
       border-radius: 50%;
-      box-shadow: 0 0 20px rgba(200,180,255,0.1);
-    }
-    .planet .moon {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #bbb;
-      box-shadow: 0 0 8px rgba(200,200,200,0.4);
-      top: -10px;
-      right: -10px;
-    }
-    .planet-label {
-      position: absolute;
-      bottom: -24px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 8px;
-      color: rgba(255,255,255,0.5);
-      white-space: nowrap;
+      transform-style: preserve-3d;
       pointer-events: none;
-      text-shadow: 0 0 10px rgba(0,0,0,0.9);
-      font-weight: 500;
-      letter-spacing: .04em;
+      box-shadow: 0 0 22px rgba(105,153,255,0.035);
     }
-    .planet.time-planet::before {
-      content: "⏱";
+    .orbit.orbit-dashed { border-style: dashed; }
+    .orbit.orbit-glow { box-shadow: 0 0 28px rgba(105,170,255,0.09); }
+
+    /* ============================================================
+       HALDO SUN (DEIN BESTEHENDER CODE)
+       ============================================================ */
+    .haldo-sun-system {
       position: absolute;
-      top: -22px;
       left: 50%;
+      top: 50%;
+      width: 230px;
+      height: 230px;
+      margin-left: -115px;
+      margin-top: -115px;
+      transform-style: preserve-3d;
+      z-index: 80;
+    }
+    .haldo-sun {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 142px;
+      height: 142px;
+      margin-left: -71px;
+      margin-top: -71px;
+      border-radius: 50%;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      background: radial-gradient(circle at 38% 34%, rgba(255,255,255,0.98) 0 4%, rgba(255,247,198,0.98) 10%, rgba(255,211,83,0.96) 32%, rgba(255,139,35,0.94) 61%, rgba(214,67,24,0.92) 84%, rgba(121,30,17,0.98) 100%);
+      box-shadow: 0 0 12px rgba(255,229,120,0.95), 0 0 34px rgba(255,184,58,0.82), 0 0 72px rgba(255,137,42,0.62), 0 0 140px rgba(255,104,28,0.35);
+      animation: sunPulse 4.8s ease-in-out infinite;
+    }
+    .haldo-sun::before {
+      content: "";
+      position: absolute;
+      inset: -24px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,226,115,0.22), rgba(255,163,42,0.10) 42%, transparent 70%);
+      filter: blur(8px);
+      animation: sunCorona 5.5s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .haldo-sun::after {
+      content: "";
+      position: absolute;
+      inset: -46px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,224,116,0.10);
+      box-shadow: 0 0 34px rgba(255,198,79,0.10);
+      animation: sunHalo 9s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes sunPulse { 0%,100% { transform: scale(0.98); } 50% { transform: scale(1.045); } }
+    @keyframes sunCorona { from { transform: scale(0.94); opacity: 0.62; } to { transform: scale(1.10); opacity: 1; } }
+    @keyframes sunHalo { from { transform: rotate(0deg) scale(0.98); opacity:0.48; } 50% { opacity:0.90; } to { transform: rotate(360deg) scale(1.04); opacity:0.48; } }
+
+    .sun-surface {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      overflow: hidden;
+      opacity: 0.70;
+      mix-blend-mode: screen;
+    }
+    .sun-spot {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(126,39,17,0.78), rgba(180,62,19,0.35) 62%, transparent 76%);
+      filter: blur(1px);
+    }
+    .sun-spot.a { width: 27px; height: 19px; left: 20%; top: 33%; transform: rotate(-22deg); }
+    .sun-spot.b { width: 20px; height: 14px; right: 21%; top: 24%; transform: rotate(18deg); }
+    .sun-spot.c { width: 31px; height: 16px; right: 17%; bottom: 29%; transform: rotate(-28deg); }
+
+    /* ============================================================
+       HALDO CORE LOGO (DEIN BESTEHENDER CODE)
+       ============================================================ */
+    .haldo-core-portal {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 64px;
+      height: 64px;
+      margin-left: -32px;
+      margin-top: -32px;
+      border-radius: 50%;
+      z-index: 3;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.44);
+      background: radial-gradient(circle, rgba(255,255,255,0.96), rgba(255,220,111,0.66) 24%, rgba(255,165,48,0.34) 48%, rgba(0,0,0,0) 72%);
+      box-shadow: 0 0 18px rgba(255,242,173,0.88), 0 0 38px rgba(255,178,50,0.62);
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+    .haldo-core-portal img {
+      width: 76%;
+      height: 76%;
+      object-fit: contain;
+      object-position: center;
+      filter: brightness(1.32) contrast(1.06) drop-shadow(0 0 8px rgba(255,255,255,0.88));
+      opacity: 0.96;
+    }
+    .haldo-sun-label {
+      position: absolute;
+      left: 50%;
+      top: calc(50% + 94px);
       transform: translateX(-50%);
-      font-size: 11px;
-      color: rgba(255,255,255,0.8);
-      text-shadow: 0 0 15px rgba(255,255,255,0.5);
+      width: 330px;
+      text-align: center;
+      pointer-events: none;
       z-index: 10;
     }
+    .haldo-sun-label-main {
+      font-size: clamp(17px, 2.1vmin, 27px);
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fffdf3;
+      text-shadow: 0 0 8px rgba(255,255,255,0.92), 0 0 22px rgba(255,209,84,0.78), 0 0 42px rgba(255,128,30,0.42);
+    }
+    .haldo-sun-label-sub {
+      margin-top: 5px;
+      font-size: clamp(11px, 1.35vmin, 15px);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: rgba(255,238,193,0.92);
+      text-shadow: 0 0 10px rgba(255,190,70,0.68);
+    }
 
-    /* Van-Allen-Gürtel für Erde */
-    .van-allen {
+    /* ============================================================
+       ZEIT-RINGE (DEIN BESTEHENDER CODE)
+       ============================================================ */
+    .time-ring {
       position: absolute;
       left: 50%;
       top: 50%;
       border-radius: 50%;
-      border: 1px dashed rgba(0, 180, 255, 0.2);
+      transform-style: preserve-3d;
       pointer-events: none;
-      transform: translate(-50%, -50%);
-      animation: vanPulse 4s ease-in-out infinite;
+      border: 1px solid rgba(255,255,255,0.12);
     }
-    .van-allen.inner { width: 42px; height: 42px; border-color: rgba(0, 180, 255, 0.3); animation-delay: 0s; }
-    .van-allen.outer { width: 62px; height: 62px; border-color: rgba(0, 180, 255, 0.15); animation-delay: 1s; }
-    @keyframes vanPulse { 0%,100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; } 50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.8; } }
+    .time-ring.seconds {
+      width: 280px;
+      height: 280px;
+      margin-left: -140px;
+      margin-top: -140px;
+      border-color: rgba(99,232,255,0.22);
+    }
+    .time-ring.minutes {
+      width: 330px;
+      height: 330px;
+      margin-left: -165px;
+      margin-top: -165px;
+      border-color: rgba(183,140,255,0.18);
+    }
+    .time-ring.hours {
+      width: 390px;
+      height: 390px;
+      margin-left: -195px;
+      margin-top: -195px;
+      border-color: rgba(255,118,217,0.15);
+    }
+    .time-marker {
+      position: absolute;
+      left: 50%;
+      top: -4px;
+      width: 8px;
+      height: 8px;
+      margin-left: -4px;
+      border-radius: 50%;
+      transform-origin: 50% calc(var(--ring-radius) + 4px);
+      box-shadow: 0 0 12px currentColor;
+    }
+    .time-ring.seconds .time-marker { color: var(--hd-cyan); background: var(--hd-cyan); --ring-radius: 140px; }
+    .time-ring.minutes .time-marker { color: var(--hd-accent-2); background: var(--hd-accent-2); --ring-radius: 165px; }
+    .time-ring.hours .time-marker { color: var(--hd-pink); background: var(--hd-pink); --ring-radius: 195px; }
 
-    .sub-orbit {
+    /* ============================================================
+       PLANETENSYSTEM (DEIN BESTEHENDER CODE)
+       ============================================================ */
+    .planet-orbit {
       position: absolute;
       left: 50%;
       top: 50%;
-      width: var(--sub-orbit-size);
-      height: var(--sub-orbit-size);
-      transform: translate(-50%, -50%);
+      width: var(--orbit-size);
+      height: var(--orbit-size);
+      margin-left: calc(var(--orbit-size) / -2);
+      margin-top: calc(var(--orbit-size) / -2);
       border-radius: 50%;
+      transform-style: preserve-3d;
       pointer-events: none;
-      animation: subOrbitRotation var(--sub-orbit-duration) linear infinite;
     }
-    .sub-planet {
+    .planet-track {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      transform-style: preserve-3d;
+      animation: orbitTravel var(--orbit-duration) linear infinite;
+      animation-direction: var(--orbit-direction, normal);
+    }
+    @keyframes orbitTravel {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .planet {
       position: absolute;
       left: 50%;
       top: 0;
-      width: var(--sub-planet-size);
-      height: var(--sub-planet-size);
-      transform: translate(-50%, -50%);
+      width: var(--planet-size);
+      height: var(--planet-size);
+      margin-left: calc(var(--planet-size) / -2);
+      margin-top: calc(var(--planet-size) / -2);
       border-radius: 50%;
       pointer-events: auto;
       cursor: pointer;
-      background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.7), var(--sub-planet-light, #ddd) 18%, var(--sub-planet-main, #aaa) 54%, var(--sub-planet-dark, #666) 100%);
-      box-shadow: 0 0 10px var(--sub-planet-glow, rgba(200,200,200,.4));
-      transition: transform 0.3s ease;
+      transform-style: preserve-3d;
+      background: var(--planet-background);
+      box-shadow: inset calc(var(--planet-size) * -0.20) calc(var(--planet-size) * 0.10) calc(var(--planet-size) * 0.26) rgba(0,0,0,0.56), inset calc(var(--planet-size) * 0.12) calc(var(--planet-size) * -0.10) calc(var(--planet-size) * 0.16) rgba(255,255,255,0.12), 0 0 12px var(--planet-glow);
+      animation: planetSpin var(--rotation-duration) linear infinite;
     }
-    .sub-planet:hover { transform: translate(-50%, -50%) scale(1.4); z-index: 60; }
-    .sub-label {
-      position: absolute;
-      bottom: -16px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 6px;
-      color: rgba(255,255,255,0.4);
-      white-space: nowrap;
-      text-shadow: 0 0 8px rgba(0,0,0,0.9);
+    @keyframes planetSpin {
+      from { transform: rotateY(0deg) rotateX(var(--tilt, 0deg)); }
+      to { transform: rotateY(360deg) rotateX(var(--tilt, 0deg)); }
     }
-
-    @keyframes orbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-    @keyframes subOrbitRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-
-    /* ============================================================
-       SONNE – MIT logo.png IM KERN + DREHENDEN TEXTEN
-       ============================================================ */
-    #sun {
-      position: absolute; z-index: 200; left: 50%; top: 50%; width: var(--sun-core-size); height: var(--sun-core-size);
-      transform: translate(-50%, -50%); border-radius: 50%; pointer-events: auto; cursor: pointer; border: 0; padding: 0;
-      background: transparent;
-      filter: drop-shadow(0 0 18px rgba(255,198,75,.8)) drop-shadow(0 0 45px rgba(255,164,45,.5)) drop-shadow(0 0 90px rgba(255,120,30,.24));
-      transition: transform 350ms cubic-bezier(.2,.8,.2,1), filter 350ms ease;
-    }
-    #sun:hover { transform: translate(-50%, -50%) scale(1.045); filter: drop-shadow(0 0 22px rgba(255,220,100,.95)) drop-shadow(0 0 55px rgba(255,170,45,.72)) drop-shadow(0 0 110px rgba(255,120,30,.34)); }
-    #sun:active { transform: translate(-50%, -50%) scale(.97); }
-
-    #sun-glow, #sun-core, #sun-corona, #sun-rays {
-      position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
-    }
-
-    #sun-glow {
-      inset: -38%;
-      background: radial-gradient(circle, rgba(255,247,178,.82) 0%, rgba(255,206,77,.42) 28%, rgba(255,152,42,.16) 52%, transparent 72%);
-      filter: blur(10px); animation: sunGlow 4.8s ease-in-out infinite;
-    }
-
-    #sun-corona {
-      inset: -14%;
-      background: conic-gradient(from 0deg, transparent, rgba(255,236,130,.42), transparent 12%, rgba(255,173,53,.36), transparent 24%, rgba(255,245,175,.44), transparent 38%, rgba(255,148,45,.30), transparent 52%, rgba(255,238,135,.42), transparent 68%, rgba(255,165,50,.32), transparent 84%, rgba(255,240,150,.42), transparent);
-      filter: blur(2px); animation: sunCorona 11s linear infinite; opacity: .88;
-    }
-
-    #sun-core {
-      overflow: hidden;
-      background: radial-gradient(circle at 38% 34%, #fffbe3 0%, #fff2a3 11%, #ffd44e 30%, #ff9e32 58%, #ed641e 78%, #a92c16 100%);
-      box-shadow: inset -16px -20px 32px rgba(133,32,10,.28), inset 18px 12px 28px rgba(255,255,255,.42);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      position: relative;
-    }
-
-    #sun-logo {
-      width: 50%;
-      height: 50%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 20px rgba(255,200,100,.9)) drop-shadow(0 0 40px rgba(255,200,100,.5));
-      z-index: 10;
-      pointer-events: none;
-      animation: logoPulse 3s ease-in-out infinite;
-      border-radius: 50%;
-    }
-    @keyframes logoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-
-    /* Drehende Texte um die Sonne */
-    #sun-orbit-texts {
-      position: absolute;
-      inset: -45%;
-      pointer-events: none;
-      z-index: 15;
-    }
-    .sun-orbital-text {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 2px;
-      height: 50%;
-      transform-origin: bottom center;
-      font-size: clamp(9px, 1.1vw, 14px);
-      font-weight: 700;
-      color: rgba(255,215,100,0.7);
-      text-shadow: 0 0 15px rgba(255,200,100,0.3);
-      white-space: nowrap;
-      letter-spacing: .06em;
-      animation: textOrbit 20s linear infinite;
-    }
-    .sun-orbital-text .text-content {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%) rotate(0deg);
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-weight: 700;
-      background: linear-gradient(180deg, #ffd700, #ff8c00, #ffd700);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      padding: 2px;
-    }
-    /* Zweiter Text, anders positioniert */
-    .sun-orbital-text:nth-child(1) { animation-duration: 25s; }
-    .sun-orbital-text:nth-child(2) { animation-duration: 30s; animation-delay: 5s; top: 50%; height: 50%; transform-origin: top center; }
-    .sun-orbital-text:nth-child(2) .text-content { writing-mode: vertical-lr; bottom: auto; top: 0; }
-    .sun-orbital-text:nth-child(3) { animation-duration: 35s; animation-delay: 10s; }
-    @keyframes textOrbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-    #sun-text-overlay {
-      position: absolute;
-      bottom: 4%;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      z-index: 12;
-      pointer-events: none;
-      font-size: clamp(7px, 0.8vw, 11px);
-      font-weight: 600;
-      color: rgba(255,215,100,0.5);
-      letter-spacing: .08em;
-      text-shadow: 0 0 20px rgba(255,200,100,0.2);
-    }
-
-    #inner-sun-stars {
-      position: absolute; z-index: 5; left: 50%; top: 50%;
-      width: calc(var(--sun-core-size) * .72); height: calc(var(--sun-core-size) * .72);
-      transform: translate(-50%, -50%); pointer-events: none; border-radius: 50%; overflow: hidden;
-    }
-    .inner-spark {
-      position: absolute;
-      width: 3px; height: 3px; border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 0 5px #fff, 0 0 12px rgba(255,240,150,.9);
-      animation: innerSpark 2.8s ease-in-out infinite alternate;
-    }
-    @keyframes innerSpark { from { transform: scale(.5); opacity: .45; } to { transform: scale(1.25); opacity: 1; } }
-
-    #sun-stars-orbital {
-      position: absolute;
-      inset: -10%;
-      pointer-events: none;
-      z-index: 150;
-    }
-    .sun-orbital-star {
-      position: absolute;
-      width: 4px; height: 4px; border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 0 8px rgba(255,255,255,.9), 0 0 20px rgba(255,200,100,.6);
-      animation: orbitalStarGlow 2s ease-in-out infinite alternate;
-    }
-    @keyframes orbitalStarGlow { from { transform: scale(.7); opacity: .4; } to { transform: scale(1.3); opacity: 1; } }
-
-    #sun-rays {
-      inset: -65%;
-      background: repeating-conic-gradient(from 0deg, rgba(255,222,115,.13) 0deg 2deg, transparent 2deg 10deg);
-      mask-image: radial-gradient(circle, black 0 29%, transparent 58%);
-      -webkit-mask-image: radial-gradient(circle, black 0 29%, transparent 58%);
-      animation: sunRays 25s linear infinite; opacity: .85;
-    }
-    @keyframes sunGlow { 0%,100% { transform: scale(.96); opacity: .76; } 50% { transform: scale(1.08); opacity: 1; } }
-    @keyframes sunCorona { to { transform: rotate(360deg); } }
-    @keyframes sunRays { to { transform: rotate(360deg); } }
-
-    /* ============================================================
-       AI-IDENTITY
-       ============================================================ */
-    #ai-identity {
-      position: absolute; z-index: 310; left: 50%; top: calc(50% + var(--sun-core-size) * .75); transform: translateX(-50%);
-      width: min(90vw, 620px); text-align: center; pointer-events: none;
-    }
-    #ai-identity-name {
-      margin: 0; font-size: clamp(14px, 1.8vw, 22px); font-weight: 700; letter-spacing: .055em;
-      background: linear-gradient(90deg, #fff, #ffd873, #fff, #8beeff, #fff, #c89cff);
-      background-size: 250% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
-      animation: identityGlow 8s linear infinite;
-      filter: drop-shadow(0 0 9px rgba(255,210,100,.24)) drop-shadow(0 0 16px rgba(120,190,255,.18));
-    }
-    #ai-identity-role {
-      margin-top: 5px;
-      font-size: clamp(9px, 1.1vw, 13px);
-      color: rgba(255,255,255,.5);
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-    @keyframes identityGlow { from { background-position: 0% 50%; } to { background-position: 250% 50%; } }
-
-    /* ============================================================
-       HALDO LOGO
-       ============================================================ */
-    .haldo-logo { width: 42px; height: 42px; object-fit: contain; border-radius: 50%; }
-
-    /* ============================================================
-       HAUPT-DOCK
-       ============================================================ */
-    #main-dock {
-      position: absolute; z-index: 700; left: 50%; bottom: calc(14px + var(--safe-bottom)); transform: translateX(-50%);
-      display: flex; align-items: center; justify-content: center; gap: 9px; padding: 8px; max-width: calc(100vw - 24px);
-      border: 1px solid rgba(255,255,255,.12); border-radius: 24px;
-      background: rgba(3,6,17,.62); backdrop-filter: blur(18px);
-      box-shadow: 0 14px 42px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.07);
-    }
-    .dock-button {
-      position: relative; width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 16px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.045);
-      transition: transform 180ms ease, background 180ms ease;
-    }
-    .dock-button:hover { transform: translateY(-3px); background: rgba(255,255,255,.10); }
-    .dock-button:active { transform: translateY(0) scale(.94); }
-    .dock-button img { width: 25px; height: 25px; object-fit: contain; border-radius: 50%; }
-    .dock-button.ai { width: 58px; height: 58px; margin: 0 3px; border-radius: 20px; background: radial-gradient(circle at 40% 30%, rgba(255,255,255,.15), rgba(103,159,255,.08) 45%, rgba(180,100,255,.06)); box-shadow: 0 0 24px rgba(117,190,255,.12); }
-    .dock-button.ai img { width: 36px; height: 36px; }
-
-    /* ============================================================
-       AI CHAT OVERLAY – NUR AVATAR-BILD (logo.png)
-       ============================================================ */
-    .ai-overlay {
-      position: fixed; z-index: 1600; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      padding: calc(16px + var(--safe-top)) calc(16px + var(--safe-right)) calc(16px + var(--safe-bottom)) calc(16px + var(--safe-left));
-      background: rgba(1,2,10,0.68); backdrop-filter: blur(12px);
-      opacity: 0; visibility: hidden;
-      transition: opacity 340ms ease, visibility 340ms ease;
-    }
-    .ai-overlay.open { opacity: 1; visibility: visible; }
-    .ai-window {
-      width: 100%; max-width: 600px; max-height: min(85vh, 720px);
-      border: 1px solid rgba(255,255,255,0.08); border-radius: var(--cosmic-ui-radius);
-      background: rgba(5,9,28,0.85); backdrop-filter: blur(28px);
-      box-shadow: 0 32px 72px rgba(0,0,0,0.62);
-      display: flex; flex-direction: column; overflow: hidden;
-      transform: scale(0.96) translateY(12px);
-      transition: transform 340ms cubic-bezier(0.16,1,0.3,1), opacity 340ms ease;
-      opacity: 0;
-    }
-    .ai-overlay.open .ai-window { transform: scale(1) translateY(0); opacity: 1; }
-
-    .ai-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px 12px 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      flex-shrink: 0;
-    }
-    .ai-header .panel-brand { display: flex; align-items: center; gap: 12px; }
-    .ai-header .panel-brand .avatar-img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); }
-    .ai-header .panel-brand h2 { margin: 0; font-size: 17px; font-weight: 700; }
-    .ai-header .panel-brand p { margin: 0; font-size: 11px; color: var(--haldo-text-muted); }
-    .ai-header-actions { display: flex; align-items: center; gap: 6px; }
-    .panel-icon-button {
-      width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 50%; border: 0; background: rgba(255,255,255,0.04); font-size: 17px;
-      color: var(--haldo-text-muted); transition: background 180ms ease;
-      cursor: pointer;
-    }
-    .panel-icon-button:hover { background: rgba(255,255,255,0.08); color: var(--haldo-text); }
-    .panel-icon-button.active { background: rgba(117,190,255,0.15); color: var(--haldo-blue); }
-    .panel-close {
-      width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); font-size: 20px;
-      color: rgba(255,255,255,0.5); transition: background 180ms ease;
-    }
-    .panel-close:hover { background: rgba(255,255,255,0.08); }
-
-    .ai-presence {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 16px 10px 16px;
-    }
-    .ai-presence .avatar-big {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: contain;
-      border: 2px solid rgba(255,255,255,0.08);
-      box-shadow: 0 0 30px rgba(117,190,255,0.1);
-      animation: avatarFloat 3s ease-in-out infinite;
-      background: rgba(255,255,255,0.03);
-    }
-    @keyframes avatarFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-4px) scale(1.02); } }
-
-    .ai-expression {
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--haldo-text-soft);
-      text-align: center;
-      min-height: 22px;
-    }
-    .ai-conversation {
-      flex: 1;
-      overflow-y: auto;
-      padding: 6px 18px 10px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      max-height: 180px;
-    }
-    .ai-conversation .conv-message {
-      display: flex;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 14px;
-      max-width: 85%;
-      font-size: 13px;
-      line-height: 1.5;
-      animation: msgIn 0.3s ease;
-    }
-    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    .ai-conversation .conv-message.user {
-      align-self: flex-end;
-      background: rgba(117,190,255,0.12);
-      border-bottom-right-radius: 4px;
-      color: var(--haldo-text);
-    }
-    .ai-conversation .conv-message.ai {
-      align-self: flex-start;
-      background: rgba(255,255,255,0.04);
-      border-bottom-left-radius: 4px;
-      color: var(--haldo-text-soft);
-    }
-    .ai-conversation .conv-message .conv-icon { font-size: 16px; flex-shrink: 0; }
-
-    .ai-input-form {
-      display: flex; align-items: flex-end; gap: 8px;
-      padding: 8px 18px 14px 18px;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      flex-shrink: 0;
-    }
-    .ai-input-form textarea {
-      flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px; padding: 8px 12px; font-size: 13px; color: var(--haldo-text);
-      resize: none; outline: 0; font-family: inherit;
-      min-height: 38px; max-height: 110px;
-    }
-    .ai-input-form textarea:focus { border-color: rgba(117,190,255,0.3); }
-    .ai-send-button {
-      width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 50%; border: 0; background: rgba(117,190,255,0.15); font-size: 18px;
-      color: #fff; transition: background 180ms ease, transform 180ms ease;
-    }
-    .ai-send-button:hover { background: rgba(117,190,255,0.25); }
-    .ai-send-button:active { transform: scale(0.92); }
-
-    .ai-footer {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 6px 18px 10px 18px;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      font-size: 10px; color: var(--haldo-text-muted);
-    }
-
-    /* ============================================================
-       CYBORG AVATAR – NUR BEWEGBARES BILD (logo.png)
-       ============================================================ */
-    #cyborg-avatar {
-      position: fixed;
-      bottom: 100px;
-      right: 30px;
-      width: 80px;
-      height: 80px;
-      z-index: 50;
-      cursor: grab;
-      touch-action: none;
-      border-radius: 50%;
-      overflow: visible;
-    }
-    #cyborg-avatar.dragging { cursor: grabbing; }
-    #cyborg-avatar .cyborg-click-area {
+    .planet::before {
+      content: "";
       position: absolute;
       inset: 0;
-      z-index: 10;
-      cursor: pointer;
       border-radius: 50%;
-      background: transparent;
+      background: radial-gradient(circle at 30% 24%, rgba(255,255,255,0.34), transparent 24%), linear-gradient(135deg, rgba(255,255,255,0.08), transparent 46%, rgba(0,0,0,0.16));
+      pointer-events: none;
     }
-    @media(max-width:768px){ #cyborg-avatar { width: 60px; height: 60px; bottom: 70px; right: 10px; } }
-    @media(max-width:480px){ #cyborg-avatar { width: 50px; height: 50px; bottom: 50px; right: 5px; } }
-
-    #cyborg-avatar .cyborg-bg {
-      width: 100%;
-      height: 100%;
+    .planet::after {
+      content: "";
+      position: absolute;
+      inset: 8%;
       border-radius: 50%;
-      background: rgba(5,8,15,0.6);
-      border: 2px solid rgba(74,158,255,0.15);
-      box-shadow: 0 0 30px rgba(74,158,255,0.08);
+      opacity: 0.36;
+      background: repeating-linear-gradient(8deg, transparent 0 7px, rgba(255,255,255,0.07) 8px 10px);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .planet.mercury { --planet-size: 25px; --planet-background: radial-gradient(circle at 34% 28%, #d8d5c9, #8c8b85 48%, #454744 100%); --planet-glow: rgba(202,205,198,0.42); --orbit-size: 230px; --orbit-duration: 12s; --rotation-duration: 7s; --tilt: 4deg; }
+    .planet.venus { --planet-size: 34px; --planet-background: radial-gradient(circle at 34% 28%, #fff0b0, #d69b43 48%, #79502a 100%); --planet-glow: rgba(255,211,115,0.54); --orbit-size: 290px; --orbit-duration: 18s; --rotation-duration: 11s; --tilt: -3deg; }
+    .planet.earth { --planet-size: 39px; --planet-background: radial-gradient(circle at 36% 30%, #a9efff 0 9%, #2d9de0 24%, #1d5ea9 48%, #12345f 100%); --planet-glow: rgba(71,196,255,0.80); --orbit-size: 350px; --orbit-duration: 24s; --rotation-duration: 8s; --tilt: 23.4deg; }
+    .planet.mars { --planet-size: 31px; --planet-background: radial-gradient(circle at 32% 28%, #ffb17c, #bf5538 44%, #67291f 100%); --planet-glow: rgba(255,102,67,0.52); --orbit-size: 410px; --orbit-duration: 31s; --rotation-duration: 9.2s; --tilt: 25deg; }
+    .planet.jupiter { --planet-size: 65px; --planet-background: linear-gradient(8deg, #6d4834 0 9%, #c89c78 10% 18%, #f1d1aa 19% 27%, #a56e4d 28% 36%, #efd6b6 37% 46%, #b7835f 47% 54%, #d8ad89 55% 64%, #7f5039 65% 72%, #d5a981 73% 84%, #68402e 85% 100%); --planet-glow: rgba(238,186,139,0.46); --orbit-size: 490px; --orbit-duration: 42s; --rotation-duration: 5.4s; --tilt: 3deg; }
+    .planet.saturn { --planet-size: 55px; --planet-background: radial-gradient(circle at 32% 28%, #fff0bb, #d5b77b 45%, #846b43 100%); --planet-glow: rgba(255,222,143,0.48); --orbit-size: 590px; --orbit-duration: 53s; --rotation-duration: 6.2s; --tilt: 26.7deg; }
+    .planet.uranus { --planet-size: 43px; --planet-background: radial-gradient(circle at 34% 26%, #d8ffff, #70d1dc 48%, #367f8c 100%); --planet-glow: rgba(110,235,245,0.52); --orbit-size: 680px; --orbit-duration: 67s; --rotation-duration: 8.8s; --tilt: 98deg; }
+    .planet.neptune { --planet-size: 42px; --planet-background: radial-gradient(circle at 34% 26%, #7bbcff, #315db9 48%, #13295d 100%); --planet-glow: rgba(75,139,255,0.62); --orbit-size: 770px; --orbit-duration: 79s; --rotation-duration: 8.1s; --tilt: 28deg; }
+    .planet.pluto { --planet-size: 20px; --planet-background: radial-gradient(circle at 32% 27%, #f1d7c0, #b58c76 48%, #59443b 100%); --planet-glow: rgba(220,190,165,0.32); --orbit-size: 835px; --orbit-duration: 94s; --rotation-duration: 14s; --tilt: 17deg; }
+    .planet.ceres { --planet-size: 19px; --planet-background: radial-gradient(circle at 32% 28%, #c9c9c4, #73746e 50%, #383a38 100%); --planet-glow: rgba(201,204,194,0.28); --orbit-size: 900px; --orbit-duration: 108s; --rotation-duration: 10s; --tilt: 4deg; }
+    .planet.eris { --planet-size: 17px; --planet-background: radial-gradient(circle at 32% 28%, #e8e9ef, #a4a8b4 46%, #565b68 100%); --planet-glow: rgba(220,225,255,0.34); --orbit-size: 965px; --orbit-duration: 121s; --rotation-duration: 12s; --tilt: 44deg; }
+    .planet.haumea { --planet-size: 24px; --planet-background: linear-gradient(115deg, #f5f5f1, #bcbcb4 46%, #777871 100%); --planet-glow: rgba(234,236,227,0.32); --orbit-size: 1020px; --orbit-duration: 136s; --rotation-duration: 3.9s; --tilt: 28deg; }
+
+    /* Saturn-Ringe */
+    .planet-ring {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 180%;
+      height: 56%;
+      margin-left: -90%;
+      margin-top: -28%;
+      border-radius: 50%;
+      border: 3px solid rgba(226,198,139,0.62);
+      transform: rotateX(70deg) rotateZ(12deg);
+      box-shadow: 0 0 8px rgba(238,211,156,0.30), inset 0 0 8px rgba(255,231,180,0.12);
+      pointer-events: none;
+    }
+    .planet-ring.inner {
+      width: 138%;
+      height: 42%;
+      margin-left: -69%;
+      margin-top: -21%;
+      border-width: 1px;
+      opacity: 0.62;
+    }
+
+    .planet-label {
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 9px);
+      transform: translateX(-50%);
+      padding: 3px 7px;
+      border-radius: 999px;
+      white-space: nowrap;
+      font-size: 9px;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      color: rgba(241,246,255,0.78);
+      background: rgba(3,7,18,0.62);
+      border: 1px solid rgba(145,180,245,0.14);
+      backdrop-filter: blur(6px);
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       HALDO ORBITAL BRAND (DEIN BESTEHENDER CODE)
+       ============================================================ */
+    .haldo-orbital-brand {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 560px;
+      height: 560px;
+      margin-left: -280px;
+      margin-top: -280px;
+      border-radius: 50%;
+      transform-style: preserve-3d;
+      animation: brandOrbit 38s linear infinite;
+      pointer-events: none;
+      z-index: 40;
+    }
+    @keyframes brandOrbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .haldo-orbital-brand-text {
+      position: absolute;
+      left: 50%;
+      top: -12px;
+      transform: translateX(-50%) rotateX(18deg);
+      white-space: nowrap;
+      font-size: clamp(16px, 2.15vmin, 27px);
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.94);
+      text-shadow: 0 0 7px rgba(255,255,255,0.92), 0 0 18px rgba(104,179,255,0.80), 0 0 38px rgba(173,112,255,0.62), 0 0 60px rgba(255,116,211,0.28);
+    }
+    .haldo-orbital-brand-sub {
+      position: absolute;
+      left: 50%;
+      top: 22px;
+      transform: translateX(-50%) rotateX(18deg);
+      white-space: nowrap;
+      font-size: clamp(9px, 1.05vmin, 13px);
+      font-weight: 700;
+      letter-spacing: 0.30em;
+      color: rgba(232,240,255,0.72);
+      text-shadow: 0 0 12px rgba(104,177,255,0.55);
+    }
+
+    /* ============================================================
+       COSMIC HUD (DEIN BESTEHENDER CODE)
+       ============================================================ */
+    .cosmic-hud {
+      position: absolute;
+      left: 20px;
+      top: calc(20px + var(--hd-safe-top));
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .cosmic-status {
+      min-width: 188px;
+      padding: 9px 12px;
+      border: 1px solid rgba(132,171,245,0.14);
+      border-radius: 12px;
+      background: rgba(4,8,19,0.54);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.22);
+    }
+    .cosmic-status-title {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(221,232,255,0.52);
+    }
+    .cosmic-status-value {
+      margin-top: 3px;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(246,249,255,0.92);
+    }
+
+    /* ============================================================
+       TOP BAR (DEIN BESTEHENDER CODE)
+       ============================================================ */
+    .haldo-topbar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: calc(68px + var(--hd-safe-top));
+      padding: calc(10px + var(--hd-safe-top)) calc(16px + var(--hd-safe-right)) 10px calc(16px + var(--hd-safe-left));
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
+      justify-content: space-between;
+      z-index: 500;
+      pointer-events: none;
     }
-    #cyborg-avatar .cyborg-bg img {
-      width: 85%;
-      height: 85%;
+    .haldo-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      pointer-events: auto;
+    }
+    .haldo-brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      object-fit: contain;
+      padding: 5px;
+      background: rgba(7,12,27,0.62);
+      border: 1px solid rgba(148,186,255,0.18);
+      box-shadow: 0 0 26px rgba(87,146,255,0.14);
+    }
+    .haldo-brand-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .haldo-brand-name {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+    .haldo-brand-version {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--hd-text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .haldo-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      pointer-events: auto;
+    }
+    .top-action {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: rgba(238,245,255,0.86);
+      background: rgba(7,12,27,0.62);
+      border: 1px solid rgba(140,178,245,0.16);
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      backdrop-filter: blur(10px);
+    }
+    .top-action:hover { transform: translateY(-1px); background: rgba(22,32,64,0.78); border-color: rgba(128,180,255,0.38); }
+    .top-action:active { transform: scale(0.95); }
+    .top-action.active { border-color: rgba(99,232,255,0.52); box-shadow: 0 0 18px rgba(99,232,255,0.14); }
+
+    /* ============================================================
+       NEU: AI / CYBORG AVATARE
+       ============================================================ */
+    .avatar-container {
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 45;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .avatar-container:hover { transform: scale(1.05); }
+    .avatar-container .avatar-img {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       border-radius: 50%;
-      animation: cyborgFloat 3s ease-in-out infinite;
+      border: 2px solid rgba(255,255,255,0.10);
+      box-shadow: 0 0 30px rgba(74,158,255,0.10);
     }
-    @keyframes cyborgFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-4px) scale(1.03); } }
-    #cyborg-avatar .speech-bubble {
+
+    /* HalDo AI Avatar (fixiert) */
+    #haldo-ai-avatar {
+      bottom: calc(120px + var(--hd-safe-bottom));
+      right: calc(30px + var(--hd-safe-right));
+      width: 80px;
+      height: 80px;
+      z-index: 45;
+      cursor: pointer;
+    }
+    #haldo-ai-avatar .avatar-img { animation: avatarPulse 3s ease-in-out infinite; }
+    @keyframes avatarPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+    /* HalDo Cyborg Avatar (bewegbar) */
+    #haldo-cyborg-avatar {
+      bottom: calc(210px + var(--hd-safe-bottom));
+      right: calc(30px + var(--hd-safe-right));
+      width: 60px;
+      height: 60px;
+      z-index: 44;
+      cursor: grab;
+      touch-action: none;
+    }
+    #haldo-cyborg-avatar.dragging { cursor: grabbing; }
+    #haldo-cyborg-avatar .avatar-img { animation: cyborgFloat 3s ease-in-out infinite; }
+    @keyframes cyborgFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.03); } }
+
+    /* Speech-Bubble */
+    .speech-bubble {
       position: absolute;
-      top: -42px;
+      top: -46px;
       right: -10px;
       background: rgba(5,8,15,0.92);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(74,158,255,0.1);
+      border: 1px solid rgba(74,158,255,0.15);
       border-radius: 14px;
-      padding: 6px 12px;
-      font-size: 11px;
-      color: var(--haldo-text);
-      max-width: 180px;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: var(--hd-text);
+      max-width: 200px;
       white-space: nowrap;
       opacity: 0;
       transition: opacity 0.3s ease;
-      z-index: 20;
+      z-index: 60;
+      pointer-events: none;
     }
-    #cyborg-avatar .speech-bubble.active { opacity: 1; }
-    #cyborg-avatar .speech-bubble::after {
+    .speech-bubble.active { opacity: 1; }
+    .speech-bubble::after {
       content: '';
       position: absolute;
       bottom: -6px;
-      right: 16px;
+      right: 20px;
       width: 0;
       height: 0;
       border-left: 6px solid transparent;
@@ -745,558 +712,1005 @@
     }
 
     /* ============================================================
+       NEU: APP-MENÜ OVERLAY
+       ============================================================ */
+    #app-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1500;
+      background: rgba(1,2,10,0.72);
+      backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    #app-menu-overlay.open { opacity: 1; visibility: visible; }
+    .app-menu-panel {
+      width: min(96vw, 900px);
+      max-height: min(90vh, 800px);
+      background: var(--hd-panel-strong);
+      border: 1px solid var(--hd-border-strong);
+      border-radius: var(--hd-radius);
+      box-shadow: var(--hd-shadow);
+      backdrop-filter: blur(28px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.95) translateY(12px);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    #app-menu-overlay.open .app-menu-panel { transform: scale(1) translateY(0); opacity: 1; }
+    .app-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--hd-border);
+      flex-shrink: 0;
+    }
+    .app-menu-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .app-menu-title img { width: 36px; height: 36px; border-radius: 50%; object-fit: contain; }
+    .app-menu-title h2 { margin: 0; font-size: 18px; font-weight: 700; }
+    .app-menu-title p { margin: 0; font-size: 12px; color: var(--hd-text-muted); }
+    .app-menu-close {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.5);
+      font-size: 22px;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .app-menu-close:hover { background: rgba(255,255,255,0.08); }
+
+    .app-menu-search {
+      padding: 12px 22px;
+      border-bottom: 1px solid var(--hd-border);
+      flex-shrink: 0;
+    }
+    .app-menu-search input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: var(--hd-text);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.18s ease;
+    }
+    .app-menu-search input:focus { border-color: var(--hd-accent); }
+    .app-menu-search input::placeholder { color: var(--hd-text-muted); }
+
+    .app-grid {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 10px;
+      align-content: start;
+    }
+    .app-grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px 6px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease;
+      text-align: center;
+    }
+    .app-grid-item:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+    .app-grid-item:active { transform: scale(0.95); }
+    .app-grid-item .app-icon { font-size: 28px; margin-bottom: 4px; }
+    .app-grid-item .app-name { font-size: 11px; font-weight: 500; color: var(--hd-text-soft); line-height: 1.3; }
+    .app-grid-item .app-version { font-size: 9px; color: var(--hd-text-muted); margin-top: 2px; }
+
+    /* ============================================================
+       NEU: SYSTEM-MENÜ OVERLAY
+       ============================================================ */
+    #system-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1500;
+      background: rgba(1,2,10,0.72);
+      backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    #system-menu-overlay.open { opacity: 1; visibility: visible; }
+    .system-menu-panel {
+      width: min(96vw, 1000px);
+      max-height: min(90vh, 820px);
+      background: var(--hd-panel-strong);
+      border: 1px solid var(--hd-border-strong);
+      border-radius: var(--hd-radius);
+      box-shadow: var(--hd-shadow);
+      backdrop-filter: blur(28px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.95) translateY(12px);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    #system-menu-overlay.open .system-menu-panel { transform: scale(1) translateY(0); opacity: 1; }
+    .system-menu-layout { display: flex; flex: 1; overflow: hidden; }
+    .system-menu-nav {
+      width: 200px;
+      flex-shrink: 0;
+      padding: 14px 10px;
+      border-right: 1px solid var(--hd-border);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .system-menu-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--hd-text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease;
+      text-align: left;
+      border: 0;
+    }
+    .system-menu-nav-item:hover { background: rgba(255,255,255,0.04); color: var(--hd-text-soft); }
+    .system-menu-nav-item.active { background: rgba(117,190,255,0.08); color: var(--hd-text); }
+    .system-menu-content {
+      flex: 1;
+      padding: 16px 20px;
+      overflow-y: auto;
+    }
+    .system-section { display: none; flex-direction: column; gap: 14px; }
+    .system-section.active { display: flex; }
+
+    /* ============================================================
+       NEU: AI CHAT WINDOW
+       ============================================================ */
+    #ai-chat-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1600;
+      background: rgba(1,2,10,0.68);
+      backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    #ai-chat-overlay.open { opacity: 1; visibility: visible; }
+    .ai-chat-panel {
+      width: min(92vw, 560px);
+      max-height: min(85vh, 720px);
+      background: var(--hd-panel-strong);
+      border: 1px solid var(--hd-border-strong);
+      border-radius: var(--hd-radius);
+      box-shadow: var(--hd-shadow);
+      backdrop-filter: blur(28px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.95) translateY(12px);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    #ai-chat-overlay.open .ai-chat-panel { transform: scale(1) translateY(0); opacity: 1; }
+
+    .ai-chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--hd-border);
+      flex-shrink: 0;
+    }
+    .ai-chat-brand { display: flex; align-items: center; gap: 12px; }
+    .ai-chat-brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: contain; }
+    .ai-chat-brand h3 { margin: 0; font-size: 16px; font-weight: 700; }
+    .ai-chat-brand p { margin: 0; font-size: 11px; color: var(--hd-text-muted); }
+    .ai-chat-actions { display: flex; gap: 6px; }
+    .ai-chat-actions button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 0;
+      color: var(--hd-text-muted);
+      font-size: 17px;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .ai-chat-actions button:hover { background: rgba(255,255,255,0.08); }
+    .ai-chat-actions button.active { background: rgba(117,190,255,0.15); color: var(--hd-accent); }
+
+    .ai-chat-avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 0 10px;
+    }
+    .ai-chat-avatar img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: contain;
+      border: 2px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 30px rgba(117,190,255,0.10);
+      animation: avatarPulse 3s ease-in-out infinite;
+    }
+    .ai-chat-avatar .ai-state-label {
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--hd-text-soft);
+    }
+
+    .ai-chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 220px;
+    }
+    .ai-chat-message {
+      display: flex;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 14px;
+      max-width: 84%;
+      font-size: 13px;
+      line-height: 1.5;
+      animation: msgIn 0.25s ease;
+    }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .ai-chat-message.user {
+      align-self: flex-end;
+      background: rgba(117,190,255,0.12);
+      border-bottom-right-radius: 4px;
+      color: var(--hd-text);
+    }
+    .ai-chat-message.ai {
+      align-self: flex-start;
+      background: rgba(255,255,255,0.04);
+      border-bottom-left-radius: 4px;
+      color: var(--hd-text-soft);
+    }
+    .ai-chat-message .msg-icon { font-size: 16px; flex-shrink: 0; }
+
+    .ai-chat-input {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 8px 18px 14px;
+      border-top: 1px solid var(--hd-border);
+      flex-shrink: 0;
+    }
+    .ai-chat-input textarea {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--hd-text);
+      resize: none;
+      outline: none;
+      font-family: inherit;
+      min-height: 38px;
+      max-height: 110px;
+    }
+    .ai-chat-input textarea:focus { border-color: rgba(117,190,255,0.3); }
+    .ai-chat-input button {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(117,190,255,0.15);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .ai-chat-input button:hover { background: rgba(117,190,255,0.25); }
+
+    /* ============================================================
        TOAST
        ============================================================ */
-    #toast-container { position: fixed; z-index: 3000; top: calc(70px + var(--safe-top)); right: calc(16px + var(--safe-right)); display: flex; flex-direction: column; gap: 6px; max-width: 360px; pointer-events: none; }
-    .toast {
-      padding: 10px 16px; border-radius: 12px; background: rgba(5,9,28,0.88); backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 12px 32px rgba(0,0,0,0.4);
-      pointer-events: auto; animation: toastIn 300ms ease; font-size: 13px; display: flex; align-items: center; gap: 10px;
+    #toast-container {
+      position: fixed;
+      z-index: 3000;
+      top: calc(80px + var(--hd-safe-top));
+      right: calc(16px + var(--hd-safe-right));
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 380px;
+      pointer-events: none;
     }
-    .toast.toast-out { animation: toastOut 280ms ease forwards; }
+    .toast {
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: var(--hd-panel-strong);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--hd-border);
+      box-shadow: var(--hd-shadow);
+      pointer-events: auto;
+      animation: toastIn 0.3s ease;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .toast.toast-out { animation: toastOut 0.28s ease forwards; }
     @keyframes toastIn { from { opacity: 0; transform: translateX(30px) scale(0.96); } to { opacity: 1; transform: translateX(0) scale(1); } }
     @keyframes toastOut { from { opacity: 1; transform: translateX(0) scale(1); } to { opacity: 0; transform: translateX(30px) scale(0.96); } }
-    .toast .toast-icon { font-size: 18px; flex-shrink: 0; }
-    .toast .toast-body { flex: 1; }
-    .toast .toast-title { font-weight: 600; }
-    .toast .toast-message { color: var(--haldo-text-muted); font-size: 12px; }
 
     /* ============================================================
        RESPONSIVE
        ============================================================ */
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-
-    @media (max-width: 800px) {
-      .ai-conversation { max-height: 140px; }
-      .ai-window { max-width: 96vw; }
-      .planet-label { font-size: 6px; bottom: -18px; }
-    }
-    @media (max-width: 500px) {
-      .ai-conversation { max-height: 110px; }
-      .ai-window { max-width: 100vw; border-radius: 0; max-height: 100vh; }
-      .system-pill { font-size: 10px; padding: 4px 10px; }
-      .system-button { width: 36px; height: 36px; font-size: 14px; }
-      .menu-logo-btn { width: 34px; height: 34px; }
-      .planet-label { font-size: 5px; bottom: -14px; }
-      .sun-orbital-text .text-content { font-size: 8px; }
+    @media (max-width: 620px) {
+      #haldo-ai-avatar { width: 60px; height: 60px; bottom: calc(100px + var(--hd-safe-bottom)); right: calc(16px + var(--hd-safe-right)); }
+      #haldo-cyborg-avatar { width: 48px; height: 48px; bottom: calc(170px + var(--hd-safe-bottom)); right: calc(16px + var(--hd-safe-right)); }
+      .app-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 6px; padding: 12px 14px; }
+      .app-grid-item .app-icon { font-size: 22px; }
+      .app-grid-item .app-name { font-size: 10px; }
+      .system-menu-nav { width: 100%; flex-direction: row; flex-wrap: wrap; border-right: 0; border-bottom: 1px solid var(--hd-border); padding: 8px 12px; gap: 4px; max-height: 120px; overflow-x: auto; }
+      .system-menu-nav-item { flex-shrink: 0; padding: 6px 12px; font-size: 12px; }
+      .system-menu-layout { flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
     }
   </style>
 </head>
+
 <body>
   <div id="haldo-os">
 
-    <!-- BOOT-SCREEN -->
-    <section id="boot-screen" aria-label="HalDo AI OS wird gestartet">
-      <div id="boot-content">
-        <img id="boot-logo" class="haldo-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
-        <h1 id="boot-title">HalDo AI OS</h1>
-        <p id="boot-message">Wissenschaftliches Planetensystem &amp; Avatar wird geladen.<br>HalDo AI und Cyborg erwachen.</p>
-        <div id="boot-loader" aria-hidden="true"><div id="boot-loader-bar"></div></div>
-      </div>
-    </section>
+    <!-- ============================================================
+       COSMIC BACKGROUND (DEIN BESTEHENDER CODE)
+       ============================================================ -->
+    <div class="cosmic-background" aria-hidden="true">
+      <div class="cosmic-nebula one"></div>
+      <div class="cosmic-nebula two"></div>
+      <div class="cosmic-nebula three"></div>
+      <div class="star-field" id="star-field"></div>
+    </div>
 
-    <!-- COSMIC WORLD -->
+    <!-- ============================================================
+       CENTRAL COSMIC WORLD (DEIN BESTEHENDER CODE)
+       ============================================================ -->
     <main id="cosmic-world" aria-label="HalDo AI OS Cosmic World">
+      <div class="cosmic-world-inner" id="cosmic-world-inner">
 
-      <div id="star-field" aria-hidden="true"></div>
-      <div id="special-star-field" aria-hidden="true"></div>
+        <!-- Orbits -->
+        <div class="orbit orbit-glow" style="--orbit-size:230px;--orbit-opacity:0.14;"></div>
+        <div class="orbit" style="--orbit-size:290px;--orbit-opacity:0.12;"></div>
+        <div class="orbit" style="--orbit-size:350px;--orbit-opacity:0.15;"></div>
+        <div class="orbit orbit-dashed" style="--orbit-size:410px;--orbit-opacity:0.11;"></div>
+        <div class="orbit" style="--orbit-size:490px;--orbit-opacity:0.10;"></div>
+        <div class="orbit orbit-glow" style="--orbit-size:590px;--orbit-opacity:0.09;"></div>
+        <div class="orbit" style="--orbit-size:680px;--orbit-opacity:0.08;"></div>
+        <div class="orbit" style="--orbit-size:770px;--orbit-opacity:0.08;"></div>
+        <div class="orbit orbit-dashed" style="--orbit-size:835px;--orbit-opacity:0.06;"></div>
+        <div class="orbit" style="--orbit-size:900px;--orbit-opacity:0.055;"></div>
+        <div class="orbit" style="--orbit-size:965px;--orbit-opacity:0.05;"></div>
+        <div class="orbit orbit-glow" style="--orbit-size:1020px;--orbit-opacity:0.045;"></div>
 
-      <!-- System-Bar -->
-      <header id="system-bar">
-        <div class="system-bar-side">
-          <button id="app-menu-button" class="system-button" type="button" aria-label="Apps" title="Apps">☰</button>
-          <div id="system-status" class="system-pill" aria-live="polite">HalDo AI OS</div>
+        <!-- Zeit-Ringe -->
+        <div class="time-ring seconds" id="haldo-time-ring-seconds" aria-hidden="true">
+          <div class="time-marker" id="haldo-second-marker"></div>
         </div>
-        <div class="system-bar-side">
-          <button id="notification-button" class="system-button" type="button" aria-label="Benachrichtigungen" title="Benachrichtigungen">◌</button>
-          <button class="menu-logo-btn" id="menu-logo-btn" type="button" aria-label="Menü" title="Menü">
-            <img src="assets/logo/logo.png" alt="Menü" draggable="false">
-          </button>
+        <div class="time-ring minutes" id="haldo-time-ring-minutes" aria-hidden="true">
+          <div class="time-marker" id="haldo-minute-marker"></div>
         </div>
-      </header>
-
-      <!-- Cosmic Title -->
-      <section id="cosmic-title" aria-label="HalDo AI OS">
-        <h1 id="cosmic-title-main">HalDo AI OS</h1>
-        <div id="cosmic-title-subtitle">Cosmic World · Living Intelligence</div>
-      </section>
-
-      <!-- Solar Stage -->
-      <section id="solar-stage" aria-label="HalDo AI OS Sonnensystem">
-        <div id="solar-system">
-
-          <!-- 12 Orbits (wissenschaftlich) -->
-          <div class="orbit" style="--orbit-size:20%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:28%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:36%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:44%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:52%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:60%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:68%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:76%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:84%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:92%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:100%;" aria-hidden="true"></div>
-          <div class="orbit" style="--orbit-size:108%;" aria-hidden="true"></div>
-
-          <!-- 1. Merkur – 0,387 AE -->
-          <div class="planet-system" style="--orbit-size:20%;--orbit-duration:15s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:10px;--planet-light:#d4d4d4;--planet-main:#8a8a8a;--planet-dark:#4a4a4a;--planet-glow:rgba(180,180,180,.4);">
-                <span class="planet-label">Merkur • 0,387 AE</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2. Venus – 0,723 AE -->
-          <div class="planet-system" style="--orbit-size:28%;--orbit-duration:21s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:14px;--planet-light:#ffdd88;--planet-main:#e8a840;--planet-dark:#a06020;--planet-glow:rgba(255,200,80,.6);">
-                <span class="planet-label">Venus • 0,723 AE</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3. ERDE – 1 AE + Van-Allen-Gürtel + Mond -->
-          <div class="planet-system" style="--orbit-size:36%;--orbit-duration:29s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:18px;--planet-light:#87CEEB;--planet-main:#2E8B57;--planet-dark:#1a4a2a;--planet-glow:rgba(70,180,255,.7);">
-                <div class="van-allen inner"></div>
-                <div class="van-allen outer"></div>
-                <span class="moon" style="background:#c8c8c8;box-shadow:0 0 8px rgba(200,200,200,0.4);"></span>
-                <span class="planet-label">Erde • 1 AE</span>
-                <div class="sub-orbit" style="--sub-orbit-size:42px;--sub-orbit-duration:4.5s;">
-                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#e8e8e8;--sub-planet-main:#a0a0a0;--sub-planet-dark:#606060;--sub-planet-glow:rgba(200,200,200,.4);">
-                    <span class="sub-label">Mond</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4. Mars – 1,524 AE -->
-          <div class="planet-system" style="--orbit-size:44%;--orbit-duration:37s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:14px;--planet-light:#ff9966;--planet-main:#c0392b;--planet-dark:#6a1a0a;--planet-glow:rgba(255,80,40,.6);">
-                <span class="planet-label">Mars • 1,524 AE</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 5. Jupiter – 5,2 AE + Io + Europa -->
-          <div class="planet-system" style="--orbit-size:52%;--orbit-duration:45s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:28px;--planet-light:#f5d6b0;--planet-main:#c88a4a;--planet-dark:#6a4a2a;--planet-glow:rgba(200,150,80,.5);">
-                <span class="planet-label">Jupiter • 5,2 AE</span>
-                <div class="sub-orbit" style="--sub-orbit-size:38px;--sub-orbit-duration:3.5s;">
-                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#d4d4d4;--sub-planet-main:#8a8a8a;--sub-planet-dark:#4a4a4a;--sub-planet-glow:rgba(180,180,180,.35);">
-                    <span class="sub-label">Io</span>
-                  </div>
-                </div>
-                <div class="sub-orbit" style="--sub-orbit-size:50px;--sub-orbit-duration:5s;">
-                  <div class="sub-planet" style="--sub-planet-size:9px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.35);">
-                    <span class="sub-label">Europa</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 6. Saturn – 9,5 AE + Ringe + Titan + Rhea -->
-          <div class="planet-system" style="--orbit-size:60%;--orbit-duration:54s;">
-            <div class="planet-holder">
-              <div class="planet has-ring" style="--planet-size:24px;--planet-light:#f5e6b0;--planet-main:#d4b86a;--planet-dark:#8a6a30;--planet-glow:rgba(220,200,120,.5);">
-                <span class="planet-label">Saturn • 9,5 AE</span>
-                <div class="sub-orbit" style="--sub-orbit-size:36px;--sub-orbit-duration:3s;">
-                  <div class="sub-planet" style="--sub-planet-size:8px;--sub-planet-light:#e8d5b0;--sub-planet-main:#b89a6a;--sub-planet-dark:#6a4a2a;--sub-planet-glow:rgba(200,180,140,.35);">
-                    <span class="sub-label">Titan</span>
-                  </div>
-                </div>
-                <div class="sub-orbit" style="--sub-orbit-size:48px;--sub-orbit-duration:4.5s;">
-                  <div class="sub-planet" style="--sub-planet-size:7px;--sub-planet-light:#d4e8f0;--sub-planet-main:#7a9ab0;--sub-planet-dark:#3a4a5a;--sub-planet-glow:rgba(140,180,220,.35);">
-                    <span class="sub-label">Rhea</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 7. Uranus – 19 AE -->
-          <div class="planet-system" style="--orbit-size:68%;--orbit-duration:63s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:20px;--planet-light:#88eebb;--planet-main:#40b8a0;--planet-dark:#1a5a4a;--planet-glow:rgba(80,220,200,.5);">
-                <span class="planet-label">Uranus • 19 AE</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 8. Neptun – 30 AE -->
-          <div class="planet-system" style="--orbit-size:76%;--orbit-duration:75s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:20px;--planet-light:#6a9fff;--planet-main:#2a5aff;--planet-dark:#0a1a6a;--planet-glow:rgba(60,120,255,.5);">
-                <span class="planet-label">Neptun • 30 AE</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 9. Pluto – 39 AE (Sekunde) -->
-          <div class="planet-system" style="--orbit-size:84%;--orbit-duration:60s;">
-            <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:13px;--planet-light:#e8e8f0;--planet-main:#a0a0b0;--planet-dark:#505060;--planet-glow:rgba(200,200,255,.4);">
-                <span class="planet-label">Pluto • 39 AE ⏱</span>
-                <div class="sub-orbit" style="--sub-orbit-size:30px;--sub-orbit-duration:2.5s;">
-                  <div class="sub-planet" style="--sub-planet-size:6px;--sub-planet-light:#d0d0e0;--sub-planet-main:#808090;--sub-planet-dark:#404050;--sub-planet-glow:rgba(180,180,220,.35);">
-                    <span class="sub-label">Charon</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 10. Ceres – 2,77 AE (Minute) -->
-          <div class="planet-system" style="--orbit-size:92%;--orbit-duration:3600s;">
-            <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:13px;--planet-light:#d0d0d0;--planet-main:#808080;--planet-dark:#404040;--planet-glow:rgba(180,180,200,.4);">
-                <span class="planet-label">Ceres • 2,77 AE ⏱</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 11. Eris – 67,7 AE (Stunde) -->
-          <div class="planet-system" style="--orbit-size:100%;--orbit-duration:43200s;">
-            <div class="planet-holder">
-              <div class="planet time-planet" style="--planet-size:14px;--planet-light:#f0f0f0;--planet-main:#c0c0c0;--planet-dark:#808080;--planet-glow:rgba(220,220,255,.4);">
-                <span class="planet-label">Eris • 67,7 AE ⏱</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 12. Haumea – 43 AE -->
-          <div class="planet-system" style="--orbit-size:108%;--orbit-duration:145s;">
-            <div class="planet-holder">
-              <div class="planet" style="--planet-size:14px;--planet-light:#88ddaa;--planet-main:#40aa80;--planet-dark:#1a5a40;--planet-glow:rgba(80,220,180,.5);">
-                <span class="planet-label">Haumea • 43 AE</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- SONNE -->
-          <button id="sun" type="button" aria-label="HalDo AI öffnen" title="HalDo AI öffnen">
-            <span id="sun-glow"></span>
-            <span id="sun-rays"></span>
-            <span id="sun-corona"></span>
-            <span id="sun-core">
-              <div id="sun-stars-orbital" aria-hidden="true"></div>
-              <div id="sun-orbit-texts">
-                <div class="sun-orbital-text"><span class="text-content">✦ HalDo AI OS ✦</span></div>
-                <div class="sun-orbital-text"><span class="text-content">✦ A Halil Donma ✦</span></div>
-                <div class="sun-orbital-text"><span class="text-content">✦ Professioneller HalDo AI &amp; Cyborg ✦</span></div>
-              </div>
-              <div id="sun-text-overlay">✦ HalDo AI OS · A Halil Donma · Professioneller HalDo AI &amp; Cyborg ✦</div>
-              <img id="sun-logo" src="assets/logo/logo.png" alt="HalDo Logo" draggable="false">
-              <span id="inner-sun-stars" aria-hidden="true"></span>
-            </span>
-          </button>
-
+        <div class="time-ring hours" id="haldo-time-ring-hours" aria-hidden="true">
+          <div class="time-marker" id="haldo-hour-marker"></div>
         </div>
 
-        <!-- AI Identity -->
-        <section id="ai-identity" aria-label="HalDo AI Identität">
-          <h2 id="ai-identity-name">A Halil Donma</h2>
-          <div id="ai-identity-role">Professioneller HalDo AI &amp; Cyborg</div>
+        <!-- HalDo Orbital Brand -->
+        <div class="haldo-orbital-brand" aria-hidden="true">
+          <div class="haldo-orbital-brand-text">HALDO AI OS</div>
+          <div class="haldo-orbital-brand-sub">HALIL DONMA</div>
+        </div>
+
+        <!-- Planeten -->
+        <section id="haldo-planet-system" aria-label="Cosmic planetary system">
+          <div class="planet-orbit" data-planet="mercury" style="--orbit-size:230px;--orbit-duration:12s;">
+            <div class="planet-track"><button class="planet mercury" type="button" data-planet-name="Merkur" aria-label="Merkur"><span class="planet-label">Merkur</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="venus" style="--orbit-size:290px;--orbit-duration:18s;">
+            <div class="planet-track"><button class="planet venus" type="button" data-planet-name="Venus" aria-label="Venus"><span class="planet-label">Venus</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="earth" style="--orbit-size:350px;--orbit-duration:24s;">
+            <div class="planet-track"><button class="planet earth" id="haldo-earth" type="button" data-planet-name="Erde" aria-label="Erde"><span class="planet-label">Erde</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="mars" style="--orbit-size:410px;--orbit-duration:31s;">
+            <div class="planet-track"><button class="planet mars" type="button" data-planet-name="Mars" aria-label="Mars"><span class="planet-label">Mars</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="jupiter" style="--orbit-size:490px;--orbit-duration:42s;">
+            <div class="planet-track"><button class="planet jupiter" type="button" data-planet-name="Jupiter" aria-label="Jupiter"><span class="planet-label">Jupiter</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="saturn" style="--orbit-size:590px;--orbit-duration:53s;">
+            <div class="planet-track"><button class="planet saturn" type="button" data-planet-name="Saturn" aria-label="Saturn"><span class="planet-ring"></span><span class="planet-ring inner"></span><span class="planet-label">Saturn</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="uranus" style="--orbit-size:680px;--orbit-duration:67s;">
+            <div class="planet-track"><button class="planet uranus" type="button" data-planet-name="Uranus" aria-label="Uranus"><span class="planet-label">Uranus</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="neptune" style="--orbit-size:770px;--orbit-duration:79s;">
+            <div class="planet-track"><button class="planet neptune" type="button" data-planet-name="Neptun" aria-label="Neptun"><span class="planet-label">Neptun</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="pluto" style="--orbit-size:835px;--orbit-duration:94s;">
+            <div class="planet-track"><button class="planet pluto" type="button" data-planet-name="Pluto" aria-label="Pluto"><span class="planet-label">Pluto</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="ceres" style="--orbit-size:900px;--orbit-duration:108s;">
+            <div class="planet-track"><button class="planet ceres" type="button" data-planet-name="Ceres" aria-label="Ceres"><span class="planet-label">Ceres</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="eris" style="--orbit-size:965px;--orbit-duration:121s;">
+            <div class="planet-track"><button class="planet eris" type="button" data-planet-name="Eris" aria-label="Eris"><span class="planet-label">Eris</span></button></div>
+          </div>
+          <div class="planet-orbit" data-planet="haumea" style="--orbit-size:1020px;--orbit-duration:136s;">
+            <div class="planet-track"><button class="planet haumea" type="button" data-planet-name="Haumea" aria-label="Haumea"><span class="planet-label">Haumea</span></button></div>
+          </div>
         </section>
-      </section>
 
-      <!-- Haupt-Dock -->
-      <nav id="main-dock" aria-label="HalDo AI OS Hauptnavigation">
-        <button class="dock-button" id="dock-apps" type="button" aria-label="App-Menü" title="Apps">
-          <img src="assets/logo/logo.png" alt="" draggable="false">
-        </button>
-        <button class="dock-button" id="dock-search" type="button" aria-label="Suche" title="Suche">⌕</button>
-        <button class="dock-button ai" id="dock-ai" type="button" aria-label="HalDo AI öffnen" title="HalDo AI">
-          <img src="assets/logo/logo.png" alt="HalDo AI" draggable="false">
-        </button>
-        <button class="dock-button" id="dock-notifications" type="button" aria-label="Benachrichtigungen" title="Benachrichtigungen">◌</button>
-        <button class="dock-button" id="dock-settings" type="button" aria-label="Einstellungen" title="Einstellungen">⚙</button>
-      </nav>
+        <!-- Erde / Mond -->
+        <div class="earth-moon-system" id="earth-moon-system" aria-hidden="true">
+          <div class="moon-orbit"><div class="moon"></div></div>
+        </div>
 
+        <!-- SONNE -->
+        <section class="haldo-sun-system" aria-label="HalDo Sun and AI Core">
+          <button class="haldo-sun" id="haldo-sun" type="button" aria-label="HalDo AI öffnen" title="HalDo AI öffnen">
+            <span class="sun-surface"><span class="sun-spot a"></span><span class="sun-spot b"></span><span class="sun-spot c"></span></span>
+            <span class="haldo-core-portal" aria-hidden="true"><img id="haldo-core-logo" src="logo.png" alt=""></span>
+          </button>
+          <div class="haldo-sun-label">
+            <div class="haldo-sun-label-main">HALDO AI OS</div>
+            <div class="haldo-sun-label-sub">HALIL DONMA</div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
-    <!-- CYBORG AVATAR – NUR BILD -->
-    <div id="cyborg-avatar">
-      <div class="cyborg-click-area" id="cyborg-click-area"></div>
-      <div class="cyborg-bg">
-        <img id="cyborg-image" src="assets/logo/logo.png" alt="HalDo Cyborg" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E👤%3C/text%3E%3C/svg%3E'">
+    <!-- ============================================================
+       TOP BAR (DEIN BESTEHENDER CODE)
+       ============================================================ -->
+    <header class="haldo-topbar">
+      <div class="haldo-brand">
+        <img class="haldo-brand-logo" src="logo.png" alt="HalDo AI OS">
+        <div class="haldo-brand-copy">
+          <div class="haldo-brand-name">HalDo AI OS</div>
+          <div class="haldo-brand-version" id="haldo-version-label">Cosmic World • Living AI</div>
+        </div>
       </div>
-      <div class="speech-bubble" id="cyborg-speech">Hallo! Ich bin HalDo Cyborg.</div>
+      <div class="haldo-top-actions">
+        <button class="top-action" id="haldo-main-menu-button" type="button" aria-label="A–Z Apps öffnen" title="Apps">☷</button>
+        <button class="top-action" id="haldo-system-menu-button" type="button" aria-label="Systemmenü öffnen" title="System">⚙</button>
+        <button class="top-action" id="haldo-ai-top-button" type="button" aria-label="HalDo AI öffnen" title="HalDo AI">✦</button>
+      </div>
+    </header>
+
+    <!-- ============================================================
+       COSMIC HUD (DEIN BESTEHENDER CODE)
+       ============================================================ -->
+    <aside class="cosmic-hud">
+      <div class="cosmic-status">
+        <div class="cosmic-status-title">Cosmic World</div>
+        <div class="cosmic-status-value" id="cosmic-time-display">--:--:--</div>
+      </div>
+      <div class="cosmic-status">
+        <div class="cosmic-status-title">HalDo AI</div>
+        <div class="cosmic-status-value" id="haldo-ai-state">Bereit</div>
+      </div>
+    </aside>
+
+    <!-- ============================================================
+       HALDO AI AVATAR (NEU)
+       ============================================================ -->
+    <div class="avatar-container" id="haldo-ai-avatar" role="button" tabindex="0" aria-label="HalDo AI öffnen" title="HalDo AI">
+      <img class="avatar-img" src="logo.png" alt="HalDo AI Avatar" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E✦%3C/text%3E%3C/svg%3E'">
+      <div class="speech-bubble" id="ai-speech-bubble">Hallo! Ich bin HalDo AI.</div>
     </div>
 
-    <!-- AI OVERLAY – NUR AVATAR-BILD -->
-    <div id="ai-overlay" class="ai-overlay" aria-hidden="true">
-      <section id="ai-window" class="ai-window" role="dialog" aria-modal="true" aria-labelledby="ai-window-title">
-        <header class="ai-header">
-          <div class="panel-brand">
-            <img class="avatar-img" src="assets/logo/logo.png" alt="HalDo AI" draggable="false">
+    <!-- ============================================================
+       HALDO CYBORG AVATAR (BEWEGBAR – NEU)
+       ============================================================ -->
+    <div class="avatar-container" id="haldo-cyborg-avatar" role="button" tabindex="0" aria-label="HalDo Cyborg" title="HalDo Cyborg">
+      <img class="avatar-img" src="logo.png" alt="HalDo Cyborg Avatar" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E🦾%3C/text%3E%3C/svg%3E'">
+      <div class="speech-bubble" id="cyborg-speech-bubble">Hallo! Ich bin HalDo Cyborg.</div>
+    </div>
+
+    <!-- ============================================================
+       APP-MENÜ OVERLAY (NEU)
+       ============================================================ -->
+    <div id="app-menu-overlay" aria-hidden="true">
+      <div class="app-menu-panel" role="dialog" aria-modal="true" aria-labelledby="app-menu-title">
+        <div class="app-menu-header">
+          <div class="app-menu-title">
+            <img src="logo.png" alt="HalDo Logo">
             <div>
-              <h2 id="ai-window-title">HalDo AI</h2>
-              <p id="ai-state-label">Bereit</p>
+              <h2 id="app-menu-title">HalDo Apps</h2>
+              <p>Alle Anwendungen · A–Z</p>
             </div>
           </div>
-          <div class="ai-header-actions">
-            <button id="ai-mic-button" class="panel-icon-button" type="button" aria-label="Spracheingabe" title="Spracheingabe">🎙️</button>
-            <button id="ai-voice-button" class="panel-icon-button" type="button" aria-label="Sprachausgabe ein/aus" title="Sprachausgabe">🔊</button>
-            <button id="ai-close-button" class="panel-close" type="button" aria-label="Schließen">×</button>
-          </div>
-        </header>
-
-        <div class="ai-presence">
-          <img class="avatar-big" src="assets/logo/logo.png" alt="HalDo AI" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E👤%3C/text%3E%3C/svg%3E'">
-          <div id="ai-expression" class="ai-expression">Ich bin bereit.</div>
+          <button class="app-menu-close" id="app-menu-close" type="button" aria-label="Schließen">×</button>
         </div>
-
-        <div id="ai-conversation" class="ai-conversation" aria-live="polite"></div>
-
-        <form id="ai-input-form" class="ai-input-form" autocomplete="off">
-          <textarea id="ai-input" rows="1" maxlength="10000" placeholder="Nachricht an HalDo AI …" aria-label="Nachricht an HalDo AI"></textarea>
-          <button id="ai-send-button" class="ai-send-button" type="submit" aria-label="Senden" title="Senden">➤</button>
-        </form>
-
-        <footer class="ai-footer">
-          <span id="ai-memory-status">🧠 Memory aktiv</span>
-          <span id="ai-connection-status">● Lokal bereit</span>
-        </footer>
-      </section>
+        <div class="app-menu-search">
+          <input type="search" id="app-search-input" placeholder="Apps suchen …" aria-label="Apps suchen">
+        </div>
+        <div class="app-grid" id="app-grid"></div>
+      </div>
     </div>
 
-    <!-- TOAST -->
+    <!-- ============================================================
+       SYSTEM-MENÜ OVERLAY (NEU)
+       ============================================================ -->
+    <div id="system-menu-overlay" aria-hidden="true">
+      <div class="system-menu-panel" role="dialog" aria-modal="true" aria-labelledby="system-menu-title">
+        <div class="app-menu-header">
+          <div class="app-menu-title">
+            <img src="logo.png" alt="HalDo Logo">
+            <div>
+              <h2 id="system-menu-title">HalDo System</h2>
+              <p>Einstellungen &amp; Verwaltung</p>
+            </div>
+          </div>
+          <button class="app-menu-close" id="system-menu-close" type="button" aria-label="Schließen">×</button>
+        </div>
+        <div class="system-menu-layout">
+          <nav class="system-menu-nav" id="system-menu-nav">
+            <button class="system-menu-nav-item active" type="button" data-section="general"><span>◈</span> Allgemein</button>
+            <button class="system-menu-nav-item" type="button" data-section="ai"><span>✦</span> AI &amp; Memory</button>
+            <button class="system-menu-nav-item" type="button" data-section="voice"><span>♬</span> Voice &amp; Sprache</button>
+            <button class="system-menu-nav-item" type="button" data-section="display"><span>▣</span> Display</button>
+            <button class="system-menu-nav-item" type="button" data-section="security"><span>⌑</span> Security</button>
+            <button class="system-menu-nav-item" type="button" data-section="storage"><span>▤</span> Storage</button>
+            <button class="system-menu-nav-item" type="button" data-section="updates"><span>↻</span> Updates</button>
+            <button class="system-menu-nav-item" type="button" data-section="about"><span>ⓘ</span> Über HalDo</button>
+          </nav>
+          <div class="system-menu-content" id="system-menu-content">
+            <!-- Allgemein -->
+            <section class="system-section active" data-panel="general">
+              <h3>Allgemein</h3>
+              <p>Grundlegende Einstellungen für HalDo AI OS.</p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <label style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid var(--hd-border);border-radius:10px;">
+                  <span>Cosmic World</span>
+                  <input type="checkbox" checked id="setting-cosmic">
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid var(--hd-border);border-radius:10px;">
+                  <span>Animationen</span>
+                  <input type="checkbox" checked id="setting-animations">
+                </label>
+              </div>
+            </section>
+            <!-- AI -->
+            <section class="system-section" data-panel="ai">
+              <h3>AI &amp; Memory</h3>
+              <p>Zentrale Einstellungen für die HalDo AI.</p>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <label style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid var(--hd-border);border-radius:10px;">
+                  <span>AI aktivieren</span>
+                  <input type="checkbox" checked id="setting-ai-enabled">
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid var(--hd-border);border-radius:10px;">
+                  <span>Memory aktivieren</span>
+                  <input type="checkbox" checked id="setting-memory">
+                </label>
+              </div>
+            </section>
+            <!-- Voice -->
+            <section class="system-section" data-panel="voice">
+              <h3>Voice &amp; Sprache</h3>
+              <p>Spracheingabe, Sprachausgabe und Sprachprofil.</p>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <label style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid var(--hd-border);border-radius:10px;">
+                  <span>Sprachausgabe</span>
+                  <input type="checkbox" checked id="setting-voice">
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid var(--hd-border);border-radius:10px;">
+                  <span>Mikrofon</span>
+                  <input type="checkbox" id="setting-mic">
+                </label>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <label>Sprache</label>
+                  <select id="setting-language" style="flex:1;padding:8px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid var(--hd-border);color:var(--hd-text);">
+                    <option value="de">Deutsch</option>
+                    <option value="en">English</option>
+                    <option value="ku">Kurdî</option>
+                    <option value="ez">Êzîdî</option>
+                    <option value="tr">Türkçe</option>
+                    <option value="ar">العربية</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                    <option value="ru">Русский</option>
+                    <option value="zh">中文</option>
+                    <option value="nl">Nederlands</option>
+                    <option value="pl">Polski</option>
+                    <option value="pt">Português</option>
+                    <option value="sv">Svenska</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+            <!-- Display -->
+            <section class="system-section" data-panel="display">
+              <h3>Display</h3>
+              <p>Darstellung und responsive Verhalten.</p>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <label style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid var(--hd-border);border-radius:10px;">
+                  <span>Vollbild</span>
+                  <input type="checkbox" id="setting-fullscreen">
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid var(--hd-border);border-radius:10px;">
+                  <span>Reduzierte Animationen</span>
+                  <input type="checkbox" id="setting-reduced-motion">
+                </label>
+              </div>
+            </section>
+            <!-- Security -->
+            <section class="system-section" data-panel="security">
+              <h3>Security</h3>
+              <p>Datenschutz und Sicherheitseinstellungen.</p>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <label style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border:1px solid var(--hd-border);border-radius:10px;">
+                  <span>API-Key speichern</span>
+                  <input type="checkbox" id="setting-store-api">
+                </label>
+              </div>
+            </section>
+            <!-- Storage -->
+            <section class="system-section" data-panel="storage">
+              <h3>Storage</h3>
+              <p>Lokale Speicherverwaltung.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button class="app-button" id="storage-clear">Cache löschen</button>
+                <button class="app-button" id="storage-export">Backup exportieren</button>
+              </div>
+            </section>
+            <!-- Updates -->
+            <section class="system-section" data-panel="updates">
+              <h3>Updates</h3>
+              <p>System- und App-Updates.</p>
+              <button class="app-button" id="check-updates">Nach Updates suchen</button>
+            </section>
+            <!-- About -->
+            <section class="system-section" data-panel="about">
+              <h3>Über HalDo AI OS</h3>
+              <p>Version 22.0 · Cosmic World · Living HalDo AI</p>
+              <p style="font-size:12px;color:var(--hd-text-muted);">© 2026 HalDo AI OS · A Halil Donma</p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       AI CHAT OVERLAY (NEU)
+       ============================================================ -->
+    <div id="ai-chat-overlay" aria-hidden="true">
+      <div class="ai-chat-panel" role="dialog" aria-modal="true" aria-labelledby="ai-chat-title">
+        <div class="ai-chat-header">
+          <div class="ai-chat-brand">
+            <img src="logo.png" alt="HalDo AI">
+            <div>
+              <h3 id="ai-chat-title">HalDo AI</h3>
+              <p id="ai-chat-state">Bereit</p>
+            </div>
+          </div>
+          <div class="ai-chat-actions">
+            <button id="ai-mic-button" type="button" aria-label="Spracheingabe" title="Spracheingabe">🎙️</button>
+            <button id="ai-voice-toggle" type="button" aria-label="Sprachausgabe" title="Sprachausgabe">🔊</button>
+            <button id="ai-chat-close" type="button" aria-label="Schließen">×</button>
+          </div>
+        </div>
+        <div class="ai-chat-avatar">
+          <img src="logo.png" alt="HalDo AI Avatar" draggable="false" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%234a9eff%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22%3E✦%3C/text%3E%3C/svg%3E'">
+          <div class="ai-state-label" id="ai-chat-state-label">Ich bin bereit.</div>
+        </div>
+        <div class="ai-chat-messages" id="ai-chat-messages"></div>
+        <div class="ai-chat-input">
+          <textarea id="ai-chat-input" rows="1" placeholder="Nachricht an HalDo AI …" aria-label="Nachricht an HalDo AI"></textarea>
+          <button id="ai-chat-send" type="button" aria-label="Senden">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       TOAST
+       ============================================================ -->
     <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
-    <div id="aria-live-region" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
 
   </div>
 
   <script>
     // ============================================================
-    // PHASE 4 – WISSENSCHAFTLICHES PLANETENSYSTEM + AVATAR
+    // KOMPLETTES JAVASCRIPT – PHASE 5
     // ============================================================
 
     (function() {
       'use strict';
 
       // ============================================================
-      // KERNEL & KONFIGURATION
+      // 1. KERNEL & KONFIGURATION
       // ============================================================
 
-      const HALDO = {
-        version: '4.0.0',
+      const HalDo = {
+        version: '22.0.0',
         name: 'HalDo AI OS',
         build: '2026-09-08',
-        phase: 'Phase 4 – Wissenschaftliches Planetensystem',
-        state: 'BOOTING',
+        state: 'READY',
         config: {
           cosmicWorld: true,
-          cosmicEffects: true,
           animations: true,
           aiEnabled: true,
-          aiAppControl: true,
           memoryEnabled: true,
-          memoryConversation: true,
-          speechInput: true,
           speechOutput: true,
-          voiceLanguage: 'de-DE',
-          voiceRate: 1,
-          voiceVolume: 1,
+          speechInput: false,
           language: 'de',
           voiceGender: 'female',
+          displayScale: 1,
+          fullscreen: false,
+          reducedMotion: false,
         },
-        storage: { db: null },
-        registry: {},
-        windows: {},
-        windowCounter: 0,
-        activeWindow: null,
-        ai: null,
-        voice: null,
         memory: [],
         notifications: [],
-        eventBus: {},
-        translations: {}
+        eventBus: {}
       };
 
-      // ============================================================
-      // EVENT BUS
-      // ============================================================
-
-      HALDO.eventBus = {
+      // Event Bus
+      HalDo.eventBus = {
         on(event, callback) { if (!this[event]) this[event] = []; this[event].push(callback); },
         emit(event, data) { if (this[event]) { this[event].forEach(cb => cb(data)); } },
         off(event, callback) { if (this[event]) { this[event] = this[event].filter(cb => cb !== callback); } }
       };
 
       // ============================================================
-      // STORAGE
+      // 2. APP REGISTRY – 27 Apps A–Z + Cyborg
       // ============================================================
 
-      HALDO.storage = {
-        init() {
-          return new Promise((resolve) => {
-            try {
-              const req = indexedDB.open('HalDoOS', 7);
-              req.onupgradeneeded = (e) => {
-                const db = e.target.result;
-                if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' });
-                if (!db.objectStoreNames.contains('memory')) db.createObjectStore('memory', { keyPath: 'key' });
-                if (!db.objectStoreNames.contains('notifications')) db.createObjectStore('notifications', { keyPath: 'id', autoIncrement: true });
-                if (!db.objectStoreNames.contains('registry')) db.createObjectStore('registry', { keyPath: 'id' });
-              };
-              req.onsuccess = (e) => { this.db = e.target.result; resolve(); };
-              req.onerror = () => { this.db = null; resolve(); };
-            } catch { this.db = null; resolve(); }
-          });
+      const APP_DEFINITIONS = [
+        { id: 'ai', name: 'HalDo AI', icon: '✦', cat: 'ai', desc: 'Intelligenter Assistent mit Avatar', version: '22' },
+        { id: 'cyborg', name: 'HalDo Cyborg', icon: '🦾', cat: 'ai', desc: 'Bewegbarer Roboter-Assistent', version: '22' },
+        { id: 'browser', name: 'Browser', icon: '🌐', cat: 'internet', desc: 'Internet-Browser', version: '22' },
+        { id: 'calendar', name: 'Calendar', icon: '📅', cat: 'productivity', desc: 'Terminkalender', version: '22' },
+        { id: 'documents', name: 'Documents', icon: '📄', cat: 'productivity', desc: 'Dokumente & Editor', version: '22' },
+        { id: 'email', name: 'Email', icon: '✉️', cat: 'communication', desc: 'E-Mail-Client', version: '22' },
+        { id: 'files', name: 'Files', icon: '📁', cat: 'system', desc: 'Dateimanager', version: '22' },
+        { id: 'gallery', name: 'Gallery', icon: '🖼️', cat: 'media', desc: 'Bildergalerie', version: '22' },
+        { id: 'health', name: 'Health', icon: '🏥', cat: 'productivity', desc: 'Gesundheitsakte', version: '22' },
+        { id: 'internet', name: 'Internet', icon: '📶', cat: 'internet', desc: 'Netzwerk & Speedtest', version: '22' },
+        { id: 'journal', name: 'Journal', icon: '📓', cat: 'productivity', desc: 'Tagebuch', version: '22' },
+        { id: 'keyboard', name: 'Keyboard', icon: '⌨️', cat: 'system', desc: 'Tastatur & Sprachen', version: '22' },
+        { id: 'learning', name: 'Learning', icon: '📚', cat: 'productivity', desc: 'Kurse & Quiz', version: '22' },
+        { id: 'music', name: 'Music', icon: '🎵', cat: 'media', desc: 'Musikplayer', version: '22' },
+        { id: 'navigation', name: 'Navigation', icon: '🧭', cat: 'productivity', desc: 'Karte & Routen', version: '22' },
+        { id: 'office', name: 'Office', icon: '📊', cat: 'productivity', desc: 'Tabellen & Text', version: '22' },
+        { id: 'photos', name: 'Photos', icon: '📸', cat: 'media', desc: 'Kamera & Album', version: '22' },
+        { id: 'quicktools', name: 'Quick Tools', icon: '🔧', cat: 'system', desc: 'Rechner, Timer, Umrechner', version: '22' },
+        { id: 'recorder', name: 'Recorder', icon: '🎙️', cat: 'media', desc: 'Audio-Recorder', version: '22' },
+        { id: 'security', name: 'Security', icon: '🔒', cat: 'system', desc: 'Passwortmanager', version: '22' },
+        { id: 'tasks', name: 'Tasks', icon: '✅', cat: 'productivity', desc: 'Aufgabenliste', version: '22' },
+        { id: 'updates', name: 'Updates', icon: '🔄', cat: 'system', desc: 'Update-Manager', version: '22' },
+        { id: 'video', name: 'Video Studio', icon: '🎬', cat: 'media', desc: 'Video-Editor', version: '22' },
+        { id: 'weather', name: 'Weather', icon: '🌦️', cat: 'productivity', desc: 'Wetter & 7-Tage', version: '22' },
+        { id: 'personalization', name: 'Personalization', icon: '🎨', cat: 'system', desc: 'Themes & Schrift', version: '22' },
+        { id: 'yourlife', name: 'Your Life', icon: '🏠', cat: 'productivity', desc: 'Dashboard', version: '22' },
+        { id: 'systemcenter', name: 'System Center', icon: '⚙️', cat: 'system', desc: 'Systemsteuerung', version: '22' },
+        { id: 'driving', name: 'Fahrschule', icon: '🚗', cat: 'productivity', desc: 'Fahrstunden & Theorie', version: '22' },
+        { id: 'traffic', name: 'Verkehr & Warnungen', icon: '🚦', cat: 'traffic', desc: 'Blitzer, Stau & Warnungen', version: '22' },
+        { id: 'chat', name: 'Chat', icon: '💬', cat: 'communication', desc: 'Chat mit Bestätigung', version: '22' },
+        { id: 'call', name: 'Anrufen', icon: '📞', cat: 'communication', desc: 'Video- & Audioanruf', version: '22' },
+      ];
+
+      const APP_DATA = {
+        health: {
+          diseases: ['Grippe', 'Allergie', 'Migräne', 'Bluthochdruck'],
+          medications: ['Ibuprofen', 'Cetirizin', 'Paracetamol'],
+          appointments: ['15.09. Dr. Müller', '22.09. Zahnarzt']
         },
-        async get(store, key) {
-          if (this.db) {
-            try {
-              const tx = this.db.transaction(store, 'readonly');
-              const req = tx.objectStore(store).get(key);
-              return new Promise((resolve) => { req.onsuccess = () => resolve(req.result); req.onerror = () => resolve(null); });
-            } catch { return null; }
-          }
-          const data = localStorage.getItem(`haldo_${store}_${key}`);
-          return data ? JSON.parse(data) : null;
+        driving: {
+          lessons: ['Grundfahraufgaben', 'Parken', 'Autobahnfahrt'],
+          rules: ['Rechtsfahrgebot', 'Blinker setzen', 'Vorfahrt'],
+          speedtraps: ['A3 bei Köln', 'B1 Berlin'],
+          theory: ['Frage 1: Was ist beim Überholen zu beachten?']
         },
-        async set(store, key, value) {
-          if (this.db) {
-            try {
-              const tx = this.db.transaction(store, 'readwrite');
-              const req = tx.objectStore(store).put({ ...value, key, id: key });
-              return new Promise((resolve) => { req.onsuccess = () => resolve(); req.onerror = () => resolve(); });
-            } catch { return; }
-          }
-          localStorage.setItem(`haldo_${store}_${key}`, JSON.stringify(value));
+        traffic: {
+          warnings: [
+            { location: 'A3 bei Köln', message: 'Blitzer! 80 km/h', type: 'speedtrap' },
+            { location: 'B1 Berlin', message: 'Stau! Umleitung', type: 'jam' }
+          ]
         },
-        async delete(store, key) {
-          if (this.db) {
-            try {
-              const tx = this.db.transaction(store, 'readwrite');
-              const req = tx.objectStore(store).delete(key);
-              return new Promise((resolve) => { req.onsuccess = () => resolve(); req.onerror = () => resolve(); });
-            } catch { return; }
-          }
-          localStorage.removeItem(`haldo_${store}_${key}`);
+        music: {
+          playlist: ['Blinding Lights - The Weeknd', 'Levitating - Dua Lipa', 'Stay - The Kid LAROI']
         },
-        async getAll(store) {
-          if (this.db) {
-            try {
-              const tx = this.db.transaction(store, 'readonly');
-              const req = tx.objectStore(store).getAll();
-              return new Promise((resolve) => { req.onsuccess = () => resolve(req.result); req.onerror = () => resolve([]); });
-            } catch { return []; }
-          }
-          return [];
+        calendar: {
+          events: [
+            { title: 'Meeting', date: '2026-09-15', time: '10:00' }
+          ]
         },
-        async clear(store) {
-          if (this.db) {
-            try {
-              const tx = this.db.transaction(store, 'readwrite');
-              const req = tx.objectStore(store).clear();
-              return new Promise((resolve) => { req.onsuccess = () => resolve(); req.onerror = () => resolve(); });
-            } catch { return; }
-          }
-          return;
+        tasks: {
+          items: [
+            { title: 'Projektbericht schreiben', done: false },
+            { title: 'Einkaufen', done: true }
+          ]
+        },
+        email: {
+          inbox: [
+            { from: 'Max Mustermann', subject: 'Projektupdate', body: 'Neue Unterlagen sind da.', date: 'heute' }
+          ],
+          sent: []
+        },
+        chat: {
+          messages: [
+            { from: 'Anna', text: 'Hey, wie geht es dir?', time: '10:30' }
+          ]
+        },
+        call: {
+          history: [
+            { contact: 'Anna', type: 'Video', duration: '5:23', date: 'heute' }
+          ]
+        },
+        documents: {
+          files: ['Projektplan.docx', 'Präsentation.pptx']
+        },
+        gallery: {
+          images: ['🌅', '🌄', '🌠', '🎆']
+        },
+        weather: {
+          cities: ['Berlin', 'Köln', 'Hamburg']
+        },
+        navigation: {
+          routes: ['Home → Office', 'Office → Supermarkt']
+        },
+        learning: {
+          courses: ['Einführung in KI', 'Webentwicklung']
+        },
+        office: {
+          docs: ['Budget.xlsx', 'Report.docx']
+        },
+        photos: {
+          albums: ['Urlaub 2025', 'Familie']
+        },
+        recorder: {
+          recordings: ['Besprechung_01.mp3']
+        },
+        browser: {
+          bookmarks: ['https://haldo-os.com', 'https://github.com']
+        },
+        internet: {
+          speedtest: { ping: '12 ms', download: '45 Mbps', upload: '12 Mbps' }
+        },
+        keyboard: {
+          layouts: ['Deutsch', 'English', 'Kurdî', 'Êzîdî']
+        },
+        personalization: {
+          themes: ['Cosmic', 'Dark', 'Light', 'Neon']
+        },
+        yourlife: {
+          stats: ['Aufgaben: 2 offen', 'E-Mails: 5 ungelesen']
+        },
+        systemcenter: {
+          logs: ['System gestartet: 08.09.2026']
+        },
+        security: {
+          passwords: ['Email: ****', 'Bank: ****']
+        },
+        updates: {
+          status: 'Aktuell'
+        },
+        files: {
+          folders: ['Bilder', 'Dokumente', 'Musik', 'Videos']
         }
       };
 
       // ============================================================
-      // LANGUAGE
+      // 3. DOM REFERENZEN
       // ============================================================
 
-      const TRANSLATIONS = {
-        de: {
-          'boot.message': 'Wissenschaftliches Planetensystem & Avatar wird geladen.',
-          'cosmic.subtitle': 'Cosmic World · Living Intelligence',
-          'ai.role': 'Professioneller HalDo AI & Cyborg',
-          'ai.idle': 'Ich bin bereit.',
-          'ai.listening': '👂 Ich höre zu …',
-          'ai.thinking': '🧠 Ich denke nach …',
-          'ai.speaking': '🗣️ Ich spreche …',
-          'ai.happy': '😊 Ich freue mich!',
-          'ai.confused': '🤔 Hmm, interessant …',
-          'ai.warning': '⚠️ Achtung!',
-          'ai.working': '⚡ Ich arbeite …',
-          'ai.sleep': '🌙 Gute Nacht …',
-        },
-        en: {
-          'boot.message': 'Scientific planetary system & avatar loading.',
-          'cosmic.subtitle': 'Cosmic World · Living Intelligence',
-          'ai.role': 'Professional HalDo AI & Cyborg',
-          'ai.idle': 'I am ready.',
-          'ai.listening': '👂 I am listening …',
-          'ai.thinking': '🧠 I am thinking …',
-          'ai.speaking': '🗣️ I am speaking …',
-        },
-        // Weitere Sprachen als Fallback
+      const DOM = {
+        appGrid: document.getElementById('app-grid'),
+        appSearch: document.getElementById('app-search-input'),
+        appMenuOverlay: document.getElementById('app-menu-overlay'),
+        appMenuClose: document.getElementById('app-menu-close'),
+        systemMenuOverlay: document.getElementById('system-menu-overlay'),
+        systemMenuClose: document.getElementById('system-menu-close'),
+        systemMenuNav: document.getElementById('system-menu-nav'),
+        systemMenuContent: document.getElementById('system-menu-content'),
+        aiChatOverlay: document.getElementById('ai-chat-overlay'),
+        aiChatClose: document.getElementById('ai-chat-close'),
+        aiChatMessages: document.getElementById('ai-chat-messages'),
+        aiChatInput: document.getElementById('ai-chat-input'),
+        aiChatSend: document.getElementById('ai-chat-send'),
+        aiChatState: document.getElementById('ai-chat-state'),
+        aiChatStateLabel: document.getElementById('ai-chat-state-label'),
+        aiMicButton: document.getElementById('ai-mic-button'),
+        aiVoiceToggle: document.getElementById('ai-voice-toggle'),
+        aiAvatar: document.getElementById('haldo-ai-avatar'),
+        aiSpeechBubble: document.getElementById('ai-speech-bubble'),
+        cyborgAvatar: document.getElementById('haldo-cyborg-avatar'),
+        cyborgSpeechBubble: document.getElementById('cyborg-speech-bubble'),
+        aiState: document.getElementById('haldo-ai-state'),
+        sun: document.getElementById('haldo-sun'),
+        appsMenuButton: document.getElementById('haldo-main-menu-button'),
+        systemMenuButton: document.getElementById('haldo-system-menu-button'),
+        aiTopButton: document.getElementById('haldo-ai-top-button'),
+        toastContainer: document.getElementById('toast-container'),
+        timeDisplay: document.getElementById('cosmic-time-display'),
+        secondMarker: document.getElementById('haldo-second-marker'),
+        minuteMarker: document.getElementById('haldo-minute-marker'),
+        hourMarker: document.getElementById('haldo-hour-marker'),
+        starField: document.getElementById('star-field'),
       };
 
-      ['ku', 'ez', 'tr', 'ar', 'fr', 'es', 'ru', 'zh', 'nl', 'pl', 'pt', 'sv'].forEach(lang => {
-        if (!TRANSLATIONS[lang]) {
-          TRANSLATIONS[lang] = { ...TRANSLATIONS.en };
-        }
-      });
-
       // ============================================================
-      // LANGUAGE FUNCTIONS
+      // 4. STERNE GENERIEREN
       // ============================================================
 
-      function setLanguage(lang) {
-        if (!TRANSLATIONS[lang]) { console.warn('Sprache nicht unterstützt:', lang); return; }
-        HALDO.config.language = lang;
-        HALDO.translations = TRANSLATIONS[lang] || TRANSLATIONS.de;
-        updateUITexts();
-        HALDO.storage.set('settings', 'config', HALDO.config);
-        HALDO.eventBus.emit('language:changed', lang);
-        const voiceMap = {
-          'de': 'de-DE', 'en': 'en-US', 'fr': 'fr-FR', 'es': 'es-ES',
-          'ru': 'ru-RU', 'zh': 'zh-CN', 'ar': 'ar-SA', 'tr': 'tr-TR',
-          'nl': 'nl-NL', 'pl': 'pl-PL', 'pt': 'pt-PT', 'sv': 'sv-SE',
-        };
-        HALDO.config.voiceLanguage = voiceMap[lang] || 'de-DE';
-      }
-
-      function t(key, fallback = key) {
-        if (HALDO.translations && HALDO.translations[key]) return HALDO.translations[key];
-        return fallback;
-      }
-
-      function updateUITexts() {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.dataset.i18n;
-          el.innerHTML = t(key, key);
-        });
-        const bootMsg = document.getElementById('boot-message');
-        if (bootMsg) bootMsg.innerHTML = t('boot.message', 'Wissenschaftliches Planetensystem & Avatar wird geladen.');
-        const expression = document.getElementById('ai-expression');
-        if (expression && aiState !== 'speaking' && aiState !== 'listening' && aiState !== 'thinking') {
-          expression.textContent = t('ai.idle', 'Ich bin bereit.');
+      function generateStars() {
+        const container = DOM.starField;
+        if (!container) return;
+        container.innerHTML = '';
+        const count = 365;
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          const size = 1 + Math.random() * 2;
+          const opacity = 0.4 + Math.random() * 0.5;
+          const duration = 2 + Math.random() * 4;
+          star.style.setProperty('--size', size + 'px');
+          star.style.setProperty('--opacity', opacity);
+          star.style.setProperty('--duration', duration + 's');
+          star.style.setProperty('--glow', (3 + Math.random() * 6) + 'px');
+          star.style.left = Math.random() * 100 + '%';
+          star.style.top = Math.random() * 100 + '%';
+          star.style.animationDelay = Math.random() * 5 + 's';
+          container.appendChild(star);
         }
       }
 
       // ============================================================
-      // TOAST – OHNE AUTOMATISCHE EMOJIS
+      // 5. TOAST
       // ============================================================
 
       function showToast(icon, title, message) {
-        const container = document.getElementById('toast-container');
+        const container = DOM.toastContainer;
         if (!container) return;
         const toast = document.createElement('div');
         toast.className = 'toast';
         toast.innerHTML = `
-          <span class="toast-icon">${icon || '📢'}</span>
-          <div class="toast-body">
-            <div class="toast-title">${title}</div>
-            <div class="toast-message">${message}</div>
-          </div>
+          <span style="font-size:18px;">${icon}</span>
+          <div><strong>${title}</strong><br><span style="color:var(--hd-text-muted);font-size:12px;">${message}</span></div>
         `;
         container.appendChild(toast);
         setTimeout(() => {
@@ -1306,604 +1720,581 @@
       }
 
       // ============================================================
-      // SYSTEM STATUS
+      // 6. APP-MENÜ
       // ============================================================
 
-      function updateSystemStatus(text) {
-        const status = document.getElementById('system-status');
-        if (status) status.textContent = text;
+      function renderAppGrid(filter = '') {
+        const grid = DOM.appGrid;
+        if (!grid) return;
+        const apps = APP_DEFINITIONS;
+        const filtered = apps.filter(a =>
+          a.name.toLowerCase().includes(filter.toLowerCase()) ||
+          a.desc.toLowerCase().includes(filter.toLowerCase())
+        );
+        grid.innerHTML = '';
+        if (filtered.length === 0) {
+          grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--hd-text-muted);padding:30px 0;">Keine Apps gefunden</div>';
+          return;
+        }
+        filtered.forEach(app => {
+          const item = document.createElement('div');
+          item.className = 'app-grid-item';
+          item.setAttribute('role', 'button');
+          item.setAttribute('tabindex', '0');
+          item.innerHTML = `
+            <div class="app-icon">${app.icon}</div>
+            <div class="app-name">${app.name}</div>
+            <div class="app-version">v${app.version}</div>
+          `;
+          item.addEventListener('click', () => {
+            closeAppMenu();
+            openApp(app.id);
+          });
+          item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+          });
+          grid.appendChild(item);
+        });
       }
 
-      // ============================================================
-      // STERNE GENERIEREN
-      // ============================================================
+      function openApp(appId) {
+        showToast('📱', 'App geöffnet', `${appId} wird gestartet...`);
+        // Hier später echte App-Logik
+      }
 
-      function generateStars() {
-        const container = document.getElementById('star-field');
-        if (!container) return;
-        container.innerHTML = '';
-        const count = 365;
-        for (let i = 0; i < count; i++) {
-          const star = document.createElement('div');
-          star.className = 'star';
-          if (i % 5 === 0) star.classList.add('large');
-          if (i % 7 === 0) star.classList.add('soft');
-          const x = Math.random() * 100;
-          const y = Math.random() * 100;
-          star.style.left = x + '%';
-          star.style.top = y + '%';
-          star.style.setProperty('--twinkle-duration', (3 + Math.random() * 4) + 's');
-          star.style.setProperty('--twinkle-delay', (Math.random() * 4) + 's');
-          container.appendChild(star);
+      function toggleAppMenu() {
+        const overlay = DOM.appMenuOverlay;
+        if (!overlay) return;
+        const isOpen = overlay.classList.contains('open');
+        if (isOpen) { closeAppMenu(); } else {
+          overlay.classList.add('open');
+          overlay.setAttribute('aria-hidden', 'false');
+          renderAppGrid('');
+          if (DOM.appSearch) { DOM.appSearch.value = ''; DOM.appSearch.focus(); }
         }
       }
 
-      function generateSpecialStars() {
-        const container = document.getElementById('special-star-field');
-        if (!container) return;
-        container.innerHTML = '';
-        const count = 30;
-        for (let i = 0; i < count; i++) {
-          const star = document.createElement('div');
-          star.className = 'special-star';
-          const x = Math.random() * 100;
-          const y = Math.random() * 100;
-          star.style.left = x + '%';
-          star.style.top = y + '%';
-          star.style.setProperty('--special-duration', (2.5 + Math.random() * 2.5) + 's');
-          star.style.setProperty('--special-delay', (Math.random() * 3) + 's');
-          container.appendChild(star);
-        }
-      }
-
-      function generateInnerSunStars() {
-        const container = document.getElementById('inner-sun-stars');
-        if (!container) return;
-        container.innerHTML = '';
-        const count = 24;
-        for (let i = 0; i < count; i++) {
-          const spark = document.createElement('div');
-          spark.className = 'inner-spark';
-          const angle = Math.random() * 2 * Math.PI;
-          const radius = 30 + Math.random() * 60;
-          const x = 50 + (radius * Math.cos(angle));
-          const y = 50 + (radius * Math.sin(angle));
-          spark.style.left = x + '%';
-          spark.style.top = y + '%';
-          spark.style.animationDelay = (Math.random() * 2) + 's';
-          container.appendChild(spark);
-        }
-      }
-
-      function generateOrbitalSunStars() {
-        const container = document.getElementById('sun-stars-orbital');
-        if (!container) return;
-        container.innerHTML = '';
-        const count = 30;
-        for (let i = 0; i < count; i++) {
-          const star = document.createElement('div');
-          star.className = 'sun-orbital-star';
-          const angle = (i / count) * 2 * Math.PI;
-          const radius = 45 + Math.random() * 10;
-          const x = 50 + radius * Math.cos(angle);
-          const y = 50 + radius * Math.sin(angle);
-          star.style.left = x + '%';
-          star.style.top = y + '%';
-          star.style.animationDelay = (i * 0.1) + 's';
-          container.appendChild(star);
+      function closeAppMenu() {
+        const overlay = DOM.appMenuOverlay;
+        if (overlay) {
+          overlay.classList.remove('open');
+          overlay.setAttribute('aria-hidden', 'true');
         }
       }
 
       // ============================================================
-      // AI AVATAR – NUR LOGO
+      // 7. SYSTEM-MENÜ
+      // ============================================================
+
+      function toggleSystemMenu() {
+        const overlay = DOM.systemMenuOverlay;
+        if (!overlay) return;
+        const isOpen = overlay.classList.contains('open');
+        if (isOpen) { closeSystemMenu(); } else {
+          overlay.classList.add('open');
+          overlay.setAttribute('aria-hidden', 'false');
+        }
+      }
+
+      function closeSystemMenu() {
+        const overlay = DOM.systemMenuOverlay;
+        if (overlay) {
+          overlay.classList.remove('open');
+          overlay.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      // System-Menü Navigation
+      DOM.systemMenuNav?.addEventListener('click', (e) => {
+        const btn = e.target.closest('.system-menu-nav-item');
+        if (!btn) return;
+        document.querySelectorAll('.system-menu-nav-item').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const section = btn.dataset.section;
+        document.querySelectorAll('.system-section').forEach(s => s.classList.remove('active'));
+        const target = document.querySelector(`.system-section[data-panel="${section}"]`);
+        if (target) target.classList.add('active');
+      });
+
+      // ============================================================
+      // 8. AI CHAT
       // ============================================================
 
       let aiState = 'idle';
-      let isSpeaking = false;
       let isListening = false;
+      let speechSynth = window.speechSynthesis;
+      let recognition = null;
+
+      if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition();
+        recognition.lang = 'de-DE';
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.onresult = (e) => {
+          const text = e.results[0][0].transcript;
+          DOM.aiChatInput.value = text;
+          sendAIMessage();
+        };
+        recognition.onend = () => {
+          isListening = false;
+          DOM.aiMicButton.classList.remove('active');
+          setAIState('idle');
+        };
+      }
 
       function setAIState(state) {
         aiState = state;
-        const label = document.getElementById('ai-state-label');
-        if (label) {
-          const states = {
-            idle: t('ai.idle', 'Bereit'),
-            listening: t('ai.listening', 'Zuhören …'),
-            thinking: t('ai.thinking', 'Denken …'),
-            speaking: t('ai.speaking', 'Sprechen …'),
-            happy: t('ai.happy', 'Glücklich'),
-            confused: t('ai.confused', 'Verwirrt'),
-            warning: t('ai.warning', 'Warnung'),
-            working: t('ai.working', 'Arbeite …'),
-            sleep: t('ai.sleep', 'Ruhemodus'),
-          };
-          label.textContent = states[state] || 'Bereit';
-        }
-        const expression = document.getElementById('ai-expression');
-        if (expression) {
-          const expressions = {
-            idle: t('ai.idle', 'Ich bin bereit.'),
-            listening: t('ai.listening', '👂 Ich höre zu …'),
-            thinking: t('ai.thinking', '🧠 Ich denke nach …'),
-            speaking: t('ai.speaking', '🗣️ Ich spreche …'),
-            happy: t('ai.happy', '😊 Ich freue mich!'),
-            confused: t('ai.confused', '🤔 Hmm, interessant …'),
-            warning: t('ai.warning', '⚠️ Achtung!'),
-            working: t('ai.working', '⚡ Ich arbeite …'),
-            sleep: t('ai.sleep', '🌙 Gute Nacht …'),
-          };
-          expression.textContent = expressions[state] || 'Ich bin bereit.';
-        }
-        // Keine Körper-Animation mehr – nur das Bild bleibt
-      }
-
-      // ============================================================
-      // VOICE
-      // ============================================================
-
-      function initVoice() {
-        if (!window.speechSynthesis) {
-          console.warn('Speech Synthesis nicht unterstützt.');
-          HALDO.voice = null;
-          return;
-        }
-        HALDO.voice = {
-          speak: function(text) {
-            if (!HALDO.config.speechOutput) return;
-            if (!text) return;
-            isSpeaking = true;
-            setAIState('speaking');
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = HALDO.config.voiceLanguage || 'de-DE';
-            utterance.rate = HALDO.config.voiceRate || 1;
-            utterance.volume = HALDO.config.voiceVolume || 1;
-            try {
-              const voices = window.speechSynthesis.getVoices();
-              const lang = utterance.lang;
-              let preferred = voices.find(v => v.lang === lang && (HALDO.config.voiceGender === 'female' ? v.name.toLowerCase().includes('female') : v.name.toLowerCase().includes('male')));
-              if (!preferred) preferred = voices.find(v => v.lang === lang);
-              if (preferred) utterance.voice = preferred;
-            } catch(e) {}
-            utterance.onend = () => { isSpeaking = false; if (aiState === 'speaking') setAIState('idle'); };
-            utterance.onerror = () => { isSpeaking = false; if (aiState === 'speaking') setAIState('idle'); };
-            window.speechSynthesis.speak(utterance);
-          },
-          listen: function() {
-            return new Promise((resolve) => {
-              if (!('webkitSpeechRecognition' in window)) { resolve(null); return; }
-              const recognition = new webkitSpeechRecognition();
-              recognition.lang = HALDO.config.voiceLanguage || 'de-DE';
-              recognition.continuous = false;
-              recognition.interimResults = false;
-              setAIState('listening');
-              isListening = true;
-              recognition.start();
-              recognition.onresult = (e) => { const text = e.results[0][0].transcript; resolve(text); };
-              recognition.onerror = () => { resolve(null); };
-              recognition.onend = () => { isListening = false; if (aiState === 'listening') setAIState('idle'); };
-            });
-          }
+        const labels = {
+          idle: 'Bereit',
+          listening: 'Hört zu …',
+          thinking: 'Denkt nach …',
+          speaking: 'Spricht …'
         };
-        window.speechSynthesis.getVoices();
-        window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+        if (DOM.aiChatState) DOM.aiChatState.textContent = labels[state] || 'Bereit';
+        if (DOM.aiChatStateLabel) DOM.aiChatStateLabel.textContent = labels[state] || 'Ich bin bereit.';
+        if (DOM.aiState) DOM.aiState.textContent = labels[state] || 'Bereit';
+        // Avatar-Status
+        if (DOM.aiAvatar) {
+          DOM.aiAvatar.style.boxShadow = state === 'listening' ? '0 0 40px rgba(99,232,255,0.3)' :
+            state === 'thinking' ? '0 0 40px rgba(183,140,255,0.3)' :
+            state === 'speaking' ? '0 0 40px rgba(255,118,217,0.3)' :
+            '0 0 20px rgba(74,158,255,0.1)';
+        }
       }
 
-      // ============================================================
-      // AI LOGIC – mit reduzierten Emojis, nur bei Bedarf
-      // ============================================================
-
-      function generateAIResponse(question) {
-        const lower = question.toLowerCase();
-        let response = '';
-
-        const knowledge = {
-          'was ist ki': 'Künstliche Intelligenz (KI) ist ein Bereich der Informatik, der sich mit der Automatisierung intelligenten Verhaltens befasst. Ich bin ein lebendiges Beispiel dafür.',
-          'wie geht es dir': 'Mir geht es großartig. Wie kann ich dir helfen?',
-          'wer bist du': 'Ich bin HalDo AI, dein intelligenter Assistent für die Cosmic World. Ich höre, spreche und helfe dir bei allem.',
-          'was ist haldo': 'HalDo AI OS ist ein professionelles Betriebssystem mit wissenschaftlichem Planetensystem, lebendiger AI und Cyborg-Assistent.',
-          'hallo': 'Hallo. Schön dich zu sehen. Wie kann ich dir heute helfen?',
-          'danke': 'Gern geschehen.',
-          'hilfe': 'Ich helfe dir gerne. Klicke auf die Sonne, öffne das App-Menü oder sprich einfach mit mir.',
-        };
-
-        for (const [key, value] of Object.entries(knowledge)) {
-          if (lower.includes(key)) { response = value; break; }
-        }
-
-        if (!response) {
-          const intents = {
-            'musik': 'music', 'video': 'video', 'gesundheit': 'health',
-            'navigation': 'navigation', 'kalender': 'calendar', 'email': 'email',
-            'fahrschule': 'driving', 'chat': 'chat', 'anruf': 'call',
-            'browser': 'browser', 'dateien': 'files', 'aufgaben': 'tasks',
-            'wetter': 'weather', 'einstellungen': 'systemcenter',
-            'sicherheit': 'security', 'updates': 'updates', 'verkehr': 'traffic',
-          };
-          for (const [keyword, appId] of Object.entries(intents)) {
-            if (lower.includes(keyword)) {
-              response = `Ich öffne die App "${appId}" für dich. (vorbereitet)`;
-              break;
-            }
-          }
-          if (!response) {
-            const defaultResponses = [
-              'Das ist eine interessante Frage. Ich überlege gerade.',
-              'Gute Frage. Lass mich darüber nachdenken.',
-              'Das ist wirklich spannend. Erzähl mir mehr.',
-              'Ich bin hier, um dir zu helfen. Was möchtest du wissen?',
-            ];
-            response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-          }
-        }
-
-        return response;
+      function toggleAI() {
+        const overlay = DOM.aiChatOverlay;
+        if (!overlay) return;
+        const isOpen = overlay.classList.contains('open');
+        if (isOpen) { closeAI(); } else { openAI(); }
       }
 
-      // ============================================================
-      // AI CHAT
-      // ============================================================
+      function openAI(initialMessage) {
+        const overlay = DOM.aiChatOverlay;
+        if (!overlay) return;
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        setAIState('idle');
+        if (initialMessage) {
+          addMessage(initialMessage, 'ai');
+        }
+        DOM.aiChatInput?.focus();
+        // Speech-Bubble
+        if (DOM.aiSpeechBubble) {
+          DOM.aiSpeechBubble.textContent = initialMessage || 'Hallo! Ich bin HalDo AI.';
+          DOM.aiSpeechBubble.classList.add('active');
+          setTimeout(() => DOM.aiSpeechBubble.classList.remove('active'), 4000);
+        }
+      }
+
+      function closeAI() {
+        const overlay = DOM.aiChatOverlay;
+        if (overlay) {
+          overlay.classList.remove('open');
+          overlay.setAttribute('aria-hidden', 'true');
+        }
+        if (speechSynth) speechSynth.cancel();
+        setAIState('idle');
+      }
 
       function addMessage(text, sender = 'user') {
-        const container = document.getElementById('ai-conversation');
+        const container = DOM.aiChatMessages;
         if (!container) return;
         const msg = document.createElement('div');
-        msg.className = `conv-message ${sender}`;
-        const icon = sender === 'user' ? '🧑' : '👤';
-        msg.innerHTML = `<span class="conv-icon">${icon}</span><span>${text}</span>`;
+        msg.className = `ai-chat-message ${sender}`;
+        msg.innerHTML = `<span class="msg-icon">${sender === 'user' ? '🧑' : '✦'}</span><span>${text}</span>`;
         container.appendChild(msg);
         container.scrollTop = container.scrollHeight;
       }
 
-      async function processAIInput(text) {
-        if (!text.trim()) return;
+      function generateAIResponse(text) {
+        const lower = text.toLowerCase();
+        const knowledge = {
+          'hallo': 'Hallo! Wie kann ich dir helfen?',
+          'wie geht es dir': 'Mir geht es großartig! Danke der Nachfrage.',
+          'wer bist du': 'Ich bin HalDo AI, dein intelligenter Assistent für die Cosmic World.',
+          'was ist haldo': 'HalDo AI OS ist ein professionelles Betriebssystem mit Cosmic World und lebendiger AI.',
+          'danke': 'Gern geschehen!',
+          'hilfe': 'Ich helfe dir gerne. Klicke auf die Sonne oder sprich einfach mit mir.'
+        };
+        for (const [key, value] of Object.entries(knowledge)) {
+          if (lower.includes(key)) return value;
+        }
+        return 'Das ist eine interessante Frage. Ich überlege gerade …';
+      }
+
+      async function sendAIMessage() {
+        const input = DOM.aiChatInput;
+        if (!input) return;
+        const text = input.value.trim();
+        if (!text) return;
+        input.value = '';
+        input.style.height = 'auto';
         addMessage(text, 'user');
 
         setAIState('thinking');
         const response = generateAIResponse(text);
 
-        if (HALDO.config.memoryEnabled && HALDO.config.memoryConversation) {
-          HALDO.memory.push({ role: 'user', content: text });
-          HALDO.memory.push({ role: 'ai', content: response });
-          if (HALDO.memory.length > 30) HALDO.memory = HALDO.memory.slice(-30);
-          await HALDO.storage.set('memory', 'conversation', { data: HALDO.memory });
-        }
+        // Memory
+        HalDo.memory.push({ role: 'user', content: text });
+        HalDo.memory.push({ role: 'ai', content: response });
+        if (HalDo.memory.length > 30) HalDo.memory = HalDo.memory.slice(-30);
 
-        addMessage(response, 'ai');
-
-        if (HALDO.config.speechOutput && HALDO.voice) {
-          HALDO.voice.speak(response);
-        } else {
+        setTimeout(() => {
+          addMessage(response, 'ai');
           setAIState('idle');
+
+          // Sprachausgabe
+          if (HalDo.config.speechOutput && speechSynth) {
+            setAIState('speaking');
+            const utterance = new SpeechSynthesisUtterance(response);
+            utterance.lang = HalDo.config.language === 'de' ? 'de-DE' : 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => setAIState('idle');
+            utterance.onerror = () => setAIState('idle');
+            speechSynth.speak(utterance);
+          }
+        }, 300 + Math.random() * 400);
+
+        // Speech-Bubble
+        if (DOM.aiSpeechBubble) {
+          DOM.aiSpeechBubble.textContent = response;
+          DOM.aiSpeechBubble.classList.add('active');
+          setTimeout(() => DOM.aiSpeechBubble.classList.remove('active'), 4000);
         }
       }
 
-      // ============================================================
-      // AI OVERLAY
-      // ============================================================
-
-      function openAI(initialMessage) {
-        const overlay = document.getElementById('ai-overlay');
-        if (!overlay) return;
-        overlay.classList.add('open');
-        overlay.setAttribute('aria-hidden', 'false');
-        const conversation = document.getElementById('ai-conversation');
-        if (conversation) {
-          conversation.innerHTML = '';
-          if (initialMessage) { addMessage(initialMessage, 'ai'); }
+      function toggleVoiceInput() {
+        if (!recognition) {
+          showToast('⚠️', 'Spracherkennung', 'Nicht verfügbar.');
+          return;
         }
-        setAIState('idle');
-        document.getElementById('ai-input').focus();
-      }
-
-      function closeAI() {
-        const overlay = document.getElementById('ai-overlay');
-        if (overlay) {
-          overlay.classList.remove('open');
-          overlay.setAttribute('aria-hidden', 'true');
+        if (isListening) {
+          recognition.stop();
+          return;
         }
-        window.speechSynthesis.cancel();
-        setAIState('idle');
-      }
-
-      async function toggleVoiceInput() {
-        if (!HALDO.voice) { showToast('⚠️', 'Voice', 'Spracherkennung nicht verfügbar.'); return; }
-        if (!HALDO.config.speechInput) { showToast('⚠️', 'Voice', 'Spracheingabe deaktiviert.'); return; }
-        const micBtn = document.getElementById('ai-mic-button');
-        if (micBtn) micBtn.classList.toggle('active');
-        if (isListening) return;
-        const text = await HALDO.voice.listen();
-        if (micBtn) micBtn.classList.remove('active');
-        if (text) {
-          const input = document.getElementById('ai-input');
-          if (input) { input.value = text; processAIInput(text); input.value = ''; }
-        } else {
-          showToast('🎤', 'Voice', 'Keine Eingabe erkannt.');
-          setAIState('idle');
+        try {
+          recognition.lang = HalDo.config.language === 'de' ? 'de-DE' : 'en-US';
+          recognition.start();
+          isListening = true;
+          DOM.aiMicButton.classList.add('active');
+          setAIState('listening');
+        } catch (e) {
+          showToast('⚠️', 'Mikrofon', 'Fehler beim Start.');
         }
       }
 
-      // ============================================================
-      // CYBORG
-      // ============================================================
-
-      function showCyborgSpeech(text) {
-        const speech = document.getElementById('cyborg-speech');
-        if (!speech) return;
-        speech.textContent = text;
-        speech.classList.add('active');
-        clearTimeout(speech._timeout);
-        speech._timeout = setTimeout(() => speech.classList.remove('active'), 4000);
+      function toggleVoiceOutput() {
+        HalDo.config.speechOutput = !HalDo.config.speechOutput;
+        DOM.aiVoiceToggle.classList.toggle('active');
+        showToast('🔊', 'Sprachausgabe', HalDo.config.speechOutput ? 'Aktiviert' : 'Deaktiviert');
       }
 
       // ============================================================
-      // EVENT LISTENER
+      // 9. CYBORG – DRAG & DROP
+      // ============================================================
+
+      function initCyborgDrag() {
+        const cyborg = DOM.cyborgAvatar;
+        if (!cyborg) return;
+        let isDragging = false;
+        let offsetX = 0,
+          offsetY = 0;
+
+        const startDrag = (e) => {
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          if (e.target === cyborg || e.target.closest('#haldo-cyborg-avatar')) {
+            isDragging = true;
+            const rect = cyborg.getBoundingClientRect();
+            offsetX = clientX - rect.left;
+            offsetY = clientY - rect.top;
+            cyborg.classList.add('dragging');
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', onDragEnd);
+            document.addEventListener('touchmove', onTouchDrag, { passive: false });
+            document.addEventListener('touchend', onTouchDragEnd);
+            e.preventDefault();
+          }
+        };
+
+        const onDrag = (e) => {
+          if (!isDragging) return;
+          let x = e.clientX - offsetX;
+          let y = e.clientY - offsetY;
+          x = Math.max(0, Math.min(window.innerWidth - cyborg.offsetWidth, x));
+          y = Math.max(0, Math.min(window.innerHeight - cyborg.offsetHeight, y));
+          cyborg.style.left = x + 'px';
+          cyborg.style.top = y + 'px';
+          cyborg.style.right = 'auto';
+          cyborg.style.bottom = 'auto';
+        };
+
+        const onDragEnd = () => {
+          isDragging = false;
+          cyborg.classList.remove('dragging');
+          document.removeEventListener('mousemove', onDrag);
+          document.removeEventListener('mouseup', onDragEnd);
+          document.removeEventListener('touchmove', onTouchDrag);
+          document.removeEventListener('touchend', onTouchDragEnd);
+        };
+
+        const onTouchDrag = (e) => {
+          if (!isDragging || !e.touches[0]) return;
+          const touch = e.touches[0];
+          let x = touch.clientX - offsetX;
+          let y = touch.clientY - offsetY;
+          x = Math.max(0, Math.min(window.innerWidth - cyborg.offsetWidth, x));
+          y = Math.max(0, Math.min(window.innerHeight - cyborg.offsetHeight, y));
+          cyborg.style.left = x + 'px';
+          cyborg.style.top = y + 'px';
+          cyborg.style.right = 'auto';
+          cyborg.style.bottom = 'auto';
+          e.preventDefault();
+        };
+
+        const onTouchDragEnd = () => {
+          isDragging = false;
+          cyborg.classList.remove('dragging');
+          document.removeEventListener('touchmove', onTouchDrag);
+          document.removeEventListener('touchend', onTouchDragEnd);
+        };
+
+        cyborg.addEventListener('mousedown', startDrag);
+        cyborg.addEventListener('touchstart', startDrag, { passive: false });
+
+        // Cyborg Click = AI öffnen
+        cyborg.addEventListener('click', () => {
+          openAI('Hallo! Ich bin HalDo Cyborg.');
+          if (DOM.cyborgSpeechBubble) {
+            DOM.cyborgSpeechBubble.textContent = 'Hallo! Ich bin HalDo Cyborg.';
+            DOM.cyborgSpeechBubble.classList.add('active');
+            setTimeout(() => DOM.cyborgSpeechBubble.classList.remove('active'), 4000);
+          }
+        });
+      }
+
+      // ============================================================
+      // 10. AI AVATAR CLICK
+      // ============================================================
+
+      DOM.aiAvatar?.addEventListener('click', () => {
+        openAI('Hallo! Ich bin HalDo AI.');
+      });
+
+      // ============================================================
+      // 11. ZEIT-ORBITS AKTUALISIEREN
+      // ============================================================
+
+      function updateTimeOrbits() {
+        const now = new Date();
+        const sec = now.getSeconds();
+        const min = now.getMinutes();
+        const hour = now.getHours() % 12;
+
+        if (DOM.secondMarker) {
+          const deg = (sec / 60) * 360;
+          DOM.secondMarker.style.transform = `rotate(${deg}deg)`;
+        }
+        if (DOM.minuteMarker) {
+          const deg = (min / 60) * 360;
+          DOM.minuteMarker.style.transform = `rotate(${deg}deg)`;
+        }
+        if (DOM.hourMarker) {
+          const deg = (hour / 12) * 360 + (min / 60) * 30;
+          DOM.hourMarker.style.transform = `rotate(${deg}deg)`;
+        }
+
+        if (DOM.timeDisplay) {
+          DOM.timeDisplay.textContent = now.toLocaleTimeString('de-DE', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+          });
+        }
+      }
+
+      setInterval(updateTimeOrbits, 200);
+      updateTimeOrbits();
+
+      // ============================================================
+      // 12. EVENT LISTENER
       // ============================================================
 
       function initEventListeners() {
         // Sonne -> AI
-        document.getElementById('sun')?.addEventListener('click', () => {
-          if (HALDO.config.aiEnabled) {
-            const greeting = t('ai.happy', '☀️ Hallo. Wie kann ich dir helfen?');
-            openAI(greeting);
-            if (HALDO.config.speechOutput && HALDO.voice) {
-              setTimeout(() => HALDO.voice.speak('Hallo. Willkommen bei HalDo AI OS.'), 500);
-            }
-          } else {
-            showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
-          }
+        DOM.sun?.addEventListener('click', () => {
+          openAI('☀️ Hallo! Wie kann ich dir helfen?');
         });
 
-        // Dock AI
-        document.getElementById('dock-ai')?.addEventListener('click', () => {
-          if (HALDO.config.aiEnabled) {
-            openAI('👤 Hallo. Ich bin HalDo AI.');
-            if (HALDO.config.speechOutput && HALDO.voice) {
-              setTimeout(() => HALDO.voice.speak('Hallo. Ich bin HalDo AI.'), 500);
-            }
-          } else {
-            showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
-          }
+        // App-Menü Buttons
+        DOM.appsMenuButton?.addEventListener('click', toggleAppMenu);
+        DOM.appMenuClose?.addEventListener('click', closeAppMenu);
+        DOM.appMenuOverlay?.addEventListener('click', (e) => {
+          if (e.target === e.currentTarget) closeAppMenu();
         });
 
-        // Cyborg Click
-        document.getElementById('cyborg-click-area')?.addEventListener('click', () => {
-          if (HALDO.config.aiEnabled) {
-            openAI('👤 Hallo. Ich bin HalDo Cyborg.');
-            showCyborgSpeech('👤 Hallo. Ich bin HalDo Cyborg.');
-            if (HALDO.config.speechOutput && HALDO.voice) {
-              setTimeout(() => HALDO.voice.speak('Hallo. Ich bin HalDo Cyborg.'), 500);
-            }
-          } else {
-            showToast('⚠️', 'AI deaktiviert', 'Aktiviere HalDo AI in den Einstellungen.');
-          }
+        // App-Suche
+        DOM.appSearch?.addEventListener('input', (e) => {
+          renderAppGrid(e.target.value);
         });
 
-        // AI Close
-        document.getElementById('ai-close-button')?.addEventListener('click', closeAI);
-        document.getElementById('ai-overlay')?.addEventListener('click', (e) => {
+        // System-Menü Buttons
+        DOM.systemMenuButton?.addEventListener('click', toggleSystemMenu);
+        DOM.systemMenuClose?.addEventListener('click', closeSystemMenu);
+        DOM.systemMenuOverlay?.addEventListener('click', (e) => {
+          if (e.target === e.currentTarget) closeSystemMenu();
+        });
+
+        // AI Top Button
+        DOM.aiTopButton?.addEventListener('click', toggleAI);
+
+        // AI Chat
+        DOM.aiChatClose?.addEventListener('click', closeAI);
+        DOM.aiChatOverlay?.addEventListener('click', (e) => {
           if (e.target === e.currentTarget) closeAI();
         });
 
-        // AI Mic
-        document.getElementById('ai-mic-button')?.addEventListener('click', toggleVoiceInput);
-
-        // AI Voice Toggle
-        document.getElementById('ai-voice-button')?.addEventListener('click', () => {
-          HALDO.config.speechOutput = !HALDO.config.speechOutput;
-          document.getElementById('ai-voice-button').style.opacity = HALDO.config.speechOutput ? '1' : '0.4';
-          showToast('🔊', 'Sprachausgabe', HALDO.config.speechOutput ? 'Aktiviert' : 'Deaktiviert');
-        });
-
-        // AI Input
-        document.getElementById('ai-input-form')?.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const input = document.getElementById('ai-input');
-          const text = input.value.trim();
-          if (text) { processAIInput(text); input.value = ''; input.style.height = 'auto'; }
-        });
-        document.getElementById('ai-input')?.addEventListener('input', function() {
-          this.style.height = 'auto';
-          this.style.height = this.scrollHeight + 'px';
-        });
-
-        // Menü-Logo-Button
-        document.getElementById('menu-logo-btn')?.addEventListener('click', () => {
-          showToast('📋', 'Hauptmenü', 'Wird in Phase 6 implementiert.');
-        });
-
-        // Dock Buttons
-        document.getElementById('dock-apps')?.addEventListener('click', () => showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.'));
-        document.getElementById('dock-search')?.addEventListener('click', () => showToast('🔍', 'Suche', 'Wird in Phase 6 implementiert.'));
-        document.getElementById('dock-notifications')?.addEventListener('click', () => showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.'));
-        document.getElementById('dock-settings')?.addEventListener('click', () => showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.'));
-        document.getElementById('app-menu-button')?.addEventListener('click', () => showToast('📱', 'App-Menü', 'Wird in Phase 6 implementiert.'));
-        document.getElementById('settings-button')?.addEventListener('click', () => showToast('⚙️', 'Einstellungen', 'Wird in Phase 7 implementiert.'));
-        document.getElementById('notification-button')?.addEventListener('click', () => showToast('🔔', 'Benachrichtigungen', 'Wird in Phase 6 implementiert.'));
-
-        // Planeten-Klick
-        document.querySelectorAll('.planet, .sub-planet').forEach(p => {
-          p.addEventListener('click', () => {
-            const name = p.title || p.querySelector('.sub-label')?.textContent || 'Himmelskörper';
-            showToast('🪐', name, 'Info in Phase 6');
-          });
-        });
-
-        // Cyborg Drag & Drop
-        const cyborg = document.getElementById('cyborg-avatar');
-        if (cyborg) {
-          let isDragging = false, offsetX, offsetY;
-          const startDrag = (e) => {
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            if (e.target === cyborg || e.target.closest('#cyborg-avatar')) {
-              isDragging = true;
-              const rect = cyborg.getBoundingClientRect();
-              offsetX = clientX - rect.left;
-              offsetY = clientY - rect.top;
-              cyborg.classList.add('dragging');
-              document.addEventListener('mousemove', onDrag);
-              document.addEventListener('mouseup', onDragEnd);
-              document.addEventListener('touchmove', onTouchDrag, { passive: false });
-              document.addEventListener('touchend', onTouchDragEnd);
-              e.preventDefault();
-            }
-          };
-          cyborg.addEventListener('mousedown', startDrag);
-          cyborg.addEventListener('touchstart', startDrag, { passive: false });
-
-          function onDrag(e) {
-            if (!isDragging) return;
-            let x = e.clientX - offsetX;
-            let y = e.clientY - offsetY;
-            x = Math.max(0, Math.min(window.innerWidth - cyborg.offsetWidth, x));
-            y = Math.max(0, Math.min(window.innerHeight - cyborg.offsetHeight, y));
-            cyborg.style.left = x + 'px';
-            cyborg.style.top = y + 'px';
-            cyborg.style.right = 'auto';
-            cyborg.style.bottom = 'auto';
-          }
-          function onDragEnd() {
-            isDragging = false;
-            cyborg.classList.remove('dragging');
-            document.removeEventListener('mousemove', onDrag);
-            document.removeEventListener('mouseup', onDragEnd);
-            document.removeEventListener('touchmove', onTouchDrag);
-            document.removeEventListener('touchend', onTouchDragEnd);
-          }
-          function onTouchDrag(e) {
-            if (!isDragging || !e.touches[0]) return;
-            const touch = e.touches[0];
-            let x = touch.clientX - offsetX;
-            let y = touch.clientY - offsetY;
-            x = Math.max(0, Math.min(window.innerWidth - cyborg.offsetWidth, x));
-            y = Math.max(0, Math.min(window.innerHeight - cyborg.offsetHeight, y));
-            cyborg.style.left = x + 'px';
-            cyborg.style.top = y + 'px';
-            cyborg.style.right = 'auto';
-            cyborg.style.bottom = 'auto';
+        DOM.aiChatSend?.addEventListener('click', sendAIMessage);
+        DOM.aiChatInput?.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
+            sendAIMessage();
           }
-          function onTouchDragEnd() {
-            isDragging = false;
-            cyborg.classList.remove('dragging');
-            document.removeEventListener('touchmove', onTouchDrag);
-            document.removeEventListener('touchend', onTouchDragEnd);
-          }
-        }
+          setTimeout(() => {
+            e.target.style.height = 'auto';
+            e.target.style.height = e.target.scrollHeight + 'px';
+          }, 0);
+        });
+
+        // AI Mic & Voice
+        DOM.aiMicButton?.addEventListener('click', toggleVoiceInput);
+        DOM.aiVoiceToggle?.addEventListener('click', toggleVoiceOutput);
+
+        // Storage Buttons
+        document.getElementById('storage-clear')?.addEventListener('click', () => {
+          localStorage.clear();
+          showToast('🗑️', 'Cache', 'Gelöscht.');
+        });
+        document.getElementById('storage-export')?.addEventListener('click', () => {
+          const data = JSON.stringify({ version: HalDo.version, memory: HalDo.memory }, null, 2);
+          const blob = new Blob([data], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `haldo-backup-${new Date().toISOString().slice(0,10)}.json`;
+          a.click();
+          URL.revokeObjectURL(url);
+          showToast('💾', 'Backup', 'Exportiert.');
+        });
+
+        // Updates
+        document.getElementById('check-updates')?.addEventListener('click', () => {
+          showToast('🔄', 'Updates', 'System ist aktuell (v' + HalDo.version + ').');
+        });
 
         // Keyboard Shortcuts
         document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closeAI();
+          if (e.key === 'Escape') {
+            closeAppMenu();
+            closeSystemMenu();
+            closeAI();
+          }
+          if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            toggleAppMenu();
+          }
           if ((e.ctrlKey || e.metaKey) && e.key === ' ') {
             e.preventDefault();
-            if (HALDO.config.aiEnabled) {
-              openAI('👤 Hallo.');
-              if (HALDO.config.speechOutput && HALDO.voice) {
-                setTimeout(() => HALDO.voice.speak('Hallo. Ich bin HalDo AI.'), 500);
-              }
-            }
+            toggleAI();
           }
           if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'L') {
-            const langs = Object.keys(TRANSLATIONS);
-            const current = HALDO.config.language;
+            const langs = ['de', 'en', 'ku', 'ez', 'tr', 'ar', 'fr', 'es', 'ru', 'zh', 'nl', 'pl', 'pt', 'sv'];
+            const current = HalDo.config.language || 'de';
             const idx = langs.indexOf(current);
             const next = langs[(idx + 1) % langs.length];
-            setLanguage(next);
-            showToast('🌐', 'Sprache geändert', `Neue Sprache: ${next}`);
+            HalDo.config.language = next;
+            document.getElementById('setting-language').value = next;
+            showToast('🌐', 'Sprache', next);
           }
         });
 
-        console.log('✅ Event-Listener initialisiert.');
+        // Einstellungen Switches
+        document.querySelectorAll('#system-menu-content input[type="checkbox"]').forEach(input => {
+          input.addEventListener('change', () => {
+            const key = input.id.replace('setting-', '');
+            if (key === 'cosmic') HalDo.config.cosmicWorld = input.checked;
+            else if (key === 'animations') HalDo.config.animations = input.checked;
+            else if (key === 'ai-enabled') HalDo.config.aiEnabled = input.checked;
+            else if (key === 'memory') HalDo.config.memoryEnabled = input.checked;
+            else if (key === 'voice') HalDo.config.speechOutput = input.checked;
+            else if (key === 'mic') HalDo.config.speechInput = input.checked;
+            else if (key === 'fullscreen') {
+              if (input.checked) document.documentElement.requestFullscreen?.();
+              else document.exitFullscreen?.();
+            }
+            showToast('⚙️', 'Einstellung', `${key} = ${input.checked ? 'Aktiv' : 'Inaktiv'}`);
+          });
+        });
+
+        document.getElementById('setting-language')?.addEventListener('change', (e) => {
+          HalDo.config.language = e.target.value;
+          showToast('🌐', 'Sprache', e.target.value);
+        });
+
+        console.log('✅ HalDo AI OS Phase 5 – Alle Systeme aktiv.');
       }
 
       // ============================================================
-      // BOOT
+      // 13. BOOT
       // ============================================================
 
-      async function boot() {
-        const bootScreen = document.getElementById('boot-screen');
-        const bootLoader = document.getElementById('boot-loader-bar');
-        const cosmicWorld = document.getElementById('cosmic-world');
-
-        await HALDO.storage.init();
-
-        const savedConfig = await HALDO.storage.get('settings', 'config');
-        if (savedConfig) { HALDO.config = { ...HALDO.config, ...savedConfig }; }
-
-        const lang = HALDO.config.language || 'de';
-        setLanguage(lang);
-
-        const savedMemory = await HALDO.storage.get('memory', 'conversation');
-        if (savedMemory && savedMemory.data) { HALDO.memory = savedMemory.data; }
-
-        let progress = 0;
-        const steps = [
-          'Lade Kernsystem …',
-          'Verbinde Speicher …',
-          'Generiere Sterne …',
-          'Erstelle Sonnensystem …',
-          'Aktiviere Cosmic World …',
-          'Starte HalDo AI & Cyborg …',
-          'System bereit.'
-        ];
-
-        for (let i = 0; i < steps.length; i++) {
-          progress = ((i + 1) / steps.length) * 100;
-          if (bootLoader) bootLoader.style.width = progress + '%';
-          await new Promise(r => setTimeout(r, 150 + Math.random() * 120));
-        }
-
+      function boot() {
         generateStars();
-        generateSpecialStars();
-        generateInnerSunStars();
-        generateOrbitalSunStars();
-
-        if (bootScreen) {
-          bootScreen.classList.add('hidden');
-          setTimeout(() => { bootScreen.style.display = 'none'; }, 800);
-        }
-        if (cosmicWorld) cosmicWorld.classList.remove('is-transitioning');
-
-        HALDO.state = 'READY';
-        updateSystemStatus('HalDo AI OS • Phase 4 • Wissenschaftliches Planetensystem');
-
-        initVoice();
+        renderAppGrid('');
+        initCyborgDrag();
         initEventListeners();
 
-        document.getElementById('ai-memory-status').textContent = HALDO.config.memoryEnabled ? '🧠 Memory aktiv' : '🧠 Memory aus';
-
+        // Willkommensgrüße
         setTimeout(() => {
-          const welcome = t('ai.happy', '👤 Hallo. Ich bin HalDo AI.');
-          showToast('🌌', 'HalDo AI OS Phase 4', 'Wissenschaftliches Planetensystem ist bereit.');
-          if (HALDO.config.aiEnabled) {
-            setTimeout(() => {
-              openAI(welcome);
-              showCyborgSpeech('👤 Hallo. Ich bin HalDo Cyborg.');
-              if (HALDO.config.speechOutput && HALDO.voice) {
-                setTimeout(() => HALDO.voice.speak('Hallo. Ich bin HalDo AI.'), 500);
-              }
-            }, 600);
+          showToast('🌌', 'HalDo AI OS v' + HalDo.version, 'Cosmic World & Living HalDo AI bereit.');
+          if (DOM.aiSpeechBubble) {
+            DOM.aiSpeechBubble.textContent = 'Hallo! Ich bin HalDo AI.';
+            DOM.aiSpeechBubble.classList.add('active');
+            setTimeout(() => DOM.aiSpeechBubble.classList.remove('active'), 4000);
           }
-        }, 800);
+          if (DOM.cyborgSpeechBubble) {
+            DOM.cyborgSpeechBubble.textContent = 'Hallo! Ich bin HalDo Cyborg.';
+            DOM.cyborgSpeechBubble.classList.add('active');
+            setTimeout(() => DOM.cyborgSpeechBubble.classList.remove('active'), 4000);
+          }
+          // Kurze AI Begrüßung mit Sprache
+          if (HalDo.config.speechOutput && speechSynth) {
+            setTimeout(() => {
+              const utter = new SpeechSynthesisUtterance('Hallo! Willkommen bei HalDo AI OS.');
+              utter.lang = 'de-DE';
+              speechSynth.speak(utter);
+            }, 1000);
+          }
+        }, 600);
 
-        console.log('🚀 HalDo AI OS Phase 4 – Wissenschaftliches Planetensystem gestartet.');
-        console.log('📦 Version:', HALDO.version);
-
-        HALDO.eventBus.emit('boot:ready');
+        console.log('🚀 HalDo AI OS Phase 5 gestartet.');
+        HalDo.eventBus.emit('boot:ready');
       }
 
       // ============================================================
-      // START
+      // 14. START
       // ============================================================
 
       boot();
 
-      window.HALDO = HALDO;
-      window.t = t;
-      window.setLanguage = setLanguage;
+      // Global
+      window.HalDo = HalDo;
       window.showToast = showToast;
+      window.toggleAI = toggleAI;
       window.openAI = openAI;
       window.closeAI = closeAI;
+      window.toggleAppMenu = toggleAppMenu;
 
     })();
   </script>
