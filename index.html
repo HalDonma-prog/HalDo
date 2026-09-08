@@ -2,18 +2,37 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>HalDo AI OS - Lebendiges Universum</title>
+    <title>HalDo AI OS - Fotorealistische Edition</title>
     <style>
-        /* Universum Hintergrund */
         body { margin: 0; overflow: hidden; background-color: #020208; font-family: 'Segoe UI', sans-serif; color: white; }
         
-        /* Canvas für Sonne, Planeten, Sterne */
-        #universe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        /* Der kosmische Hintergrund (Deine Erde) */
+        #earth-bg {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110vw;
+            height: 110vh;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.8) saturate(1.2);
+            animation: slowZoom 60s infinite linear; 
+        }
+        @keyframes slowZoom { 0% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(1.1); } }
 
-        /* Der Cyborg (Platzhalter, tausche mit deinem logo.png) */
-        #cyborg-container { position: absolute; bottom: 0px; left: 20px; z-index: 5; pointer-events: none; }
-        #cyborg { font-size: 150px; filter: drop-shadow(0 0 30px #00aaff); animation: float 4s infinite ease-in-out; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        /* Die Planeten-Ebene (läuft über der Erde) */
+        #universe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+
+        /* Der fotorealistische Cyborg */
+        #cyborg {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 95vh;
+            z-index: 5;
+            filter: drop-shadow(0 0 40px rgba(0, 170, 255, 0.8));
+            pointer-events: none;
+        }
 
         /* Professionelle, verschiebbare Fenster */
         .os-window {
@@ -29,7 +48,7 @@
         }
         .os-window:active { cursor: grabbing; }
 
-        #chat-window { bottom: 30px; right: 30px; width: 380px; height: 320px; }
+        #chat-window { bottom: 30px; left: 30px; width: 380px; height: 320px; }
         #file-window { top: 20px; left: 20px; width: 300px; }
         #sun-window { top: 20px; right: 20px; width: 300px; display: none; }
 
@@ -40,7 +59,7 @@
         #chat-body { padding: 15px; height: 170px; overflow-y: auto; font-size: 15px; }
         input { width: 90%; margin: 10px; padding: 10px; background: rgba(0,0,0,0.8); border: 1px solid #00aaff; border-radius: 8px; color: white; }
         
-        /* Statusleiste (mit allen 6 Farben) */
+        /* Statusleiste */
         #status-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; gap: 10px; background: rgba(0, 10, 30, 0.9); padding: 10px 15px; border-radius: 30px; border: 1px solid #00aaff; }
         .dot { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
         #btn-close { background: #ff0000; }
@@ -49,19 +68,18 @@
         #btn-files { background: #ff00ff; }
         #btn-sun { background: #ffaa00; }
         #btn-update { background: #ffff00; }
-        
-        #dev-log { position: absolute; bottom: 10px; right: 20px; color: #00ff00; font-family: monospace; font-size: 12px; z-index: 20; text-shadow: 0 0 5px #00ff00; }
     </style>
 </head>
 <body>
 
-<!-- Die lebendige Sonne und Planeten (Canvas) -->
+<!-- Hintergrundbild: Erde mit Mond (Ändere src, falls dein Bild anders heißt) -->
+<img id="earth-bg" src="earth.png" alt="Erde" onerror="this.style.display='none'">
+
+<!-- Die laufenden Planeten -->
 <canvas id="universe"></canvas>
 
-<!-- Dein Cyborg (Ersetze 🤖 mit <img src="logo.png">) -->
-<div id="cyborg-container">
-    <div id="cyborg">🤖</div>
-</div>
+<!-- Vordergrundbild: Cyborg und Frau (Ändere src, falls dein Bild anders heißt) -->
+<img id="cyborg" src="cyborg.png" alt="HalDo Cyborg" onerror="this.style.display='none'">
 
 <!-- Statusleiste -->
 <div id="status-bar">
@@ -76,7 +94,7 @@
 <!-- Chat Fenster -->
 <div id="chat-window" class="os-window">
     <div id="header">💬 HalDo AI Chat <div><button class="control-btn" id="btn-x" onclick="close('chat-window')">X</button><button class="control-btn" id="btn-min" onclick="minimize('chat-window')">–</button></div></div>
-    <div id="chat-body">Willkommen Bruder. Das komplette Universum mit 12 Planeten läuft!</div>
+    <div id="chat-body">Willkommen Bruder. Dein fotorealistisches OS läuft!</div>
     <input id="chat-input" type="text" placeholder="Sag was... " onkeydown="if(event.key==='Enter') sendMessage()">
 </div>
 
@@ -102,14 +120,8 @@
     </div>
 </div>
 
-<div id="dev-log">
-    > HALDO CORE GELADEN<br>
-    > 12 PLANETEN VERBUNDEN<br>
-    > SYSTEM BEREIT
-</div>
-
 <script>
-    // DRAG & DROP: Fenster verschieben
+    // Drag & Drop für Fenster
     document.querySelectorAll('#header').forEach(header => {
         header.addEventListener('mousedown', (e) => {
             const win = header.parentElement;
@@ -128,9 +140,9 @@
     function minimize(id) { document.getElementById(id).style.transform = 'scale(0)'; setTimeout(() => { document.getElementById(id).style.transform = 'scale(1)'; close(id); }, 300); }
     function toggle(id) { const el = document.getElementById(id); el.style.display = (el.style.display === 'none') ? 'block' : 'none'; }
 
-    // Audio & Mikrofon
+    // Audio
     function activateSpeaker() {
-        const u = new SpeechSynthesisUtterance('Systeme sind bereit, Bruder. Die Planeten kreisen um die Sonne.');
+        const u = new SpeechSynthesisUtterance('Systeme sind bereit, Bruder.');
         u.lang = 'de-DE'; speechSynthesis.speak(u);
     }
     function activateMic() {
@@ -148,77 +160,56 @@
     }
     function checkUpdate() { alert("System ist auf dem neuesten Stand!"); }
 
-    // DAS LEBENDIGE UNIVERSUM (Sonne, 12 Planeten, Sterne)
+    // Das Universum (Sonne, 12 Planeten, leuchtende Orbs)
     const canvas = document.getElementById('universe');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Sterne
-    let stars = [];
-    for (let i = 0; i < 800; i++) {
-        stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.5, a: Math.random() });
-    }
-
-    // Sonne (Mitte)
     const sun = { x: canvas.width / 2, y: canvas.height / 2 };
 
-    // Die 12 Planeten (echte Farben, langsame Umlaufbahnen)
     const planets = [
-        { r: 30, size: 6, color: "#b0b0b0", speed: 0.0005, offset: 0 },      // Merkur
-        { r: 55, size: 10, color: "#FFD700", speed: 0.0004, offset: 1.5 },   // Venus
-        { r: 80, size: 12, color: "#4B90C2", speed: 0.00035, offset: 2.8 },  // Erde
-        { r: 110, size: 9, color: "#C1440E", speed: 0.0003, offset: 4.0 },   // Mars
-        { r: 150, size: 25, color: "#D8CA9D", speed: 0.00025, offset: 5.2 }, // Jupiter
-        { r: 190, size: 22, color: "#EEDC82", speed: 0.0002, offset: 6.4, ring: true }, // Saturn
-        { r: 230, size: 14, color: "#00FFFF", speed: 0.00018, offset: 7.6 }, // Uranus
-        { r: 270, size: 14, color: "#4169E1", speed: 0.00015, offset: 8.8 }, // Neptun
-        { r: 310, size: 5, color: "#F5F5DC", speed: 0.00012, offset: 10.0 }, // Pluto
-        { r: 350, size: 5, color: "#8A2BE2", speed: 0.0001, offset: 11.2 },  // Ceres
-        { r: 390, size: 4, color: "#FFFFFF", speed: 0.00008, offset: 12.4 }, // Eris
-        { r: 430, size: 6, color: "#FFB6C1", speed: 0.00006, offset: 13.6 }  // Haumea
+        { r: 30, size: 6, color: "#b0b0b0", speed: 0.0005, offset: 0 },
+        { r: 55, size: 10, color: "#FFD700", speed: 0.0004, offset: 1.5 },
+        { r: 80, size: 12, color: "#4B90C2", speed: 0.00035, offset: 2.8 },
+        { r: 110, size: 9, color: "#C1440E", speed: 0.0003, offset: 4.0 },
+        { r: 150, size: 25, color: "#D8CA9D", speed: 0.00025, offset: 5.2 },
+        { r: 190, size: 22, color: "#EEDC82", speed: 0.0002, offset: 6.4, ring: true },
+        { r: 230, size: 14, color: "#00FFFF", speed: 0.00018, offset: 7.6 },
+        { r: 270, size: 14, color: "#4169E1", speed: 0.00015, offset: 8.8 },
+        { r: 310, size: 5, color: "#F5F5DC", speed: 0.00012, offset: 10.0 },
+        { r: 350, size: 5, color: "#8A2BE2", speed: 0.0001, offset: 11.2 },
+        { r: 390, size: 4, color: "#FFFFFF", speed: 0.00008, offset: 12.4 },
+        { r: 430, size: 6, color: "#FFB6C1", speed: 0.00006, offset: 13.6 }
     ];
 
     let t = 0;
-
     function drawUniverse() {
-        // Tiefblauer Nachthimmel
-        ctx.fillStyle = '#020208';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Transparent lassen, damit Erde sichtbar bleibt
 
-        // Sterne zeichnen
-        stars.forEach(s => {
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255,255,255,${s.a})`;
-            ctx.fill();
-        });
-
-        // Strahlende, pulsierende Sonne
+        // Leuchtende Sonne
         let glow = 1 + Math.sin(t * 0.05) * 0.1;
         let gradient = ctx.createRadialGradient(sun.x, sun.y, 0, sun.x, sun.y, 180 * glow);
         gradient.addColorStop(0, '#ffffff');
         gradient.addColorStop(0.4, '#ffaa00');
-        gradient.addColorStop(1, '#ff3300');
+        gradient.addColorStop(1, 'rgba(255, 51, 0, 0)'); // Transparent, damit Erde durchscheint
         ctx.beginPath();
         ctx.arc(sun.x, sun.y, 120 * glow, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
 
-        // Planeten zeichnen (Umlaufbahn)
+        // Planeten
         planets.forEach(p => {
             let angle = (t * p.speed) + p.offset;
             let x = sun.x + Math.cos(angle) * p.r;
             let y = sun.y + Math.sin(angle) * p.r;
 
-            // Leuchtende Bahn
             ctx.beginPath();
             ctx.ellipse(sun.x, sun.y, p.r, p.r * 0.8, 0, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(0,170,255,0.2)';
+            ctx.strokeStyle = 'rgba(0,170,255,0.4)';
             ctx.lineWidth = 1;
             ctx.stroke();
 
-            // Planet
             ctx.beginPath();
             ctx.arc(x, y, p.size, 0, Math.PI * 2);
             ctx.fillStyle = p.color;
@@ -227,7 +218,6 @@
             ctx.fill();
             ctx.shadowBlur = 0;
 
-            // Saturnring
             if (p.ring) {
                 ctx.beginPath();
                 ctx.ellipse(x, y, p.size * 2, p.size * 0.5, 0.3, 0, Math.PI * 2);
@@ -241,7 +231,6 @@
         requestAnimationFrame(drawUniverse);
     }
 
-    // Größe anpassen
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -249,7 +238,6 @@
         sun.y = canvas.height / 2;
     });
 
-    // Animation starten
     drawUniverse();
 </script>
 </body>
