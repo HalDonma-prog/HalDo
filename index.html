@@ -2,233 +2,205 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>HalDo AI OS - Ultimate Professional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HalDo AI OS</title>
     <style>
-        body { margin: 0; overflow: hidden; background: #000; font-family: 'Segoe UI', sans-serif; color: white; }
-        canvas { display: block; }
+        /* Basis-Design für alle Geräte */
+        body { margin: 0; overflow: hidden; background: #000; font-family: 'Segoe UI', sans-serif; color: #fff; }
+        canvas { display: block; position: absolute; top: 0; left: 0; z-index: 0; }
         
-        /* Cyborg mit lebendiger Animation */
-        #cyborg { position: absolute; bottom: 0; right: 5%; height: 80vh; z-index: 10; filter: drop-shadow(0 0 50px #00aaff); animation: floatCyborg 6s infinite ease-in-out; }
-        @keyframes floatCyborg { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(-1deg); } }
-
-        /* Verschiebbare Fenster (Glassmorphism) */
-        .os-window { position: absolute; background: rgba(0, 15, 40, 0.7); backdrop-filter: blur(15px); border: 1px solid #00aaff; border-radius: 15px; box-shadow: 0 0 40px rgba(0,170,255,0.5); z-index: 50; cursor: grab; user-select: none; }
-        .os-window:active { cursor: grabbing; }
-        #header { padding: 15px; background: rgba(0, 40, 100, 0.8); border-radius: 15px 15px 0 0; cursor: move; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        .btn { width: 25px; height: 25px; border-radius: 50%; border: none; cursor: pointer; color: white; font-size: 14px; }
-        #close { background: red; } #min { background: orange; }
+        /* Das Cosmisches Interface (Fenster & Module) */
+        #ui-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
         
-        #chat { bottom: 30px; left: 30px; width: 400px; height: 350px; }
-        #files { top: 30px; left: 30px; width: 280px; }
-        #updates { top: 30px; right: 30px; width: 300px; display: none; }
-        #sun-window { bottom: 30px; right: 30px; width: 350px; display: none; }
-        
-        #chat-body { padding: 15px; height: 200px; overflow-y: auto; }
-        input { width: 90%; margin: 10px; padding: 10px; background: rgba(0,0,0,0.8); border: 1px solid #00aaff; border-radius: 8px; color: white; }
-        
-        /* Statusleiste */
-        #status { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 10px; background: rgba(0,10,30,0.9); padding: 10px 20px; border-radius: 30px; border: 1px solid #00aaff; }
-        .dot { width: 24px; height: 24px; border-radius: 50%; border: 2px solid white; cursor: pointer; }
-    </style>
-
-    <!-- Three.js von CDN (Keine Installation nötig!) -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-            }
+        .module { 
+            pointer-events: auto; 
+            background: rgba(10, 25, 50, 0.7); 
+            border: 1px solid #00aaff; 
+            border-radius: 15px; 
+            padding: 15px; 
+            box-shadow: 0 0 30px rgba(0,170,255,0.4); 
+            margin: 10px; 
+            backdrop-filter: blur(10px);
+            animation: float 6s infinite ease-in-out;
         }
-    </script>
+        
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Initiale Positionen der Module */
+        #chat-mod { position: absolute; bottom: 20px; left: 20px; width: 320px; }
+        #data-mod { position: absolute; top: 20px; left: 20px; }
+        #system-mod { position: absolute; top: 20px; right: 20px; }
+        #apps-mod { position: absolute; bottom: 20px; right: 20px; }
+        #upload-mod { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; }
+
+        h3 { margin-top: 0; color: #00aaff; font-size: 16px; }
+        p { font-size: 14px; line-height: 1.5; }
+        button { background: #00aaff; border: none; color: white; padding: 8px 12px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 5px; }
+        input { width: 90%; padding: 10px; background: #111; border: 1px solid #00aaff; border-radius: 5px; color: white; margin: 5px 0; }
+        
+        /* Navigation für mobile Geräte */
+        #nav-bar { position: fixed; bottom: 0; width: 100%; z-index: 20; background: rgba(0,0,0,0.9); display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #00aaff; }
+        .nav-btn { background: transparent; width: auto; font-size: 14px; color: #fff; }
+
+        @media (max-width: 768px) {
+            .module { width: calc(100% - 40px); }
+            #chat-mod { bottom: 80px; }
+            #system-mod, #data-mod { top: 10px; width: calc(50% - 30px); }
+        }
+    </style>
 </head>
 <body>
 
-<!-- Dein Cyborg -->
-<img id="cyborg" src="cyborg.png" onerror="this.style.display='none'">
+<canvas id="universe"></canvas>
 
-<!-- Statusleiste -->
-<div id="status">
-    <div class="dot" style="background:red;" onclick="closeAll()"></div>
-    <div class="dot" style="background:green;" onclick="startMic()"></div>
-    <div class="dot" style="background:blue;" onclick="startSpeech()"></div>
-    <div class="dot" style="background:magenta;" onclick="toggle('files')"></div>
-    <div class="dot" style="background:orange;" onclick="toggle('sun-window')"></div>
-    <div class="dot" style="background:yellow;" onclick="toggle('updates')"></div>
-</div>
+<div id="ui-layer">
+    <div id="chat-mod" class="module">
+        <h3>💬 HalDo AI Chat</h3>
+        <p id="chat-output">Willkommen Bruder!</p>
+        <input id="chat-input" placeholder="Sag was..." onkeydown="if(event.key==='Enter') sendMsg()">
+    </div>
 
-<!-- Chat Fenster -->
-<div id="chat" class="os-window">
-    <div id="header">💬 HalDo AI Chat <div><button class="btn" id="close" onclick="close('chat')">X</button></div></div>
-    <div id="chat-body"><img src="logo.png" style="width:40px; border-radius:50%; margin-right:10px; vertical-align:middle;" onerror="this.style.display='none'"> Willkommen Bruder! Das lebendige 3D System läuft.</div>
-    <input id="chat-input" placeholder="Sag was..." onkeydown="if(event.key==='Enter') sendMsg()">
-</div>
+    <div id="data-mod" class="module">
+        <h3>🗂️ Daten</h3>
+        <button onclick="alert('Dokumente werden geladen...')">📁 Dokumente</button>
+        <button onclick="alert('Musik wird gestartet...')">🎵 Musik</button>
+    </div>
 
-<!-- Dateien Fenster -->
-<div id="files" class="os-window">
-    <div id="header">🗂️ Dateien & Daten <div><button class="btn" id="close" onclick="close('files')">X</button></div></div>
-    <div style="padding:15px;">
-        <div onclick="alert('Dokumente geöffnet')">📁 Dokumente</div><br>
-        <div onclick="alert('Musik läuft')">🎵 Musik</div><br>
-        <div onclick="alert('Video startet')">🎬 Videos</div><br>
-        <div onclick="alert('Datenbank online')">📊 Datenbank</div>
+    <div id="system-mod" class="module">
+        <h3>⚙️ System Update</h3>
+        <p>Version 6.0</p>
+        <button onclick="alert('Suche nach Updates...')">🔄 Update</button>
+    </div>
+
+    <div id="apps-mod" class="module">
+        <h3>📲 Apps</h3>
+        <button onclick="toggleModule('upload-mod')">⬆️ Upload</button>
+        <button onclick="alert('Datei-Explorer geöffnet')">📂 Dateien</button>
+    </div>
+
+    <div id="upload-mod" class="module">
+        <h3>⬆️ Uploads</h3>
+        <input type="file">
+        <button>Hochladen</button>
     </div>
 </div>
 
-<!-- Updates Fenster -->
-<div id="updates" class="os-window">
-    <div id="header">⬆️ Software Update <div><button class="btn" id="close" onclick="close('updates')">X</button></div></div>
-    <div style="padding:15px;">
-        <p>Version: HalDo AI OS v6.0</p>
-        <p>Status: <span style="color:green;">Lebendig & Bereit</span></p>
-        <button onclick="alert('Update läuft... System neu starten!')" style="background:yellow; border:none; padding:10px; cursor:pointer;">Update Starten</button>
-    </div>
+<!-- Navigation -->
+<div id="nav-bar">
+    <button class="nav-btn" onclick="toggleModule('chat-mod')">💬 Chat</button>
+    <button class="nav-btn" onclick="toggleModule('data-mod')">🗂️ Daten</button>
+    <button class="nav-btn" onclick="toggleModule('system-mod')">⚙️ System</button>
+    <button class="nav-btn" onclick="toggleModule('apps-mod')">📲 Apps</button>
 </div>
 
-<!-- Sonnen Fenster -->
-<div id="sun-window" class="os-window">
-    <div id="header">☀️ Sonnenkern <div><button class="btn" id="close" onclick="close('sun-window')">X</button></div></div>
-    <div style="padding:15px; text-align:center;">
-        <h2 style="color:orange; text-shadow: 0 0 20px orange;">ENERGIE AKTIV</h2>
-        <p>Die Sonne pulsiert im 3D-Raum.</p>
-        <button onclick="alert('Energie freigesetzt!')" style="background:orange; border:none; padding:10px; cursor:pointer;">Energie</button>
-    </div>
-</div>
-
-<script type="module">
-    import * as THREE from 'three';
-    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-
-    // --- 3D SZENE ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    document.body.appendChild(renderer.domElement);
-
-    // Kamera Position
-    camera.position.z = 5;
-
-    // --- STERNE & GALAXIE ---
-    const starsGeo = new THREE.BufferGeometry();
-    const starsCount = 2000;
-    const posArray = new Float32Array(starsCount * 3);
-    for(let i = 0; i < starsCount * 3; i++) {
-        posArray[i] = (Math.random() - 0.5) * 100;
+<script>
+    // Fenster & Module Verwaltung
+    function toggleModule(id) {
+        var el = document.getElementById(id);
+        el.style.display = (el.style.display === 'none') ? 'block' : 'none';
     }
-    starsGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const starsMat = new THREE.PointsMaterial({ size: 0.05, color: 0xffffff });
-    scene.add(new THREE.Points(starsGeo, starsMat));
-
-    // --- DIE SONNE (Mit Bloom Effekt) ---
-    const sunGeo = new THREE.SphereGeometry(1, 64, 64);
-    const sunMat = new THREE.MeshBasicMaterial({ color: 0xffaa00, emissive: 0xff5500 });
-    const sun = new THREE.Mesh(sunGeo, sunMat);
-    scene.add(sun);
-
-    // --- DIE ERDE (Wenn earth.png vorhanden, sonst einfarbig) ---
-    const earthGroup = new THREE.Group();
-    scene.add(earthGroup);
-
-    let earthMaterial = new THREE.MeshStandardMaterial({ color: 0x2244aa, roughness: 0.5 });
-    
-    // Versuche das eigene Bild zu laden
-    const texLoader = new THREE.TextureLoader();
-    texLoader.load('earth.png', (texture) => {
-        earthMaterial = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.5 });
-    });
-    
-    const earth = new THREE.Mesh(new THREE.SphereGeometry(0.4, 32, 32), earthMaterial);
-    earth.position.x = 2;
-    earthGroup.add(earth);
-
-    // --- LOGO (Schwebend) ---
-    const logoTex = texLoader.load('logo.png');
-    const logoMat = new THREE.SpriteMaterial({ map: logoTex, depthTest: false });
-    const logoSprite = new THREE.Sprite(logoMat);
-    logoSprite.scale.set(1, 1, 1);
-    logoSprite.position.set(-2, 0, 0);
-    scene.add(logoSprite);
-
-    // --- PLANETEN (Andere Farben) ---
-    const planetGroup = new THREE.Group();
-    scene.add(planetGroup);
-    const planets = [];
-    for(let i=0; i<8; i++) {
-        const geo = new THREE.SphereGeometry(0.1, 32, 32);
-        const mat = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff });
-        const mesh = new THREE.Mesh(geo, mat);
-        mesh.position.x = 3 + (i * 0.4);
-        planets.push(mesh);
-        planetGroup.add(mesh);
-    }
-
-    // --- BLUM EFFEKT (Strahlende Sonne) ---
-    const renderScene = new RenderPass(scene, camera);
-    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-    bloomPass.threshold = 0;
-    bloomPass.strength = 1.2;
-    bloomPass.radius = 0.5;
-    const composer = new EffectComposer(renderer);
-    composer.addPass(renderScene);
-    composer.addPass(bloomPass);
-
-    // --- ANIMATION ---
-    const clock = new THREE.Clock();
-    function animate() {
-        requestAnimationFrame(animate);
-
-        // Sonne dreht sich langsam
-        sun.rotation.y += 0.001;
-        
-        // Erde dreht sich um sich selbst und bewegt sich um die Sonne
-        earth.rotation.y += 0.01;
-        const time = clock.getElapsedTime();
-        earthGroup.position.x = Math.cos(time * 0.5) * 2;
-        earthGroup.position.z = Math.sin(time * 0.5) * 2;
-
-        // Logo schwebt
-        logoSprite.position.y = Math.sin(time * 2) * 0.2;
-
-        // Planeten kreisen
-        planetGroup.rotation.y -= 0.001;
-
-        composer.render();
-    }
-    animate();
-
-    // Fenster Größe anpassen
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        composer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // --- UI FUNKTIONEN ---
-    window.close = (id) => document.getElementById(id).style.display = 'none';
-    window.closeAll = () => { document.querySelectorAll('.os-window').forEach(w => w.style.display = 'none'); };
-    window.toggle = (id) => { const el = document.getElementById(id); el.style.display = (el.style.display === 'none') ? 'block' : 'none'; };
-    
-    // Drag & Drop
-    document.querySelectorAll('#header').forEach(h => {
-        h.addEventListener('mousedown', (e) => {
-            const win = h.parentElement;
-            let x = e.clientX - win.getBoundingClientRect().left;
-            let y = e.clientY - win.getBoundingClientRect().top;
-            function move(e) { win.style.left = (e.clientX - x) + 'px'; win.style.top = (e.clientY - y) + 'px'; }
-            function up() { document.removeEventListener('mousemove', move); document.removeEventListener('mouseup', up); }
-            document.addEventListener('mousemove', move);
-            document.addEventListener('mouseup', up);
-        });
-    });
 
     // Sprache & Mikrofon
-    window.startSpeech = () => { const u = new SpeechSynthesisUtterance('System ist online, Bruder!'); u.lang = 'de-DE'; speechSynthesis.speak(u); };
-    window.startMic = () => { const rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)(); rec.lang = 'de-DE'; rec.start(); rec.onresult = (e) => { document.getElementById('chat-input').value = e.results[0][0].transcript; sendMsg(); }; };
-    window.sendMsg = () => { const input = document.getElementById('chat-input'); const msg = input.value; if(!msg) return; document.getElementById('chat-body').innerHTML += `<br><b>Bruder:</b> ${msg}`; input.value=""; setTimeout(() => { document.getElementById('chat-body').innerHTML += `<br><b>HalDo:</b> Befehl ausgeführt!`; }, 1000); };
+    function sendMsg() {
+        var input = document.getElementById('chat-input').value;
+        if (!input) return;
+        var output = document.getElementById('chat-output');
+        output.innerHTML += "<br><b>Bruder:</b> " + input;
+        input = "";
+        setTimeout(() => { output.innerHTML += "<br><b>HalDo:</b> Befehl erhalten!"; }, 1000);
+    }
+    
+    function startSpeaker() {
+        var u = new SpeechSynthesisUtterance('System bereit.');
+        u.lang = 'de-DE';
+        speechSynthesis.speak(u);
+    }
+
+    // Das Universum
+    const canvas = document.getElementById('universe');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let stars = [];
+    let planets = [];
+    
+    function initUniverse() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+
+        stars = [];
+        for (let i = 0; i < 500; i++) {
+            stars.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 2, a: Math.random() });
+        }
+
+        planets = [
+            { r: 30, size: 6, color: "#b0b0b0", speed: 0.002, offset: 0 },
+            { r: 55, size: 10, color: "#FFD700", speed: 0.0018, offset: 1.5 },
+            { r: 80, size: 12, color: "#4B90C2", speed: 0.0015, offset: 2.8 },
+            { r: 110, size: 9, color: "#C1440E", speed: 0.0013, offset: 4.0 },
+            { r: 150, size: 25, color: "#D8CA9D", speed: 0.001, offset: 5.2 },
+            { r: 190, size: 22, color: "#EEDC82", speed: 0.0008, offset: 6.4, ring: true },
+            { r: 230, size: 14, color: "#00FFFF", speed: 0.0007, offset: 7.6 },
+            { r: 270, size: 14, color: "#4169E1", speed: 0.0006, offset: 8.8 },
+            { r: 310, size: 5, color: "#F5F5DC", speed: 0.0005, offset: 10.0 },
+            { r: 350, size: 5, color: "#8A2BE2", speed: 0.0004, offset: 11.2 }
+        ];
+    }
+
+    function draw() {
+        ctx.fillStyle = '#020208';
+        ctx.fillRect(0, 0, width, height);
+
+        // Sterne
+        stars.forEach(s => {
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${s.a})`;
+            ctx.fill();
+        });
+
+        // Sonne (Pulsierend)
+        let sunX = width / 2, sunY = height / 2;
+        let time = Date.now() * 0.002;
+        let pulse = 1 + Math.sin(time) * 0.1;
+        
+        let grad = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, 150 * pulse);
+        grad.addColorStop(0, '#fff');
+        grad.addColorStop(0.4, '#ffaa00');
+        grad.addColorStop(1, '#ff3300');
+        ctx.beginPath();
+        ctx.arc(sunX, sunY, 100 * pulse, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // Planeten (bewegen sich langsam)
+        planets.forEach(p => {
+            let angle = time * p.speed + p.offset;
+            let x = sunX + Math.cos(angle) * p.r * 3.5;
+            let y = sunY + Math.sin(angle) * p.r * 1.5;
+            
+            // Orbit Linie
+            ctx.beginPath();
+            ctx.ellipse(sunX, sunY, p.r * 3.5, p.r * 1.5, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(0,170,255,0.2)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(x, y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.shadowColor = p.color;
+            ctx.shadowBlur = 15;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    initUniverse();
+    draw();
+
+    window.addEventListener('resize', initUniverse);
 </script>
 </body>
 </html>
